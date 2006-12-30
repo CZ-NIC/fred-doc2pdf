@@ -1,0 +1,26 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""Here define path where your system holds TrueType fonts.
+Define also default font name for implicit template style.
+"""
+
+# Define path where TrueType font are saved:
+TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)
+
+# This font names are used in default (implicit) style.
+# Names are separated from file-TTF-names for better names redefine.
+# (This names can be overwrite by template definition.)
+DEFAULT_FONT_FAMILLY = (
+    'Times-Roman',
+    'Times-Bold',
+    'Times-Italic',
+    'Times-BoldItalic',
+)
+# This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
+DEFAULT_FONT_TTF = (
+    'Times_New_Roman.ttf',
+    'Times_New_Roman_Bold.ttf',
+    'Times_New_Roman_Italic.ttf',
+    'Times_New_Roman_Bold_Italic.ttf',
+)
+DEFAULT_STYLE_FONT = zip(DEFAULT_FONT_FAMILLY, DEFAULT_FONT_TTF)

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE document SYSTEM "rml_1_0.dtd">
+<document filename="test.pdf">
+
+<docinit>
+ <!-- 
+ This fonts names must be found in defined path:
+ /usr/share/fonts/truetype/msttcorefonts
+ -->
+  <registerDefaultFont 
+    fontName="Times-Roman" fontFile="Times_New_Roman.ttf" 
+    fontNameBold="Times-Bold" fontFileBold="Times_New_Roman_Bold.ttf" 
+    fontNameOblique="Times-Italic" fontFileOblique="Times_New_Roman_Italic.ttf" 
+    fontNameBoldOblique="Times-BoldItalic" fontFileBoldOblique="Times_New_Roman_Bold_Italic.ttf" 
+    />
+  <registerFont 
+    fontName="Arial" fontFile="Arial.ttf" 
+    fontNameBold="Arial-Bold" fontFileBold="Arial_Bold.ttf" 
+    fontNameOblique="Arial-Oblique" fontFileOblique="Arial_Italic.ttf" 
+    fontNameBoldOblique="Arial-BoldOblique" fontFileBoldOblique="Arial_Bold_Italic.ttf" 
+    />
+</docinit>
+
+<template pageSize="(21cm, 29.7cm)"
+          leftMargin="2.5cm"
+          rightMargin="2.5cm"
+          topMargin="2.5cm"
+          bottomMargin="2.5cm"
+          title="Test TrueType fontů a češtiny"
+          author="Zdeněk Böhm; zdenek.bohm@nic.cz"
+          showBoundary="1"
+          allowSplitting="20"
+          >
+          <!-- showBoundary means that we will be able to see the            -->
+          <!-- limits of frames                                              -->
+    <pageTemplate id="main">
+          <pageGraphics>
+          </pageGraphics>
+          <frame id="titleBox" x1="2.5cm" y1="27.7cm" width="16cm"
+              height="1cm"/>
+          <frame id="columnOne" x1="2.5cm" y1="2.5cm" width="7.5cm"
+              height="24.7cm"/>
+          <frame id="columnTwo" x1="11cm" y1="2.5cm" width="7.5cm"
+              height="24.7cm"/>
+    </pageTemplate>
+</template>
+<stylesheet>
+    <initialize>
+          <name id="FileTitle" value="Test TrueType fontů a češtiny"/>
+          <name id="ColumnOneHeader" value="This is Column One"/>
+          <name id="ColumnTwoHeader" value="This is Column Two"/>
+    </initialize>
+
+    <paraStyle name="titleBox"
+    fontName="Arial-Bold"
+    fontSize="18"
+    spaceBefore="0.4 cm"
+     alignment="CENTER"
+     />
+     <paraStyle name="body"
+     fontName="Arial"
+     fontSize="10"
+     leftIndent="5"
+     spaceAfter="5"
+     />
+</stylesheet>
+<story>
+     <para style="titleBox">
+     <b><getName id="FileTitle"/></b>
+     </para>
+     <nextFrame/>
+     <condPageBreak height="144"/><h2>
+         <getName id="ColumnOneHeader"/>
+     </h2>
+     <para>
+         Toto je obsah <b>prvního sloupce</b>.
+     </para>
+     <para>
+        Příklad základního stylu sloupcového layoutu.
+     </para>
+     <para>
+         Použitý font je Times-New-Roman.
+     </para>
+     <para>
+        Test češtiny:
+     </para>
+     <para>
+        Normal: Příšerně žluťoučký kůň úpěl ďábelské ódy.
+        Bold: <b>Příšerně žluťoučký kůň úpěl ďábelské ódy.</b>
+        Oblique: <i>Příšerně žluťoučký kůň úpěl ďábelské ódy.</i>
+        BoldOblique: <b><i>Příšerně žluťoučký kůň úpěl ďábelské ódy.</i></b>
+     </para>
+<para>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur libero eros, fringilla placerat, ultrices a, blandit a, est. Sed purus diam, tincidunt ut, venenatis ac, eleifend et, ligula. Vestibulum sed dolor sed est auctor placerat. Praesent at lorem euismod enim lobortis adipiscing. Ut urna ligula, imperdiet et, consequat ut, imperdiet sed, justo. Aenean tellus nunc, luctus sit amet, pretium in, elementum sit amet, tortor. Nulla fermentum rhoncus felis. Duis luctus. Vestibulum nisl. Integer ut nisl. Aliquam id quam. Ut laoreet diam eu justo. Duis eu metus a orci mattis adipiscing. Duis ultricies, turpis ac placerat vestibulum, enim dolor hendrerit eros, et malesuada mi lectus id justo. Nunc laoreet est nec dolor. Suspendisse pulvinar porta massa.
+</para>
+<para>
+Nunc gravida commodo turpis. Fusce vulputate vestibulum nibh. Donec ornare vehicula orci. Aenean nec odio. Vestibulum mollis condimentum velit. Aenean est. Aenean sed tellus. Suspendisse potenti. Ut vehicula nunc eu magna. Maecenas tincidunt odio id augue luctus fermentum. Nulla pede turpis, accumsan ullamcorper, varius non, imperdiet in, elit. Maecenas varius gravida justo.
+</para>
+<para>
+Nam sit amet mi ut mi porttitor aliquet. Sed sed eros. Phasellus accumsan velit fermentum augue. Aliquam at ligula. Morbi dolor velit, tristique eget, mollis vel, dignissim nec, velit. Morbi metus. Maecenas velit sapien, varius vel, consequat nec, pellentesque eget, dui. Integer tincidunt, pede a accumsan pretium, ante arcu congue ipsum, in viverra turpis erat sed purus. Sed vel nulla nec arcu aliquam placerat. Cras facilisis, dolor at scelerisque pulvinar, orci elit ornare leo, mollis convallis nisl turpis a eros. Nullam id neque. Mauris libero. Vestibulum consequat.
+</para>
+     <nextFrame/>
+     <condPageBreak height="144"/>
+<h2>
+         <getName id="ColumnTwoHeader"/>
+     </h2>
+     <para style="body">
+         Toto je obsah <b>druhého sloupce</b>.
+     </para>
+     <para style="body">
+        Příklad stylu "body" sloupcového layoutu.
+     </para>
+     <para style="body">
+         Použitý font je Arial.
+     </para>
+     <para style="body">
+        Test češtiny:
+     </para>
+     <para style="body">
+        Normal: Příšerně žluťoučký kůň úpěl ďábelské ódy.
+        Bold: <b>Příšerně žluťoučký kůň úpěl ďábelské ódy.</b>
+        Oblique: <i>Příšerně žluťoučký kůň úpěl ďábelské ódy.</i>
+        BoldOblique: <b><i>Příšerně žluťoučký kůň úpěl ďábelské ódy.</i></b>
+     </para>
+
+<para style="body">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur libero eros, fringilla placerat, ultrices a, blandit a, est. Sed purus diam, tincidunt ut, venenatis ac, eleifend et, ligula. Vestibulum sed dolor sed est auctor placerat. Praesent at lorem euismod enim lobortis adipiscing. Ut urna ligula, imperdiet et, consequat ut, imperdiet sed, justo. Aenean tellus nunc, luctus sit amet, pretium in, elementum sit amet, tortor. Nulla fermentum rhoncus felis. Duis luctus. Vestibulum nisl. Integer ut nisl. Aliquam id quam. Ut laoreet diam eu justo. Duis eu metus a orci mattis adipiscing. Duis ultricies, turpis ac placerat vestibulum, enim dolor hendrerit eros, et malesuada mi lectus id justo. Nunc laoreet est nec dolor. Suspendisse pulvinar porta massa.
+</para>
+<para style="body">
+Nunc gravida commodo turpis. Fusce vulputate vestibulum nibh. Donec ornare vehicula orci. Aenean nec odio. Vestibulum mollis condimentum velit. Aenean est. Aenean sed tellus. Suspendisse potenti. Ut vehicula nunc eu magna. Maecenas tincidunt odio id augue luctus fermentum. Nulla pede turpis, accumsan ullamcorper, varius non, imperdiet in, elit. Maecenas varius gravida justo.
+</para>
+<para style="body">
+Nam sit amet mi ut mi porttitor aliquet. Sed sed eros. Phasellus accumsan velit fermentum augue. Aliquam at ligula. Morbi dolor velit, tristique eget, mollis vel, dignissim nec, velit. Morbi metus. Maecenas velit sapien, varius vel, consequat nec, pellentesque eget, dui. Integer tincidunt, pede a accumsan pretium, ante arcu congue ipsum, in viverra turpis erat sed purus. Sed vel nulla nec arcu aliquam placerat. Cras facilisis, dolor at scelerisque pulvinar, orci elit ornare leo, mollis convallis nisl turpis a eros. Nullam id neque. Mauris libero. Vestibulum consequat.
+</para>
+
+</story>
+</document>
+
