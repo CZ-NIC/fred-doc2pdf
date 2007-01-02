@@ -6,18 +6,19 @@
  <!-- 
  This fonts names must be found in defined path:
  /usr/share/fonts/truetype/msttcorefonts
- -->
+
   <registerDefaultFont 
     fontName="Times-Roman" fontFile="Times_New_Roman.ttf" 
     fontNameBold="Times-Bold" fontFileBold="Times_New_Roman_Bold.ttf" 
-    fontNameOblique="Times-Italic" fontFileOblique="Times_New_Roman_Italic.ttf" 
-    fontNameBoldOblique="Times-BoldItalic" fontFileBoldOblique="Times_New_Roman_Bold_Italic.ttf" 
+    fontNameItalic="Times-Italic" fontFileItalic="Times_New_Roman_Italic.ttf" 
+    fontNameBoldItalic="Times-BoldItalic" fontFileBoldItalic="Times_New_Roman_Bold_Italic.ttf" 
     />
+ -->
   <registerFont 
     fontName="Arial" fontFile="Arial.ttf" 
     fontNameBold="Arial-Bold" fontFileBold="Arial_Bold.ttf" 
-    fontNameOblique="Arial-Oblique" fontFileOblique="Arial_Italic.ttf" 
-    fontNameBoldOblique="Arial-BoldOblique" fontFileBoldOblique="Arial_Bold_Italic.ttf" 
+    fontNameItalic="Arial-Italic" fontFileItalic="Arial_Italic.ttf" 
+    fontNameBoldItalic="Arial-BoldItalic" fontFileBoldItalic="Arial_Bold_Italic.ttf" 
     />
 </docinit>
 

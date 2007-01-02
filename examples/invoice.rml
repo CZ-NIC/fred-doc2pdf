@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE document SYSTEM "rml_1_0.dtd">
+<document>
+
+<template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
+  title="Faktura č. 123/456"
+  author="CZ.NIC"
+  >
+
+    <pageTemplate id="first">
+      <pageGraphics>
+
+        <setFont name="Times-BoldItalic" size="26"/>
+        <drawString x="2cm" y="27.6cm">CZ.NIC, z.s.p.o</drawString>
+        <lines>2cm 27.3cm 19cm 27.3cm</lines>
+    <!-- end of header -->
+
+        <setFont name="Times-Bold" size="11"/>
+        <drawString x="2cm" y="26.5cm">Odběratel</drawString>
+        <drawString x="2cm" y="25.7cm">IČO:</drawString>
+        <drawString x="2cm" y="25.3cm">DIČ:</drawString>
+
+        <drawString x="11.6cm" y="24.2cm">IPEX a.s.</drawString>
+        <drawString x="11.6cm" y="23.4cm">Široká 37</drawString>
+        <drawString x="11.6cm" y="22.6cm">370 01 České Budějovice</drawString>
+
+        <setFont name="Times-Roman" size="11"/>
+        <drawString x="3cm" y="25.7cm">45021295</drawString>
+        <drawString x="3cm" y="25.3cm">CZ45021295</drawString>
+
+        <drawString x="2cm" y="21.5cm">Sídlo odběratele: Americká 23, 120 00 Praha 2</drawString>
+        <lines>2cm 20.8cm 19cm 20.8cm</lines>
+
+        <drawString x="2cm" y="20.1cm">Dodavatel:</drawString>
+        <drawRightString x="19cm" y="20.1cm">CZ.NIC, zájmové sdružení právnických osob, Americká 23, 120 00 Praha 2</drawRightString>
+
+        <drawRightString x="19cm" y="19.3cm">SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</drawRightString>
+
+
+        <drawString x="2cm" y="19.3cm">IČO</drawString>
+        <drawString x="2cm" y="18.9cm">DIČ</drawString>
+
+        <drawString x="3cm" y="19.3cm">67985726</drawString>
+        <drawString x="3cm" y="18.9cm">CZ67985726</drawString>
+
+        <setFont name="Times-Bold" size="11"/>
+        <drawString x="2cm" y="18.1cm">Faktura - daňový doklad č.</drawString>
+        <drawString x="2cm" y="17.7cm">Variabliní symbol:</drawString>
+
+        <drawString x="7cm" y="18.1cm">2406000590</drawString>
+        <drawString x="7cm" y="17.7cm">45021295</drawString>
+
+
+        <setFont name="Times-Roman" size="11"/>
+        <drawString x="2cm" y="17.3cm">Způsob úhrady: bankovním převodem</drawString>
+
+        <drawString x="12cm" y="18.1cm">Datum splatnosti faktutry:</drawString>
+        <drawString x="12cm" y="17.7cm">Datum vystavení faktury:</drawString>
+        <drawString x="12cm" y="17.3cm">Datum uskutečnění zdaň.plnění:</drawString>
+
+        <drawRightString x="19cm" y="18.1cm">3.10.2006</drawRightString>
+        <drawRightString x="19cm" y="17.7cm">3.10.2006</drawRightString>
+        <drawRightString x="19cm" y="17.3cm">2.10.2006</drawRightString>
+
+        <drawString x="12cm" y="16.5cm">List:</drawString>
+        <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
+
+        <setFont name="Times-Bold" size="11"/>
+        <drawString x="13cm" y="16.5cm">1</drawString>
+        <drawString x="17cm" y="16.5cm">2</drawString>
+        <setFont name="Times-Roman" size="11"/>
+
+        <rect x="2cm" y="15.3cm" width="17cm" height="0.8cm" stroke="yes" />
+
+        <drawString x="2.2cm" y="15.6cm">Označení dodávky</drawString>
+
+        <drawString x="2cm" y="3.4cm">Vystavil: Zuzana Durajová</drawString>
+
+    <!-- footer -->
+        <lines>2cm 3cm 19cm 3cm</lines>
+
+        <setFont name="Times-Roman" size="9"/>
+        <drawString x="2cm" y="2.4cm">CZ.NIC, z.s.p.o</drawString>
+        <drawString x="2cm" y="2cm">Reklamace: CZ.NIC, z.s.p.o, Americká 23, 120 00 Praha 2</drawString>
+
+        <drawString x="12cm" y="2.4cm">www.nic.cz</drawString>
+        <drawString x="12cm" y="2cm">fakt@nic.cz</drawString>
+
+        <drawString x="16.5cm" y="2.4cm">IČO: 67985726</drawString>
+        <drawString x="16.5cm" y="2cm">DIČ: CZ67985726</drawString>
+
+      </pageGraphics>
+        <frame id="delivery" x1="1.8cm" y1="4cm" width="17.4cm" height="11cm" showBoundary="0" />
+    </pageTemplate>
+
+    <pageTemplate id="others">
+      <pageGraphics>
+        <setFont name="Times-BoldItalic" size="26"/>
+        <drawString x="2cm" y="27.6cm">CZ.NIC, z.s.p.o</drawString>
+        <lines>2cm 27.3cm 19cm 27.3cm</lines>
+    <!-- end of header -->
+
+    <!-- footer -->
+        <lines>2cm 3cm 19cm 3cm</lines>
+
+        <setFont name="Times-Roman" size="9"/>
+        <drawString x="2cm" y="2.4cm">CZ.NIC, z.s.p.o</drawString>
+        <drawString x="2cm" y="2cm">Reklamace: CZ.NIC, z.s.p.o, Americká 23, 120 00 Praha 2</drawString>
+
+        <drawString x="12cm" y="2.4cm">www.nic.cz</drawString>
+        <drawString x="12cm" y="2cm">fakt@nic.cz</drawString>
+
+        <drawString x="16.5cm" y="2.4cm">IČO: 67985726</drawString>
+        <drawString x="16.5cm" y="2cm">DIČ: CZ67985726</drawString>
+      </pageGraphics>
+        <frame id="delivery" x1="1.8cm" y1="4cm" width="17.4cm" height="11cm" showBoundary="1" />
+    </pageTemplate>
+
+</template>
+
+<stylesheet>
+    <blockTableStyle id="tbl_delivery">
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT"/>
+      <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
+      <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
+
+      <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,1" stop="-1,1" colorName="black" />
+    </blockTableStyle>
+
+    <blockTableStyle id="tbl_delivery_sum">
+      <blockValign value="BOTTOM"/>
+      <blockAlignment value="RIGHT"/>
+      <blockAlignment value="LEFT" start="0,0" stop="0,0" />
+      <blockFont name="Times-Bold" size="11"/>
+      <lineStyle kind="LINEABOVE" colorName="black" />
+    </blockTableStyle>
+
+
+</stylesheet>
+
+<story>
+
+<para>
+Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
+</para>
+
+<spacer length="0.4cm"/>
+
+<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" style="tbl_delivery">
+<tr>
+    <td>Úhrnem:</td>
+    <td>%DPH</td>
+    <td>Základ daně</td>
+    <td>Kč DPH</td>
+    <td>Kč celkem</td>
+</tr>
+<tr>
+    <td></td>
+    <td>0.0%</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>5.0%</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>19.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+
+<tr>
+    <td></td>
+    <td>20.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>21.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>22.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>23.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>24.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>25.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>26.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>27.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>28.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>29.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>30.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td></td>
+    <td>31.0%</td>
+    <td>42 015.00</td>
+    <td>7 985.00</td>
+    <td>50 000.00</td>
+</tr>
+
+
+<tr>
+    <td>Celkem:</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>50 000.00</td>
+</tr>
+<tr>
+    <td>Uhrazeno:</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>50 000.00</td>
+</tr>
+</blockTable>
+
+<blockTable colWidths="6.8cm,3.4cm,3.4cm,3.4cm" style="tbl_delivery_sum">
+<tr>
+    <td>Celkem k úhradě:</td>
+    <td></td>
+    <td></td>
+    <td>0.00</td>
+</tr>
+</blockTable>
+
+
+</story>
+
+</document>

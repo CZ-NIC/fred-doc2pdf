@@ -20,14 +20,14 @@ Here is example how to declare font familly in RML template:
   <registerDefaultFont 
     fontName="Times-Roman" fontFile="Times_New_Roman.ttf" 
     fontNameBold="Times-Bold" fontFileBold="Times_New_Roman_Bold.ttf" 
-    fontNameOblique="Times-Italic" fontFileOblique="Times_New_Roman_Italic.ttf" 
-    fontNameBoldOblique="Times-BoldItalic" fontFileBoldOblique="Times_New_Roman_Bold_Italic.ttf" 
+    fontNameItalic="Times-Italic" fontFileItalic="Times_New_Roman_Italic.ttf" 
+    fontNameBoldItalic="Times-BoldItalic" fontFileBoldItalic="Times_New_Roman_Bold_Italic.ttf" 
     />
   <registerFont 
     fontName="Arial" fontFile="Arial.ttf" 
     fontNameBold="Arial-Bold" fontFileBold="Arial_Bold.ttf" 
-    fontNameOblique="Arial-Oblique" fontFileOblique="Arial_Italic.ttf" 
-    fontNameBoldOblique="Arial-BoldOblique" fontFileBoldOblique="Arial_Bold_Italic.ttf" 
+    fontNameItalic="Arial-Italic" fontFileItalic="Arial_Italic.ttf" 
+    fontNameBoldItalic="Arial-BoldItalic" fontFileBoldItalic="Arial_Bold_Italic.ttf" 
     />
 </docinit>
 """
@@ -76,7 +76,7 @@ def registerTTFFontFamilly(names):
     """Register TrueType font. Names is list of tuples (PostSriptName, FileName.ttf)
     The list must be valid - normal (first) item must be set. Other types
     are obligatory.
-    names = ((name, file), ...) four items in order: '','Bold','Oblique','BoldOblique'
+    names = ((name, file), ...) four items in order: '','Bold','Italic','BoldItalic'
     """
     if len(names) != 4:
         raise 'Internal Error in registerTTFFontFamilly: The list MUST have 4 items: %s'%str(names)
@@ -93,7 +93,7 @@ def registerTTFFontFamilly(names):
 def docinit_TTF_elements(element_name, elements):
     "Register TTF font family. element_name = 'registerFont'"
     is_element_found = 0
-    suffix = ('','Bold','Oblique','BoldOblique')
+    suffix = ('','Bold','Italic','BoldItalic')
     for node in elements:
         for font in node.getElementsByTagName(element_name):
             is_element_found = 1
@@ -117,13 +117,27 @@ class ttf_rml_doc(trml2pdf.trml2pdf._rml_doc):
     def __init__(self, data):
         trml2pdf.trml2pdf._rml_doc.__init__(self, data)
 
-    def docinit(self, els):
+    def docinit_TTF(self, els):
         'Register TTF font family.'
         if not docinit_TTF_elements('registerDefaultFont', els):
           # if template has not defined default font name
           # we use default names from this module
           registerTTFFontFamilly(configuration.DEFAULT_STYLE_FONT)
         docinit_TTF_elements('registerFont', els)
+
+    def docinit(self, el):
+      'Disable parent docinit()'
+
+    def render(self, out):
+      'Overwrite parent render()'
+      # register TTF fonts...
+      el = self.dom.documentElement.getElementsByTagName('docinit')
+      if el:
+        self.docinit_TTF(el)
+      else:
+        registerTTFFontFamilly(configuration.DEFAULT_STYLE_FONT)
+      # ...and continue in previous way
+      trml2pdf.trml2pdf._rml_doc.render(self, out)
 
 
 def parseString(data, fout=None):
