@@ -52,7 +52,7 @@
 
 
         <setFont name="Times-Roman" size="11"/>
-        <drawString x="2cm" y="17.3cm">Způsob úhrady: bankovním převodem</drawString>
+        <!-- drawString x="2cm" y="17.3cm">Způsob úhrady: bankovním převodem</drawString -->
 
         <drawString x="12cm" y="18.1cm">Datum splatnosti faktutry:</drawString>
         <drawString x="12cm" y="17.7cm">Datum vystavení faktury:</drawString>
@@ -66,8 +66,8 @@
         <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
 
         <setFont name="Times-Bold" size="11"/>
-        <drawString x="13cm" y="16.5cm">1</drawString>
-        <drawString x="17cm" y="16.5cm">2</drawString>
+        <drawString x="13cm" y="16.5cm"><pageNumber/></drawString>
+        <drawString x="17cm" y="16.5cm"><pageNumberTotal/></drawString>
         <setFont name="Times-Roman" size="11"/>
 
         <rect x="2cm" y="15.3cm" width="17cm" height="0.8cm" stroke="yes" />
@@ -93,11 +93,24 @@
         <frame id="delivery" x1="1.8cm" y1="4cm" width="17.4cm" height="11cm" showBoundary="0" />
     </pageTemplate>
 
-    <pageTemplate id="others">
+    <pageTemplate id="appendix">
       <pageGraphics>
         <setFont name="Times-BoldItalic" size="26"/>
         <drawString x="2cm" y="27.6cm">CZ.NIC, z.s.p.o</drawString>
         <lines>2cm 27.3cm 19cm 27.3cm</lines>
+
+        <setFont name="Times-Bold" size="11"/>
+        <drawRightString x="19cm" y="27.6cm">Příloha faktury č.: 2406000590</drawRightString>
+
+        <setFont name="Times-Roman" size="11"/>
+        <drawString x="12cm" y="26.8cm">List:</drawString>
+        <drawString x="15.4cm" y="26.8cm">Počet listů:</drawString>
+
+        <setFont name="Times-Bold" size="11"/>
+        <drawRightString x="14cm" y="26.8cm"><pageNumber/></drawRightString>
+        <drawRightString x="19cm" y="26.8cm"><pageNumberTotal/></drawRightString>
+        <setFont name="Times-Roman" size="11"/>
+
     <!-- end of header -->
 
     <!-- footer -->
@@ -113,7 +126,7 @@
         <drawString x="16.5cm" y="2.4cm">IČO: 67985726</drawString>
         <drawString x="16.5cm" y="2cm">DIČ: CZ67985726</drawString>
       </pageGraphics>
-        <frame id="delivery" x1="1.8cm" y1="4cm" width="17.4cm" height="11cm" showBoundary="1" />
+        <frame id="delivery" x1="1.8cm" y1="3.5cm" width="17.4cm" height="23cm" showBoundary="0" />
     </pageTemplate>
 
 </template>
@@ -127,16 +140,17 @@
 
       <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" colorName="black" />
       <lineStyle kind="LINEABOVE" start="0,1" stop="-1,1" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,-1" stop="-1,-1" colorName="black" />
+      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1" size="11"/>
+
     </blockTableStyle>
 
-    <blockTableStyle id="tbl_delivery_sum">
-      <blockValign value="BOTTOM"/>
+    <blockTableStyle id="appendix">
       <blockAlignment value="RIGHT"/>
-      <blockAlignment value="LEFT" start="0,0" stop="0,0" />
-      <blockFont name="Times-Bold" size="11"/>
-      <lineStyle kind="LINEABOVE" colorName="black" />
+      <blockAlignment value="LEFT" start="1,0" stop="1,-1" />
+      <lineStyle kind="BOX" start="0,0" stop="-1,0" colorName="black" />
+      <blockFont name="Times-Bold" size="11" start="0,-1" stop="-1,-1"/>
     </blockTableStyle>
-
 
 </stylesheet>
 
@@ -177,93 +191,6 @@ Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
     <td>7 985.00</td>
     <td>50 000.00</td>
 </tr>
-
-<tr>
-    <td></td>
-    <td>20.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>21.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>22.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>23.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>24.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>25.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>26.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>27.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>28.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>29.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>30.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-<tr>
-    <td></td>
-    <td>31.0%</td>
-    <td>42 015.00</td>
-    <td>7 985.00</td>
-    <td>50 000.00</td>
-</tr>
-
-
 <tr>
     <td>Celkem:</td>
     <td></td>
@@ -278,17 +205,60 @@ Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
     <td></td>
     <td>50 000.00</td>
 </tr>
-</blockTable>
-
-<blockTable colWidths="6.8cm,3.4cm,3.4cm,3.4cm" style="tbl_delivery_sum">
 <tr>
     <td>Celkem k úhradě:</td>
+    <td></td>
     <td></td>
     <td></td>
     <td>0.00</td>
 </tr>
 </blockTable>
 
+<setNextTemplate name="appendix"/>
+<pageBreak/>
+
+<blockTable colWidths="1.5cm,7.2cm,1.5cm,1.8cm,1.8cm,3cm" style="appendix">
+<tr>
+    <td>Řádek</td>
+    <td>Text</td>
+    <td>Kód</td>
+    <td>Počet</td>
+    <td>%DPH</td>
+    <td>Celkem</td>
+</tr>
+<tr>
+    <td>1</td>
+    <td>ZALOHA 2.10.2006 VS:45021295</td>
+    <td>ZALO</td>
+    <td>1</td>
+    <td>19.0%</td>
+    <td>50 000.0</td>
+</tr>
+<tr>
+    <td>2</td>
+    <td>ZALOHA 2.10.2006 VS:45021295</td>
+    <td>ZALO</td>
+    <td>1</td>
+    <td>19.0%</td>
+    <td>50 000.0</td>
+</tr>
+<tr>
+    <td>3</td>
+    <td>ZALOHA 2.10.2006 VS:45021295</td>
+    <td>ZALO</td>
+    <td>1</td>
+    <td>19.0%</td>
+    <td>50 000.0</td>
+</tr>
+<tr>
+    <td></td>
+    <td>Celkem</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>50 000.0</td>
+</tr>
+</blockTable>
 
 </story>
 

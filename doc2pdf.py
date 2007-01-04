@@ -61,7 +61,7 @@ def attr_get(node, attrs, dict={}):
     if node.hasAttribute(key):
       if dict[key]=='str':
         value = node.getAttribute(key)
-        if type(value) is unicode: value = value.encode('utf8')
+        if type(value) is unicode: value = value.encode(trml2pdf.trml2pdf.encoding)
         res[key] = str(value)
       elif dict[key]=='bool':
         res[key] = trml2pdf.utils.bool_get(node.getAttribute(key))
