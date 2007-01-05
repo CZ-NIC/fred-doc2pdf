@@ -171,29 +171,29 @@ jiného formátu, jako je XML, HTML nebo prostý text za použití XSLT definice
 TODO:
 
 
+Úpravy původního kódu modulů:
 
-OPRAVA KÓDU:
+V aktuální verzi reportlabu a tmpl2pdf je několik problémů, které řeší nadstavba
+doc2pdf. Do původních modulů vkládá vlastní funkce a tím poroblémy vyřeší.
+Je možné, že v jiných verzích modulů reportlab a trml2pdf nebude toto
+vkládání fungovat sptávně. Je potřeba nové verze ověřit, jestli nedošlo ke změnám.
 
-Aktuální verze reportlabu (At revision 3004) obsahuje chybu. Pokud se v textu vyskytne 
-znak & (ampersand), tak systém zhavaruje. Je nutné upravit kód tak, aby k tomu nedošlo.
+Seznam řešení:
 
-Inkriminovaná část je v souboru reportlab/platypus/paragraph.py ve funkci _setup(), řádek 515.
-Doplněn je řádek s poznámkou na konci: #!!! HOOK BOHM
+1. Pokud se v textu vyskytne  znak & (ampersand), tak systém zhavaruje.
+   Program vkládá kód, který tyto znaky převede na &amp;
 
-Musí tam být:
+2. Není implementována hodnota Celkový počet stran.
+   Program upravuje moduly tak, aby se tato hodnota dala v šabloně použít.
 
-    def _setup(self, text, style, bulletText, frags, cleaner):
-        if frags is None:
-            text = cleaner(text)
-            _parser.caseSensitive = self.caseSensitive
-            text = text.replace('&','&amp;') #!!! HOOK BOHM
-            style, frags, bulletTextFrags = _parser.parse(text,style)
-            if frags is None:
-                raise "xml parser error (%s) in paragraph beginning\n'%s'"\
-                    % (_parser.errors[0],text[:min(30,len(text))])
-            if bulletTextFrags: bulletText = bulletTextFrags
+3. Nepoužívají se TrueType fonty.
+   Program umožňuje používat TrueType fonty a kódování UTF-8.
+
+Tyto tři oblasti řeší doc2pdf v reportlabu v revizi 3004 a v trml2pdf, který nemá
+verzi uvedenu, ale byl stažen v lednu 2007.
 
 
 Zpracoval:
 Zdeněk Böhm, zdenek.bohm@nic.cz
 30.12.2006
+5.1.2007
