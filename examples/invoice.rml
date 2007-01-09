@@ -16,51 +16,51 @@
     <!-- end of header -->
 
         <setFont name="Times-Bold" size="11"/>
-        <drawString x="2cm" y="26.5cm">Odběratel</drawString>
+        <drawString x="2cm" y="26.5cm">Odběratel (Client)</drawString>
         <drawString x="2cm" y="25.7cm">IČO:</drawString>
-        <drawString x="2cm" y="25.3cm">DIČ:</drawString>
+        <drawString x="2cm" y="25.3cm">DIČ (VAT number):</drawString>
 
         <drawString x="11.6cm" y="24.2cm">IPEX a.s.</drawString>
         <drawString x="11.6cm" y="23.4cm">Široká 37</drawString>
         <drawString x="11.6cm" y="22.6cm">370 01 České Budějovice</drawString>
 
         <setFont name="Times-Roman" size="11"/>
-        <drawString x="3cm" y="25.7cm">45021295</drawString>
-        <drawString x="3cm" y="25.3cm">CZ45021295</drawString>
+        <drawString x="6cm" y="25.7cm">45021295</drawString>
+        <drawString x="6cm" y="25.3cm">CZ45021295</drawString>
 
         <drawString x="2cm" y="21.5cm">Sídlo odběratele: Americká 23, 120 00 Praha 2</drawString>
         <lines>2cm 20.8cm 19cm 20.8cm</lines>
 
-        <drawString x="2cm" y="20.1cm">Dodavatel:</drawString>
+        <drawString x="2cm" y="20.1cm">Dodavatel (Supplier):</drawString>
         <drawRightString x="19cm" y="20.1cm">CZ.NIC, zájmové sdružení právnických osob, Americká 23, 120 00 Praha 2</drawRightString>
 
         <drawRightString x="19cm" y="19.3cm">SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</drawRightString>
 
 
-        <drawString x="2cm" y="19.3cm">IČO</drawString>
-        <drawString x="2cm" y="18.9cm">DIČ</drawString>
+        <drawString x="2cm" y="19.3cm">IČO:</drawString>
+        <drawString x="2cm" y="18.9cm">DIČ:</drawString>
 
         <drawString x="3cm" y="19.3cm">67985726</drawString>
         <drawString x="3cm" y="18.9cm">CZ67985726</drawString>
 
         <setFont name="Times-Bold" size="11"/>
-        <drawString x="2cm" y="18.1cm">Faktura - daňový doklad č.</drawString>
+        <drawString x="2cm" y="18.1cm">Daňový doklad č. (Invoice No):</drawString>
         <drawString x="2cm" y="17.7cm">Variabliní symbol:</drawString>
 
-        <drawString x="7cm" y="18.1cm">2406000590</drawString>
-        <drawString x="7cm" y="17.7cm">45021295</drawString>
+        <drawString x="7.4cm" y="18.1cm">2406000590</drawString>
+        <drawString x="7.4cm" y="17.7cm">45021295</drawString>
 
 
         <setFont name="Times-Roman" size="11"/>
         <!-- drawString x="2cm" y="17.3cm">Způsob úhrady: bankovním převodem</drawString -->
 
-        <drawString x="12cm" y="18.1cm">Datum splatnosti faktutry:</drawString>
-        <drawString x="12cm" y="17.7cm">Datum vystavení faktury:</drawString>
-        <drawString x="12cm" y="17.3cm">Datum uskutečnění zdaň.plnění:</drawString>
+        <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktutry (payment date):</drawString>
+        <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
+        <drawString x="10.4cm" y="17.3cm">Datum uskutečnění zdaň.plnění (tax point):</drawString>
 
         <drawRightString x="19cm" y="18.1cm">3.10.2006</drawRightString>
         <drawRightString x="19cm" y="17.7cm">3.10.2006</drawRightString>
-        <drawRightString x="19cm" y="17.3cm">2.10.2006</drawRightString>
+        <drawRightString x="19cm" y="17.3cm">12.10.2006</drawRightString>
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
         <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
@@ -135,6 +135,8 @@
     <blockTableStyle id="tbl_delivery">
       <blockValign value="TOP"/>
       <blockAlignment value="RIGHT"/>
+      <blockAlignment value="LEFT" start="1,-1" stop="1,-1" />
+
       <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
       <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
 
@@ -149,6 +151,7 @@
       <blockAlignment value="RIGHT"/>
       <blockAlignment value="LEFT" start="1,0" stop="1,-1" />
       <lineStyle kind="BOX" start="0,0" stop="-1,0" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,-1" stop="-1,-1" colorName="black" />
       <blockFont name="Times-Bold" size="11" start="0,-1" stop="-1,-1"/>
     </blockTableStyle>
 
@@ -162,7 +165,7 @@ Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
 
 <spacer length="0.4cm"/>
 
-<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" style="tbl_delivery">
+<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" repeatRows="1" style="tbl_delivery">
 <tr>
     <td>Úhrnem:</td>
     <td>%DPH</td>
@@ -192,22 +195,22 @@ Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
     <td>50 000.00</td>
 </tr>
 <tr>
-    <td>Celkem:</td>
+    <td>Celkem (total):</td>
     <td></td>
     <td></td>
     <td></td>
     <td>50 000.00</td>
 </tr>
 <tr>
-    <td>Uhrazeno:</td>
+    <td>Uhrazeno (paid):</td>
     <td></td>
     <td></td>
     <td></td>
     <td>50 000.00</td>
 </tr>
 <tr>
-    <td>Celkem k úhradě:</td>
-    <td></td>
+    <td>Celkem k úhradě</td>
+    <td>(to be paid):</td>
     <td></td>
     <td></td>
     <td>0.00</td>
@@ -217,7 +220,7 @@ Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
 <setNextTemplate name="appendix"/>
 <pageBreak/>
 
-<blockTable colWidths="1.5cm,7.2cm,1.5cm,1.8cm,1.8cm,3cm" style="appendix">
+<blockTable colWidths="1.5cm,7.2cm,1.5cm,1.8cm,1.8cm,3cm" repeatRows="1" style="appendix">
 <tr>
     <td>Řádek</td>
     <td>Text</td>

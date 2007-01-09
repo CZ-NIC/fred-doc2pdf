@@ -3,29 +3,29 @@
 
 <client>
     <name>IPEX a.s.</name>
-    <adress>
+    <address>
         <street>Široká 37</street>
         <city>České Budějovice</city>
         <zip>370 01</zip>
-    </adress>
+    </address>
     <ico>45021295</ico>
-    <dic>CZ45021295</dic>
+    <vat_number>CZ45021295</vat_number>
 </client>
 
 <supplier>
     <name>CZ.NIC, z.s.p.o.</name>
     <fullname>CZ.NIC, zájmové sdružení právnických osob</fullname>
-    <adress>
+    <address>
         <street>Americká 23</street>
         <city>Praha 2</city>
         <zip>120 00</zip>
-    </adress>
+    </address>
     <ico>67985726</ico>
-    <vat_numer>CZ67985726</vat_numer>
+    <vat_number>CZ67985726</vat_number>
     <registration>SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</registration>
     <reclamation>CZ.NIC, z.s.p.o., Americká 23, 120 00 Praha 2</reclamation>
     <url>www.nic.cz</url>
-    <mail>fakt@nic.cz</mail>
+    <email>fakt@nic.cz</email>
 </supplier>
 
 <payment>
@@ -51,67 +51,67 @@
 
 <delivery>
     <entry>
-        <vatperc>0.0%</vatperc>
-        <basetax>0.00</basetax>
-        <vat>0.00</vat>
-        <total>0.00</total>
+        <vatperc>0</vatperc>
+        <basetax>0</basetax>
+        <vat>0</vat>
+        <total>0</total>
     </entry>
     <entry>
-        <vatperc>5.0%</vatperc>
-        <basetax>0.00</basetax>
-        <vat>0.00</vat>
-        <total>0.00</total>
+        <vatperc>5</vatperc>
+        <basetax>0</basetax>
+        <vat>0</vat>
+        <total>0</total>
     </entry>
     <entry>
-        <vatperc>19.0%</vatperc>
-        <basetax>42015.00</basetax>
-        <vat>7985.00</vat>
-        <total>50000.0</total>
+        <vatperc>19</vatperc>
+        <basetax>42015</basetax>
+        <vat>7985</vat>
+        <total>50000</total>
     </entry>
 </delivery>
 
 <sumarize>
-    <total>50000.0</total>
-    <paid>50000.0</paid>
-    <to_be_paid>0.00</to_be_paid>
+    <total>50000</total>
+    <paid>50000</paid>
+    <to_be_paid>0</to_be_paid>
 </sumarize>
 
 
 <appendix>
 
-<delivery>
-    <entry>
+<items>
+    <item>
         <subject>gaad.cz</subject>
         <code>RUDR</code>
         <date>13.11.2007</date>
         <count>1</count>
-        <vatperc>0.0%</vatperc>
-        <price>300.0</price>
-        <total>300.0</total>
-    </entry>
-    <entry>
+        <vatperc>0</vatperc>
+        <price>300</price>
+        <total>300</total>
+    </item>
+    <item>
         <subject>jindrizska.cz</subject>
         <code>RUDR</code>
         <date>3.11.2007</date>
         <count>2</count>
-        <vatperc>0.0%</vatperc>
-        <price>400.0</price>
-        <total>800.0</total>
-    </entry>
-    <entry>
+        <vatperc>0</vatperc>
+        <price>400</price>
+        <total>800</total>
+    </item>
+    <item>
         <subject>snih.cz</subject>
         <code>RUDR</code>
         <date>10.10.2007</date>
         <count>1</count>
-        <vatperc>0.0%</vatperc>
-        <price>500.0</price>
-        <total>500.0</total>
-    </entry>
-</delivery>
+        <vatperc>0</vatperc>
+        <price>500</price>
+        <total>500</total>
+    </item>
+</items>
 
-<sumarize>
+<sumarize_items>
     <total>1500.0</total>
-</sumarize>
+</sumarize_items>
 
 </appendix>
 
