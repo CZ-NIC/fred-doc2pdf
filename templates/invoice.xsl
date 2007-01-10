@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY SPACE "<xsl:text> </xsl:text>">
+]>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -25,17 +28,17 @@
 
         <drawString x="11.6cm" y="24.2cm"><xsl:value-of select="client/name"/></drawString>
         <drawString x="11.6cm" y="23.4cm"><xsl:value-of select="client/address/street"/></drawString>
-        <drawString x="11.6cm" y="22.6cm"><xsl:value-of select="client/address/zip"/><xsl:text> </xsl:text><xsl:value-of select="client/address/city"/></drawString>
+        <drawString x="11.6cm" y="22.6cm"><xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
 
         <setFont name="Times-Roman" size="11"/>
         <drawString x="6cm" y="25.7cm"><xsl:value-of select="client/ico"/></drawString>
         <drawString x="6cm" y="25.3cm"><xsl:value-of select="client/vat_number"/></drawString>
 
-        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/><xsl:text> </xsl:text><xsl:value-of select="supplier/address/city"/></drawString>
+        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
         <lines>2cm 20.8cm 19cm 20.8cm</lines>
 
         <drawString x="2cm" y="20.1cm">Dodavatel (Supplier):</drawString>
-        <drawRightString x="19cm" y="20.1cm"><xsl:value-of select="supplier/fullname"/>, <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/><xsl:text> </xsl:text><xsl:value-of select="supplier/address/city"/></drawRightString>
+        <drawRightString x="19cm" y="20.1cm"><xsl:value-of select="supplier/fullname"/>, <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawRightString>
 
         <drawRightString x="19cm" y="19.3cm"><xsl:value-of select="supplier/registration"/></drawRightString>
 
@@ -55,7 +58,9 @@
 
 
         <setFont name="Times-Roman" size="11"/>
-        <!-- drawString x="2cm" y="17.3cm">Způsob úhrady: bankovním převodem</drawString -->
+        <xsl:if test="payment/payment_method">
+        <drawString x="2cm" y="16.9cm">Způsob úhrady: <xsl:value-of select="payment/payment_method"/></drawString>
+        </xsl:if>
 
         <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktutry (payment date):</drawString>
         <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
@@ -236,17 +241,17 @@
 </xsl:template>
 
 <xsl:template match="items">
+    
     <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="item">
 <tr>
-    <td><xsl:value-of select='position()' /></td>
+    <td><xsl:number/></td>
     <td><xsl:value-of select='subject' /></td>
     <td><xsl:value-of select='code' /></td>
     <td><xsl:value-of select='count' /></td>
     <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
-    <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
 </tr>
 </xsl:template>

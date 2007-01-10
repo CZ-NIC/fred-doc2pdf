@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <invoice>
-
+<!-- 
+Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
+Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+-->
 <client>
     <name>IPEX a.s.</name>
     <address>

@@ -1,0 +1,161 @@
+Fred2pdf
+
+Fred2pdf je systém pro převod dat do PDF. Systém je založen na šablonovacím frontendu 
+Tiny RML2PDF, který jse postaven na knihovně The ReportLab Open Source PDF library 
+(the ReportLab Toolkit). Oba systémy jsou napsány v jazyce Python.
+
+Systém používá TrueType fonty. Při instalaci je nutné nastavit cestu
+do složky s těmito fonty a ověřit, že fonty skutečně podporují české znaky.
+
+Pokud není nutné používat české nebo jiné znaky, je možné TrueType fonty vynechat
+a používat přímo modul trml2pdf.
+
+OBSAH:
+
+Instalace:
+
+    * TrueType fonty
+    * Reportlab
+    * Tiny RML2PDF
+    * XSLT command line processor: Sablotron
+    * Fred2pdf
+
+*** Instalace TrueType fontů.
+
+Pokud v systému nemáte žádné TrueType fonty (měly by být ve složce
+/usr/share/fonts/truetype/msttcorefonts), tak je nainstalujte:
+
+    $ sudo apt-get install msttcorefonts
+
+*** Instalace modulu Reportlab
+
+Nainstalujte modul do adresáře, kde má Python složku site-packages/.
+Přejděte do tohoto adresáře:
+
+    $ cd /usr/lib/python2.4/site-packages/
+
+a stáhněte si aktuální verzi z repozitáře:
+
+    $ sudo svn co http://www.reportlab.co.uk/svn/public/reportlab/trunk/reportlab/
+
+tím se ve složce site-packages/ vytvoří adresář reportlab/.
+(Je také možné si instalaci stáhnout ručně ze stránek http://www.reportlab.org/)
+
+
+*** Tiny RML2PDF
+
+Přejděte do složky, kam si ukládáte download (váš home) a stáhněte si instalaci:
+
+    $ cd
+    $ wget -O tinyrml.tar.gz 'http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz?group_id=6&release_id=1'
+
+pak rozbalte:
+
+    $ tar -xf tinyrml.tar.gz
+
+a složku tinyrml/trml2pdf nakopírujte do site-packages/:
+
+    $ sudo mv tinyrml/trml2pdf/ /usr/lib/python2.4/site-packages/
+
+tím se v site-packages/ vytvoří adresář trml2pdf/
+zbytek můžete odstranit:
+
+    $ rm -rf tinyrml
+
+(Strany Tiny RML2PDF jsou na http://openreport.org/)
+
+
+*** XSLT command line processor: Sablotron
+
+Sablotron nainstalujeme příkazem:
+
+    $ sudo apt-get install sablotron
+
+Poznámka: Jiný procesor je třeba xsltproc. Ten je ale pro naše účely nevhodný,
+protože neumí správně pracovat s kódováním UTF-8.
+
+
+*** Instalace Fred2pdf
+
+Nakopírujte modul do složky site-packages/:
+
+    $ cd /usr/lib/python2.4/site-packages/
+    $ sudo svn co svn+ssh://user@public.nic.cz/svn/enum/fred2pdf/trunk/ fred2pdf/
+
+Vytvořte konfigurační soubor ze základní předlohy:
+
+    $ sudo cp configuration.py.default configuration.py
+
+Tím bude platný konfigurační soubor umístěn mimo repozitář SVN.
+V konfiguračním souboru je defaultně nastavena cesta k fontům /usr/share/fonts/truetype/msttcorefonts.
+Pokud jsou fonty umístěny v jiném adresáři, tak ji nastavte na správnou hodnotu.
+Také je zde uveden defaultní název fontu, který se použije, pokud v šabloně není žádný font definován.
+
+Vytvořte linky na spouštěcí skripty:
+
+1) Obecný parser "doc2pdf". Link na něj slouží hlavně k testovacím účelům:
+
+    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/doc2pdf.py /usr/local/bin/doc2pdf
+
+2) Namapujte si do vašeho zkušebního adresáře odkazy na adresíře templates/ a examples/ 
+   abyste mohli provést zkoušky funkčnosti:
+
+    $ cd
+    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/templates templates
+    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/examples examples
+
+
+Tím je instalace dokončena.
+
+
+*** Ověření funkčnosti systému.
+
+1) Ověřte, že obecný parser fred2pdf funguje. Ve složce fred2pdf/examples/ 
+je připravena RML šablona test_czech_encoding.rml. Vytvořte z ní PDF příkazem:
+
+    $ cd
+    $ doc2pdf exampes/test_czech_encoding.rml > test1.pdf
+
+jestli je vše na svém místě, vytvoří se PDF dokument test_cs.pdf.
+
+2) Ověřte si, že funguje generování šablony RML ze zdrojových dat XML a stylu XSL:
+
+    $ sabcmd templates/invoice.xsl examples/invoice.xml | xmllint --format -
+
+Pokud tento proces funguje, tak se na výstup vypíše RML šablona.
+
+
+3) Ověřte, že funguje generování z XML dat za pomoci šablony XSL:
+
+    $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
+
+
+
+Apendix: Úpravy původního kódu modulů
+
+V aktuální verzi reportlabu a tmpl2pdf je několik problémů, které řeší nadstavba
+doc2pdf. Do původních modulů vkládá vlastní funkce a tím poroblémy vyřeší.
+Je možné, že v jiných verzích modulů reportlab a trml2pdf nebude toto
+vkládání fungovat sptávně. Je potřeba nové verze ověřit, jestli nedošlo ke změnám.
+
+Seznam řešení:
+
+1. Pokud se v textu vyskytne  znak & (ampersand), tak systém zhavaruje.
+   Program vkládá kód, který tyto znaky převede na &amp;
+
+2. Není implementována hodnota Celkový počet stran.
+   Program upravuje moduly tak, aby se tato hodnota dala v šabloně použít.
+   Zavádí nový tag <pageNumberTotal/>.
+
+3. Nepoužívají se TrueType fonty.
+   Program umožňuje používat TrueType fonty a kódování UTF-8.
+
+Tyto tři oblasti řeší doc2pdf v reportlabu v revizi 3004 a v trml2pdf, který nemá
+verzi uvedenu, ale byl stažen v lednu 2007.
+
+
+Zpracoval:
+Zdeněk Böhm, zdenek.bohm@nic.cz
+30.12.2006
+5.1.2007
+10.1.2007

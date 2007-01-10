@@ -1,8 +1,8 @@
 Fred2pdf
 
 Fred2pdf je system pro prevod dat do PDF. System je zalozen na sablonovacim frontendu 
-Tiny RML2PDF, ktery jse postaven na knihovne The ReportLab Open Source PDF library 
-(the ReportLab Toolkit). Oba systemy jsou napsany v jazyce Python.
+Tiny RML2PDF, ktery je postaven na knihovne The ReportLab Open Source PDF library 
+(the ReportLab Toolkit). Vsechny casti systemu jsou napsany v jazyce Python.
 
 System pouziva TrueType fonty. Pri instalaci je nutne nastavit cestu
 do slozky s temito fonty a overit, ze fonty skutecne podporuji ceske znaky.
@@ -10,17 +10,8 @@ do slozky s temito fonty a overit, ze fonty skutecne podporuji ceske znaky.
 Pokud neni nutne pouzivat ceske nebo jine znaky, je mozne TrueType fonty vynechat
 a pouzivat primo modul trml2pdf.
 
+
 OBSAH:
-
-Instalace:
-
-    * TrueType fonty
-    * Reportlab
-    * Tiny RML2PDF
-    * XSLT command line processor: Sablotron
-    * Fred2pdf
-
-Popis modulu a navod k pouziti:
 
     * Reportlab
     * Tiny RML2PDF
@@ -28,142 +19,31 @@ Popis modulu a navod k pouziti:
     * Fred2pdf
 
 
+*** Reportlab - The ReportLab Open Source PDF library
 
-*** Instalace TrueType fontu.
-
-Pokud v systemu nemate zadne TrueType fonty (mely by byt ve slozce
-/usr/share/fonts/truetype/msttcorefonts), tak je nainstalujte:
-
-    $ sudo apt-get install msttcorefonts
-
-*** Instalace modulu Reportlab
-
-Nainstalujte modul do adresare, kde ma Python slozku site-packages/.
-Prejdete do tohoto adresare:
-
-    $ cd /usr/lib/python2.4/site-packages/
-
-a stahnete si aktualni verzi z repozitare:
-
-    $ sudo svn co http://www.reportlab.co.uk/svn/public/reportlab/trunk/reportlab/
-
-tim se ve slozce site-packages/ vytvori adresar reportlab/.
-(Je take mozne si instalaci stahnout rucne ze stranek http://www.reportlab.org/)
+Reportlab je knihovna pro generovani PDF. Cela je napsana v jazyce Python.
+Strany projektu jsou na http://www.reportlab.org/.
 
 
 *** Tiny RML2PDF
 
-Prejdete do slozky, kam si ukladate download (vas home) a stahnete si instalaci:
-
-    $ cd
-    $ wget -O tinyrml.tar.gz 'http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz?group_id=6&release_id=1'
-
-pak rozbalte:
-
-    $ tar -xf tinyrml.tar.gz
-
-a slozku tinyrml/trml2pdf nakopirujte do site-packages/:
-
-    $ sudo mv tinyrml/trml2pdf/ /usr/lib/python2.4/site-packages/
-
-tim se v site-packages/ vytvori adresar trml2pdf/
-zbytek muzete odstranit:
-
-    $ rm -rf tinyrml
-
-(Strany Tiny RML2PDF jsou na http://openreport.org/)
+Tiny RML2PDF je nadstavba nad reportlabem, ktera umoznuje generovat PDF pomoci
+sablon. Sablony jsou ve formatu RML - Report Markup Language.
 
 
-*** XSLT command line processor: Sablotron
-
-Sablotron nainstalujeme prikazem:
-
-    $ sudo apt-get install sablotron
-
-Poznamka: Jiny procesor je treba xsltproc. Ten je ale pro nase ucely nevhodny,
-protoze neumi spravne pracovat s kodovanim UTF-8.
-
-
-*** Instalace Fred2pdf
-
-Nakopirujte modul do slozky site-packages/:
-
-    $ cd /usr/lib/python2.4/site-packages/
-    $ sudo svn co svn+ssh://user@public.nic.cz/svn/enum/fred2pdf/trunk/ fred2pdf/
-
-Vytvorte konfiguracni soubor ze zakladni predlohy:
-
-    $ sudo cp configuration.py.default configuration.py
-
-Tim bude platny konfiguracni soubor umisten mimo SVN verzi.
-V konfiguracnim souboru je defaultne nastavena cesta k fontum /usr/share/fonts/truetype/msttcorefonts.
-Pokud jsou fonty umisteny v jinem adresari, tak ji nastavte na spravnou hodnotu.
-Take je zde uveden defaultni nazwv fontu, ktery se pouzije, pokud v sablone neni zadny font definovan.
-
-Vytvorte linky na spousteci skripty:
-
-1) Obecny parser. Link na nej slouzi hlavne k testovacim ucelum:
-
-    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/doc2pdf.py /usr/local/bin/doc2pdf
-
-2) Parser pro vytvoreni faktury invoice2pdf:
-
-    TODO: dodelat
-
-3) Parser pro vytvoreni faktury voucher2pdf:
-
-    TODO: dodelat
-
-4) Namapujte si do zkusebniho adresare templates/ a examples/ abyste mohli provest 
-   zkousky funkcnosti:
-
-    $ cd
-    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/templates templates
-    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/examples examples
-
-
-Tim je instalace dokoncena.
-
-
-*** Overeni funkcnosti systemu.
-
-1) Overte, ze obecny parser fred2pdf funguje. Ve slozce fred2pdf/examples/ 
-je pripravena RML sablona test_czech_encoding.rml. Vytvorte z ni PDF prikazem:
-
-    $ cd
-    $ doc2pdf exampes/test_czech_encoding.rml > test_cs.pdf
-
-jestli je vse na svem miste, vytvori se PDF dokument test_cs.pdf.
-
-2) Overte, ze funguje generovani sablony RML ze zdrojovych dat XML a stylu XSL:
-
-    $ sabcmd templates/invoice.xsl exampes/invoice.xml > invoice.rml
-
-Tim se vytvori obecna cablona invoice.rml. Dokument neni moc dobre uzpusoben
-pro prohlizeni - vsechny tagy jsou na jendom rakdu. Proro si jej muzete upravit pro lepsi prohlizeni 
-pomoci programu xmllint. Jiz hotovy RML si upravite takto:
-
-    $ xmllint --format invoice.rml > formated_invoice.rml
-
-nebo muzete rovnou generovat:
-
-    $ sabcmd templates/invoice.xsl exampes/invoice.xml | xmllint --format - > invoice.rml
-
-
-3) Overte, ze funguje generovani z XML dat za pomoci sablony XSL:
-
-    $ sabcmd templates/invoice.xsl exampes/invoice.xml | doc2pdf > invoice.pdf
-
-
-*** Popis jednotlivych modulu:
-
-TODO:
-
-XSLT command line processor: Sablotron
+*** Sablotron - XSLT command line processor
 
 XSLT je XML jazyk pro definici transformace XML souboru z XML do nejakeho
 jineho formatu, jako je XML, HTML nebo prosty text za pouziti XSLT definice stylu.
+Pomoci Sablotronu je mozne vygenerovat RML sablonu z predlohy v XSL a ze zdrojovych
+dat v XML.
 
+
+*** Fred2pdf
+
+Fred2pdf je nadstavba nad Tiny RML2PDF, ktera resi pouzivani ceskych fontu, spravne
+kodovani a upravuje nektere funkce v nizsich modulech. Predevsim je to implementace
+paginace, ktera neni v aktualni verzi nizsiho modulu zcela dokoncena.
 
 
 *** Navod k pouziti
@@ -172,29 +52,10 @@ TODO:
 
 
 
-OPRAVA KODU:
-
-Aktualni verze reportlabu (At revision 3004) obsahuje chybu. Pokud se v textu vyskytne 
-znak & (ampersand), tak system zhavaruje. Je nutne upravit kod tak, aby k tomu nedoslo.
-
-Inkriminovana cast je v souboru reportlab/platypus/paragraph.py ve funkci _setup(), radek 515.
-Doplnen je radek s poznamkou na konci: #!!! HOOK BOHM
-
-Musi tam byt:
-
-    def _setup(self, text, style, bulletText, frags, cleaner):
-        if frags is None:
-            text = cleaner(text)
-            _parser.caseSensitive = self.caseSensitive
-            text = text.replace('&','&amp;') #!!! HOOK BOHM
-            style, frags, bulletTextFrags = _parser.parse(text,style)
-            if frags is None:
-                raise "xml parser error (%s) in paragraph beginning\n'%s'"\
-                    % (_parser.errors[0],text[:min(30,len(text))])
-            if bulletTextFrags: bulletText = bulletTextFrags
-
 
 Zpracoval:
-Zdenek Bohm, zdenek.bohm@nic.cz
+Zdenek Böhm, zdenek.bohm@nic.cz
 30.12.2006
+5.1.2007
+10.1.2007
 

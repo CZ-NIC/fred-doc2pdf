@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
 <document>
-
+<!-- 
+Tato šablona slouží jako předloha pro převod layoutu do XSL.
+Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+-->
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
   title="Faktura č. 123/456"
   author="CZ.NIC"
