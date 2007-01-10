@@ -18,6 +18,7 @@ Instalace:
     * Reportlab
     * Tiny RML2PDF
     * XSLT command line processor: Sablotron
+    * Podpora PostgreSQL v Pythonu
     * Fred2pdf
 
 *** Instalace TrueType fontů.
@@ -73,6 +74,18 @@ Sablotron nainstalujeme příkazem:
 
 Poznámka: Jiný procesor je třeba xsltproc. Ten je ale pro naše účely nevhodný,
 protože neumí správně pracovat s kódováním UTF-8.
+
+
+*** Podpora PostgreSQL v Pythonu
+
+Zkontrolujte, jestli máte v Pythonu modul pro PostgreSQL databázi:
+
+    $ python
+    >>> import pyPgSQL
+
+pokud ne, tak jej nainstalujte:
+
+    $ sudo apt-get install python-pgsql
 
 
 *** Instalace Fred2pdf
