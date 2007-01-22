@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY SPACE "<xsl:text> </xsl:text>">
+<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -52,7 +52,7 @@
 
         <setFont name="Times-Bold" size="10"/>
         <drawString x="2cm" y="18.1cm">Daňový doklad č. (Invoice No):</drawString>
-        <drawString x="2cm" y="17.7cm">Variabliní symbol:</drawString>
+        <drawString x="2cm" y="17.7cm">Variabilní symbol:</drawString>
 
         <drawString x="7.4cm" y="18.1cm"><xsl:value-of select="payment/invoice_number"/></drawString>
         <drawString x="7.4cm" y="17.7cm"><xsl:value-of select="payment/vs"/></drawString>
@@ -63,7 +63,7 @@
         <drawString x="2cm" y="16.9cm">Způsob úhrady: <xsl:value-of select="payment/payment_method"/></drawString>
         </xsl:if>
 
-        <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktutry (payment date):</drawString>
+        <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktury (payment date):</drawString>
         <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
         <drawString x="10.4cm" y="17.3cm">Datum uskutečnění zdaň.plnění (tax point):</drawString>
 
