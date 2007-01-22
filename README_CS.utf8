@@ -13,11 +13,36 @@ a používat přímo modul trml2pdf.
 
 OBSAH:
 
-    * Reportlab
-    * Tiny RML2PDF
-    * Sablotron
-    * Fred2pdf
+ * Návod k použití
 
+ * Popis jednotlivých částí
+
+    *** Reportlab
+    *** Tiny RML2PDF
+    *** Sablotron
+    *** Fred2pdf
+
+
+* Návod k použití
+
+
+
+Zatím jen s XML příkladem:
+
+Uložení do souboru pdf:
+
+  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
+
+Uložení přímo do filemanageru:
+(Stačí definovat xml, xsl a jméno pdf.)
+
+  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf | filemanager_client.py -t application/pdf -l test1.pdf
+
+
+
+
+
+* Popis jednotlivých částí
 
 *** Reportlab - The ReportLab Open Source PDF library
 
@@ -45,10 +70,6 @@ Fred2pdf je nadstavba nad Tiny RML2PDF, která řeší používání českých f
 kódování a upravuje některé funkce v nižších modulech. Především je to implementace
 paginace, která není v aktuální verzi nižšího modulu zcela dokončena.
 
-
-*** Návod k použití
-
-TODO:
 
 
 

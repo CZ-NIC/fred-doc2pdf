@@ -191,6 +191,8 @@
 </tr>
 </blockTable>
 
+<xsl:if test="appendix">
+
 <setNextTemplate name="appendix"/>
 <pageBreak/>
 
@@ -205,6 +207,8 @@
 </tr>
 <xsl:apply-templates select="appendix" />
 </blockTable>
+
+</xsl:if>
 
 </story>
 
