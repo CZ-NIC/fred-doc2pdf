@@ -23,7 +23,7 @@
     <!-- end of header -->
 
         <setFont name="Times-Bold" size="10"/>
-        <drawString x="2cm" y="26.5cm">Odběratel (Client)</drawString>
+        <drawString x="2cm" y="26.5cm">Odběratel (Client):</drawString>
         <drawString x="2cm" y="25.7cm">IČO:</drawString>
         <drawString x="2cm" y="25.3cm">DIČ (VAT number):</drawString>
 
@@ -35,7 +35,7 @@
         <drawString x="6cm" y="25.7cm"><xsl:value-of select="client/ico"/></drawString>
         <drawString x="6cm" y="25.3cm"><xsl:value-of select="client/vat_number"/></drawString>
 
-        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
+        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="client/address/street"/>, <xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
         <lines>2cm 20.8cm 19cm 20.8cm</lines>
 
         <drawString x="2cm" y="20.1cm">Dodavatel (Supplier):</drawString>
@@ -83,7 +83,9 @@
 
         <drawString x="2.2cm" y="15.6cm">Označení dodávky</drawString>
 
-        <drawString x="2cm" y="3.4cm">Vystavil: <xsl:value-of select="payment/issue_person"/></drawString>
+        <xsl:if test="payment/issue_person">
+        <drawString x="2cm" y="3.4cm"><xsl:value-of select="payment/issue_person"/></drawString>
+        </xsl:if>
 
     <!-- footer -->
         <lines>2cm 3cm 19cm 3cm</lines>
