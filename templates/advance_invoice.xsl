@@ -62,7 +62,7 @@
         <setFont name="Times-Roman" size="10"/>
 
         <drawString x="10.2cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
-        <drawString x="10.2cm" y="17.3cm">Datum přijetí zálohy (advance payment date):</drawString>
+        <drawString x="10.2cm" y="17.3cm">Datum přijetí zálohy (payment date):</drawString>
 
         <drawRightString x="19cm" y="17.7cm"><xsl:value-of select="payment/invoice_date"/></drawRightString>
         <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/advance_payment_date"/></drawRightString>
