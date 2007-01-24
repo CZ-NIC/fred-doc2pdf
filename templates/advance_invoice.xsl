@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY SPACE "<xsl:text> </xsl:text>">
+<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -9,6 +9,7 @@
 
 <xsl:template match="/invoice">
 <document>
+
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
   title="Faktura č. {payment/invoice_number}"
   author="{supplier/name}"
@@ -16,13 +17,13 @@
     <pageTemplate id="first">
       <pageGraphics>
 
-        <setFont name="Times-BoldItalic" size="26"/>
+        <setFont name="Times-BoldItalic" size="25"/>
         <drawString x="2cm" y="27.6cm"><xsl:value-of select="supplier/name"/></drawString>
         <lines>2cm 27.3cm 19cm 27.3cm</lines>
     <!-- end of header -->
 
-        <setFont name="Times-Bold" size="11"/>
-        <drawString x="2cm" y="26.5cm">Odběratel (Client)</drawString>
+        <setFont name="Times-Bold" size="10"/>
+        <drawString x="2cm" y="26.5cm">Odběratel (Client):</drawString>
         <drawString x="2cm" y="25.7cm">IČO:</drawString>
         <drawString x="2cm" y="25.3cm">DIČ (VAT number):</drawString>
 
@@ -30,11 +31,11 @@
         <drawString x="11.6cm" y="23.4cm"><xsl:value-of select="client/address/street"/></drawString>
         <drawString x="11.6cm" y="22.6cm"><xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
 
-        <setFont name="Times-Roman" size="11"/>
+        <setFont name="Times-Roman" size="10"/>
         <drawString x="6cm" y="25.7cm"><xsl:value-of select="client/ico"/></drawString>
         <drawString x="6cm" y="25.3cm"><xsl:value-of select="client/vat_number"/></drawString>
 
-        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
+        <drawString x="2cm" y="21.5cm">Sídlo odběratele: <xsl:value-of select="client/address/street"/>, <xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
         <lines>2cm 20.8cm 19cm 20.8cm</lines>
 
         <drawString x="2cm" y="20.1cm">Dodavatel (Supplier):</drawString>
@@ -49,42 +50,43 @@
         <drawString x="3cm" y="19.3cm"><xsl:value-of select="supplier/ico"/></drawString>
         <drawString x="3cm" y="18.9cm"><xsl:value-of select="supplier/vat_number"/></drawString>
 
-        <setFont name="Times-Bold" size="11"/>
-        <drawString x="2cm" y="18.1cm">Daňový doklad č. (Invoice No):</drawString>
-        <drawString x="2cm" y="17.7cm">Variabliní symbol:</drawString>
+        <setFont name="Times-Bold" size="10"/>
 
-        <drawString x="7.4cm" y="18.1cm"><xsl:value-of select="payment/invoice_number"/></drawString>
-        <drawString x="7.4cm" y="17.7cm"><xsl:value-of select="payment/vs"/></drawString>
+        <drawString x="2cm" y="18.1cm">Daňový doklad na zálohu</drawString>
+        <drawString x="2cm" y="17.7cm">číslo (Invoice No):</drawString>
+        <drawString x="2cm" y="17.3cm">Variabilní symbol:</drawString>
 
+        <drawString x="5.4cm" y="17.7cm"><xsl:value-of select="payment/invoice_number"/></drawString>
+        <drawString x="5.4cm" y="17.3cm"><xsl:value-of select="payment/vs"/></drawString>
 
-        <setFont name="Times-Roman" size="11"/>
+        <setFont name="Times-Roman" size="10"/>
 
-        <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktutry (payment date):</drawString>
-        <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
-        <drawString x="10.4cm" y="17.3cm">Datum uskutečnění zdaň.plnění (tax point):</drawString>
+        <drawString x="10.2cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
+        <drawString x="10.2cm" y="17.3cm">Datum přijetí zálohy (advance payment date):</drawString>
 
-        <drawRightString x="19cm" y="18.1cm"><xsl:value-of select="payment/payment_date"/></drawRightString>
         <drawRightString x="19cm" y="17.7cm"><xsl:value-of select="payment/invoice_date"/></drawRightString>
-        <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/tax_point"/></drawRightString>
+        <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/advance_payment_date"/></drawRightString>
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
         <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
 
-        <setFont name="Times-Bold" size="11"/>
+        <setFont name="Times-Bold" size="10"/>
         <drawString x="13cm" y="16.5cm"><pageNumber/></drawString>
         <drawString x="17cm" y="16.5cm"><pageNumberTotal/></drawString>
-        <setFont name="Times-Roman" size="11"/>
+        <setFont name="Times-Roman" size="10"/>
 
         <rect x="2cm" y="15.3cm" width="17cm" height="0.8cm" stroke="yes" />
 
         <drawString x="2.2cm" y="15.6cm">Označení dodávky</drawString>
 
-        <drawString x="2cm" y="3.4cm">Vystavil: <xsl:value-of select="payment/issue_person"/></drawString>
+        <xsl:if test="payment/issue_person">
+        <drawString x="2cm" y="3.4cm"><xsl:value-of select="payment/issue_person"/></drawString>
+        </xsl:if>
 
     <!-- footer -->
         <lines>2cm 3cm 19cm 3cm</lines>
 
-        <setFont name="Times-Roman" size="9"/>
+        <setFont name="Times-Roman" size="8"/>
         <drawString x="2cm" y="2.4cm"><xsl:value-of select="supplier/name"/></drawString>
         <drawString x="2cm" y="2cm">Reklamace: <xsl:value-of select="supplier/reclamation"/></drawString>
 
@@ -100,28 +102,28 @@
 
     <pageTemplate id="appendix">
       <pageGraphics>
-        <setFont name="Times-BoldItalic" size="26"/>
+        <setFont name="Times-BoldItalic" size="25"/>
         <drawString x="2cm" y="27.6cm"><xsl:value-of select="supplier/name"/></drawString>
         <lines>2cm 27.3cm 19cm 27.3cm</lines>
 
-        <setFont name="Times-Bold" size="11"/>
+        <setFont name="Times-Bold" size="10"/>
         <drawRightString x="19cm" y="27.6cm">Příloha faktury č.: <xsl:value-of select="payment/invoice_number"/></drawRightString>
 
-        <setFont name="Times-Roman" size="11"/>
+        <setFont name="Times-Roman" size="10"/>
         <drawString x="12cm" y="26.8cm">List:</drawString>
         <drawString x="15.4cm" y="26.8cm">Počet listů:</drawString>
 
-        <setFont name="Times-Bold" size="11"/>
+        <setFont name="Times-Bold" size="10"/>
         <drawRightString x="14cm" y="26.8cm"><pageNumber/></drawRightString>
         <drawRightString x="19cm" y="26.8cm"><pageNumberTotal/></drawRightString>
-        <setFont name="Times-Roman" size="11"/>
+        <setFont name="Times-Roman" size="10"/>
 
     <!-- end of header -->
 
     <!-- footer -->
         <lines>2cm 3cm 19cm 3cm</lines>
 
-        <setFont name="Times-Roman" size="9"/>
+        <setFont name="Times-Roman" size="8"/>
         <drawString x="2cm" y="2.4cm"><xsl:value-of select="supplier/name"/></drawString>
         <drawString x="2cm" y="2cm">Reklamace: <xsl:value-of select="supplier/reclamation"/></drawString>
 
@@ -187,7 +189,6 @@
     <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
 </tr>
 </blockTable>
-
 
 </story>
 

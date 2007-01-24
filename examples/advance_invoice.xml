@@ -39,7 +39,10 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <tax_point>2.10.2006</tax_point>
     <vs>45021295</vs>
     <ks>308</ks>
+    <!-- 
+    Tato část je až v konečné faktuře.
     <payment_method>bankovním převodem</payment_method>
+    -->
     <bank>
         <name>ČSOB, pobočka Praha</name>
         <address>Perlova 5, Praha</address>
@@ -47,7 +50,7 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
         <iban>CZ56 0300 0000 0001 5290 3575</iban>
     </bank>
     <anotation>
-    Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
+    Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
     </anotation>
     <note>DPH byla vypořádána na zálohových daňových dokladech.</note>
     <issue_person>Vystaveno fakturačním systémem CZ.NIC</issue_person>
@@ -79,44 +82,5 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <paid>50000</paid>
     <to_be_paid>0</to_be_paid>
 </sumarize>
-
-
-<appendix>
-
-<items>
-    <item>
-        <subject>gaad.cz</subject>
-        <code>RUDR</code>
-        <date>13.11.2007</date>
-        <count>1</count>
-        <vatperc>0</vatperc>
-        <price>300</price>
-        <total>300</total>
-    </item>
-    <item>
-        <subject>jindrizska.cz</subject>
-        <code>RUDR</code>
-        <date>3.11.2007</date>
-        <count>2</count>
-        <vatperc>0</vatperc>
-        <price>400</price>
-        <total>800</total>
-    </item>
-    <item>
-        <subject>snih.cz</subject>
-        <code>RUDR</code>
-        <date>10.10.2007</date>
-        <count>1</count>
-        <vatperc>0</vatperc>
-        <price>500</price>
-        <total>500</total>
-    </item>
-</items>
-
-<sumarize_items>
-    <total>1500</total>
-</sumarize_items>
-
-</appendix>
 
 </invoice>
