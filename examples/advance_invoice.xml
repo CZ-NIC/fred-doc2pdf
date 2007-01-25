@@ -28,7 +28,7 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <registration>SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</registration>
     <reclamation>CZ.NIC, z.s.p.o., Americká 23, 120 00 Praha 2</reclamation>
     <url>www.nic.cz</url>
-    <email>fakt@nic.cz</email>
+    <email>podpora@nic.cz</email>
 </supplier>
 
 <payment>
@@ -52,11 +52,11 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <anotation>
     Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
     </anotation>
-    <note>DPH byla vypořádána na zálohových daňových dokladech.</note>
     <issue_person>Vystaveno fakturačním systémem CZ.NIC</issue_person>
 </payment>
 
 <delivery>
+<!--
     <entry>
         <vatperc>0</vatperc>
         <basetax>0</basetax>
@@ -69,10 +69,11 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
         <vat>0</vat>
         <total>0</total>
     </entry>
+-->
     <entry>
         <vatperc>19</vatperc>
-        <basetax>42015</basetax>
-        <vat>7985</vat>
+        <basetax>42017</basetax>
+        <vat>7983</vat>
         <total>50000</total>
     </entry>
 </delivery>

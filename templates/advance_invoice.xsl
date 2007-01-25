@@ -68,11 +68,12 @@
         <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/advance_payment_date"/></drawRightString>
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
-        <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
+        <drawString x="15.4cm" y="16.5cm">Počet listů:</drawString>
 
         <setFont name="Times-Bold" size="10"/>
-        <drawString x="13cm" y="16.5cm"><pageNumber/></drawString>
-        <drawString x="17cm" y="16.5cm"><pageNumberTotal/></drawString>
+        <drawRightString x="14cm" y="16.5cm"><pageNumber/></drawRightString>
+        <drawRightString x="19cm" y="16.5cm"><pageNumberTotal/></drawRightString>
+
         <setFont name="Times-Roman" size="10"/>
 
         <rect x="2cm" y="15.3cm" width="17cm" height="0.8cm" stroke="yes" />
@@ -203,7 +204,7 @@
 <tr>
     <td></td>
     <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
-    <td><xsl:value-of select='format-number(basetax, "#0.00")' /></td>
+    <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
 </tr>

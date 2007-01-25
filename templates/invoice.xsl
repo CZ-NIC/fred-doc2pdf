@@ -72,11 +72,12 @@
         <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/tax_point"/></drawRightString>
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
-        <drawString x="15cm" y="16.5cm">Počet listů:</drawString>
+        <drawString x="15.4cm" y="16.5cm">Počet listů:</drawString>
 
         <setFont name="Times-Bold" size="10"/>
-        <drawString x="13cm" y="16.5cm"><pageNumber/></drawString>
-        <drawString x="17cm" y="16.5cm"><pageNumberTotal/></drawString>
+        <drawRightString x="14cm" y="16.5cm"><pageNumber/></drawRightString>
+        <drawRightString x="19cm" y="16.5cm"><pageNumberTotal/></drawRightString>
+
         <setFont name="Times-Roman" size="10"/>
 
         <rect x="2cm" y="15.3cm" width="17cm" height="0.8cm" stroke="yes" />
@@ -143,27 +144,32 @@
 </template>
 
 <stylesheet>
-    <blockTableStyle id="tbl_delivery">
-      <blockValign value="TOP"/>
-      <blockAlignment value="RIGHT"/>
-      <blockAlignment value="LEFT" start="1,-1" stop="1,-1" />
 
-      <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
-      <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
+    <blockTableStyle id="tbl_sumarize_delivery">
+      <lineStyle kind="LINEABOVE" start="0,0" stop="1,0" colorName="black" />
+      <lineStyle kind="LINEBELOW" start="0,3" stop="1,3" colorName="black" />
 
-      <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" colorName="black" />
-      <lineStyle kind="LINEABOVE" start="0,1" stop="-1,1" colorName="black" />
-      <lineStyle kind="LINEABOVE" start="0,-1" stop="-1,-1" colorName="black" />
-      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1" size="11"/>
+      <blockFont name="Times-Bold" start="1,0" stop="1,1"/>
+      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
 
+      <blockAlignment value="RIGHT" start="1,0" stop="1,-1" />
     </blockTableStyle>
 
+
     <blockTableStyle id="appendix">
-      <blockAlignment value="RIGHT"/>
-      <blockAlignment value="LEFT" start="1,0" stop="1,-1" />
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+      <blockAlignment value="RIGHT" start="4,0" stop="6,-1" />
       <lineStyle kind="BOX" start="0,0" stop="-1,0" colorName="black" />
       <lineStyle kind="LINEABOVE" start="0,-1" stop="-1,-1" colorName="black" />
-      <blockFont name="Times-Bold" size="11" start="0,-1" stop="-1,-1"/>
+      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="tbl_advance_payment">
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+      <blockAlignment value="RIGHT" start="1,0" stop="-1,-1" />
+      <blockFont name="Times-Bold" start="0,0" stop="-1,0"/>
+      <lineStyle kind="BOX" start="0,0" stop="2,0" colorName="black" />
+      <lineStyle kind="LINEBELOW" start="0,-1" stop="2,-1" colorName="black" />
     </blockTableStyle>
 
 </stylesheet>
@@ -176,89 +182,79 @@
 
 <spacer length="0.4cm"/>
 
-<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" repeatRows="1" style="tbl_delivery">
+<blockTable colWidths="4cm,5.4cm,7.4cm" style="tbl_sumarize_delivery">
 <tr>
-    <td>Úhrnem:</td>
-    <td>%DPH</td>
-    <td>Základ daně</td>
-    <td>Kč DPH</td>
-    <td>Kč celkem</td>
+    <td>Celkem (total):</td>
+    <td><xsl:value-of select='format-number(sumarize/total, "### ##0.00", "CZK")' /></td>
+    <td></td>
 </tr>
-<xsl:apply-templates select="delivery" />
 <tr>
-    <td>Celkem k úhradě</td>
-    <td>(to be paid):</td>
+    <td>Uhrazeno (paid):</td>
+    <td><xsl:value-of select='format-number(sumarize/paid, "### ##0.00", "CZK")' /></td>
     <td></td>
+</tr>
+<tr>
+    <td>Základ daně:</td>
+    <td><xsl:value-of select='format-number(sumarize/basetax, "### ##0.00", "CZK")' /></td>
     <td></td>
+</tr>
+<tr>
+    <td>DPH <xsl:value-of select='format-number(sumarize/vatperc, "#0")' />%</td>
+    <td><xsl:value-of select='format-number(sumarize/vat, "### ##0.00", "CZK")' /></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Celkem k úhradě (to be paid):</td>
     <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
+    <td></td>
 </tr>
+
 </blockTable>
 
-<xsl:if test="appendix">
 
 <setNextTemplate name="appendix"/>
-<pageBreak/>
 
-<blockTable colWidths="1.5cm,7.2cm,1.5cm,1.8cm,1.8cm,3cm" repeatRows="1" style="appendix">
-<tr>
-    <td>Řádek</td>
-    <td>Text</td>
-    <td>Kód</td>
-    <td>Počet</td>
-    <td>%DPH</td>
-    <td>Celkem</td>
-</tr>
+<xsl:apply-templates select="advance_payment" />
+
 <xsl:apply-templates select="appendix" />
-</blockTable>
-
-</xsl:if>
 
 </story>
 
 </document>
 </xsl:template>
 
-<xsl:template match="delivery">
-    <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="entry">
-<tr>
-    <td></td>
-    <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
-    <td><xsl:value-of select='format-number(basetax, "#0.00")' /></td>
-    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
-    <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
-</tr>
-</xsl:template>
-
-<xsl:template match="sumarize">
-<tr>
-    <td>Celkem k úhradě</td>
-    <td>(to be paid):</td>
-    <td></td>
-    <td></td>
-    <td><xsl:value-of select='format-number(to_be_paid, "### ##0.00", "CZK")' /></td>
-</tr>
-</xsl:template>
-
-
 <xsl:template match="appendix">
-    <xsl:apply-templates/>
+<pageBreak/>
+<!-- 
+    Table width: 16.8cm
+-->
+<blockTable colWidths="1.3cm,3.2cm,5.1cm,1.4cm,1.6cm,2cm,2.2cm" repeatRows="1" style="appendix">
+<tr>
+    <td>Změna</td>
+    <td>Provedena</td>
+    <td>Doména</td>
+    <td>Služba do</td>
+    <td>Počet</td>
+    <td>Cena</td>
+    <td>Celkem</td>
+</tr>
+<xsl:apply-templates select="items" />
+<xsl:apply-templates select="sumarize_items" />
+</blockTable>
 </xsl:template>
 
 <xsl:template match="items">
-    
     <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="item">
 <tr>
-    <td><xsl:number/></td>
-    <td><xsl:value-of select='subject' /></td>
     <td><xsl:value-of select='code' /></td>
+    <td><xsl:value-of select='timestamp' /></td>
+    <td><xsl:value-of select='subject' /></td>
+    <td><xsl:value-of select='expiration' /></td>
     <td><xsl:value-of select='count' /></td>
-    <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
+    <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
 </tr>
 </xsl:template>
@@ -270,7 +266,43 @@
     <td></td>
     <td></td>
     <td></td>
+    <td></td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+</tr>
+</xsl:template>
+
+<xsl:template match="advance_payment">
+
+<spacer length="0.4cm"/>
+
+<para>
+<xsl:value-of select="note"/>
+</para>
+
+<spacer length="0.4cm"/>
+
+<blockTable colWidths="3cm,3cm,3.4cm,7.4cm" repeatRows="1" style="tbl_advance_payment">
+<tr>
+    <td>č.fa.</td>
+    <td>čerpáno Kč</td>
+    <td>zůstatek zálohy Kč</td>
+    <td></td>
+</tr>
+<xsl:apply-templates select="applied_invoices" />
+</blockTable>
+
+</xsl:template>
+
+<xsl:template match="applied_invoices">
+    <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="consumed">
+<tr>
+    <td><xsl:value-of select='number' /></td>
+    <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(balance, "### ##0.00", "CZK")' /></td>
+    <td></td>
 </tr>
 </xsl:template>
 

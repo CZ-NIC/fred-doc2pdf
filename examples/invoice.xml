@@ -3,6 +3,7 @@
 <!-- 
 Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
 Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+úpravy: 25.1.2007
 -->
 <client>
     <name>IPEX a.s.</name>
@@ -28,7 +29,7 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <registration>SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</registration>
     <reclamation>CZ.NIC, z.s.p.o., Americká 23, 120 00 Praha 2</reclamation>
     <url>www.nic.cz</url>
-    <email>fakt@nic.cz</email>
+    <email>podpora@nic.cz</email>
 </supplier>
 
 <payment>
@@ -47,13 +48,17 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
         <iban>CZ56 0300 0000 0001 5290 3575</iban>
     </bank>
     <anotation>
-    Fakturujeme Vám přijetí zálohy za služby (smlouva o statusu Registrátora).
+    Fakturujeme Vám sa služby:
+
+    Registrace doménových jmeno (kód RREG), 
+    za udržování záznamu o doménovém jménu (kód RUDR),
+    v násobcích roků (Počet) pro doménová jména dle přílohy.
     </anotation>
-    <note>DPH byla vypořádána na zálohových daňových dokladech.</note>
     <issue_person>Vystaveno fakturačním systémem CZ.NIC</issue_person>
 </payment>
 
 <delivery>
+<!--
     <entry>
         <vatperc>0</vatperc>
         <basetax>0</basetax>
@@ -66,20 +71,133 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
         <vat>0</vat>
         <total>0</total>
     </entry>
+-->
     <entry>
         <vatperc>19</vatperc>
-        <basetax>42015</basetax>
-        <vat>7985</vat>
-        <total>50000</total>
+        <basetax>0</basetax>
+        <vat>0</vat>
+        <total>0</total>
     </entry>
 </delivery>
 
 <sumarize>
-    <total>50000</total>
-    <paid>50000</paid>
+    <vatperc>19</vatperc>
+    <basetax>0</basetax>
+    <vat>0</vat>
+    <total>111900</total>
+    <paid>-111900</paid>
     <to_be_paid>0</to_be_paid>
 </sumarize>
 
+<advance_payment>
+    <note>DPH byla vypořádána na zálohových daňových dokladech:</note>
+    <applied_invoices>
+    <consumed>
+        <number>113/2006</number>
+        <price>21900</price>
+        <balance>28100</balance>
+    </consumed>
+    <consumed>
+        <number>112/2006</number>
+        <price>80000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>111/2006</number>
+        <price>10000</price>
+        <balance>0</balance>
+    </consumed>
+<!--
+    Simulation of the list over more than one page.
+
+    <consumed>
+        <number>114/2006</number>
+        <price>800</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>115/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>116/2006</number>
+        <price>1000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>117/2006</number>
+        <price>800</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>118/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>119/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>1110/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>121/2006</number>
+        <price>1000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>122/2006</number>
+        <price>800</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>123/2006</number>
+        <price>1000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>124/2006</number>
+        <price>800</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>125/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>126/2006</number>
+        <price>1000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>127/2006</number>
+        <price>800</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>128/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>129/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+    <consumed>
+        <number>1210/2006</number>
+        <price>2000</price>
+        <balance>0</balance>
+    </consumed>
+-->
+    </applied_invoices>
+</advance_payment>
 
 <appendix>
 
@@ -87,34 +205,32 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <item>
         <subject>gaad.cz</subject>
         <code>RUDR</code>
-        <date>13.11.2007</date>
-        <count>1</count>
-        <vatperc>0</vatperc>
+        <timestamp>12.01.2007 11:12:00</timestamp>
+        <expiration>12.01.2009</expiration>
+        <count>2</count>
         <price>300</price>
-        <total>300</total>
+        <total>600</total>
     </item>
     <item>
         <subject>jindrizska.cz</subject>
-        <code>RUDR</code>
-        <date>3.11.2007</date>
-        <count>2</count>
-        <vatperc>0</vatperc>
-        <price>400</price>
-        <total>800</total>
+        <code>RREG</code>
+        <timestamp>12.01.2007 11:12:00</timestamp>
+        <price>10800</price>
+        <total>10800</total>
     </item>
     <item>
         <subject>snih.cz</subject>
         <code>RUDR</code>
-        <date>10.10.2007</date>
+        <timestamp>12.01.2007 11:12:00</timestamp>
+        <expiration>12.01.2008</expiration>
         <count>1</count>
-        <vatperc>0</vatperc>
-        <price>500</price>
-        <total>500</total>
+        <price>100500</price>
+        <total>100500</total>
     </item>
 </items>
 
 <sumarize_items>
-    <total>1500</total>
+    <total>111900</total>
 </sumarize_items>
 
 </appendix>
