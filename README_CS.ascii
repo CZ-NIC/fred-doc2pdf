@@ -13,11 +13,56 @@ a pouzivat primo modul trml2pdf.
 
 OBSAH:
 
-    * Reportlab
-    * Tiny RML2PDF
-    * Sablotron
-    * Fred2pdf
+ * Navod k pouziti
 
+ * Popis jednotlivych casti
+
+    *** Reportlab
+    *** Tiny RML2PDF
+    *** Sablotron
+    *** Fred2pdf
+
+
+* Navod k pouziti
+
+
+
+Zatim jen s XML prikladem:
+
+Ulozeni do souboru pdf:
+
+  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
+
+Ulozeni primo do filemanageru:
+(Staci definovat xml, xsl a jmeno pdf.)
+
+  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf | filemanager_client.py -t application/pdf -l test1.pdf
+
+
+
+Validace XML zdrojovych dat.
+
+Pro oba typy faktur jsou vytvoreny DTD soubory pro overeni validity XML.
+Vlozte do XML tag DOCTYPE s URL kde se DTD nachazi a pak muzete dokument zvalidovat.
+
+Standardne se souboruy nachazeji ve slozce templates/ a jmenuji se fred_invoice.dtd a
+fred_advance_invoice.dtd.
+
+Ve slozce examples jsou dva testovaci XML, na kterych je mozne si validaci overit.
+Aby to fungovalo, musi se u nich nastavit spravna cesta k DTD souborum. V tagu je
+uvedena promenna $FRED2PDFPATH, ktera by mela obsahovat cestu k souboru. Je mozne ji
+prepsat primo v souboru nebo muzete validaci spustit takto:
+
+  Kdyz jste v adresari ~/enum/fred2pdf/trunk:
+
+  $ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/invoice.xml | xmllint --noout --valid -
+  $ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/advance_invoice.xml | xmllint --noout --valid -
+
+Pokud se nevypise zadny text, je XML dokument validni.
+
+
+
+* Popis jednotlivych casti
 
 *** Reportlab - The ReportLab Open Source PDF library
 
@@ -45,10 +90,6 @@ Fred2pdf je nadstavba nad Tiny RML2PDF, ktera resi pouzivani ceskych fontu, spra
 kodovani a upravuje nektere funkce v nizsich modulech. Predevsim je to implementace
 paginace, ktera neni v aktualni verzi nizsiho modulu zcela dokoncena.
 
-
-*** Navod k pouziti
-
-TODO:
 
 
 

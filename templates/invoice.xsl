@@ -185,27 +185,27 @@
 <blockTable colWidths="4cm,5.4cm,7.4cm" style="tbl_sumarize_delivery">
 <tr>
     <td>Celkem (total):</td>
-    <td><xsl:value-of select='format-number(sumarize/total, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(delivery/sumarize/total, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
     <td>Uhrazeno (paid):</td>
-    <td><xsl:value-of select='format-number(sumarize/paid, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(delivery/sumarize/paid, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
     <td>Základ daně:</td>
-    <td><xsl:value-of select='format-number(sumarize/basetax, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(delivery/sumarize/basetax, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
-    <td>DPH <xsl:value-of select='format-number(sumarize/vatperc, "#0")' />%</td>
-    <td><xsl:value-of select='format-number(sumarize/vat, "### ##0.00", "CZK")' /></td>
+    <td>DPH <xsl:value-of select='format-number(delivery/sumarize/vatperc, "#0")' />%</td>
+    <td><xsl:value-of select='format-number(delivery/sumarize/vat, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
     <td>Celkem k úhradě (to be paid):</td>
-    <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(delivery/sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 

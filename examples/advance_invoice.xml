@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_advance_invoice.dtd">
 <invoice>
 <!-- 
-Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
-Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+    Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
+    Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+    Úpravy: 25.1.2007, 26.1.2007
+
+    Pro kontrolu validity je potřeba nastavit plnou cestu k DTD souboru.
+    Nahraďte proměnnou $FRED2PDFPATH za skutečnou cestu k souboru a pak již můžete validovat:
+
+    ~/enum/fred2pdf/trunk$ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/advance_invoice.xml | xmllint -:-noout -:-valid -
+    (dvojtečky mezi pomlčkami zrušte)
 -->
 <client>
     <name>IPEX a.s.</name>
@@ -34,18 +42,12 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
 <payment>
     <invoice_number>2406000590</invoice_number>
     <invoice_date>3.10.2006</invoice_date>
-    <payment_date>3.10.2006</payment_date>
     <advance_payment_date>3.10.2006</advance_payment_date>
-    <tax_point>2.10.2006</tax_point>
     <vs>45021295</vs>
     <ks>308</ks>
-    <!-- 
-    Tato část je až v konečné faktuře.
-    <payment_method>bankovním převodem</payment_method>
-    -->
     <bank>
         <name>ČSOB, pobočka Praha</name>
-        <address>Perlova 5, Praha</address>
+        <street_and_city>Perlova 5, Praha</street_and_city>
         <account>152903575/0300</account>
         <iban>CZ56 0300 0000 0001 5290 3575</iban>
     </bank>
@@ -56,32 +58,23 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
 </payment>
 
 <delivery>
-<!--
-    <entry>
-        <vatperc>0</vatperc>
-        <basetax>0</basetax>
-        <vat>0</vat>
-        <total>0</total>
-    </entry>
-    <entry>
-        <vatperc>5</vatperc>
-        <basetax>0</basetax>
-        <vat>0</vat>
-        <total>0</total>
-    </entry>
--->
-    <entry>
-        <vatperc>19</vatperc>
-        <basetax>42017</basetax>
-        <vat>7983</vat>
-        <total>50000</total>
-    </entry>
+    <!-- 
+    Daňová pásma. 
+    -->
+    <vat_rates>
+        <entry>
+            <vatperc>19</vatperc>
+            <basetax>42017</basetax>
+            <vat>7983</vat>
+            <total>50000</total>
+        </entry>
+    </vat_rates>
+
+    <sumarize>
+        <to_be_paid>0</to_be_paid>
+    </sumarize>
+
 </delivery>
 
-<sumarize>
-    <total>50000</total>
-    <paid>50000</paid>
-    <to_be_paid>0</to_be_paid>
-</sumarize>
 
 </invoice>

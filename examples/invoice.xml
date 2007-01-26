@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_invoice.dtd">
 <invoice>
 <!-- 
-Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
-Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
-úpravy: 25.1.2007
+    Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
+    Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+    Úpravy: 25.1.2007, 26.1.2007
+
+    Pro kontrolu validity je potřeba nastavit plnou cestu k DTD souboru.
+    Nahraďte proměnnou $FRED2PDFPATH za skutečnou cestu k souboru a pak již můžete validovat:
+
+    ~/enum/fred2pdf/trunk$ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/invoice.xml | xmllint -:-noout -:-valid -
+    (dvojtečky mezi pomlčkami zrušte)
 -->
 <client>
     <name>IPEX a.s.</name>
@@ -36,14 +43,13 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     <invoice_number>2406000590</invoice_number>
     <invoice_date>3.10.2006</invoice_date>
     <payment_date>3.10.2006</payment_date>
-    <advance_payment_date>3.10.2006</advance_payment_date>
     <tax_point>2.10.2006</tax_point>
     <vs>45021295</vs>
     <ks>308</ks>
     <payment_method>bankovním převodem</payment_method>
     <bank>
         <name>ČSOB, pobočka Praha</name>
-        <address>Perlova 5, Praha</address>
+        <street_and_city>Perlova 5, Praha</street_and_city>
         <account>152903575/0300</account>
         <iban>CZ56 0300 0000 0001 5290 3575</iban>
     </bank>
@@ -58,180 +64,75 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
 </payment>
 
 <delivery>
-<!--
-    <entry>
-        <vatperc>0</vatperc>
-        <basetax>0</basetax>
-        <vat>0</vat>
-        <total>0</total>
-    </entry>
-    <entry>
-        <vatperc>5</vatperc>
-        <basetax>0</basetax>
-        <vat>0</vat>
-        <total>0</total>
-    </entry>
--->
-    <entry>
+    <sumarize>
         <vatperc>19</vatperc>
         <basetax>0</basetax>
         <vat>0</vat>
-        <total>0</total>
-    </entry>
+        <total>111900</total>
+        <paid>-111900</paid>
+        <to_be_paid>0</to_be_paid>
+    </sumarize>
 </delivery>
 
-<sumarize>
-    <vatperc>19</vatperc>
-    <basetax>0</basetax>
-    <vat>0</vat>
-    <total>111900</total>
-    <paid>-111900</paid>
-    <to_be_paid>0</to_be_paid>
-</sumarize>
 
 <advance_payment>
+<!-- 
+    Zden je seznam zálohových faktur.
+    Ten MUSÍ být setříděn od nejmladší k nejstarší.
+-->
     <note>DPH byla vypořádána na zálohových daňových dokladech:</note>
     <applied_invoices>
-    <consumed>
-        <number>113/2006</number>
-        <price>21900</price>
-        <balance>28100</balance>
-    </consumed>
-    <consumed>
-        <number>112/2006</number>
-        <price>80000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>111/2006</number>
-        <price>10000</price>
-        <balance>0</balance>
-    </consumed>
-<!--
-    Simulation of the list over more than one page.
-
-    <consumed>
-        <number>114/2006</number>
-        <price>800</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>115/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>116/2006</number>
-        <price>1000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>117/2006</number>
-        <price>800</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>118/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>119/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>1110/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>121/2006</number>
-        <price>1000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>122/2006</number>
-        <price>800</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>123/2006</number>
-        <price>1000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>124/2006</number>
-        <price>800</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>125/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>126/2006</number>
-        <price>1000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>127/2006</number>
-        <price>800</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>128/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>129/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
-    <consumed>
-        <number>1210/2006</number>
-        <price>2000</price>
-        <balance>0</balance>
-    </consumed>
--->
+        <consumed>
+            <number>113/2006</number>
+            <price>21900</price>
+            <balance>28100</balance>
+        </consumed>
+        <consumed>
+            <number>112/2006</number>
+            <price>80000</price>
+            <balance>0</balance>
+        </consumed>
+        <consumed>
+            <number>111/2006</number>
+            <price>10000</price>
+            <balance>0</balance>
+        </consumed>
     </applied_invoices>
 </advance_payment>
 
 <appendix>
 
-<items>
-    <item>
-        <subject>gaad.cz</subject>
-        <code>RUDR</code>
-        <timestamp>12.01.2007 11:12:00</timestamp>
-        <expiration>12.01.2009</expiration>
-        <count>2</count>
-        <price>300</price>
-        <total>600</total>
-    </item>
-    <item>
-        <subject>jindrizska.cz</subject>
-        <code>RREG</code>
-        <timestamp>12.01.2007 11:12:00</timestamp>
-        <price>10800</price>
-        <total>10800</total>
-    </item>
-    <item>
-        <subject>snih.cz</subject>
-        <code>RUDR</code>
-        <timestamp>12.01.2007 11:12:00</timestamp>
-        <expiration>12.01.2008</expiration>
-        <count>1</count>
-        <price>100500</price>
-        <total>100500</total>
-    </item>
-</items>
+    <items>
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>12.01.2007 11:12:00</timestamp>
+            <expiration>12.01.2009</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>12.01.2007 11:12:00</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>12.01.2007 11:12:00</timestamp>
+            <expiration>12.01.2008</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+        </item>
+    </items>
 
-<sumarize_items>
-    <total>111900</total>
-</sumarize_items>
+    <sumarize_items>
+        <total>111900</total>
+    </sumarize_items>
 
 </appendix>
 

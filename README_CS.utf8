@@ -40,6 +40,26 @@ Uložení přímo do filemanageru:
 
 
 
+Validace XML zdrojových dat.
+
+Pro oba typy faktur jsou vytvořeny DTD soubory pro ověření validity XML.
+Vložte do XML tag DOCTYPE s URL kde se DTD nachází a pak můžete dokument zvalidovat.
+
+Standardně se souboruy nacházejí ve složce templates/ a jmenují se fred_invoice.dtd a
+fred_advance_invoice.dtd.
+
+Ve složce examples jsou dva testovací XML, na kterých je možné si validaci ověřit.
+Aby to fungovalo, musí se u nich nastavit správná cesta k DTD souborům. V tagu je
+uvedena proměnná $FRED2PDFPATH, která by měla obsahovat cestu k souboru. Je možné ji
+přepsat přímo v souboru nebo můžete validaci spustit takto:
+
+  Když jste v adresáři ~/enum/fred2pdf/trunk:
+
+  $ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/invoice.xml | xmllint --noout --valid -
+  $ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/advance_invoice.xml | xmllint --noout --valid -
+
+Pokud se nevypíše žádný text, je XML dokument validní.
+
 
 
 * Popis jednotlivých částí

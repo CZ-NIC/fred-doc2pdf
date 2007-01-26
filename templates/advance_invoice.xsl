@@ -173,6 +173,14 @@
 
 <spacer length="0.4cm"/>
 
+<xsl:apply-templates select="delivery" />
+
+</story>
+
+</document>
+</xsl:template>
+
+<xsl:template match="delivery">
 <blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" repeatRows="1" style="tbl_delivery">
 <tr>
     <td>Úhrnem:</td>
@@ -181,22 +189,11 @@
     <td>Kč DPH</td>
     <td>Kč celkem</td>
 </tr>
-<xsl:apply-templates select="delivery" />
-<tr>
-    <td>Celkem k úhradě</td>
-    <td>(to be paid):</td>
-    <td></td>
-    <td></td>
-    <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
-</tr>
+<xsl:apply-templates />
 </blockTable>
-
-</story>
-
-</document>
 </xsl:template>
 
-<xsl:template match="delivery">
+<xsl:template match="vat_rates">
     <xsl:apply-templates/>
 </xsl:template>
 
@@ -219,5 +216,6 @@
     <td><xsl:value-of select='format-number(to_be_paid, "### ##0.00", "CZK")' /></td>
 </tr>
 </xsl:template>
+
 
 </xsl:stylesheet>
