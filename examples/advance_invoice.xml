@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_advance_invoice.dtd">
 <invoice>
 <!-- 
+    !DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_advance_invoice.dtd"
+
     Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
     Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     Úpravy: 25.1.2007, 26.1.2007
@@ -44,13 +45,6 @@
     <invoice_date>3.10.2006</invoice_date>
     <advance_payment_date>3.10.2006</advance_payment_date>
     <vs>45021295</vs>
-    <ks>308</ks>
-    <bank>
-        <name>ČSOB, pobočka Praha</name>
-        <street_and_city>Perlova 5, Praha</street_and_city>
-        <account>152903575/0300</account>
-        <iban>CZ56 0300 0000 0001 5290 3575</iban>
-    </bank>
     <anotation>
     Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
     </anotation>
@@ -62,6 +56,12 @@
     Daňová pásma. 
     -->
     <vat_rates>
+        <entry>
+            <vatperc>5</vatperc>
+            <basetax>13027</basetax>
+            <vat>983</vat>
+            <total>3000</total>
+        </entry>
         <entry>
             <vatperc>19</vatperc>
             <basetax>42017</basetax>

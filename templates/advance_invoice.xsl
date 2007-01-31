@@ -5,6 +5,8 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:output method="xml" encoding="utf-8" />
+
 <xsl:decimal-format name="CZK" decimal-separator="." grouping-separator=" "/>
 
 <xsl:template match="/invoice">
@@ -140,10 +142,12 @@
 </template>
 
 <stylesheet>
+
     <blockTableStyle id="tbl_delivery">
+
       <blockValign value="TOP"/>
       <blockAlignment value="RIGHT"/>
-      <blockAlignment value="LEFT" start="1,-1" stop="1,-1" />
+      <blockAlignment value="LEFT" start="0,0" stop="0,-1" />
 
       <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
       <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
@@ -209,8 +213,8 @@
 
 <xsl:template match="sumarize">
 <tr>
-    <td>Celkem k úhradě</td>
-    <td>(to be paid):</td>
+    <td>Celkem k úhradě (to be paid):</td>
+    <td></td>
     <td></td>
     <td></td>
     <td><xsl:value-of select='format-number(to_be_paid, "### ##0.00", "CZK")' /></td>

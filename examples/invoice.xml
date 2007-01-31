@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_invoice.dtd">
 <invoice>
-<!-- 
+<!--
+    !DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_invoice.dtd"
+
     Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
     Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
     Úpravy: 25.1.2007, 26.1.2007
@@ -45,14 +46,7 @@
     <payment_date>3.10.2006</payment_date>
     <tax_point>2.10.2006</tax_point>
     <vs>45021295</vs>
-    <ks>308</ks>
     <payment_method>bankovním převodem</payment_method>
-    <bank>
-        <name>ČSOB, pobočka Praha</name>
-        <street_and_city>Perlova 5, Praha</street_and_city>
-        <account>152903575/0300</account>
-        <iban>CZ56 0300 0000 0001 5290 3575</iban>
-    </bank>
     <anotation>
     Fakturujeme Vám sa služby:
 
@@ -64,6 +58,20 @@
 </payment>
 
 <delivery>
+    <vat_rates>
+        <entry>
+            <vatperc>5</vatperc>
+            <basetax>13027</basetax>
+            <vat>983</vat>
+            <total>3000</total>
+        </entry>
+        <entry>
+            <vatperc>19</vatperc>
+            <basetax>42017</basetax>
+            <vat>7983</vat>
+            <total>50000</total>
+        </entry>
+    </vat_rates>
     <sumarize>
         <vatperc>19</vatperc>
         <basetax>0</basetax>
@@ -76,17 +84,8 @@
 
 
 <advance_payment>
-<!-- 
-    Zden je seznam zálohových faktur.
-    Ten MUSÍ být setříděn od nejmladší k nejstarší.
--->
     <note>DPH byla vypořádána na zálohových daňových dokladech:</note>
     <applied_invoices>
-        <consumed>
-            <number>113/2006</number>
-            <price>21900</price>
-            <balance>28100</balance>
-        </consumed>
         <consumed>
             <number>112/2006</number>
             <price>80000</price>
@@ -94,7 +93,17 @@
         </consumed>
         <consumed>
             <number>111/2006</number>
-            <price>10000</price>
+            <price>6000</price>
+            <balance>0</balance>
+        </consumed>
+        <consumed>
+            <number>113/2006</number>
+            <price>21900</price>
+            <balance>28100</balance>
+        </consumed>
+        <consumed>
+            <number>110/2006</number>
+            <price>4000</price>
             <balance>0</balance>
         </consumed>
     </applied_invoices>
@@ -127,6 +136,24 @@
             <count>1</count>
             <price>100500</price>
             <total>100500</total>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RUDR</code>
+            <timestamp>12.01.2007 11:12:00</timestamp>
+            <expiration>12.01.2009</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>12.01.2007 11:12:00</timestamp>
+            <expiration>12.01.2009</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
         </item>
     </items>
 

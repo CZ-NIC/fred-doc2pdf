@@ -5,6 +5,8 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:output method="xml" encoding="utf-8" />
+
 <xsl:decimal-format name="CZK" decimal-separator="." grouping-separator=" "/>
 
 <xsl:template match="/invoice">
@@ -145,14 +147,20 @@
 
 <stylesheet>
 
-    <blockTableStyle id="tbl_sumarize_delivery">
-      <lineStyle kind="LINEABOVE" start="0,0" stop="1,0" colorName="black" />
-      <lineStyle kind="LINEBELOW" start="0,3" stop="1,3" colorName="black" />
+    <blockTableStyle id="tbl_delivery">
 
-      <blockFont name="Times-Bold" start="1,0" stop="1,1"/>
-      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT"/>
+      <blockAlignment value="LEFT" start="0,0" stop="0,-1" />
 
-      <blockAlignment value="RIGHT" start="1,0" stop="1,-1" />
+      <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
+      <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
+
+      <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,1" stop="-1,1" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,-2" stop="-1,-2" colorName="black" />
+      <blockFont name="Times-Bold" start="0,-2" stop="-1,-1" size="11"/>
+
     </blockTableStyle>
 
 
@@ -182,46 +190,63 @@
 
 <spacer length="0.4cm"/>
 
-<blockTable colWidths="4cm,5.4cm,7.4cm" style="tbl_sumarize_delivery">
-<tr>
-    <td>Celkem (total):</td>
-    <td><xsl:value-of select='format-number(delivery/sumarize/total, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Uhrazeno (paid):</td>
-    <td><xsl:value-of select='format-number(delivery/sumarize/paid, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Základ daně:</td>
-    <td><xsl:value-of select='format-number(delivery/sumarize/basetax, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
-<tr>
-    <td>DPH <xsl:value-of select='format-number(delivery/sumarize/vatperc, "#0")' />%</td>
-    <td><xsl:value-of select='format-number(delivery/sumarize/vat, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Celkem k úhradě (to be paid):</td>
-    <td><xsl:value-of select='format-number(delivery/sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
-
-</blockTable>
-
+<xsl:apply-templates select="delivery" />
 
 <setNextTemplate name="appendix"/>
 
 <xsl:apply-templates select="advance_payment" />
-
 <xsl:apply-templates select="appendix" />
 
 </story>
 
 </document>
 </xsl:template>
+
+<xsl:template match="delivery">
+<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" repeatRows="1" style="tbl_delivery">
+<tr>
+    <td>Úhrnem:</td>
+    <td>%DPH</td>
+    <td>Základ daně</td>
+    <td>Kč DPH</td>
+    <td>Kč celkem</td>
+</tr>
+<xsl:apply-templates />
+</blockTable>
+</xsl:template>
+
+<xsl:template match="vat_rates">
+    <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="entry">
+<tr>
+    <td></td>
+    <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
+    <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+</tr>
+</xsl:template>
+
+<xsl:template match="sumarize">
+<tr>
+    <td>Uhrazeno (paid):</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><xsl:value-of select='format-number(paid, "### ##0.00", "CZK")' /></td>
+</tr>
+<tr>
+    <td>Celkem k úhradě (to be paid):</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><xsl:value-of select='format-number(to_be_paid, "### ##0.00", "CZK")' /></td>
+</tr>
+</xsl:template>
+
+
 
 <xsl:template match="appendix">
 <pageBreak/>
@@ -238,25 +263,26 @@
     <td>Cena</td>
     <td>Celkem</td>
 </tr>
+
 <xsl:apply-templates select="items" />
 <xsl:apply-templates select="sumarize_items" />
+
 </blockTable>
 </xsl:template>
 
 <xsl:template match="items">
-    <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="item">
-<tr>
-    <td><xsl:value-of select='code' /></td>
-    <td><xsl:value-of select='timestamp' /></td>
-    <td><xsl:value-of select='subject' /></td>
-    <td><xsl:value-of select='expiration' /></td>
-    <td><xsl:value-of select='count' /></td>
-    <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
-    <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
-</tr>
+    <xsl:for-each select="item">
+    <xsl:sort select="subject"/>
+        <tr>
+            <td><xsl:value-of select='code' /></td>
+            <td><xsl:value-of select='timestamp' /></td>
+            <td><xsl:value-of select='subject' /></td>
+            <td><xsl:value-of select='expiration' /></td>
+            <td><xsl:value-of select='count' /></td>
+            <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+            <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+        </tr>
+    </xsl:for-each>
 </xsl:template>
 
 <xsl:template match="sumarize_items">
@@ -294,16 +320,15 @@
 </xsl:template>
 
 <xsl:template match="applied_invoices">
-    <xsl:apply-templates/>
-</xsl:template>
-
-<xsl:template match="consumed">
-<tr>
-    <td><xsl:value-of select='number' /></td>
-    <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
-    <td><xsl:value-of select='format-number(balance, "### ##0.00", "CZK")' /></td>
-    <td></td>
-</tr>
+    <xsl:for-each select="consumed">
+    <xsl:sort select="number" order="descending" data-type="number" />
+    <tr>
+        <td><xsl:value-of select='number' /></td>
+        <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+        <td><xsl:value-of select='format-number(balance, "### ##0.00", "CZK")' /></td>
+        <td></td>
+    </tr>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>

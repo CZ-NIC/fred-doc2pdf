@@ -20,28 +20,23 @@
 <!ELEMENT email        (#PCDATA)>
 
 <!ELEMENT payment (invoice_number, invoice_date, payment_date, tax_point,
-    vs, ks, payment_method, bank, anotation, issue_person
+    vs, payment_method, anotation, issue_person
 )>
-
-<!ELEMENT bank (name, street_and_city, account, iban)>
 
 <!ELEMENT invoice_number       (#PCDATA)>
 <!ELEMENT invoice_date         (#PCDATA)>
 <!ELEMENT payment_date         (#PCDATA)>
 <!ELEMENT tax_point            (#PCDATA)>
 <!ELEMENT vs                   (#PCDATA)>
-<!ELEMENT ks                   (#PCDATA)>
 <!ELEMENT payment_method       (#PCDATA)>
 <!ELEMENT anotation            (#PCDATA)>
 <!ELEMENT issue_person         (#PCDATA)>
 
-<!ELEMENT street_and_city      (#PCDATA)>
-<!ELEMENT account              (#PCDATA)>
-<!ELEMENT iban                 (#PCDATA)>
 
+<!ELEMENT delivery (vat_rates, sumarize)>
 
-
-<!ELEMENT delivery (sumarize)>
+<!ELEMENT vat_rates (entry+)>
+<!ELEMENT entry (vatperc, basetax, vat, total)>
 
 <!ELEMENT vatperc          (#PCDATA)>
 <!ELEMENT basetax          (#PCDATA)>
