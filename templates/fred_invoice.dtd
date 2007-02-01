@@ -43,7 +43,7 @@
 <!ELEMENT vat              (#PCDATA)>
 <!ELEMENT total            (#PCDATA)>
 
-<!ELEMENT sumarize (vatperc, basetax, vat, total, paid, to_be_paid)>
+<!ELEMENT sumarize (total, paid, to_be_paid)>
 
 <!ELEMENT paid             (#PCDATA)>
 <!ELEMENT to_be_paid       (#PCDATA)>

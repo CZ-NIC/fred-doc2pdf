@@ -9,6 +9,13 @@
 
 <xsl:decimal-format name="CZK" decimal-separator="." grouping-separator=" "/>
 
+<xsl:template name="local_date">
+    <xsl:param name="sdt"/>
+    <xsl:if test="$sdt">
+    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+    </xsl:if>
+</xsl:template>
+
 <xsl:template match="/invoice">
 <document>
 
@@ -148,21 +155,12 @@
 <stylesheet>
 
     <blockTableStyle id="tbl_delivery">
-
-      <blockValign value="TOP"/>
-      <blockAlignment value="RIGHT"/>
-      <blockAlignment value="LEFT" start="0,0" stop="0,-1" />
-
-      <blockFont name="Times-Bold" size="11" start="0,0" stop="-1,0"/>
-      <blockFont name="Times-Bold" size="11" start="4,0" stop="4,-1"/>
-
-      <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" colorName="black" />
-      <lineStyle kind="LINEABOVE" start="0,1" stop="-1,1" colorName="black" />
-      <lineStyle kind="LINEABOVE" start="0,-2" stop="-1,-2" colorName="black" />
-      <blockFont name="Times-Bold" start="0,-2" stop="-1,-1" size="11"/>
-
+      <lineStyle kind="LINEABOVE" start="0,0" stop="1,0" colorName="black" />
+      <lineStyle kind="LINEABOVE" start="0,-1" stop="1,-1" colorName="black" />
+      <blockFont name="Times-Bold" start="1,0" stop="1,1"/>
+      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
+      <blockAlignment value="RIGHT" start="1,0" stop="1,-1" />
     </blockTableStyle>
-
 
     <blockTableStyle id="appendix">
       <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
@@ -203,15 +201,23 @@
 </xsl:template>
 
 <xsl:template match="delivery">
-<blockTable colWidths="3.4cm,3.4cm,3.4cm,3.4cm,3.4cm" repeatRows="1" style="tbl_delivery">
+<blockTable colWidths="4cm,5.4cm,7.4cm" style="tbl_delivery">
 <tr>
-    <td>Úhrnem:</td>
-    <td>%DPH</td>
-    <td>Základ daně</td>
-    <td>Kč DPH</td>
-    <td>Kč celkem</td>
+    <td>Celkem (total):</td>
+    <td><xsl:value-of select='format-number(sumarize/total, "### ##0.00", "CZK")' /></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Uhrazeno (paid):</td>
+    <td><xsl:value-of select='format-number(sumarize/paid, "### ##0.00", "CZK")' /></td>
+    <td></td>
 </tr>
 <xsl:apply-templates />
+<tr>
+    <td>Celkem k úhradě (to be paid):</td>
+    <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
+    <td></td>
+</tr>
 </blockTable>
 </xsl:template>
 
@@ -221,31 +227,16 @@
 
 <xsl:template match="entry">
 <tr>
-    <td></td>
-    <td><xsl:value-of select='format-number(vatperc, "#0")' />%</td>
+    <td>Základ daně <xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
     <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
+    <td></td>
+</tr>
+<tr>
+    <td>DPH <xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
     <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
-    <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+    <td></td>
 </tr>
 </xsl:template>
-
-<xsl:template match="sumarize">
-<tr>
-    <td>Uhrazeno (paid):</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><xsl:value-of select='format-number(paid, "### ##0.00", "CZK")' /></td>
-</tr>
-<tr>
-    <td>Celkem k úhradě (to be paid):</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><xsl:value-of select='format-number(to_be_paid, "### ##0.00", "CZK")' /></td>
-</tr>
-</xsl:template>
-
 
 
 <xsl:template match="appendix">
@@ -253,7 +244,7 @@
 <!-- 
     Table width: 16.8cm
 -->
-<blockTable colWidths="1.3cm,3.2cm,5.1cm,1.4cm,1.6cm,2cm,2.2cm" repeatRows="1" style="appendix">
+<blockTable colWidths="1.3cm,2cm,6.2cm,1.5cm,1.6cm,2cm,2.2cm" repeatRows="1" style="appendix">
 <tr>
     <td>Změna</td>
     <td>Provedena</td>
@@ -272,12 +263,12 @@
 
 <xsl:template match="items">
     <xsl:for-each select="item">
-    <xsl:sort select="subject"/>
+    <xsl:sort select="timestamp" />
         <tr>
             <td><xsl:value-of select='code' /></td>
-            <td><xsl:value-of select='timestamp' /></td>
+            <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="timestamp" /></xsl:call-template></td>
             <td><xsl:value-of select='subject' /></td>
-            <td><xsl:value-of select='expiration' /></td>
+            <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="expiration" /></xsl:call-template></td>
             <td><xsl:value-of select='count' /></td>
             <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
             <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>

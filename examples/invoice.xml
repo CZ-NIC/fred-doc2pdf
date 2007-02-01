@@ -63,7 +63,7 @@
             <vatperc>5</vatperc>
             <basetax>13027</basetax>
             <vat>983</vat>
-            <total>3000</total>
+            <total>61900</total>
         </entry>
         <entry>
             <vatperc>19</vatperc>
@@ -73,9 +73,6 @@
         </entry>
     </vat_rates>
     <sumarize>
-        <vatperc>19</vatperc>
-        <basetax>0</basetax>
-        <vat>0</vat>
         <total>111900</total>
         <paid>-111900</paid>
         <to_be_paid>0</to_be_paid>
@@ -87,22 +84,22 @@
     <note>DPH byla vypořádána na zálohových daňových dokladech:</note>
     <applied_invoices>
         <consumed>
-            <number>112/2006</number>
+            <number>2006112</number>
             <price>80000</price>
             <balance>0</balance>
         </consumed>
         <consumed>
-            <number>111/2006</number>
+            <number>2006111</number>
             <price>6000</price>
             <balance>0</balance>
         </consumed>
         <consumed>
-            <number>113/2006</number>
+            <number>2006113</number>
             <price>21900</price>
             <balance>28100</balance>
         </consumed>
         <consumed>
-            <number>110/2006</number>
+            <number>2006110</number>
             <price>4000</price>
             <balance>0</balance>
         </consumed>
@@ -115,8 +112,8 @@
         <item>
             <subject>gaad.cz</subject>
             <code>RUDR</code>
-            <timestamp>12.01.2007 11:12:00</timestamp>
-            <expiration>12.01.2009</expiration>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
             <count>2</count>
             <price>300</price>
             <total>600</total>
@@ -124,15 +121,15 @@
         <item>
             <subject>jindrizska.cz</subject>
             <code>RREG</code>
-            <timestamp>12.01.2007 11:12:00</timestamp>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
             <price>10800</price>
             <total>10800</total>
         </item>
         <item>
             <subject>snih.cz</subject>
             <code>RUDR</code>
-            <timestamp>12.01.2007 11:12:00</timestamp>
-            <expiration>12.01.2008</expiration>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
             <count>1</count>
             <price>100500</price>
             <total>100500</total>
@@ -140,8 +137,8 @@
         <item>
             <subject>abc.cz</subject>
             <code>RUDR</code>
-            <timestamp>12.01.2007 11:12:00</timestamp>
-            <expiration>12.01.2009</expiration>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
             <count>2</count>
             <price>300</price>
             <total>600</total>
@@ -149,8 +146,8 @@
         <item>
             <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
             <code>RUDR</code>
-            <timestamp>12.01.2007 11:12:00</timestamp>
-            <expiration>12.01.2009</expiration>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
             <count>2</count>
             <price>300</price>
             <total>600</total>

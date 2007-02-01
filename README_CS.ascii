@@ -19,7 +19,7 @@ OBSAH:
 
     *** Reportlab
     *** Tiny RML2PDF
-    *** Sablotron
+    *** xsltproc
     *** Fred2pdf
 
 
@@ -31,12 +31,12 @@ Zatim jen s XML prikladem:
 
 Ulozeni do souboru pdf:
 
-  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
+  $ xsltproc templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
 
 Ulozeni primo do filemanageru:
 (Staci definovat xml, xsl a jmeno pdf.)
 
-  $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf | filemanager_client.py -t application/pdf -l test1.pdf
+  $ xsltproc templates/invoice.xsl examples/invoice.xml | doc2pdf | filemanager_client.py -t application/pdf -l test1.pdf
 
 
 

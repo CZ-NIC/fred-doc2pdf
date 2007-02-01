@@ -17,7 +17,7 @@ Instalace:
     * TrueType fonty
     * Reportlab
     * Tiny RML2PDF
-    * XSLT command line processor: Sablotron
+    * XSLT command line processor: xsltproc
     * Podpora PostgreSQL v Pythonu
     * Fred2pdf
 
@@ -66,14 +66,14 @@ zbytek muzete odstranit:
 (Strany Tiny RML2PDF jsou na http://openreport.org/)
 
 
-*** XSLT command line processor: Sablotron
+*** XSLT command line processor: xsltproc
 
-Sablotron nainstalujeme prikazem:
+xsltproc nainstalujeme prikazem:
 
-    $ sudo apt-get install sablotron
+    $ sudo apt-get install xsltproc
 
-Poznamka: Jiny procesor je treba xsltproc. Ten je ale pro nase ucely nevhodny,
-protoze neumi spravne pracovat s kodovanim UTF-8.
+Poznamka: Muzete pouzit jakykoliv jiny XSLT procesor.
+Zkontrolujte si ale, jestli umi ukladat dokument v kodovani UTF-8.
 
 
 *** Podpora PostgreSQL v Pythonu
@@ -133,14 +133,14 @@ jestli je vse na svem miste, vytvori se PDF dokument test_cs.pdf.
 
 2) Overte si, ze funguje generovani sablony RML ze zdrojovych dat XML a stylu XSL:
 
-    $ sabcmd templates/invoice.xsl examples/invoice.xml | xmllint --format -
+    $ xsltproc templates/invoice.xsl examples/invoice.xml | xmllint --format -
 
 Pokud tento proces funguje, tak se na vystup vypise RML sablona.
 
 
 3) Overte, ze funguje generovani z XML dat za pomoci sablony XSL:
 
-    $ sabcmd templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
+    $ xsltproc templates/invoice.xsl examples/invoice.xml | doc2pdf > test2.pdf
 
 
 
