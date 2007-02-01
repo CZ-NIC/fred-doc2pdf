@@ -4,6 +4,9 @@
 Define also default font name for implicit template style.
 """
 
+# Name of the module from where import of the trml2pdf will be done.
+module_name = 'trml2pdf'
+
 # Define path where TrueType font are saved:
 TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)
 
@@ -12,8 +15,8 @@ TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)
 # (This names can be overwrite by template definition.)
 DEFAULT_FONT_FAMILLY = (
     'Times-Roman',
-    'Times-Bold',
     'Times-Italic',
+    'Times-Bold',
     'Times-BoldItalic',
 )
 # This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
@@ -27,8 +30,8 @@ DEFAULT_FONT_FAMILLY = (
 # This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
 DEFAULT_FONT_TTF = (
     'Arial.ttf',
-    'Arial_Bold.ttf',
     'Arial_Italic.ttf',
+    'Arial_Bold.ttf',
     'Arial_Bold_Italic.ttf',
 )
 

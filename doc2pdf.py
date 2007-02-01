@@ -34,14 +34,15 @@ Here is example how to declare font familly in RML template:
 import sys
 import StringIO
 
-import reportlab
-from trml2pdf import trml2pdf, utils
+import configuration
+
+# Import trml2pdf with posibility to definition of the module name.
+exec 'from %s import trml2pdf, utils'%getattr(configuration, 'module_name', 'trml2pdf')
 
 # Need for register TrueType fonts
+import reportlab
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-
-import configuration
 
 
 # Init paths of the TrueType fonts

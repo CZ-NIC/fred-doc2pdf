@@ -49,11 +49,11 @@ Věc: Potvrzení žádosti o poskytnutí hesla <xsl:value-of select="objtype" />
 </para>
 <spacer length="0.6cm"/>
 <para>
-Potvrzuji tímto žádost o poskytnutí hesla <xsl:value-of select="objtype" />&SPACE;<i><xsl:value-of select="handle" /></i>,
+Potvrzuji tímto žádost o poskytnutí hesla <xsl:value-of select="objtype" />&SPACE;<b><xsl:value-of select="handle" /></b>,
 podanou prostřednictvím webového formuláře na stránce
-<xsl:value-of select="webform_url" /> dne <i><xsl:value-of select="transaction_date" /></i>,
-které bylo přiděleno identifikační číslo <i><xsl:value-of select="transaction_id" /></i> a žádám o poskytnutí 
-příslušného hesla na adresu <i><xsl:value-of select="replymail" /></i>.
+<xsl:value-of select="webform_url" /> dne <b><xsl:value-of select="transaction_date" /></b>,
+které bylo přiděleno identifikační číslo <b><xsl:value-of select="transaction_id" /></b> a žádám o poskytnutí 
+příslušného hesla na adresu <b><xsl:value-of select="replymail" /></b>.
 </para>
 <spacer length="0.6cm"/>
 <para>
