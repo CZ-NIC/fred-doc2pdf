@@ -5,7 +5,7 @@ Define also default font name for implicit template style.
 """
 
 # Name of the module from where import of the trml2pdf will be done.
-module_name = 'trml2pdf'
+trml_module_name = 'rpm2pdf'
 
 # Define path where TrueType font are saved:
 TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)

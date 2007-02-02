@@ -37,7 +37,7 @@ import StringIO
 import configuration
 
 # Import trml2pdf with posibility to definition of the module name.
-exec 'from %s import trml2pdf, utils'%getattr(configuration, 'module_name', 'trml2pdf')
+exec 'from %s import trml2pdf, utils'%getattr(configuration, 'trml_module_name', 'trml2pdf')
 
 # Need for register TrueType fonts
 import reportlab
