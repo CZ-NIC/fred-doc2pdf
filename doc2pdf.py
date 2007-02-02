@@ -36,6 +36,10 @@ import StringIO
 
 import configuration
 
+module_path  = getattr(configuration, 'module_path', None)
+if module_path:
+    sys.path.insert(0, module_path)
+
 # Import trml2pdf with posibility to definition of the module name.
 exec 'from %s import trml2pdf, utils'%getattr(configuration, 'trml_module_name', 'trml2pdf')
 

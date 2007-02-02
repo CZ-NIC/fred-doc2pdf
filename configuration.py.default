@@ -7,6 +7,9 @@ Define also default font name for implicit template style.
 # Name of the module from where import of the trml2pdf will be done.
 trml_module_name = 'rpm2pdf'
 
+# Path for import module.
+module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
+
 # Define path where TrueType font are saved:
 TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)
 
