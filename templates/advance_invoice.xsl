@@ -9,6 +9,13 @@
 
 <xsl:decimal-format name="CZK" decimal-separator="." grouping-separator=" "/>
 
+<xsl:template name="local_date">
+    <xsl:param name="sdt"/>
+    <xsl:if test="$sdt">
+    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+    </xsl:if>
+</xsl:template>
+
 <xsl:template match="/invoice">
 <document>
 
@@ -66,8 +73,8 @@
         <drawString x="10.2cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
         <drawString x="10.2cm" y="17.3cm">Datum přijetí zálohy (payment date):</drawString>
 
-        <drawRightString x="19cm" y="17.7cm"><xsl:value-of select="payment/invoice_date"/></drawRightString>
-        <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/advance_payment_date"/></drawRightString>
+        <drawRightString x="19cm" y="17.7cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/invoice_date" /></xsl:call-template></drawRightString>
+        <drawRightString x="19cm" y="17.3cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/advance_payment_date" /></xsl:call-template></drawRightString>
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
         <drawString x="15.4cm" y="16.5cm">Počet listů:</drawString>
@@ -82,9 +89,7 @@
 
         <drawString x="2.2cm" y="15.6cm">Označení dodávky</drawString>
 
-        <xsl:if test="payment/issue_person">
-        <drawString x="2cm" y="3.4cm"><xsl:value-of select="payment/issue_person"/></drawString>
-        </xsl:if>
+        <drawString x="2cm" y="3.4cm">Vystaveno fakturačním systémem CZ.NIC</drawString>
 
     <!-- footer -->
         <lines>2cm 3cm 19cm 3cm</lines>
@@ -172,7 +177,7 @@
 <story>
 
 <para>
-<xsl:value-of select="payment/anotation"/>
+Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
 </para>
 
 <spacer length="0.4cm"/>

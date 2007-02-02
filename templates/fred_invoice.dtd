@@ -20,7 +20,7 @@
 <!ELEMENT email        (#PCDATA)>
 
 <!ELEMENT payment (invoice_number, invoice_date, payment_date, tax_point,
-    vs, payment_method, anotation, issue_person
+    vs, period_from, period_to
 )>
 
 <!ELEMENT invoice_number       (#PCDATA)>
@@ -28,9 +28,8 @@
 <!ELEMENT payment_date         (#PCDATA)>
 <!ELEMENT tax_point            (#PCDATA)>
 <!ELEMENT vs                   (#PCDATA)>
-<!ELEMENT payment_method       (#PCDATA)>
-<!ELEMENT anotation            (#PCDATA)>
-<!ELEMENT issue_person         (#PCDATA)>
+<!ELEMENT period_from          (#PCDATA)>
+<!ELEMENT period_to            (#PCDATA)>
 
 
 <!ELEMENT delivery (vat_rates, sumarize)>
@@ -49,11 +48,10 @@
 <!ELEMENT to_be_paid       (#PCDATA)>
 
 
-<!ELEMENT advance_payment (note, applied_invoices)>
+<!ELEMENT advance_payment (applied_invoices)>
 <!ELEMENT applied_invoices (consumed+)>
 <!ELEMENT consumed (number, price, balance)>
 
-<!ELEMENT note             (#PCDATA)>
 <!ELEMENT number           (#PCDATA)>
 <!ELEMENT price            (#PCDATA)>
 <!ELEMENT balance          (#PCDATA)>

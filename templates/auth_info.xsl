@@ -6,10 +6,20 @@
 
 <xsl:output method="xml" encoding="utf-8" />
 
+<xsl:template name="handle_type">
+    <xsl:param name="type_id"/>
+    <xsl:choose>
+        <xsl:when test="$type_id = 1">ke kontaktu</xsl:when>
+        <xsl:when test="$type_id = 2">k sadě nameserverů</xsl:when>
+        <xsl:when test="$type_id = 3">k doménovému jménu</xsl:when>
+        <xsl:otherwise>k identifikátoru</xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
 <xsl:template match="/enum_whois/auth_info">
 <document>
 <!-- 
-Tato šablona slouží pro převod auth_info záznamu do PDF.
+Tato šablona slouží pro převod auth_info.xml záznamu do PDF.
 Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007
 -->
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
@@ -19,19 +29,40 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007
 
     <pageTemplate id="main">
       <pageGraphics>
-    <!-- BEGIN of the page header -->
-        <setFont name="Times-BoldItalic" size="26"/>
-        <drawString x="2.5cm" y="26cm">CZ.NIC, z.s.p.o</drawString>
+    <!-- Page header -->
+        <image file="templates/cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
         <stroke color="#bab198"/>
         <lineMode width="0.2cm"/>
-        <lines>2.5cm 25cm 18.5cm 25cm</lines>
+        <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
         <lineMode width="1"/>
-    <!-- END of the page header -->
         <fill color="#a8986d"/>
         <setFont name="Times-Bold" size="12"/>
-        <drawString x="2.5cm" y="24cm" color="#a8986d">Vyžádání změny v AuthInfo záznamu</drawString>
+        <drawString x="2.5cm" y="23.4cm" color="#a8986d">Vyžádání změny v AuthInfo záznamu</drawString>
+        <fill color="black"/>
 
-       <frame id="body" x1="2.3cm" y1="2cm" width="16.4cm" height="21cm" showBoundary="0" />
+       <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
+
+    <!-- Page footer -->
+        <stroke color="#c0c0c0"/>
+        <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
+
+        <setFont name="Times-Roman" size="8"/>
+        <drawString x="2.5cm" y="8cm">Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:</drawString>
+        <drawString x="2.5cm" y="2.2cm">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit</drawString>
+        <drawString x="2.5cm" y="1.8cm">originál nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</drawString>
+
+        <setFont name="Times-Bold" size="12"/>
+        <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
+        <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
+        <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
+
+    <!-- Folder marks -->
+        <stroke color="black"/>
+        <lines>0.5cm 10.2cm 1cm 10.2cm</lines>
+        <lines>20cm 10.2cm 20.5cm 10.2cm</lines>
+
+        <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
+        <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
 
       </pageGraphics>
     </pageTemplate>
@@ -45,11 +76,11 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007
 
 <story>
 <para>
-Věc: Potvrzení žádosti o poskytnutí hesla <xsl:value-of select="objtype" />&SPACE;<xsl:value-of select="handle" />.
+Věc: Potvrzení žádosti o poskytnutí hesla <xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
 </para>
 <spacer length="0.6cm"/>
 <para>
-Potvrzuji tímto žádost o poskytnutí hesla <xsl:value-of select="objtype" />&SPACE;<b><xsl:value-of select="handle" /></b>,
+Potvrzuji tímto žádost o poskytnutí hesla <xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<b><xsl:value-of select="handle" /></b>,
 podanou prostřednictvím webového formuláře na stránce
 <xsl:value-of select="webform_url" /> dne <b><xsl:value-of select="transaction_date" /></b>,
 které bylo přiděleno identifikační číslo <b><xsl:value-of select="transaction_id" /></b> a žádám o poskytnutí 
@@ -63,31 +94,6 @@ Jméno a úředně ověřený podpis zodpovědné osoby:
 <para>
 ...........................................................................
 </para>
-
-<spacer length="8cm"/>
-
-
-<illustration width="16.4cm" height="0.4cm">
-        <stroke color="#c0c0c0"/>
-        <lines>0cm 0cm 16cm 0cm</lines>
-</illustration>
-<spacer length="0.6cm"/>
-
-<para style="footer">
-Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:
-</para>
-
-<spacer length="0.6cm"/>
-
-    <para style="address">Zákaznická podpora</para>
-    <para style="address">CZ.NIC, z. s. p. o. Americká 23</para>
-    <para style="address">120 00 Praha 2</para>
-
-<spacer length="0.6cm"/>
-<para style="footer">
-V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit originál nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.
-</para>
-
 </story>
 
 </document>

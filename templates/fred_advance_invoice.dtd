@@ -19,16 +19,12 @@
 <!ELEMENT url          (#PCDATA)>
 <!ELEMENT email        (#PCDATA)>
 
-<!ELEMENT payment (invoice_number, invoice_date, advance_payment_date,
-    vs, anotation, issue_person
-)>
+<!ELEMENT payment (invoice_number, invoice_date, advance_payment_date, vs)>
 
 <!ELEMENT invoice_number       (#PCDATA)>
 <!ELEMENT invoice_date         (#PCDATA)>
 <!ELEMENT advance_payment_date (#PCDATA)>
 <!ELEMENT vs                   (#PCDATA)>
-<!ELEMENT anotation            (#PCDATA)>
-<!ELEMENT issue_person         (#PCDATA)>
 
 
 

@@ -2,6 +2,7 @@
 <invoice>
 <!-- 
     !DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_advance_invoice.dtd"
+    !DOCTYPE invoice SYSTEM  "file:///home/zdenek/enum/fred2pdf/trunk/templates/fred_advance_invoice.dtd"
 
     Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
     Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
@@ -42,13 +43,9 @@
 
 <payment>
     <invoice_number>2406000590</invoice_number>
-    <invoice_date>3.10.2006</invoice_date>
-    <advance_payment_date>3.10.2006</advance_payment_date>
+    <invoice_date>2006-10-03</invoice_date>
+    <advance_payment_date>2006-10-03</advance_payment_date>
     <vs>45021295</vs>
-    <anotation>
-    Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
-    </anotation>
-    <issue_person>Vystaveno fakturačním systémem CZ.NIC</issue_person>
 </payment>
 
 <delivery>

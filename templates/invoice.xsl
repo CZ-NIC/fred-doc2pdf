@@ -68,17 +68,16 @@
 
 
         <setFont name="Times-Roman" size="10"/>
-        <xsl:if test="payment/payment_method">
-        <drawString x="2cm" y="16.9cm">Způsob úhrady: <xsl:value-of select="payment/payment_method"/></drawString>
-        </xsl:if>
 
         <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktury (payment date):</drawString>
         <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
         <drawString x="10.4cm" y="17.3cm">Datum uskutečnění zdaň.plnění (tax point):</drawString>
 
-        <drawRightString x="19cm" y="18.1cm"><xsl:value-of select="payment/payment_date"/></drawRightString>
-        <drawRightString x="19cm" y="17.7cm"><xsl:value-of select="payment/invoice_date"/></drawRightString>
-        <drawRightString x="19cm" y="17.3cm"><xsl:value-of select="payment/tax_point"/></drawRightString>
+        <drawRightString x="19cm" y="18.1cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/payment_date" /></xsl:call-template></drawRightString>
+        <drawRightString x="19cm" y="17.7cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/invoice_date" /></xsl:call-template></drawRightString>
+        <drawRightString x="19cm" y="17.3cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/tax_point" /></xsl:call-template></drawRightString>
+
+
 
         <drawString x="12cm" y="16.5cm">List:</drawString>
         <drawString x="15.4cm" y="16.5cm">Počet listů:</drawString>
@@ -93,9 +92,7 @@
 
         <drawString x="2.2cm" y="15.6cm">Označení dodávky</drawString>
 
-        <xsl:if test="payment/issue_person">
-        <drawString x="2cm" y="3.4cm"><xsl:value-of select="payment/issue_person"/></drawString>
-        </xsl:if>
+        <drawString x="2cm" y="3.4cm">Vystaveno fakturačním systémem CZ.NIC</drawString>
 
     <!-- footer -->
         <lines>2cm 3cm 19cm 3cm</lines>
@@ -183,7 +180,14 @@
 <story>
 
 <para>
-<xsl:value-of select="payment/anotation"/>
+    Fakturujeme Vám poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM):
+</para>
+<spacer length="0.4cm"/>
+<para>
+Registrace doménových jmen (kód RREG), 
+za udržování záznamu o doménovém jménu (kód RUDR),
+v násobcích roků (Počet) pro doménová jména dle přílohy.
+Za období od <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> do <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template>.
 </para>
 
 <spacer length="0.4cm"/>
@@ -293,7 +297,7 @@
 <spacer length="0.4cm"/>
 
 <para>
-<xsl:value-of select="note"/>
+DPH byla vypořádána na zálohových daňových dokladech:
 </para>
 
 <spacer length="0.4cm"/>
