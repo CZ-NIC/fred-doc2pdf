@@ -26,8 +26,7 @@ OBSAH:
 * Navod k pouziti
 
 
-
-Zatim jen s XML prikladem:
+Sabloby invoice.xml a advanced_invoice.xml vytvareji PDF pro fakturu a zalohovou fakturu.
 
 Ulozeni do souboru pdf:
 
@@ -37,6 +36,19 @@ Ulozeni primo do filemanageru:
 (Staci definovat xml, xsl a jmeno pdf.)
 
   $ xsltproc templates/invoice.xsl examples/invoice.xml | doc2pdf | filemanager_client.py -t application/pdf -l test1.pdf
+
+
+Sablona auth_info.xsl slouzi pro prevod auth_info.xml zaznamu do PDF.
+
+V layoutu je pouzito logo cz_nic_logo.jpg, ktere je ulozeno v adresari templates/
+spolecne s touto sablonou. Je nutne nastavit spravne cestu, pokud se sablona nevola z adresare
+skriptu (fred2pdf/trunk):
+
+$ xsltproc --stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_info.xsl examples/auth_info.xml
+
+nebo:
+
+$ xsltproc --param srcpath "'adresar/kde-je-logo/templates/'" templates/auth_info.xsl examples/auth_info.xml
 
 
 
@@ -76,11 +88,11 @@ Tiny RML2PDF je nadstavba nad reportlabem, ktera umoznuje generovat PDF pomoci
 sablon. Sablony jsou ve formatu RML - Report Markup Language.
 
 
-*** Sablotron - XSLT command line processor
+*** xsltproc - XSLT command line processor
 
 XSLT je XML jazyk pro definici transformace XML souboru z XML do nejakeho
 jineho formatu, jako je XML, HTML nebo prosty text za pouziti XSLT definice stylu.
-Pomoci Sablotronu je mozne vygenerovat RML sablonu z predlohy v XSL a ze zdrojovych
+Pomoci xsltproc je mozne vygenerovat RML sablonu z predlohy v XSL a ze zdrojovych
 dat v XML.
 
 
