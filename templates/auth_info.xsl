@@ -2,6 +2,17 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
+<!-- 
+Tato šablona slouží pro převod auth_info.xml záznamu do PDF.
+Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007, 12.2.2007
+
+V layoutu je použito logo cz_nic_logo.jpg, které je uloženo v adresáři templates/
+společně s touto šablonou. Je nutné nastavit správně cestu, pokud se šablona nevolá z adresáře
+skriptu (fred2pdf/trunk):
+
+$ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_info.xsl examples/auth_info.xml
+(pred stringparam dva spojovniky)
+-->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:output method="xml" encoding="utf-8" />
@@ -16,12 +27,10 @@
     </xsl:choose>
 </xsl:template>
 
+<xsl:param name="srcpath" select="'templates/'" />
+
 <xsl:template match="/enum_whois/auth_info">
 <document>
-<!-- 
-Tato šablona slouží pro převod auth_info.xml záznamu do PDF.
-Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007
--->
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
   title="Vyžádání změny v AuthInfo záznamu"
   author="CZ.NIC"
@@ -30,7 +39,7 @@ Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007
     <pageTemplate id="main">
       <pageGraphics>
     <!-- Page header -->
-        <image file="templates/cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
+        <image file="{$srcpath}cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
         <stroke color="#bab198"/>
         <lineMode width="0.2cm"/>
         <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>

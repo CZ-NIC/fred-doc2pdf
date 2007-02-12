@@ -69,11 +69,9 @@
 
         <setFont name="Times-Roman" size="10"/>
 
-        <drawString x="10.4cm" y="18.1cm">Datum splatnosti faktury (payment date):</drawString>
         <drawString x="10.4cm" y="17.7cm">Datum vystavení faktury (invoice date):</drawString>
         <drawString x="10.4cm" y="17.3cm">Datum uskutečnění zdaň.plnění (tax point):</drawString>
 
-        <drawRightString x="19cm" y="18.1cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/payment_date" /></xsl:call-template></drawRightString>
         <drawRightString x="19cm" y="17.7cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/invoice_date" /></xsl:call-template></drawRightString>
         <drawRightString x="19cm" y="17.3cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/tax_point" /></xsl:call-template></drawRightString>
 
@@ -180,14 +178,14 @@
 <story>
 
 <para>
-    Fakturujeme Vám poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM):
+Za období od <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> do <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template>
+Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM):
 </para>
 <spacer length="0.4cm"/>
 <para>
 Registrace doménových jmen (kód RREG), 
 za udržování záznamu o doménovém jménu (kód RUDR),
 v násobcích roků (Počet) pro doménová jména dle přílohy.
-Za období od <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> do <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template>.
 </para>
 
 <spacer length="0.4cm"/>
