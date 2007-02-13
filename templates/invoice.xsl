@@ -266,6 +266,7 @@ v násobcích roků (Počet) pro doménová jména dle přílohy.
 <xsl:template match="items">
     <xsl:for-each select="item">
     <xsl:sort select="timestamp" />
+    <xsl:sort select="code" />
         <tr>
             <td><xsl:value-of select='code' /></td>
             <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="timestamp" /></xsl:call-template></td>

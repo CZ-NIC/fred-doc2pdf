@@ -121,6 +121,15 @@
             <total>100500</total>
         </item>
         <item>
+            <subject>snih.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+        </item>
+        <item>
             <subject>abc.cz</subject>
             <code>RUDR</code>
             <timestamp>2007-01-12 09:12:00.469754</timestamp>
