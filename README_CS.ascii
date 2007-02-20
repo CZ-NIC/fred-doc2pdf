@@ -51,6 +51,10 @@ nebo:
 $ xsltproc --param srcpath "'adresar/kde-je-logo/templates/'" templates/auth_info.xsl examples/auth_info.xml
 
 
+Jazykova verze se nastavuje parametrem lang:
+
+$ xsltproc --stringparam lang en templates/auth_info.xsl examples/auth_info.xml
+
 
 Validace XML zdrojovych dat.
 

@@ -10,8 +10,8 @@ V layoutu je použito logo cz_nic_logo.jpg, které je uloženo v adresáři temp
 společně s touto šablonou. Je nutné nastavit správně cestu, pokud se šablona nevolá z adresáře
 skriptu (fred2pdf/trunk):
 
-$ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_info.xsl examples/auth_info.xml
-(pred stringparam dva spojovniky)
+(Pred stringparam musi byt dva spojovniky.)
+$xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -20,19 +20,27 @@ $ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_inf
 <xsl:template name="handle_type">
     <xsl:param name="type_id"/>
     <xsl:choose>
-        <xsl:when test="$type_id = 1">ke kontaktu</xsl:when>
-        <xsl:when test="$type_id = 2">k sadě nameserverů</xsl:when>
-        <xsl:when test="$type_id = 3">k doménovému jménu</xsl:when>
-        <xsl:otherwise>k identifikátoru</xsl:otherwise>
+        <xsl:when test="$type_id = 1"><xsl:value-of select="$loc/str[@name='contact']"/></xsl:when>
+        <xsl:when test="$type_id = 2"><xsl:value-of select="$loc/str[@name='nameserver set']"/></xsl:when>
+        <xsl:when test="$type_id = 3"><xsl:value-of select="$loc/str[@name='domain name']"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$loc/str[@name='handle']"/></xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
 <xsl:param name="srcpath" select="'templates/'" />
+<xsl:param name="lang" select="'cs'" />
+<xsl:variable name="loc" select="document(concat('auth_info_', $lang, '.xml'))/strings"/>
+
 
 <xsl:template match="/enum_whois/auth_info">
+
+<xsl:if test="not($lang='cs' or $lang='en')">
+    <xsl:message terminate="yes">Parameter 'lang' is invalid. Available values are: cs, en</xsl:message>
+</xsl:if>
+
 <document>
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
-  title="Vyžádání změny v AuthInfo záznamu"
+  title="{$loc/str[@name='Confirmation of Request for password']}"
   author="CZ.NIC"
   >
 
@@ -46,7 +54,7 @@ $ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_inf
         <lineMode width="1"/>
         <fill color="#a8986d"/>
         <setFont name="Times-Bold" size="12"/>
-        <drawString x="2.5cm" y="23.4cm" color="#a8986d">Vyžádání změny v AuthInfo záznamu</drawString>
+        <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='Confirmation of Request for password']"/></drawString>
         <fill color="black"/>
 
        <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
@@ -56,9 +64,9 @@ $ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_inf
         <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
         <setFont name="Times-Roman" size="8"/>
-        <drawString x="2.5cm" y="8cm">Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:</drawString>
-        <drawString x="2.5cm" y="2.2cm">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit</drawString>
-        <drawString x="2.5cm" y="1.8cm">originál nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</drawString>
+        <drawString x="2.5cm" y="8cm"><xsl:value-of select="$loc/str[@name='Please print this request sign it (a notarized signature required) and send the signed original to the following address:']"/></drawString>
+        <drawString x="2.5cm" y="2.2cm"><xsl:value-of select="$loc/str[@name='Signatories whose name is not listed in the Central registry of domain names must attach']"/></drawString>
+        <drawString x="2.5cm" y="1.8cm"><xsl:value-of select="$loc/str[@name='an original or a notarized copy of a document authorizing them to perform the relevant request.']"/></drawString>
 
         <setFont name="Times-Bold" size="12"/>
         <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
@@ -85,19 +93,19 @@ $ xsltproc stringparam srcpath adresar/kde-je-logo/templates/ templates/auth_inf
 
 <story>
 <para>
-Věc: Potvrzení žádosti o poskytnutí hesla <xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
+<xsl:value-of select="$loc/str[@name='Re: Confirmation of Request for password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
 </para>
 <spacer length="0.6cm"/>
 <para>
-Potvrzuji tímto žádost o poskytnutí hesla <xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<b><xsl:value-of select="handle" /></b>,
-podanou prostřednictvím webového formuláře na stránce
-<xsl:value-of select="webform_url" /> dne <b><xsl:value-of select="transaction_date" /></b>,
-které bylo přiděleno identifikační číslo <b><xsl:value-of select="transaction_id" /></b> a žádám o poskytnutí 
-příslušného hesla na adresu <b><xsl:value-of select="replymail" /></b>.
+<xsl:value-of select="$loc/str[@name='I hereby confirm my request to obtain password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<b><xsl:value-of select="handle" /></b>,
+<xsl:value-of select="$loc/str[@name='submitted through a web form at the']"/>&SPACE;
+<xsl:value-of select="webform_url" />&SPACE;<xsl:value-of select="$loc/str[@name='on']"/>&SPACE; <b><xsl:value-of select="transaction_date" /></b>,
+<xsl:value-of select="$loc/str[@name='assigned id number']"/>&SPACE; <b><xsl:value-of select="transaction_id" /></b>&SPACE; 
+<xsl:value-of select="$loc/str[@name='Please send the password to']"/>&SPACE; <b><xsl:value-of select="replymail" /></b>.
 </para>
 <spacer length="0.6cm"/>
 <para>
-Jméno a úředně ověřený podpis zodpovědné osoby:
+<xsl:value-of select="$loc/str[@name='Name and signature of responsible person:']"/>
 </para>
 <spacer length="1.6cm"/>
 <para>
