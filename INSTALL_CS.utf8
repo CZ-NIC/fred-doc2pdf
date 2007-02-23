@@ -14,12 +14,27 @@ OBSAH:
 
 Instalace:
 
+    * Python
+    * PIL - Python Imaging Library
     * TrueType fonty
     * Reportlab
     * Tiny RML2PDF
     * XSLT command line processor: xsltproc
     * Podpora PostgreSQL v Pythonu
     * Fred2pdf
+
+*** Python
+
+Celá aplikace funguje v prostředí python. Pokud jej ve svém operačním systému nemáte
+nainstalujte si jej.
+
+
+*** PIL - Python Imaging Library
+
+Reportlab potřebuje k správné funkci také PIL. Informace naleznete na
+http://www.pythonware.com/products/pil/
+Je možné, že pro vaši distribuci je dostupný balíček. Například: python-imaging
+
 
 *** Instalace TrueType fontů.
 
