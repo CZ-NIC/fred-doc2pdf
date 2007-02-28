@@ -1,0 +1,190 @@
+Popis formátu HeliosIQ_1
+------------------------
+U otázek je vždy uvedena hvězdička: *otázka?
+
+*Máte k tomuto XML dokumentu nějaké DTD nebo schemata?
+*Které položky je možné vynechat? 
+*Dolňuje systém vynechané položky defaultní hodnotu?
+
+U otázek 'co je to za hodnotu?' je potřeba vědět
+    - co proměnná představuje 
+      (např. PrepMnozstvi udává číslo do indexu rozsahu přepravního množství.)
+    - jaký význam mají jednotlivé hodnoty
+      (např. 1 - znamená rozsah 1 až 100; 2 -znamená rozsah 101 až 200; atd.)
+
+
+
+HEliosIQ_1
+    header              *Má být v export také header? Pokud, ano, tak které tagy?
+    body
+
+body
+    PohyboveDoklady
+    Reference           *Jsou klíče v referncích konstanty? Nebo jsou platné jen pro dokument?
+
+
+PohyboveDoklady
+
+    cisloDokladu        číslo faktury (payment.invoice_number)
+    DruhPohybuZbo       *co je to za číslo? Konstanta? Bude to vždy 13ka?
+
+
+PohyboveDoklady.TabDokladyZbozi
+
+    DodFak              IČO klienta (client.ico)
+    PopisDodavky        textová konstanta
+    ZaokrouhleniFak     *jaké zaokrouhlení?
+    ZaokrouhleniFakVal  *jaký je rozdíl mezi 'TagName' a 'TagNameVal'?
+    VstupniCena         *co je to vstupní cena?
+    SazbaDPH            *když je uveden seznam, tak se používá 'tag#'? 
+                         Např. SazbaDPH, SazbaDPH1, SazbaDPH2, SazbaDPH3, ...?
+    SazbaDPH1
+
+    Zaloha              *co je toto za položku?
+    ZalohaVal           *co je toto za položku?
+
+    SumaKc              cena celkem
+    CbezDPH1            cena bez DPH
+    CsDPH1              *co je toto za položku?
+    CbezDPH1Val         *v čem se liší od CbezDPH1?
+    CsDPH1Val
+
+    DatPorizeni         Datum vystavení faktury (*je to tak?)
+    DatRealizace        *jak se definuje toto datum?
+    Splatnost           *jak se definuje toto datum?
+    DUZP                Datum přijetí zálohy
+    DatPovinnostiFa     *jak se definuje toto datum?
+    DatUctovani         *jak se definuje toto datum?
+
+    UKod                ukazatel do Reference.TabUKod
+    FormaUhrady         ukazatel do Reference.TabFormaUhrady
+    IDBankSpoj          ukazatel do Reference.TabBankSpojeni
+    CisloOrg            ukazatel do Reference.TabCisloOrg
+    RadaDokladu         ukazatel do Reference.TabDruhDokZbo
+    DIC                 ukazatel do Reference.TabDICOrg
+    Mena                ukazatel do Reference.TabKodMen
+    
+    PoziceZaokrDPH      *co je to za hodnotu?
+    PoziceZaokrDPHHla   *co je to za hodnotu?
+    HraniceZaokrDPHHla  *co je to za hodnotu?
+    ZaokrNaPadesat      *co je to za hodnotu?
+    IDReal              ukazatel do Reference.TabZalFak
+
+
+PohyboveDoklady.TabDoplnkovePol
+
+    Auto                  *co je to za hodnotu?
+    Cislo                 *co je to za hodnotu?
+    SazbaDPH              ukazatel do Reference.TabDPH
+    KorekceZakladuDane    *co je to za hodnotu?
+    KorekceDane           *co je to za hodnotu?
+    KorekceZakladuDaneVal *co je to za hodnotu?
+    KorekceDaneVal        *co je to za hodnotu?
+    ParovaciZnak          číslo faktury, ze které byly platby použity (advance_payment.applied_invoices.number)
+
+
+
+Reference                * jsou zde uvedeny všechny reference, které budeme používat?
+
+    TabDPH                čísleník DPH
+    TabUKod
+        CisloKontace      *co je to číslo kontace? *a jak se získá?
+    TabFormaUhrady        číselník formy úhrady
+    TabBankSpojeni        číselník bankovního spojení *je to konstanta?
+    TabCisOrg             číselník organizací
+    TabKodMen             číselník kódu měny
+    TabPenezniUstavy      číselník peněžních ústavů, *kde ta data vzít?
+    TabZeme               číselník zemí
+    TabDICOrg             číselník DIČ organizací
+    TabDruhDokZbo         *co je to za čísleník? *kde jsou hodnoty?
+    TabMJ                 číselník názvu kusů
+    TabSkupinyZbozi       číselník názvu služeb
+    TabStavSkladu         číselník stavu skladu
+    TabKmenZbozi          číselník *co je to kmenové zboží?
+    TabStrom              číselník *jakých středisek?
+    TabPSC                číselník PSČ
+    TabZalFak             číselník
+    TabDokladyZbozi       číselník
+
+    
+
+
+
+
+Reference.TabCisOrg
+    JeOdberatel         *co je to za hodnotu? *musí tam být?
+    JeDodavatel         *co je to za hodnotu? *musí tam být?
+    Fakturacni          *co je to za hodnotu? *musí tam být?
+    SlevaSozNa          *co je to za hodnotu? *musí tam být?
+    SlevaSkupZbo        *co je to za hodnotu? *musí tam být?
+    SlevaKmenZbo        *co je to za hodnotu? *musí tam být?
+    SlevaStavSkladu     *co je to za hodnotu? *musí tam být?
+    SlevaZbozi          *co je to za hodnotu? *musí tam být?
+    SlevaOrg            *co je to za hodnotu? *musí tam být?
+
+Reference.TabKodMen
+    MinNasobek          *co je to za hodnotu?
+    ZaokrouhleniFaktury *co je to za hodnotu?
+
+Reference.TabDruhDokZbo
+    Klic                název ukazatele
+    DruhPohybuZbo       *co je to za hodnotu?
+    RadaDokladu         *co je to za hodnotu?
+    PosledniPC          *co je to za hodnotu?
+    Nazev               *co je to za hodnotu?
+    PohybSkladu         *co je to za hodnotu?
+    DefOKReal           *co je to za hodnotu?
+    DefOKUcto           *co je to za hodnotu?
+    UKod                ukazatel na čísleník
+    FormaUhrady         ukazatel na čísleník
+    UctoCislovani       *co je to za hodnotu?
+    VyrZaplZaloh        *co je to za hodnotu?
+
+Reference.TabStavSkladu
+    Klic            název ukazatele
+    JizNaSklade     výčtový typ
+    IDKmenZbozi     ukazatel
+    IDSklad         ukazatel
+
+Reference.TabKmenZbozi
+    Klic                název ukazatele
+    PrepMnozstvi        *co je to za hodnotu? jak se generuje?
+    SazbaDPHVstup       ukazatel
+    SazbaDPHVystup      ukazatel
+    RegCis              *co je to za hodnotu?
+    Nazev1              popis položky
+    DruhSkladu          *co je to za hodnotu?
+    SkupZbo             ukazatel
+    MJEvidence          ukazatel
+    MJVstup             ukazatel
+    MJVystup            ukazatel
+    ZakladSDvSJ         *co je to za hodnotu?
+
+Reference.TabStrom
+    Klic                název ukazatele
+    Cislo               *co je to za hodnotu?
+    Nazev               popis položky
+    DruhSkladu          *co je to za hodnotu?
+
+
+Reference.TabZalFak.ZalohovaFaktura
+    Klic                název ukazatele
+    IDZal               ukazatel
+    CsDPH1              *co je to za hodnotu?
+    CbezDPH1            *co je to za hodnotu?
+    CastkaDPH1          *co je to za hodnotu?
+    CsDPH1Val           *co je to za hodnotu?
+    CbezDPH1Val         *co je to za hodnotu?
+    CastkaDPH1Val       *co je to za hodnotu?
+    SazbaDPH1           ukazatel
+    Popis               číslo faktury, ze keré bylo čerpáno (advance_payment.applied_invoices.number)
+    Datum               *co je to za hodnotu?
+
+
+Reference.TabDokladyZbozi
+    Klic                název ukazatele
+    DruhPohybuZbo       *co je to za hodnotu?
+    PoradoveCislo       *co je to za hodnotu?
+    RadaDokladu         *co je to za hodnotu?
+    DatPorizeni         *co je to za hodnotu?
+
