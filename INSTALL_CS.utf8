@@ -35,6 +35,10 @@ Reportlab potřebuje k správné funkci také PIL. Informace naleznete na
 http://www.pythonware.com/products/pil/
 Je možné, že pro vaši distribuci je dostupný balíček. Například: python-imaging
 
+    $ tar -xf Imaging-1.1.6.tar.gz
+    $ cd Imaging-1.1.6/
+    $ sudo python setup.py install
+
 
 *** Instalace TrueType fontů.
 

@@ -34,14 +34,25 @@ Here is example how to declare font familly in RML template:
 import sys
 import StringIO
 
-import configuration
+try:
+    import configuration
+except ImportError, msg:
+    sys.stderr.write("""ImportError: %s
+First you need create configuration.py. For that purpose you can use configuration.py.default file.
+$ cp configuration.py.default configuration.py
+"""%msg)
+    sys.exit(-1)
 
 module_path  = getattr(configuration, 'module_path', None)
 if module_path:
     sys.path.insert(0, module_path)
 
 # Import trml2pdf with posibility to definition of the module name.
-exec 'from %s import trml2pdf, utils'%getattr(configuration, 'trml_module_name', 'trml2pdf')
+try:
+    exec 'from %s import trml2pdf, utils'%getattr(configuration, 'trml_module_name', 'trml2pdf')
+except ImportError, msg:
+    sys.stderr.write('ImportError: %s\nYou need correct variables trml_module_name and module_path in your configuration.py file:\n'%msg)
+    sys.exit(-1)
 
 # Need for register TrueType fonts
 import reportlab
