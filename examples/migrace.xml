@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="../templates/migrace.xsl" type="text/xsl"?>
+<data>
+  <epp xmlns="urn:ietf:params:xml:ns:epp-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.1 epp-1.1.xsd">
+    <response>
+      <result code="1000">
+        <msg>Command completed successfully</msg>
+      </result>
+      <resData>
+        <dsdDomain:infData xmlns:dsdDomain="urn:cznic:params:xml:ns:dsdDomain-1.1" xsi:schemaLocation="urn:cznic:params:xml:ns:dsdDomain-1.1 dsdDomain-1.1.xsd">
+          <dsdDomain:name>nic.cz</dsdDomain:name>
+          <dsdDomain:description>CZ.NIC, Prague</dsdDomain:description>
+          <dsdDomain:status s="PaidDomainInZoneCZ"/>
+          <dsdDomain:idadm>CZ-NIC</dsdDomain:idadm>
+          <dsdDomain:idtech>CZ-NIC</dsdDomain:idtech>
+          <dsdDomain:dns>
+            <dsdDomain:nserver>
+              <dsdDomain:ns>a.ns.nic.cz</dsdDomain:ns>
+              <dsdDomain:IPaddress ip="v4">217.31.204.2</dsdDomain:IPaddress>
+              <dsdDomain:typ>P</dsdDomain:typ>
+            </dsdDomain:nserver>
+            <dsdDomain:nserver>
+              <dsdDomain:ns>c.ns.cznic.org</dsdDomain:ns>
+              <dsdDomain:typ>S</dsdDomain:typ>
+            </dsdDomain:nserver>
+          </dsdDomain:dns>
+          <dsdDomain:notify>tm@nic.cz</dsdDomain:notify>
+          <dsdDomain:notifyType>notify</dsdDomain:notifyType>
+          <dsdDomain:ReqAuth>all</dsdDomain:ReqAuth>
+          <dsdDomain:Agreement>
+            <dsdDomain:fnameAndLname>
+              <dsdDomain:fname>Martin</dsdDomain:fname>
+              <dsdDomain:lname>Peterka</dsdDomain:lname>
+            </dsdDomain:fnameAndLname>
+            <dsdDomain:version>20060101</dsdDomain:version>
+            <dsdDomain:Date>2007-02-28</dsdDomain:Date>
+          </dsdDomain:Agreement>
+          <dsdDomain:regID>REG-IGNUM</dsdDomain:regID>
+          <dsdDomain:crID>RSD</dsdDomain:crID>
+          <dsdDomain:crDate>1997-10-30T00:00:00</dsdDomain:crDate>
+          <dsdDomain:upID>
+            <dsdDomain:IDreg>REG-LRR</dsdDomain:IDreg>
+            <dsdDomain:IDcont>MAPET</dsdDomain:IDcont>
+          </dsdDomain:upID>
+          <dsdDomain:upDate>2006-06-29T16:15:00</dsdDomain:upDate>
+          <dsdDomain:exDate>2008-03-15</dsdDomain:exDate>
+          <dsdDomain:trDate>2007-02-28</dsdDomain:trDate>
+        </dsdDomain:infData>
+      </resData>
+      <trID>
+        <svTRID>C20070302132624.1251605</svTRID>
+      </trID>
+    </response>
+  </epp>
+  <epp xmlns="urn:ietf:params:xml:ns:epp-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.1 epp-1.1.xsd">
+    <response>
+      <result code="1000">
+        <msg>Command completed successfully</msg>
+      </result>
+      <resData>
+        <dsdSubject:infData xmlns:dsdSubject="urn:cznic:params:xml:ns:dsdSubject-1.1" xsi:schemaLocation="urn:cznic:params:xml:ns:dsdSubject-1.1 dsdSubject-1.1.xsd">
+          <dsdSubject:id>CZ-NIC</dsdSubject:id>
+          <dsdSubject:status s="ok"/>
+          <dsdSubject:subjTyp>P</dsdSubject:subjTyp>
+          <dsdSubject:name>CZ.NIC, z.s.p.o.</dsdSubject:name>
+          <dsdSubject:ico>67985726</dsdSubject:ico>
+          <dsdSubject:dic>CZ67985726</dsdSubject:dic>
+          <dsdSubject:postalInfo type="postal">
+            <dsdSubject:addr>
+              <dsdSubject:street>Americka 23</dsdSubject:street>
+              <dsdSubject:city>Praha 2</dsdSubject:city>
+              <dsdSubject:zip>120 00</dsdSubject:zip>
+              <dsdSubject:country>cz</dsdSubject:country>
+            </dsdSubject:addr>
+          </dsdSubject:postalInfo>
+          <dsdSubject:email>tm@nic.cz</dsdSubject:email>
+          <dsdSubject:ReqAuth>all</dsdSubject:ReqAuth>
+          <dsdSubject:admin-c>TM-NIC</dsdSubject:admin-c>
+          <dsdSubject:admin-c>MAPET</dsdSubject:admin-c>
+          <dsdSubject:admin-c>FEELA</dsdSubject:admin-c>
+          <dsdSubject:tech-c>TM-NIC</dsdSubject:tech-c>
+          <dsdSubject:tech-c>MAPET</dsdSubject:tech-c>
+          <dsdSubject:tech-c>FEELA</dsdSubject:tech-c>
+          <dsdSubject:acc-c>TM-NIC</dsdSubject:acc-c>
+          <dsdSubject:acc-c>MAPET</dsdSubject:acc-c>
+          <dsdSubject:acc-c>FEELA</dsdSubject:acc-c>
+          <dsdSubject:crID>RSD</dsdSubject:crID>
+          <dsdSubject:crDate>2001-08-10T20:13:00</dsdSubject:crDate>
+          <dsdSubject:upID>
+            <dsdSubject:IDreg>REG-LRR</dsdSubject:IDreg>
+            <dsdSubject:IDcont>MAPET</dsdSubject:IDcont>
+          </dsdSubject:upID>
+          <dsdSubject:upDate>2006-05-17T14:55:00</dsdSubject:upDate>
+        </dsdSubject:infData>
+      </resData>
+      <trID>
+        <svTRID>C20070302132624.8750517</svTRID>
+      </trID>
+    </response>
+  </epp>
+  <epp xmlns="urn:ietf:params:xml:ns:epp-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.1 epp-1.1.xsd">
+    <response>
+      <result code="1000">
+        <msg>Command completed successfully</msg>
+      </result>
+      <resData>
+        <dsdContact:infData xmlns:dsdContact="urn:cznic:params:xml:ns:dsdContact-1.1" xsi:schemaLocation="urn:cznic:params:xml:ns:dsdContact-1.1 dsdContact-1.1.xsd">
+          <dsdContact:id>MAPET</dsdContact:id>
+          <dsdContact:status s="ok"/>
+          <dsdContact:fnameAndLname>
+            <dsdContact:fname>Martin</dsdContact:fname>
+            <dsdContact:lname>Peterka</dsdContact:lname>
+          </dsdContact:fnameAndLname>
+          <dsdContact:postalInfo type="postal">
+            <dsdContact:addr>
+              <dsdContact:street>Bitovska 1226/7</dsdContact:street>
+              <dsdContact:city>Praha 4 Michle</dsdContact:city>
+              <dsdContact:zip>140 00</dsdContact:zip>
+              <dsdContact:country>cz</dsdContact:country>
+            </dsdContact:addr>
+          </dsdContact:postalInfo>
+          <dsdContact:voice>+420.222745104</dsdContact:voice>
+          <dsdContact:email>martin.peterka@nic.cz</dsdContact:email>
+          <dsdContact:notify>martin@pm.cz</dsdContact:notify>
+          <dsdContact:notifyType>notify</dsdContact:notifyType>
+          <dsdContact:passwordExists>yes</dsdContact:passwordExists>
+          <dsdContact:PGPkey>-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: PGP 8.0.3 - not licensed for commercial use: www.pgp.com
+
+mQGiBECY5uMRBADNmV9cIO+3N6Gzvptmi51G6Wi2AnW4ToUi9Is/B2Y1E9Q6GUjy
+YWUJaA8b9EC4enTxYtVH340Kbd5qwdLmKzsXL4EwckTho2RwjF1StBPnT2yl1Znv
+ZRP75W1bsniooA07nEFFWhbkXRZvGmOJyYx9sodNDVOvLyOKr476WNhfwwCg///N
+EI4f9SoABzFMNTxUULx+e80D+gPwDmvjuu1yT7k3ulwcMqT6M6ciLMW7PdKuZiQA
+yIOrjru2XH/KZTlCxXeTw199ZSBD8/U5wbPa2TRIPksBQGY0T4SzGSE8u1ouYXJU
+YZvAPdnHWYIzZvVBN8GwVRNgxKmCrTOa+hYAfwTBu3iE6jUnV7AvrR41/gSewF8R
+NnoYA/9i3G8BiIcid1NFXj3RHdjbFQQAb+wOpr7/i99fXg+awVQUpoem80Svg/ox
+ozy0uXA3Lb/7HL6wvlBZWXjWO35RXvi9WMqkZSzP45+TxJO2VMqRADH52TBMhjxF
+XrFy+XeXQ89zxgyw0lOPVgy5Eku19ACUOL0BWBBd5zf1zvi6xrQmTWFydGluIFBl
+dGVya2EgPG1hcnRpbi5wZXRlcmthQG5pYy5jej6JAFcEEBECABcFAkCY5uMHCwkI
+BwMCCgIZAQUbAwAAAAAKCRDqZOXnzoTYwmHzAJ9N1Dova6KM6QpaTTLxAwhvUXGR
+ygCeNGLqd8PWzjmKCP6dJYFTz0/DpGq5Ag0EQJjm4xAIAPZCV7cIfwgXcqK61qlC
+8wXo+VMROU+28W65Szgg2gGnVqMU6Y9AVfPQB8bLQ6mUrfdMZIZJ+AyDvWXpF9Sh
+01D49Vlf3HZSTz09jdvOmeFXklnN/biudE/F/Ha8g8VHMGHOfMlm/xX5u/2RXscB
+qtNbno2gpXI61Brwv0YAWCvl9Ij9WE5J280gtJ3kkQc2azNsOA1FHQ98iLMcfFst
+jvbzySPAQ/ClWxiNjrtVjLhdONM0/XwXV0OjHRhs3jMhLLUq/zzhsSlAGBGNfISn
+CnLWhsQDGcgHKXrKlQzZlp+r0ApQmwJG0wg9ZqRdQZ+cfL2JSyIZJrqrol7DVeky
+CzsAAgIIANHpUBRV9J9VgEqbFVYQM7QAocTIwGZbFIlKYDmoL4ZOMqHmooybpTks
+2/ze1zS8UfpzazAm6icLzcQMK7WI4xZOu02H7e4PJ9GZI8NcAdCJpf1oIxe3n3lv
+KLC/yofctlgTxVMKfCkZNZsA4INRMDUwPkNEZAHBXu2ciBu2Q4dVQE00V16iP4dq
+tzWSCg4Po7oxBJW0sywJdtxfBs/y0Ls+dA5xWbs3BtooDLgsx6+epoCh+fSxi36J
+xM0vTlXcS1oy51jf62xcHBhZXgfgBKrI8yqK+b/RvNgqSkqbTY3DKlaJQfu8ceXH
+ItDa2TJZllL4AYadt+XGgSJUlrnEaKmJAEwEGBECAAwFAkCY5uMFGwwAAAAACgkQ
+6mTl586E2MLFIgCePT0mGSeMpqRx3ceBfSzuYEZ2YiQAn0oeAZl5xGGvx5WqCBL9
+1s6mIzAU
+=jfNQ
+-----END PGP PUBLIC KEY BLOCK-----</dsdContact:PGPkey>
+          <dsdContact:identityCardNum identityCardSort="identity card">109119787</dsdContact:identityCardNum>
+          <dsdContact:crID>RSD</dsdContact:crID>
+          <dsdContact:crDate>2002-03-06T17:11:00</dsdContact:crDate>
+          <dsdContact:upID>
+            <dsdContact:IDreg>REG-LRR</dsdContact:IDreg>
+            <dsdContact:IDcont>MAPET</dsdContact:IDcont>
+          </dsdContact:upID>
+          <dsdContact:upDate>2006-11-29T17:05:00</dsdContact:upDate>
+        </dsdContact:infData>
+      </resData>
+      <trID>
+        <svTRID>C20070302132625.7684995</svTRID>
+      </trID>
+    </response>
+  </epp>
+  <epp xmlns="urn:ietf:params:xml:ns:epp-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.1 epp-1.1.xsd">
+    <response>
+      <result code="1000">
+        <msg>Command completed successfully</msg>
+      </result>
+      <resData>
+        <dsdContact:infData xmlns:dsdContact="urn:cznic:params:xml:ns:dsdContact-1.1" xsi:schemaLocation="urn:cznic:params:xml:ns:dsdContact-1.1 dsdContact-1.1.xsd">
+          <dsdContact:id>FEELA</dsdContact:id>
+          <dsdContact:status s="ok"/>
+          <dsdContact:fnameAndLname>
+            <dsdContact:fname>Ondrej</dsdContact:fname>
+            <dsdContact:lname>Filip</dsdContact:lname>
+          </dsdContact:fnameAndLname>
+          <dsdContact:postalInfo type="postal">
+            <dsdContact:addr>
+              <dsdContact:street>Puklicova 23</dsdContact:street>
+              <dsdContact:city>Ceske Budejovice</dsdContact:city>
+              <dsdContact:zip>37004</dsdContact:zip>
+              <dsdContact:country>cz</dsdContact:country>
+            </dsdContact:addr>
+          </dsdContact:postalInfo>
+          <dsdContact:voice>+420.222745111</dsdContact:voice>
+          <dsdContact:fax>+420.222745112</dsdContact:fax>
+          <dsdContact:email>ondrej@filip.info</dsdContact:email>
+          <dsdContact:notify>feela@feela.net</dsdContact:notify>
+          <dsdContact:notifyType>confirm</dsdContact:notifyType>
+          <dsdContact:passwordExists>yes</dsdContact:passwordExists>
+          <dsdContact:identityCardNum identityCardSort="identity card">1693832680</dsdContact:identityCardNum>
+          <dsdContact:crID>REG-LRR</dsdContact:crID>
+          <dsdContact:crDate>2005-01-04T12:35:00</dsdContact:crDate>
+          <dsdContact:upID>
+            <dsdContact:IDreg>REG-LRR</dsdContact:IDreg>
+            <dsdContact:IDcont>FEELA</dsdContact:IDcont>
+          </dsdContact:upID>
+          <dsdContact:upDate>2006-06-12T15:55:00</dsdContact:upDate>
+        </dsdContact:infData>
+      </resData>
+      <trID>
+        <svTRID>C20070302132626.5164747</svTRID>
+      </trID>
+    </response>
+  </epp>
+  <epp xmlns="urn:ietf:params:xml:ns:epp-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.1 epp-1.1.xsd">
+    <response>
+      <result code="1000">
+        <msg>Command completed successfully</msg>
+      </result>
+      <resData>
+        <dsdContact:infData xmlns:dsdContact="urn:cznic:params:xml:ns:dsdContact-1.1" xsi:schemaLocation="urn:cznic:params:xml:ns:dsdContact-1.1 dsdContact-1.1.xsd">
+          <dsdContact:id>TM-NIC</dsdContact:id>
+          <dsdContact:status s="ok"/>
+          <dsdContact:fnameAndLname>
+            <dsdContact:fname>Tomas</dsdContact:fname>
+            <dsdContact:lname>Marsalek</dsdContact:lname>
+          </dsdContact:fnameAndLname>
+          <dsdContact:postalInfo type="postal">
+            <dsdContact:addr>
+              <dsdContact:street>Luzna 591</dsdContact:street>
+              <dsdContact:city>Praha 6</dsdContact:city>
+              <dsdContact:zip>160 00</dsdContact:zip>
+              <dsdContact:country>cz</dsdContact:country>
+            </dsdContact:addr>
+          </dsdContact:postalInfo>
+          <dsdContact:voice>+420 235363146</dsdContact:voice>
+          <dsdContact:fax>+420 220121184</dsdContact:fax>
+          <dsdContact:email>tm@nic.cz</dsdContact:email>
+          <dsdContact:notify>hostmaster@marias.cz</dsdContact:notify>
+          <dsdContact:passwordExists>no</dsdContact:passwordExists>
+          <dsdContact:crID>RSD</dsdContact:crID>
+          <dsdContact:crDate>2001-08-10T20:13:00</dsdContact:crDate>
+        </dsdContact:infData>
+      </resData>
+      <trID>
+        <svTRID>C20070302132627.3225546</svTRID>
+      </trID>
+    </response>
+  </epp>
+</data>
