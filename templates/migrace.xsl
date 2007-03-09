@@ -235,7 +235,7 @@
     <table class="tab2">
         <tr>
             <th>id</th>
-            <td>NSSID:ID</td>
+            <td><xsl:value-of select="dsdDomain:name" /></td>
         </tr>
         <tr>
             <th>DNS</th>
