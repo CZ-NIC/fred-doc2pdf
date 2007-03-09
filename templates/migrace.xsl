@@ -3,6 +3,9 @@
     <!ENTITY nbsp "&#160;">
     <!ENTITY mdash "&#8212;">
     <!ENTITY gt "&#62;">
+    <!ENTITY ndash "&#8211;">
+    <!ENTITY rsaquo "&#8250;">
+    
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:epp="urn:ietf:params:xml:ns:epp-1.1"
@@ -211,10 +214,14 @@
 </tr>
 <tr>
     <th>dsdDomain:idtech</th>
-    <td><xsl:value-of select="dsdDomain:idtech" /></td>
-    <th class="sep">&mdash;&gt;</th>
-    <th>domain:admin</th>
-    <td><xsl:value-of select="dsdDomain:idtech" /></td>
+    <td class="expire"><xsl:value-of select="dsdDomain:idtech" /></td>
+    <th class="sep"></th>
+    <th id="domain_admin">domain:admin<br/><span class="direction"><a href="#admin-c" title="Migration from dsdSubject:admin-c">&ndash;&rsaquo;|</a></span></th>
+    <td>
+        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData/dsdSubject:admin-c">
+            <xsl:value-of select="." /><br/>
+        </xsl:for-each>
+    </td>
 </tr>
 
 <tr>
@@ -255,11 +262,12 @@
             </td>
         </tr>
         <tr>
-            <th>tech</th>
+            <th id="nsset_tech">tech<br/><span class="direction"><a href="#tech-c" title="Migration from dsdSubject:tech-c">&ndash;&rsaquo;|</a></span></th>
             <td>
             <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdContact:infData">
                 <xsl:value-of select="dsdContact:id" /><br/>
             </xsl:for-each>
+
             </td>
         </tr>
         <tr>
@@ -461,7 +469,7 @@
     <th><xsl:if test="dsdSubject:subjTyp = 'P' or dsdSubject:subjTyp = 'N'">contact:org</xsl:if>
         <xsl:if test="dsdSubject:subjTyp = 'F'">contact:name</xsl:if>
     </th>
-    <td><xsl:value-of select="dsdSubject:name" /></td>
+    <td><xsl:value-of select="dsdSubject:name" /> &nbsp;<span class="direction"><a href="javascript:alert('CONDITION:\nIF dsdSubject:subjTyp == P,N:\n\tdsdSubject:name -> contact:org\nIF dsdSubject:subjTyp == F:\n\tdsdSubject:name -> contact:name')" title="The condition explanation">?</a></span></td>
 </tr>
 
 <tr>
@@ -636,21 +644,21 @@
 
 <xsl:template match="dsdSubject:admin-c">
 <tr>
-    <th>dsdSubject:admin-c</th>
-    <td class="expire"><xsl:value-of select="." /></td>
-    <th class="sep"></th>
-    <th></th>
-    <td></td>
+    <th id="admin-c">dsdSubject:admin-c</th>
+    <td><xsl:value-of select="." /></td>
+    <th class="sep">&mdash;&gt;</th>
+    <th>domain:admin <span class="direction"><a href="#domain_admin" title="Migration to domain:admin">|&ndash;&rsaquo;&rsaquo;</a></span></th>
+    <td><xsl:value-of select="." /></td>
 </tr>
 </xsl:template>
 
 <xsl:template match="dsdSubject:tech-c">
 <tr>
-    <th>dsdSubject:tech-c</th>
-    <td class="expire"><xsl:value-of select="." /></td>
-    <th class="sep"></th>
-    <th></th>
-    <td></td>
+    <th id="tech-c">dsdSubject:tech-c</th>
+    <td><xsl:value-of select="." /></td>
+    <th class="sep">&mdash;&gt;</th>
+    <th>nsset:tech <span class="direction"><a href="#nsset_tech" title="Migration to nsset:tech">|&ndash;&rsaquo;&rsaquo;</a></span></th>
+    <td><xsl:value-of select="." /></td>
 </tr>
 </xsl:template>
 
@@ -703,9 +711,7 @@
 <tr>
     <th>dsdContact:postalInfo</th>
     <td>
-    <table class="tab2">
     <xsl:apply-templates select="dsdContact:postalInfo" />
-    </table>
     </td>
     <th class="sep">&mdash;&gt;</th>
     <th>contact</th>

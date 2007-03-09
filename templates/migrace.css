@@ -55,6 +55,9 @@ table.tab1 tr.header th {
 .tab1 tr:hover td {
     background-color:#EFEFEF;
 }
+.tab1 tr:hover td.expire {
+    background-color:#E9B36A;
+}
 
 .tab1 tr:hover th {
     background-color:#B5D2DB;
@@ -81,8 +84,12 @@ td.expire th {
 
 /* ------------------------------------------ */
 
+span.expire {
+    padding:0 4px;
+}
 .expire {
-    color:#C3C3C3;
+    color:#EB1D00;
+    background-color:#FBE0BC;
 }
 .newval {
     color:#4E964E;
@@ -105,3 +112,27 @@ pre.pgpkey {
  width:80%;
 }
 
+.info {
+    font-size:90%;
+    color:orange;
+    margin-left:1em;
+}
+.info a {
+    color:darkorange;
+}
+.info:hover, .info a:hover {
+    color:darkred;
+}
+
+.direction a {
+    font-size:80%;
+    color:#fff;
+    background-color:#33879C;
+    padding:0 10px;
+}
+.direction a {
+    text-decoration:none;
+}
+.direction a:hover {
+    background-color:orange;
+}
