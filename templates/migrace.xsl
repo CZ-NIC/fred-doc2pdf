@@ -206,20 +206,34 @@
 <xsl:apply-templates select="dsdDomain:status" />
 
 <tr>
-    <th>dsdDomain:idadm</th>
-    <td><xsl:value-of select="dsdDomain:idadm" /></td>
-    <th class="sep">&mdash;&gt;</th>
+    <th id="dsdDomain_idadm">dsdDomain:idadm</th>
+    <td><xsl:value-of select="dsdDomain:idadm" /> &nbsp;<span class="direction"><a href="#subject_admin" title="Use  dsdSubject:admin-c as registrant">&ndash;&gt;</a></span></td>
+    <th class="sep"></th>
     <th>domain:registrant</th>
-    <td><xsl:value-of select="dsdDomain:idadm" /></td>
+    <td><a href="#subject_{dsdDomain:idadm}" title="Go to subject {dsdDomain:idadm}"><xsl:value-of select="dsdDomain:idadm" /></a>
+    <!--
+        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData">
+            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idadm">
+                <xsl:for-each select="dsdSubject:admin-c">
+                    <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
+                </xsl:for-each>
+            </xsl:if>
+        </xsl:for-each>
+    -->
+    </td>
 </tr>
 <tr>
-    <th>dsdDomain:idtech</th>
-    <td class="expire"><xsl:value-of select="dsdDomain:idtech" /></td>
+    <th id="dsdDomain_idtech">dsdDomain:idtech</th>
+    <td><xsl:value-of select="dsdDomain:idtech" /> &nbsp;<span class="direction"><a href="#subject_tech" title="Use dsdSubject:admin-c as techcontact">&ndash;&gt;</a></span></td>
     <th class="sep"></th>
-    <th id="domain_admin">domain:admin<br/><span class="direction"><a href="#admin-c" title="Migration from dsdSubject:admin-c">&ndash;&rsaquo;|</a></span></th>
+    <th id="domain_admin">domain:admin<br/><span class="direction"><a href="#subject_admin" title="Migration from dsdSubject:admin-c">&ndash;&rsaquo;|</a></span></th>
     <td>
-        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData/dsdSubject:admin-c">
-            <xsl:value-of select="." /><br/>
+        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData">
+            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idtech">
+                <xsl:for-each select="dsdSubject:admin-c">
+                    <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
+                </xsl:for-each>
+            </xsl:if>
         </xsl:for-each>
     </td>
 </tr>
@@ -262,11 +276,17 @@
             </td>
         </tr>
         <tr>
-            <th id="nsset_tech">tech<br/><span class="direction"><a href="#tech-c" title="Migration from dsdSubject:tech-c">&ndash;&rsaquo;|</a></span></th>
+            <th id="nsset_tech">tech<br/><span class="direction"><a href="#subject_tech" title="Migration from dsdSubject:tech-c">&ndash;&rsaquo;|</a></span></th>
             <td>
-            <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdContact:infData">
-                <xsl:value-of select="dsdContact:id" /><br/>
-            </xsl:for-each>
+
+        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData">
+            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idtech">
+                <xsl:for-each select="dsdSubject:admin-c">
+                    <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
+                </xsl:for-each>
+            </xsl:if>
+        </xsl:for-each>
+
 
             </td>
         </tr>
@@ -435,7 +455,7 @@
 
 <xsl:template match="dsdSubject:infData">
 <table class="tab1">
-<caption>Subject</caption>
+<caption><span class="direction"><a href="javascript:window.scrollTo(0,0)" title="Go to TOP of thje page">^</a></span> Subject <span class="direction"><a href="javascript:window.scrollTo(0,0)" title="Go to TOP of thje page">^</a></span></caption>
 <tr class="header">
     <th>Old name</th>
     <th>Old value</th>
@@ -445,8 +465,16 @@
 </tr>
 
 <tr>
-    <th>dsdSubject:id</th>
-    <td><xsl:value-of select="dsdSubject:id" /></td>
+    <th id="subject_{dsdSubject:id}">dsdSubject:id</th>
+    <td>
+    <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idadm">
+       <span id="subject_admin" class="direction"><a href="#dsdDomain_idadm" title="Migration from dsdDomain:idadm">&ndash;&rsaquo;|</a></span>
+    </xsl:if>
+    <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idtech">
+       <span id="subject_tech" class="direction"><a href="#dsdDomain_idtech" title="Migration from dsdDomain:idtech">&ndash;&rsaquo;|</a></span>
+    </xsl:if>
+    &nbsp; <xsl:value-of select="dsdSubject:id" />
+    </td>
     <th class="sep">&mdash;&gt;</th>
     <th>contact:id</th>
     <td><xsl:value-of select="dsdSubject:id" /></td>
@@ -647,18 +675,27 @@
     <th id="admin-c">dsdSubject:admin-c</th>
     <td><xsl:value-of select="." /></td>
     <th class="sep">&mdash;&gt;</th>
-    <th>domain:admin <span class="direction"><a href="#domain_admin" title="Migration to domain:admin">|&ndash;&rsaquo;&rsaquo;</a></span></th>
+
+    <th>
+    <xsl:if test="../dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idadm">
+        domain:admin <span class="direction"><a href="#domain_admin" title="Migration to domain:admin">|&ndash;&rsaquo;&rsaquo;</a></span>
+    </xsl:if>
+    <xsl:if test="../dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idtech">
+        domain:tech <span class="direction"><a href="#nsset_tech" title="Migration to nsset:tech">|&ndash;&rsaquo;&rsaquo;</a></span>
+    </xsl:if>
+    </th>
+
     <td><xsl:value-of select="." /></td>
 </tr>
 </xsl:template>
 
 <xsl:template match="dsdSubject:tech-c">
 <tr>
-    <th id="tech-c">dsdSubject:tech-c</th>
-    <td><xsl:value-of select="." /></td>
-    <th class="sep">&mdash;&gt;</th>
-    <th>nsset:tech <span class="direction"><a href="#nsset_tech" title="Migration to nsset:tech">|&ndash;&rsaquo;&rsaquo;</a></span></th>
-    <td><xsl:value-of select="." /></td>
+    <th>dsdSubject:tech-c</th>
+    <td class="expire"><xsl:value-of select="." /></td>
+    <th class="sep"></th>
+    <th></th>
+    <td></td>
 </tr>
 </xsl:template>
 
@@ -680,7 +717,7 @@
 =================================================== -->
 <xsl:template match="dsdContact:infData">
 <table class="tab1">
-<caption>Contact</caption>
+<caption><span class="direction"><a href="javascript:window.scrollTo(0,0)" title="Go to TOP of thje page">^</a></span> Contact <span class="direction"><a href="javascript:window.scrollTo(0,0)" title="Go to TOP of thje page">^</a></span></caption>
 <tr class="header">
     <th>Old name</th>
     <th>Old value</th>
@@ -689,7 +726,7 @@
     <th>New value</th>
 </tr>
 <tr>
-    <th>dsdContact:id</th>
+    <th id="contact_{dsdContact:id}">dsdContact:id</th>
     <td><xsl:value-of select="dsdContact:id" /></td>
     <th class="sep">&mdash;&gt;</th>
     <th>contact:id</th>

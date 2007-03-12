@@ -3,6 +3,9 @@ body {
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
 }
 
+a:hover {
+    color:red;
+}
 /*----------------------------------------------
 
   Table
