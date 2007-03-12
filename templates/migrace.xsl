@@ -211,15 +211,6 @@
     <th class="sep"></th>
     <th>domain:registrant</th>
     <td><a href="#subject_{dsdDomain:idadm}" title="Go to subject {dsdDomain:idadm}"><xsl:value-of select="dsdDomain:idadm" /></a>
-    <!--
-        <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData">
-            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idadm">
-                <xsl:for-each select="dsdSubject:admin-c">
-                    <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
-                </xsl:for-each>
-            </xsl:if>
-        </xsl:for-each>
-    -->
     </td>
 </tr>
 <tr>
@@ -229,7 +220,7 @@
     <th id="domain_admin">domain:admin<br/><span class="direction"><a href="#subject_admin" title="Migration from dsdSubject:admin-c">&ndash;&rsaquo;|</a></span></th>
     <td>
         <xsl:for-each select="//epp:epp/epp:response/epp:resData/dsdSubject:infData">
-            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idtech">
+            <xsl:if test="dsdSubject:id = //epp:epp/epp:response/epp:resData/dsdDomain:infData/dsdDomain:idadm">
                 <xsl:for-each select="dsdSubject:admin-c">
                     <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
                 </xsl:for-each>
