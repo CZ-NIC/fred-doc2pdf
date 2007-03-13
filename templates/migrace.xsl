@@ -14,7 +14,7 @@
     xmlns:dsdContact="urn:cznic:params:xml:ns:dsdContact-1.1"
     >
 <xsl:output method="html" encoding="utf-8"/>
-<xsl:param name="path" select="'../templates/'" />
+<xsl:param name="path" select="'templates/'" />
 <!-- ===================================================
 
         SHARED
@@ -870,5 +870,28 @@
 
 </xsl:template>
 
+<xsl:template match="info">
+    <table class="tab1">
+    <caption>Download Info</caption>
+    <tr>
+        <th>Domain</th>
+        <td><xsl:value-of select="domain" /></td>
+    </tr>
+    <tr>
+        <th>Subjects</th>
+        <td><xsl:for-each select="subjects/rec">
+            <a href="#subject_{.}" title="Go to subject {.}"><xsl:value-of select="." /></a><br/>
+        </xsl:for-each>
+        </td>
+    </tr>
+    <tr>
+        <th>Contacts</th>
+        <td><xsl:for-each select="contacts/rec">
+            <a href="#contact_{.}" title="Go to contact {.}"><xsl:value-of select="." /></a><br/>
+        </xsl:for-each>
+        </td>
+    </tr>
+    </table>
+</xsl:template>
 
 </xsl:stylesheet>
