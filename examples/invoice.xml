@@ -43,6 +43,7 @@
 
 <payment>
     <invoice_number>2406000590</invoice_number>
+    <previous_invoice_number>2406000589</previous_invoice_number>
     <invoice_date>2006-10-03</invoice_date>
     <tax_point>2006-10-02</tax_point>
     <vs>45021295</vs>
@@ -62,7 +63,9 @@
     <sumarize>
         <total>111900</total>
         <paid>-111900</paid>
+        <paid_vat>-21261</paid_vat>
         <to_be_paid>0</to_be_paid>
+        <total_with_vat>133161</total_with_vat>
     </sumarize>
 </delivery>
 
@@ -71,22 +74,34 @@
     <applied_invoices>
         <consumed>
             <number>2006112</number>
+            <invoice_date>2007-01-23 14:15:16.760</invoice_date>
             <price>80000</price>
+            <price_with_vat>95200</price_with_vat>
+            <vat>15200</vat>
             <balance>0</balance>
         </consumed>
         <consumed>
             <number>2006111</number>
+            <invoice_date>2007-01-22 14:15:16.760</invoice_date>
             <price>6000</price>
+            <price_with_vat>7140</price_with_vat>
+            <vat>1140</vat>
             <balance>0</balance>
         </consumed>
         <consumed>
             <number>2006113</number>
+            <invoice_date>2007-01-21 14:15:16.760</invoice_date>
             <price>21900</price>
+            <price_with_vat>26061</price_with_vat>
+            <vat>4161</vat>
             <balance>28100</balance>
         </consumed>
         <consumed>
             <number>2006110</number>
+            <invoice_date>2007-01-20 14:15:16.760</invoice_date>
             <price>4000</price>
+            <price_with_vat>4760</price_with_vat>
+            <vat>760</vat>
             <balance>0</balance>
         </consumed>
     </applied_invoices>
