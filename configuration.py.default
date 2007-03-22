@@ -5,7 +5,7 @@ Define also default font name for implicit template style.
 """
 
 # Name of the module from where import of the trml2pdf will be done.
-trml_module_name = 'rpm2pdf'
+trml_module_name = 'rml2pdf'
 
 # Path for import module.
 module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
@@ -25,8 +25,8 @@ DEFAULT_FONT_FAMILLY = (
 # This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
 #DEFAULT_FONT_TTF = (
 #    'Times_New_Roman.ttf',
-#    'Times_New_Roman_Bold.ttf',
 #    'Times_New_Roman_Italic.ttf',
+#    'Times_New_Roman_Bold.ttf',
 #    'Times_New_Roman_Bold_Italic.ttf',
 #)
 
