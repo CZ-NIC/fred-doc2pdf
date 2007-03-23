@@ -178,7 +178,7 @@
 
 <para>
 Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.
-<xsl:if test="client/vat_apply = 1">Místo plnění se dle zákona 235/2004
+<xsl:if test="client/vat_not_apply = 1">Místo plnění se dle zákona 235/2004
 Sb. o DPH v souladu s §10 odst.6c) váže na sídlo, místo podnikání nebo
 provozovnu příjemce služby. Povinnost přiznat a zaplatit daň má příjemce
 služby dle platného zákona v místě jeho sídla, podnikání nebo provozovny.

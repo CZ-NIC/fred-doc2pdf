@@ -23,7 +23,7 @@
     </address>
     <ico>45021295</ico>
     <vat_number>CZ45021295</vat_number>
-    <vat_apply>1</vat_apply>
+    <vat_not_apply>1</vat_not_apply>
 </client>
 
 <supplier>
