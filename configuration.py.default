@@ -6,16 +6,18 @@ Define also default font name for implicit template style.
 
 # Name of the module from where import of the trml2pdf will be done.
 # apt-get install tinyerp-server
-#trml_module_name = 'rml2pdf'
+trml_module_name = 'rml2pdf'
 
 # Path for import module.
-# apt-get install python-reportlab
-#module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
+# apt-get install tinyerp-server
 module_path = '/usr/lib/tinyerp-server/report/render'
+#module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
 
 # Define path where TrueType font are saved:
 # apt-get install ttf-freefont
 TrueTypePath = ('/usr/share/fonts/truetype/freefont',)
+# yum install freefont
+#TrueTypePath = ('/usr/share/fonts/freefont/',)
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -34,6 +36,5 @@ DEFAULT_FONT_TTF = (
     'FreeSansBold.ttf',
     'FreeSansBoldOblique.ttf',
 )
-
 
 DEFAULT_STYLE_FONT = zip(DEFAULT_FONT_FAMILLY, DEFAULT_FONT_TTF)
