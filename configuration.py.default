@@ -5,13 +5,17 @@ Define also default font name for implicit template style.
 """
 
 # Name of the module from where import of the trml2pdf will be done.
-trml_module_name = 'rml2pdf'
+# apt-get install tinyerp-server
+#trml_module_name = 'rml2pdf'
 
 # Path for import module.
-module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
+# apt-get install python-reportlab
+#module_path = '/usr/lib/python2.4/site-packages/tinyerp-server/report/render'
+module_path = '/usr/lib/tinyerp-server/report/render'
 
 # Define path where TrueType font are saved:
-TrueTypePath = ('/usr/share/fonts/truetype/msttcorefonts',)
+# apt-get install ttf-freefont
+TrueTypePath = ('/usr/share/fonts/truetype/freefont',)
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -23,19 +27,12 @@ DEFAULT_FONT_FAMILLY = (
     'Times-BoldItalic',
 )
 # This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
-#DEFAULT_FONT_TTF = (
-#    'Times_New_Roman.ttf',
-#    'Times_New_Roman_Italic.ttf',
-#    'Times_New_Roman_Bold.ttf',
-#    'Times_New_Roman_Bold_Italic.ttf',
-#)
-
-# This file names MUST exist. The path is defined in reportlab.rl_config - TTFSearchPath
+# More available names: FreeSerif, FreeMono
 DEFAULT_FONT_TTF = (
-    'Arial.ttf',
-    'Arial_Italic.ttf',
-    'Arial_Bold.ttf',
-    'Arial_Bold_Italic.ttf',
+    'FreeSans.ttf',
+    'FreeSansOblique.ttf',
+    'FreeSansBold.ttf',
+    'FreeSansBoldOblique.ttf',
 )
 
 

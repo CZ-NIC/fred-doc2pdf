@@ -59,12 +59,24 @@ import reportlab
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
+# ================================================
+#
+# First KEEP original code:
+# It must precedent functions, because they use it
+#
+# ================================================
 
-# Init paths of the TrueType fonts
-reportlab.rl_config.TTFSearchPath = configuration.TrueTypePath
+# resolve problems with &
+original_paragraph_setup = reportlab.platypus.paragraph.Paragraph._setup
 
-# Default encoding (used for TrueType). Don't touch.
-trml2pdf.encoding = 'UTF-8'
+# Fonts
+original_rml_doc_render = trml2pdf._rml_doc.render
+
+# Page numbers
+original_BaseDocTemplate_endBuild = reportlab.platypus.BaseDocTemplate._endBuild
+original_PDFPage_check_format = reportlab.pdfbase.pdfdoc.PDFPage.check_format
+
+# ================================================
 
 def attr_get(node, attrs, dict={}):
     """Overwrite function attr_get() in module utils. We need encode unicodes.
@@ -87,15 +99,12 @@ def attr_get(node, attrs, dict={}):
             elif dict[key]=='int':
                 res[key] = int(node.getAttribute(key))
     return res
-utils.attr_get = attr_get
 
-original_paragraph_setup = reportlab.platypus.paragraph.Paragraph._setup
 def fred_paragraph_setup(self, text, style, bulletText, frags, cleaner):
     """Hook original function for resolve problem with occurence character & 
     during parsing XML code.
     """
     original_paragraph_setup(self, text.replace('&','&amp;'), style, bulletText, frags, cleaner)
-reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
 
 """
 Set of functions for register TrueType fonts.
@@ -154,7 +163,6 @@ If your documents works with unicode, you need use TrueType fonts.
 Here is hook for register TTF indo document.
 """
 
-original_rml_doc_render = trml2pdf._rml_doc.render
 def fred_render(self, out):
     el = self.dom.documentElement.getElementsByTagName('docinit')
     if el:
@@ -162,11 +170,11 @@ def fred_render(self, out):
     else:
         register_TTF_font_familly(configuration.DEFAULT_STYLE_FONT)
     original_rml_doc_render(self, out)
-trml2pdf._rml_doc.render = fred_render
 
 def fred_docinit(self, els):
     'Disable original function for register fonts.'
-trml2pdf._rml_doc.docinit = fred_docinit
+    pass
+
 
 """
 *** HOOK OF THE TOTAL PAGE NUMBER ***
@@ -198,6 +206,7 @@ FS = 28
 mark_count_page_number = chr(FS)
 mark_count_page_number_octal = r'\0%o'%FS
 
+
 def fred_textual(self, node):
     """Add tag of the Total page number.
     This hook implements new tag pageNumberTotal.
@@ -218,10 +227,8 @@ def fred_textual(self, node):
         elif (n.nodeType == node.TEXT_NODE):
             rc += n.data
     return rc.encode(trml2pdf.encoding)
-trml2pdf._rml_canvas._textual = fred_textual
 
 
-original_BaseDocTemplate_endBuild = reportlab.platypus.BaseDocTemplate._endBuild
 def save_num_total_pages(self):
     """Save number of the total pages.
     This hook saves the number of pages for use later in the creating document process.
@@ -229,16 +236,14 @@ def save_num_total_pages(self):
     global num_total_page
     num_total_page = self.page
     original_BaseDocTemplate_endBuild(self)
-reportlab.platypus.BaseDocTemplate._endBuild = save_num_total_pages
 
-original_PDFPage_check_format = reportlab.pdfbase.pdfdoc.PDFPage.check_format
+
 def load_num_total_pages(self, document):
     """Load number of the total pages.
     Befor output data repalce all occurences of the TotalPage mark by real number.
     """
     self.stream = self.stream.replace(mark_count_page_number_octal, str(num_total_page))
     original_PDFPage_check_format(self, document)
-reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
 
 
 def genpdf_help():
@@ -256,6 +261,54 @@ def test(data):
     r.render(fp)
     return '*** END ***' # fp.getvalue()
 
+# =============================================
+#
+#   HOOKS - overwrite previous code
+#
+# =============================================
+
+
+# ---------------------------------------------
+# fix unicode incompatibilities
+# ---------------------------------------------
+
+# Default encoding (used for TrueType). Don't touch.
+trml2pdf.encoding = 'UTF-8'
+
+# fix problem with unicode
+utils.attr_get = attr_get
+
+#Hook original function for resolve problem with occurence character & 
+#during parsing XML code.
+reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
+
+# ---------------------------------------------
+# Set of functions for register TrueType fonts.
+# ---------------------------------------------
+# Init paths of the TrueType fonts
+reportlab.rl_config.TTFSearchPath = configuration.TrueTypePath
+
+trml2pdf._rml_doc.render = fred_render
+trml2pdf._rml_doc.docinit = fred_docinit
+
+# ---------------------------------------------
+# Manage Page numbers
+# ---------------------------------------------
+
+#Add tag of the Total page number.
+#This hook implements new tag pageNumberTotal.
+trml2pdf._rml_canvas._textual = fred_textual
+
+#Save number of the total pages.
+#This hook saves the number of pages for use later in the creating document process.
+reportlab.platypus.BaseDocTemplate._endBuild = save_num_total_pages
+
+#Load number of the total pages.
+#Befor output data repalce all occurences of the TotalPage mark by real number.
+reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
+
+# =============================================
+    
 if __name__=="__main__":
   if sys.stdin.isatty():
     if len(sys.argv)>1:
