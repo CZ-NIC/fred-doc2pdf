@@ -95,42 +95,25 @@ Poznamka: Muzete pouzit jakykoliv jiny XSLT procesor.
 Zkontrolujte si ale, jestli umi ukladat dokument v kodovani UTF-8.
 
 
-*** Podpora PostgreSQL v Pythonu
-
-Zkontrolujte, jestli mate v Pythonu modul pro PostgreSQL databazi:
-
-    $ python
-    >>> import pyPgSQL
-
-pokud ne, tak jej nainstalujte:
-
-    $ sudo apt-get install python-pgsql
-
 
 *** Instalace Fred2pdf
 
-Nakopirujte modul do slozky site-packages/:
+Po stazeni z SVN provedte instalaci:
 
-    $ cd /usr/lib/python2.4/site-packages/
-    $ sudo svn co svn+ssh://user@public.nic.cz/svn/enum/fred2pdf/trunk/ fred2pdf/
+   $ sudo python setup.py config
+   $ sudo python setup.py install
 
-Vytvorte konfiguracni soubor ze zakladni predlohy:
+Prvni prikaz zkontroluje, jestli jsou pritomne moduly reportlab a TinyRML,
+nalezne potrebne TTF fonty a vytvori konfiguraci do souboru /etc/fred2pdf.conf.
+Ten je mozne nakopirovat i rucne z prikladu fred2pdf.conf.sample.
 
-    $ sudo cp configuration.py.default configuration.py
+Druhy prikaz provede samotnou instalaci modulu.
 
-Tim bude platny konfiguracni soubor umisten mimo repozitar SVN.
-V konfiguracnim souboru je defaultne nastavena cesta k fontum /usr/share/fonts/truetype/msttcorefonts.
-Pokud jsou fonty umisteny v jinem adresari, tak ji nastavte na spravnou hodnotu.
-Take je zde uveden defaultni nazev fontu, ktery se pouzije, pokud v sablone neni zadny font definovan.
 
-Vytvorte linky na spousteci skripty:
+Vytvorte si pomocne linky:
 
-1) Obecny parser "doc2pdf". Link na nej slouzi hlavne k testovacim ucelum:
-
-    $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/doc2pdf.py /usr/local/bin/doc2pdf
-
-2) Namapujte si do vaseho zkusebniho adresare odkazy na adresire templates/ a examples/ 
-   abyste mohli provest zkousky funkcnosti:
+Namapujte si do vaseho zkusebniho adresare odkazy na adresare templates/ a examples/ 
+abyste mohli provest zkousky funkcnosti:
 
     $ cd
     $ sudo ln -s /usr/lib/python2.4/site-packages/fred2pdf/templates templates

@@ -34,22 +34,20 @@ Here is example how to declare font familly in RML template:
 import sys
 import StringIO
 
-try:
-    import configuration
-except ImportError, msg:
-    sys.stderr.write("""ImportError: %s
-First you need create configuration.py. For that purpose you can use configuration.py.default file.
-$ cp configuration.py.default configuration.py
-"""%msg)
+# Load configuration
+import fred2pdf.configuration
+
+conf = fred2pdf.configuration.load()
+if not conf['status']:
     sys.exit(-1)
 
-module_path  = getattr(configuration, 'module_path', None)
-if module_path:
-    sys.path.insert(0, module_path)
+# Init module path
+if conf['module_path']:
+    sys.path.insert(0, conf['module_path'])
 
 # Import trml2pdf with posibility to definition of the module name.
 try:
-    exec 'from %s import trml2pdf, utils'%getattr(configuration, 'trml_module_name', 'trml2pdf')
+    exec 'from %s import trml2pdf, utils'%(len(conf['trml_module_name']) and conf['trml_module_name'] or 'trml2pdf')
 except ImportError, msg:
     sys.stderr.write('ImportError: %s\nYou need correct variables trml_module_name and module_path in your configuration.py file:\n'%msg)
     sys.exit(-1)
@@ -154,7 +152,7 @@ def docinit_TTF(els):
     if not docinit_TTF_elements('registerDefaultFont', els):
       # if template has not defined default font name
       # we use default names from this module
-      register_TTF_font_familly(configuration.DEFAULT_STYLE_FONT)
+      register_TTF_font_familly(conf['DEFAULT_STYLE_FONT'])
     docinit_TTF_elements('registerFont', els)
 
 """
@@ -168,7 +166,7 @@ def fred_render(self, out):
     if el:
         docinit_TTF(el)
     else:
-        register_TTF_font_familly(configuration.DEFAULT_STYLE_FONT)
+        register_TTF_font_familly(conf['DEFAULT_STYLE_FONT'])
     original_rml_doc_render(self, out)
 
 def fred_docinit(self, els):
@@ -286,7 +284,7 @@ reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
 # Set of functions for register TrueType fonts.
 # ---------------------------------------------
 # Init paths of the TrueType fonts
-reportlab.rl_config.TTFSearchPath = configuration.TrueTypePath
+reportlab.rl_config.TTFSearchPath = conf['TrueTypePath']
 
 trml2pdf._rml_doc.render = fred_render
 trml2pdf._rml_doc.docinit = fred_docinit
