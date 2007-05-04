@@ -98,16 +98,17 @@ Zkontrolujte si ale, jestli umi ukladat dokument v kodovani UTF-8.
 
 *** Instalace Fred2pdf
 
+Stahnete si Fred2pdf ze SVN:
+
+    $ svn co svn+ssh://user@public.nic.cz/svn/enum/fred2pdf
+
 Po stazeni z SVN provedte instalaci:
 
-   $ sudo python setup.py config
    $ sudo python setup.py install
 
-Prvni prikaz zkontroluje, jestli jsou pritomne moduly reportlab a TinyRML,
+Prikaz pred instalaci zkontroluje, jestli jsou pritomne moduly Reportlab a TinyRML,
 nalezne potrebne TTF fonty a vytvori konfiguraci do souboru /etc/fred2pdf.conf.
-Ten je mozne nakopirovat i rucne z prikladu fred2pdf.conf.sample.
-
-Druhy prikaz provede samotnou instalaci modulu.
+Konfiguracni soubor je mozne nakopirovat i rucne z prikladu fred2pdf.conf.sample.
 
 
 Vytvorte si pomocne linky:

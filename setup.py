@@ -8,7 +8,7 @@ import sys
 import os
 import re
 from distutils.core import setup
-from distutils.command import config
+from distutils.command import config,  install
 from distutils.sysconfig import PREFIX
 
 import fred2pdf.configuration
@@ -215,6 +215,15 @@ def make_config():
         status = fred2pdf.configuration.create_config(conf)
     return status
 
+def main_config():
+    'Main function for make configuration'
+    if fred2pdf.configuration.is_exists():
+        sys.stdout.write('Configuration file already exists.\n')
+        status = 1
+    else:
+        status = make_config()
+    return status
+
 
 class Config(config.config):
     """This is config class, which checks for fred2pdf 
@@ -223,11 +232,18 @@ class Config(config.config):
     description = "Check prerequisities of fred2pdf"
 
     def run(self):
-        if fred2pdf.configuration.is_exists():
-            sys.stdout.write('Configuration file already exists.\n')
-        else:
-            if make_config():
-                sys.stdout.write('OK, now you can do: sudo python setup.py install\n')
+        if main_config():
+            config.config.run(self)
+
+class FredInstall(install.install):
+    """This is config class, which checks for fred2pdf 
+    specific prerequisities.
+    """
+    description = "Install fred2pdf witch create config"
+
+    def run(self):
+        if main_config():
+            install.install.run(self)
 
 
 setup(name = 'Fred2PDF',
@@ -236,13 +252,13 @@ setup(name = 'Fred2PDF',
     author_email = 'zdenek.bohm@nic.cz',
     url = 'http://enum.nic.cz/',
     license = 'GNU GPL',
-    cmdclass = { 'config': Config }, 
+    cmdclass = { 'config': Config, 'install': FredInstall }, 
 
     packages = ('fred2pdf', ),
     scripts = ('doc2pdf.py', ),
     
     package_data={
-       'fred2pdf': ['templates/*.*'], 
+       'fred2pdf': ['templates/*.*',  'examples/*.*'], 
     },
     
     )
