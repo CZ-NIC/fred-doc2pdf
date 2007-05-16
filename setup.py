@@ -261,5 +261,8 @@ setup(name = 'Fred2PDF',
        'fred2pdf': ['templates/*.*',  'examples/*.*'], 
     },
     
+#    data_files = {
+#    }
+    
     )
     

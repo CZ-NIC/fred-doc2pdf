@@ -9,7 +9,7 @@ import re
 import desktop_config
 
 # (Path and) Name of the configuration file
-CONFIG_FILENAME = '/etc/fred2pdf.conf'
+CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
 
 # Default values. They are overwritten by values from config file.
 settings = {
@@ -88,9 +88,19 @@ def is_writable():
     'Chcek rights - if file is writable'
     status = 1
     try:
+        # create folders
+        parts = CONFIG_FILENAME.split('/')[:-1]
+        for n in range(len(parts)):
+            path = '/'.join(parts[:n+1])
+            if not path: continue
+            if not os.path.isdir(path):
+                os.mkdir(path)
+        
+        # try write to file
         f = open(CONFIG_FILENAME, 'w')
+        
     except IOError, msg:
-        sys.stdout.write('IOError: %s\n'%msg)
+        sys.stdout.write('IOError (is writable): %s\n'%msg)
         status = 0
     else:
         f.close()
