@@ -31,18 +31,106 @@ Here is example how to declare font familly in RML template:
     />
 </docinit>
 """
-import sys
+import os, sys
 import StringIO
+import re
+import ConfigParser
+import getopt
 
-# Load configuration
-import fred2pdf.configuration
+# (Path and) Name of the configuration file
+CONFIG_FILENAME = CONFIG_FROM_OPTION = '/etc/fred/fred2pdf.conf'
+CONFIG_SECTION = 'main'
+CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf')
 
-conf = fred2pdf.configuration.load()
-if not conf['status']:
-    sys.exit(-1)
+
+# This font names are used in default (implicit) style.
+# Names are separated from file-TTF-names for better names redefine.
+# (This names can be overwrite by template definition.)
+DEFAULT_FONT_FAMILLY = (
+    'Times-Roman',
+    'Times-Italic',
+    'Times-Bold',
+    'Times-BoldItalic',
+)
+
+def get_config_from_option():
+    params = {}
+    args = []
+    try:
+        opt, args = getopt.getopt(sys.argv[1:], 'f:ht', ['config=', 'help', 'test='])
+        status = 1
+    except getopt.GetoptError, msg:
+        sys.stderr.write('Option Error:%s\n'%msg)
+        status = 0
+    else:
+        for k, v in opt:
+            params[k] = v
+        
+    return status, params, args
+
+def is_exists():
+    'Check if configuration file exists'
+    return os.path.isfile(CONFIG_FILENAME) or os.path.isfile(CONFIG_FROM_OPTION)
+
+def __load_configuration__(filenames):
+    'Load configuration data'
+    conf = {}
+    config = ConfigParser.SafeConfigParser()
+    
+    # load config
+    try:
+        config.read(filenames)
+    except (ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError), msg:
+        sys.stderr.write('ConfigError: %s\n'%msg)
+        return None
+        
+    # load values
+    conf = {}
+    for option in CONFIG_OPTIONS:
+        try:
+            conf[option] = config.get(CONFIG_SECTION, option)
+        except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.InterpolationMissingOptionError), msg:
+            sys.stderr.write('ConfigError.get: %s\n'%msg)
+            return None
+    
+    # build environments
+    is_error = 0
+    conf['TrueTypePath'] = re.split('\s+', conf.get('true_type_path'))
+    if not len(conf['TrueTypePath'][0]):
+        sys.stderr.write('Error: Variable TrueTypePath is empty.\n')
+        is_error = 1
+        
+    conf['DEFAULT_FONT_TTF'] = re.split('\s+', conf.get('default_font_ttf'))
+    if len(conf['DEFAULT_FONT_TTF']) == 4:
+        conf['DEFAULT_STYLE_FONT'] = zip(DEFAULT_FONT_FAMILLY, conf['DEFAULT_FONT_TTF'])
+    else:
+        sys.stderr.write('Error: Variable DEFAULT_FONT_TTF must have four items.\n')
+        is_error = 1
+        
+    if is_error:
+        conf = None
+    return conf
+
+def get_default_conf():
+    conf = {}
+    for name in CONFIG_OPTIONS:
+        conf[name] = ''
+    return conf
+
+    
+    
+
+if is_exists():
+    # Load configuration, if exists
+    conf = __load_configuration__((CONFIG_FILENAME, CONFIG_FROM_OPTION))
+    if not conf:
+        sys.exit(-1)
+else:
+##    sys.stderr.write("Configuration file '%s' does't exists.\n"%CONFIG_FILENAME)
+    conf = get_default_conf()
 
 # Init module path
-if conf['module_path']:
+if conf.has_key('module_path'):
     sys.path.insert(0, conf['module_path'])
 
 # Import trml2pdf with posibility to definition of the module name.
@@ -284,7 +372,7 @@ reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
 # Set of functions for register TrueType fonts.
 # ---------------------------------------------
 # Init paths of the TrueType fonts
-reportlab.rl_config.TTFSearchPath = conf['TrueTypePath']
+reportlab.rl_config.TTFSearchPath = conf.get('TrueTypePath', '')
 
 trml2pdf._rml_doc.render = fred_render
 trml2pdf._rml_doc.docinit = fred_docinit
@@ -309,19 +397,33 @@ reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
     
 if __name__=="__main__":
   if sys.stdin.isatty():
-    if len(sys.argv)>1:
-        if sys.argv[1]=='--help':
-            genpdf_help()
-        elif sys.argv[1]=='--test':
-            if len(sys.argv)>2:
-                print test(file(sys.argv[2], 'r').read())
+    if len(sys.argv) > 1:
+        # parse options
+        status, opt, args = get_config_from_option()
+        if status:
+            # if options are OK:
+            if opt.has_key('-h') or opt.has_key('--help'):
+                genpdf_help()
             else:
-                print 'Missing test file. Usage: doc2pdf --test input.rml' 
-        else:
-            print trml2pdf.parseString(file(sys.argv[1], 'r').read())
+                # user defines own config path
+                if opt.has_key('-f') or opt.has_key('--config'):
+                    CONFIG_FROM_OPTION = opt.has_key('--config') and opt['--config'] or opt['-f']
+                    conf = __load_configuration__((CONFIG_FILENAME, CONFIG_FROM_OPTION))
+                # process test
+                if opt.has_key('-t') or opt.has_key('--test'):
+                    test = opt.has_key('-t') and opt['-t'] or opt['--test']
+                    print test(file(test).read())
+                else:
+                    if len(args) == 1:
+                        # if filename is set
+                        try:
+                            print trml2pdf.parseString(file(args[0], 'r').read())
+                        except IOError, msg:
+                            sys.stderr.write('IOError: %s.\n'%msg)
+                    else:
+                        sys.stderr.write('RML file must be set. See help.\n')
     else:
-        print 'Usage: doc2pdf input.rml > output.pdf'
-        print 'Try \'doc2pdf --help\' for more information.'
+        genpdf_help()
   else:
     # module in pipe:
     print trml2pdf.parseString(sys.stdin.read())

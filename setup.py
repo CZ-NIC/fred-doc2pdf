@@ -7,11 +7,15 @@
 import sys
 import os
 import re
+
 from distutils.core import setup
 from distutils.command import config,  install
-from distutils.sysconfig import PREFIX
+from distutils.sysconfig import get_python_lib
+from distutils.util import change_root
 
-import fred2pdf.configuration
+import ConfigParser
+from doc2pdf import CONFIG_FILENAME, CONFIG_SECTION, CONFIG_OPTIONS, get_default_conf
+
 
 # ----------------------------------------
 # Here you can configure config variables:
@@ -22,18 +26,25 @@ MODULE_REPORTLAB = 'reportlab'
 
 # Names of the TRML modules
 MODULES_TINYRML = ('trml2pdf', 'rml2pdf')
+TINYERP_PATH = 'tinyerp-server/report/render'
+
+# Folder where setup looks for font
+FONT_ROOT = '/usr/share/fonts'
 
 # Folder names where process looking for fonts
 PREFERRED_FONT_FOLDERS = ('freefont', 'truetype')
 
 # Font names which process looking for
 PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono', 
+        'DejaVuSans', 'DejaVuSerif',
         'Helvetica', 'Arial', 'Times', 'Times-Roman', 'Times-New-Roman')
 
 # ----------------------------------------
 
+MAIN_SCRIPT_NAME = 'doc2pdf.py'
+OK = 1 # define true
 
-
+    
 def try_import(modulename):
     'Check is exists module name'
     status = 1
@@ -73,12 +84,25 @@ def check_reportlab():
 
 def check_trml2pdf():
     'Check Tiny RML templating module'
+    
+    # find in standrard module path
     for modulename in MODULES_TINYRML:
         status = try_import(modulename)
         if status:
-            return status, modulename
+            return status, modulename, ''
+    
+    path = os.path.join(get_python_lib(), TINYERP_PATH)
+    sys.stdout.write('Insert path: %s\n'%path)
+    sys.path.insert(0, path)
+
+    # try again with explicit path
+    for modulename in MODULES_TINYRML:
+        status = try_import(modulename)
+        if status:
+            return status, modulename, path
+    
     sys.stderr.write('Try install: apt-get install tinyerp-server\n')
-    return 0, ''
+    return 0, '', ''
     
 
 def get_popen_result(command):
@@ -102,15 +126,13 @@ def get_popen_result(command):
 
 def find_font_folders():
     'Returs list of folders'
-    
-    for folder_name in PREFERRED_FONT_FOLDERS:
-        sys.stdout.write("Looking for folder '%s'...\n"%folder_name)
-        status, data = get_popen_result('find %s -type d -iname %s'%(PREFIX, folder_name))
-        data = data.strip()
-        if status and len(data):
-            break
-        else:
-            sys.stdout.write("Folder '%s' was not found.\n"%folder_name)
+
+    sys.stdout.write("Looking for folders '%s'...\n"%"', '".join(PREFERRED_FONT_FOLDERS))
+    cmd = 'find %s -type d%s'%(FONT_ROOT, ' -or'.join(map(lambda s: ' -iname %s'%s, PREFERRED_FONT_FOLDERS)))
+    # sys.stdout.write('$ %s\n'%cmd) info about shell command
+    status, data = get_popen_result(cmd)
+    data = data.strip()
+
     # list of path with font folders:
     font_folders = re.split('\s+', data)
     print 'Found %d folder(s).'%len(font_folders)
@@ -186,21 +208,73 @@ def find_font_path_and_familly():
     return status, font_path, font_names
     
 
+def save_config(conf):
+    'Save data into config'
+    
+    config = ConfigParser.SafeConfigParser()
+    config.add_section(CONFIG_SECTION)
+    for option, value in conf.items():
+        config.set(CONFIG_SECTION, option, value)
+    
+    try:
+        fp = open(CONFIG_FILENAME, 'w')
+        config.write(fp)
+        fp.close()
+        sys.stdout.write("Configuration file '%s' created OK.\n"%CONFIG_FILENAME)
+    except IOError, msg:
+        sys.stderr.write('IOError: %s\n'%msg)
+        return None
+
+    return OK
+    
+
+def is_exists():
+    'Check if configuration file exists'
+    return os.path.isfile(CONFIG_FILENAME)
+
+def is_writable():
+    'Chcek rights - if file is writable'
+    status = 1
+    try:
+        # create folders
+        parts = CONFIG_FILENAME.split('/')[:-1]
+        for n in range(len(parts)):
+            path = '/'.join(parts[:n+1])
+            if not path: continue
+            if not os.path.isdir(path):
+                os.mkdir(path)
+        
+        # try write to file
+        f = open(CONFIG_FILENAME, 'w')
+        
+    except IOError, msg:
+        sys.stdout.write('IOError (is writable): %s\n'%msg)
+        status = 0
+    else:
+        f.close()
+        os.unlink(CONFIG_FILENAME)
+    return status
+
+    
 def make_config():
     'Test checking configuration'
-    if not fred2pdf.configuration.is_writable():
+    
+    if not is_writable():
         return 0
     
     status = 1
-    conf = fred2pdf.configuration.settings
+    
+    conf = get_default_conf() # from doc2pdf
 
     stat, reportlab_name = check_reportlab()
     if not stat:
         status = 0
     
-    stat, trml_name = check_trml2pdf()
+    stat, trml_name, path = check_trml2pdf()
     if stat:
         conf['trml_module_name'] = trml_name
+        if path:
+            conf['module_path'] = path # particular path
     else:
         status = 0
     
@@ -212,12 +286,25 @@ def make_config():
         status = 0
 
     if status:
-        status = fred2pdf.configuration.create_config(conf)
+        status = save_config(conf)
+    else:
+        sys.stdout.write('Configuration file was not created.\nClear out problems and try again.\n')
     return status
 
-def main_config():
+def main_config(inst):
     'Main function for make configuration'
-    if fred2pdf.configuration.is_exists():
+    global CONFIG_FILENAME
+    
+    if 'bdist' in sys.argv[1:]:
+        return 1 # not run script in bdist mode
+    
+    if inst.root:
+        # change path to configuration file path
+        CONFIG_FILENAME = change_root(inst.root, CONFIG_FILENAME)
+        sys.stdout.write("Configuration filepath has been modified to '%s'.\n"%CONFIG_FILENAME)
+        inst.fred2pdf_changed_path = 1
+    
+    if is_exists():
         sys.stdout.write('Configuration file already exists.\n')
         status = 1
     else:
@@ -232,7 +319,7 @@ class Config(config.config):
     description = "Check prerequisities of fred2pdf"
 
     def run(self):
-        if main_config():
+        if main_config(self):
             config.config.run(self)
 
 class FredInstall(install.install):
@@ -242,27 +329,45 @@ class FredInstall(install.install):
     description = "Install fred2pdf witch create config"
 
     def run(self):
-        if main_config():
+        if main_config(self):
             install.install.run(self)
+        if getattr(self, 'fred2pdf_changed_path'):
+            # write changed CONFIG_FILENAME of the path to main script
+            path = os.path.join(self.install_scripts, MAIN_SCRIPT_NAME)
+            body = open(path).read()
+            body = re.sub("CONFIG_FILENAME\s*=\s*['\"][^'\"]+['\"]", "CONFIG_FILENAME = '%s'"%CONFIG_FILENAME, body, 1)
+            open(path, 'w').write(body)
+            sys.stdout.write("Variable CONFIG_FILENAME changed in source file '%s'.\n"%path)
 
+
+FILES1 = """advance_invoice.xsl  auth_info_en.xml  cz_nic_logo.jpg
+    fred_invoice.dtd  invoice.xsl
+    auth_info_cs.xml     auth_info.xsl     
+    fred_advance_invoice.dtd  helios.xsl"""            
+FILES2 = """advance_invoice.pdf  auth_info.rml                     
+    helios.xml   invoice.xml advance_invoice.xml  auth_info.xml
+    invoice.pdf  migrace.xml auth_info.pdf        
+    helios-popis-formatu.text_v_utf8  invoice.rml 
+    test_czech_encoding.rml"""
 
 setup(name = 'Fred2PDF',
     description = 'PDF creator module',
     author = 'Zdenek Bohm, CZ.NIC',
     author_email = 'zdenek.bohm@nic.cz',
     url = 'http://enum.nic.cz/',
+    version = '1.0.0',
     license = 'GNU GPL',
     cmdclass = { 'config': Config, 'install': FredInstall }, 
 
-    packages = ('fred2pdf', ),
-    scripts = ('doc2pdf.py', ),
+    scripts = (MAIN_SCRIPT_NAME, ),
     
-    package_data={
-       'fred2pdf': ['templates/*.*',  'examples/*.*'], 
-    },
-    
-#    data_files = {
-#    }
-    
+    data_files=[
+        ('share/fred2pdf_docs/templates', map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
+        ), 
+        ('share/fred2pdf_docs/examples', map(lambda s:'examples/%s'%s, re.split('\s*', FILES2)), 
+        )
+        ]
+
+
     )
     
