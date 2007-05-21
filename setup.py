@@ -331,7 +331,7 @@ class FredInstall(install.install):
     def run(self):
         if main_config(self):
             install.install.run(self)
-        if getattr(self, 'fred2pdf_changed_path'):
+        if getattr(self, 'fred2pdf_changed_path', None):
             # write changed CONFIG_FILENAME of the path to main script
             path = os.path.join(self.install_scripts, MAIN_SCRIPT_NAME)
             body = open(path).read()

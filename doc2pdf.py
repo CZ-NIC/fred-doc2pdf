@@ -1,36 +1,51 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""Usage: doc2pdf [OPTION...] filename.rml
+
+Render the standard input (RML) and output a PDF file.
+
+ Options:
+  -? --help               this help
+  -f --config=FILENAME    use configuration file
+  -o --output=FILENAME    output into file (default is stdout)
+
+Examples: 
+  doc2pdf input.rml > output.pdf
+  doc2pdf -o output.pdf input.rml
+  xsltproc template.xsl data.xml | doc2pdf > output.pdf
+  xsltproc template.xsl data.xml | doc2pdf -o output.pdf
 """
-This module is running on the Tiny RML2PDF system (http://openreport.org/) 
-and  The ReportLab Open Source PDF library (the ReportLab Toolkit) 
-http://www.reportlab.org/.
 
-It was written due to these system don't work with UTF8 encoding.
+#    This module is running on the Tiny RML2PDF system (http://openreport.org/) 
+#    and  The ReportLab Open Source PDF library (the ReportLab Toolkit) 
+#    http://www.reportlab.org/.
+#    
+#    It was written due to these system don't work with UTF8 encoding.
+#    
+#    For this purpose module works with TrueType fonts. It set path
+#    and load default font. This names are must be saved into configuration.py
+#    module.
+#    
+#    Templates must declare used font names and this names must be accessible
+#    on the defined path.
+#    
+#    Here is example how to declare font familly in RML template:
+#    
+#    <docinit>
+#      <registerDefaultFont 
+#        fontName="Times-Roman" fontFile="Times_New_Roman.ttf" 
+#        fontNameBold="Times-Bold" fontFileBold="Times_New_Roman_Bold.ttf" 
+#        fontNameItalic="Times-Italic" fontFileItalic="Times_New_Roman_Italic.ttf" 
+#        fontNameBoldItalic="Times-BoldItalic" fontFileBoldItalic="Times_New_Roman_Bold_Italic.ttf" 
+#        />
+#      <registerFont 
+#        fontName="Arial" fontFile="Arial.ttf" 
+#        fontNameBold="Arial-Bold" fontFileBold="Arial_Bold.ttf" 
+#        fontNameItalic="Arial-Italic" fontFileItalic="Arial_Italic.ttf" 
+#        fontNameBoldItalic="Arial-BoldItalic" fontFileBoldItalic="Arial_Bold_Italic.ttf" 
+#        />
+#    </docinit>
 
-For this purpose module works with TrueType fonts. It set path
-and load default font. This names are must be saved into configuration.py
-module.
-
-Templates must declare used font names and this names must be accessible
-on the defined path.
-
-Here is example how to declare font familly in RML template:
-
-<docinit>
-  <registerDefaultFont 
-    fontName="Times-Roman" fontFile="Times_New_Roman.ttf" 
-    fontNameBold="Times-Bold" fontFileBold="Times_New_Roman_Bold.ttf" 
-    fontNameItalic="Times-Italic" fontFileItalic="Times_New_Roman_Italic.ttf" 
-    fontNameBoldItalic="Times-BoldItalic" fontFileBoldItalic="Times_New_Roman_Bold_Italic.ttf" 
-    />
-  <registerFont 
-    fontName="Arial" fontFile="Arial.ttf" 
-    fontNameBold="Arial-Bold" fontFileBold="Arial_Bold.ttf" 
-    fontNameItalic="Arial-Italic" fontFileItalic="Arial_Italic.ttf" 
-    fontNameBoldItalic="Arial-BoldItalic" fontFileBoldItalic="Arial_Bold_Italic.ttf" 
-    />
-</docinit>
-"""
 import os, sys
 import StringIO
 import re
@@ -38,10 +53,9 @@ import ConfigParser
 import getopt
 
 # (Path and) Name of the configuration file
-CONFIG_FILENAME = CONFIG_FROM_OPTION = '/etc/fred/fred2pdf.conf'
+CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf')
-
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -53,11 +67,30 @@ DEFAULT_FONT_FAMILLY = (
     'Times-BoldItalic',
 )
 
+def get_default_conf():
+    conf = {}
+    for name in CONFIG_OPTIONS:
+        conf[name] = ''
+    # default configuration pathfilename
+    conf['config'] = CONFIG_FILENAME
+    return conf
+
+# variables form configuration file
+CONFIG = get_default_conf()
+HOOKS = {}
+
+def fnc(*argvs):
+    'Function in case if required function mising.'
+    sys.stderr.write("Error: Missing function.\n")
+    sys.stderr.write("argvs: %s.\n"%str(argvs))
+
+
+
 def get_config_from_option():
     params = {}
     args = []
     try:
-        opt, args = getopt.getopt(sys.argv[1:], 'f:ht', ['config=', 'help', 'test='])
+        opt, args = getopt.getopt(sys.argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
         status = 1
     except getopt.GetoptError, msg:
         sys.stderr.write('Option Error:%s\n'%msg)
@@ -68,101 +101,48 @@ def get_config_from_option():
         
     return status, params, args
 
-def is_exists():
-    'Check if configuration file exists'
-    return os.path.isfile(CONFIG_FILENAME) or os.path.isfile(CONFIG_FROM_OPTION)
 
-def __load_configuration__(filenames):
+def __load_configuration__():
     'Load configuration data'
-    conf = {}
+    global CONFIG
+
+    if not os.path.isfile(CONFIG['config']):
+        sys.stderr.write("Error: Missing configuration file: '%s'.\n"%CONFIG['config'])
+        return None
+        
     config = ConfigParser.SafeConfigParser()
     
     # load config
     try:
-        config.read(filenames)
+        config.read(CONFIG['config'])
     except (ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError), msg:
         sys.stderr.write('ConfigError: %s\n'%msg)
         return None
         
     # load values
-    conf = {}
     for option in CONFIG_OPTIONS:
         try:
-            conf[option] = config.get(CONFIG_SECTION, option)
+            CONFIG[option] = config.get(CONFIG_SECTION, option)
         except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.InterpolationMissingOptionError), msg:
             sys.stderr.write('ConfigError.get: %s\n'%msg)
             return None
     
     # build environments
     is_error = 0
-    conf['TrueTypePath'] = re.split('\s+', conf.get('true_type_path'))
-    if not len(conf['TrueTypePath'][0]):
+    CONFIG['TrueTypePath'] = re.split('\s+', CONFIG.get('true_type_path'))
+    if not len(CONFIG['TrueTypePath'][0]):
         sys.stderr.write('Error: Variable TrueTypePath is empty.\n')
-        is_error = 1
+        return None
         
-    conf['DEFAULT_FONT_TTF'] = re.split('\s+', conf.get('default_font_ttf'))
-    if len(conf['DEFAULT_FONT_TTF']) == 4:
-        conf['DEFAULT_STYLE_FONT'] = zip(DEFAULT_FONT_FAMILLY, conf['DEFAULT_FONT_TTF'])
+    CONFIG['DEFAULT_FONT_TTF'] = re.split('\s+', CONFIG.get('default_font_ttf'))
+    if len(CONFIG['DEFAULT_FONT_TTF']) == 4:
+        CONFIG['DEFAULT_STYLE_FONT'] = zip(DEFAULT_FONT_FAMILLY, CONFIG['DEFAULT_FONT_TTF'])
     else:
         sys.stderr.write('Error: Variable DEFAULT_FONT_TTF must have four items.\n')
-        is_error = 1
+        return None
         
-    if is_error:
-        conf = None
-    return conf
-
-def get_default_conf():
-    conf = {}
-    for name in CONFIG_OPTIONS:
-        conf[name] = ''
-    return conf
-
+    return 1
     
-    
-
-if is_exists():
-    # Load configuration, if exists
-    conf = __load_configuration__((CONFIG_FILENAME, CONFIG_FROM_OPTION))
-    if not conf:
-        sys.exit(-1)
-else:
-##    sys.stderr.write("Configuration file '%s' does't exists.\n"%CONFIG_FILENAME)
-    conf = get_default_conf()
-
-# Init module path
-if conf.has_key('module_path'):
-    sys.path.insert(0, conf['module_path'])
-
-# Import trml2pdf with posibility to definition of the module name.
-try:
-    exec 'from %s import trml2pdf, utils'%(len(conf['trml_module_name']) and conf['trml_module_name'] or 'trml2pdf')
-except ImportError, msg:
-    sys.stderr.write('ImportError: %s\nYou need correct variables trml_module_name and module_path in your configuration.py file:\n'%msg)
-    sys.exit(-1)
-
-# Need for register TrueType fonts
-import reportlab
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfgen import canvas
-
-# ================================================
-#
-# First KEEP original code:
-# It must precedent functions, because they use it
-#
-# ================================================
-
-# resolve problems with &
-original_paragraph_setup = reportlab.platypus.paragraph.Paragraph._setup
-
-# Fonts
-original_rml_doc_render = trml2pdf._rml_doc.render
-
-# Page numbers
-original_BaseDocTemplate_endBuild = reportlab.platypus.BaseDocTemplate._endBuild
-original_PDFPage_check_format = reportlab.pdfbase.pdfdoc.PDFPage.check_format
-
-# ================================================
 
 def attr_get(node, attrs, dict={}):
     """Overwrite function attr_get() in module utils. We need encode unicodes.
@@ -190,7 +170,7 @@ def fred_paragraph_setup(self, text, style, bulletText, frags, cleaner):
     """Hook original function for resolve problem with occurence character & 
     during parsing XML code.
     """
-    original_paragraph_setup(self, text.replace('&','&amp;'), style, bulletText, frags, cleaner)
+    HOOKS.get('original_paragraph_setup', fnc)(self, text.replace('&','&amp;'), style, bulletText, frags, cleaner)
 
 """
 Set of functions for register TrueType fonts.
@@ -240,7 +220,7 @@ def docinit_TTF(els):
     if not docinit_TTF_elements('registerDefaultFont', els):
       # if template has not defined default font name
       # we use default names from this module
-      register_TTF_font_familly(conf['DEFAULT_STYLE_FONT'])
+      register_TTF_font_familly(CONFIG['DEFAULT_STYLE_FONT'])
     docinit_TTF_elements('registerFont', els)
 
 """
@@ -254,8 +234,8 @@ def fred_render(self, out):
     if el:
         docinit_TTF(el)
     else:
-        register_TTF_font_familly(conf['DEFAULT_STYLE_FONT'])
-    original_rml_doc_render(self, out)
+        register_TTF_font_familly(CONFIG['DEFAULT_STYLE_FONT'])
+    HOOKS.get('original_rml_doc_render', fnc)(self, out)
 
 def fred_docinit(self, els):
     'Disable original function for register fonts.'
@@ -321,7 +301,7 @@ def save_num_total_pages(self):
     """
     global num_total_page
     num_total_page = self.page
-    original_BaseDocTemplate_endBuild(self)
+    HOOKS.get('original_BaseDocTemplate_endBuild', fnc)(self)
 
 
 def load_num_total_pages(self, document):
@@ -329,102 +309,186 @@ def load_num_total_pages(self, document):
     Befor output data repalce all occurences of the TotalPage mark by real number.
     """
     self.stream = self.stream.replace(mark_count_page_number_octal, str(num_total_page))
-    original_PDFPage_check_format(self, document)
+    HOOKS.get('original_PDFPage_check_format', fnc)(self, document)
 
 
-def genpdf_help():
-    print """Usage: doc2pdf input.rml >output.pdf
-Render the standard input (RML) and output a PDF file.
-For test use:
-$ doc2pdf --test input.rml
-"""
-    sys.exit(0)
+def parse_options(argv):
+    """Parse commandline options and load configuration.
+    Returns filename of the RML file or None if any problem
+    occurs.
+    """
+    global CONFIG
+    
+    if len(sys.argv) < 2:
+        print __doc__
+        return None
+        
+    status, opt, args = get_config_from_option()
+    if not status:
+        return None
+    
+    if opt.has_key('-h') or opt.has_key('--help'):
+        print __doc__
+        return None
 
-def test(data):
-    'For test only. This is good for hide PDF binary source.'
-    r = trml2pdf._rml_doc(data)
-    fp = StringIO.StringIO()
-    r.render(fp)
-    return '*** END ***' # fp.getvalue()
+    if opt.has_key('-f') or opt.has_key('--config'):
+        CONFIG['config'] = opt.has_key('--config') and opt['--config'] or opt['-f']
+        
+    if CONFIG is None:
+        return None
+
+    filename = None
+
+    if opt.has_key('-o') or opt.has_key('--output'):
+        CONFIG['output'] = opt.has_key('-o') and opt['-o'] or opt['--output']
+
+    if sys.stdin.isatty():
+        # required filename only in atty mode
+        if len(args) == 1:
+            filename = args[0]
+        else:
+            sys.stderr.write('RML file must be set. See help.\n')
+    
+    return filename
+
+
+def import_modules():
+    'Import reportlab modules according to config settings'
+    global reportlab, TTFont, canvas, utils, trml2pdf
+    
+    result = 1
+    
+    # Need for register TrueType fonts
+    import reportlab
+    from reportlab.pdfbase.ttfonts import TTFont
+    from reportlab.pdfgen import canvas
+
+    # Init module path
+    if CONFIG.has_key('module_path'):
+        sys.path.insert(0, CONFIG['module_path'])
+    
+    # Import trml2pdf with posibility to definition of the module name.
+    try:
+        exec 'from %s import trml2pdf as trml, utils as utl'%(len(CONFIG.get('trml_module_name', '')) and CONFIG['trml_module_name'] or 'trml2pdf')
+    except ImportError, msg:
+        sys.stderr.write('ImportError: %s\n'%msg)
+        sys.stderr.write('Chceck your configuration file.\n')
+        result = 0
+    else:
+        # register imported modules into globals
+        trml2pdf = trml
+        utils = utl
+
+    return result
 
 # =============================================
 #
 #   HOOKS - overwrite previous code
 #
 # =============================================
+def init_hooks():
+    'Initialisate all hooks into reportalb module.'
+    global HOOKS
+
+    # register originals
+    # ================================================
+    #
+    # First KEEP original code:
+    # It must precedent functions, because they use it
+    #
+    # ================================================
+    
+    # resolve problems with &
+    HOOKS['original_paragraph_setup'] = reportlab.platypus.paragraph.Paragraph._setup
+    
+    # Fonts
+    HOOKS['original_rml_doc_render'] = trml2pdf._rml_doc.render
+    
+    # Page numbers
+    HOOKS['original_BaseDocTemplate_endBuild'] = reportlab.platypus.BaseDocTemplate._endBuild
+    HOOKS['original_PDFPage_check_format'] = reportlab.pdfbase.pdfdoc.PDFPage.check_format
+    
+    # ================================================
+    # Second hooks originals:
+        
+    # ---------------------------------------------
+    # fix unicode incompatibilities
+    # ---------------------------------------------
+    
+    # Default encoding (used for TrueType). Don't touch.
+    trml2pdf.encoding = 'UTF-8'
+    
+    # fix problem with unicode
+    utils.attr_get = attr_get
+    
+    #Hook original function for resolve problem with occurence character & 
+    #during parsing XML code.
+    reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
+    
+    # ---------------------------------------------
+    # Set of functions for register TrueType fonts.
+    # ---------------------------------------------
+    # Init paths of the TrueType fonts
+    reportlab.rl_config.TTFSearchPath = CONFIG.get('TrueTypePath', '')
+    
+    trml2pdf._rml_doc.render = fred_render
+    trml2pdf._rml_doc.docinit = fred_docinit
+    
+    # ---------------------------------------------
+    # Manage Page numbers
+    # ---------------------------------------------
+    
+    #Add tag of the Total page number.
+    #This hook implements new tag pageNumberTotal.
+    trml2pdf._rml_canvas._textual = fred_textual
+    
+    #Save number of the total pages.
+    #This hook saves the number of pages for use later in the creating document process.
+    reportlab.platypus.BaseDocTemplate._endBuild = save_num_total_pages
+    
+    #Load number of the total pages.
+    #Befor output data repalce all occurences of the TotalPage mark by real number.
+    reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
+    
+    # =============================================
+
+def run(body):
+    'Run PDF process'
+    if __load_configuration__() and import_modules():
+        init_hooks()
+        if CONFIG.has_key('output'):
+            try:
+                fp = open(CONFIG['output'], 'w')
+            except IOError, msg:
+                sys.stderr.write('IOError: %s.\n'%msg)
+            else:
+                fp.write(trml2pdf.parseString(body))
+                fp.close()
+        else:
+            print trml2pdf.parseString(body)
+
+def main(argv):
+    'Main module function'
+    if sys.stdin.isatty():
+        # run as single command
+        filename = parse_options(argv)
+        if filename is None:
+            return
+        try:
+            body = file(filename).read()
+        except IOError, msg:
+            sys.stderr.write('IOError: %s.\n'%msg)
+        else:
+            run(body)
+    else:
+        # run in pipe
+        parse_options(argv)
+        run(sys.stdin.read())
+    
 
 
-# ---------------------------------------------
-# fix unicode incompatibilities
-# ---------------------------------------------
 
-# Default encoding (used for TrueType). Don't touch.
-trml2pdf.encoding = 'UTF-8'
-
-# fix problem with unicode
-utils.attr_get = attr_get
-
-#Hook original function for resolve problem with occurence character & 
-#during parsing XML code.
-reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
-
-# ---------------------------------------------
-# Set of functions for register TrueType fonts.
-# ---------------------------------------------
-# Init paths of the TrueType fonts
-reportlab.rl_config.TTFSearchPath = conf.get('TrueTypePath', '')
-
-trml2pdf._rml_doc.render = fred_render
-trml2pdf._rml_doc.docinit = fred_docinit
-
-# ---------------------------------------------
-# Manage Page numbers
-# ---------------------------------------------
-
-#Add tag of the Total page number.
-#This hook implements new tag pageNumberTotal.
-trml2pdf._rml_canvas._textual = fred_textual
-
-#Save number of the total pages.
-#This hook saves the number of pages for use later in the creating document process.
-reportlab.platypus.BaseDocTemplate._endBuild = save_num_total_pages
-
-#Load number of the total pages.
-#Befor output data repalce all occurences of the TotalPage mark by real number.
-reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
-
-# =============================================
     
 if __name__=="__main__":
-  if sys.stdin.isatty():
-    if len(sys.argv) > 1:
-        # parse options
-        status, opt, args = get_config_from_option()
-        if status:
-            # if options are OK:
-            if opt.has_key('-h') or opt.has_key('--help'):
-                genpdf_help()
-            else:
-                # user defines own config path
-                if opt.has_key('-f') or opt.has_key('--config'):
-                    CONFIG_FROM_OPTION = opt.has_key('--config') and opt['--config'] or opt['-f']
-                    conf = __load_configuration__((CONFIG_FILENAME, CONFIG_FROM_OPTION))
-                # process test
-                if opt.has_key('-t') or opt.has_key('--test'):
-                    test = opt.has_key('-t') and opt['-t'] or opt['--test']
-                    print test(file(test).read())
-                else:
-                    if len(args) == 1:
-                        # if filename is set
-                        try:
-                            print trml2pdf.parseString(file(args[0], 'r').read())
-                        except IOError, msg:
-                            sys.stderr.write('IOError: %s.\n'%msg)
-                    else:
-                        sys.stderr.write('RML file must be set. See help.\n')
-    else:
-        genpdf_help()
-  else:
-    # module in pipe:
-    print trml2pdf.parseString(sys.stdin.read())
+    main(sys.argv)
 
