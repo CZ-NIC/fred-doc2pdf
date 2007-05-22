@@ -302,7 +302,9 @@ def main_config(inst):
         # change path to configuration file path
         CONFIG_FILENAME = change_root(inst.root, CONFIG_FILENAME)
         sys.stdout.write("Configuration filepath has been modified to '%s'.\n"%CONFIG_FILENAME)
-        inst.fred2pdf_changed_path = 1
+# temporary disabled because it set path during bdist_rpm to /var/tmp/
+# so rpm installed doc2pdf has invalid config file path
+#        inst.fred2pdf_changed_path = 1
     
     if is_exists():
         sys.stdout.write('Configuration file already exists.\n')
@@ -355,13 +357,14 @@ setup(name = 'Fred2PDF',
     author = 'Zdenek Bohm, CZ.NIC',
     author_email = 'zdenek.bohm@nic.cz',
     url = 'http://enum.nic.cz/',
-    version = '1.0.0',
+    version = '1.1.0',
     license = 'GNU GPL',
     cmdclass = { 'config': Config, 'install': FredInstall }, 
 
     scripts = (MAIN_SCRIPT_NAME, ),
     
     data_files=[
+        ('/etc/fred/',[]),
         ('share/fred2pdf_docs/templates', map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
         ), 
         ('share/fred2pdf_docs/examples', map(lambda s:'examples/%s'%s, re.split('\s*', FILES2)), 

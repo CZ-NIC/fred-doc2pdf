@@ -55,7 +55,7 @@ import getopt
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
 CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf')
+CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
