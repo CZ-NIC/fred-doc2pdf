@@ -4,15 +4,15 @@
     !DOCTYPE invoice SYSTEM  "file:///$FRED2PDFPATH/templates/fred_advance_invoice.dtd"
     !DOCTYPE invoice SYSTEM  "file:///home/zdenek/enum/fred2pdf/trunk/templates/fred_advance_invoice.dtd"
 
-    Tyto data slouží jako vzor pro generování šablony RML pomocí XSL stylů.
-    Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
-    Úpravy: 25.1.2007, 26.1.2007
+    These data serve as a standard for generating RML sheet with help of XSL sheets.
+    Create: Zdeněk Böhm <zdenek.bohm@nic.cz>; 10.1.2007
+    Modification: 25.1.2007, 26.1.2007
 
-    Pro kontrolu validity je potřeba nastavit plnou cestu k DTD souboru.
-    Nahraďte proměnnou $FRED2PDFPATH za skutečnou cestu k souboru a pak již můžete validovat:
+    It is neccesity set up full path to DTD file for validity control.
+    You need replaced $FRED2PDFPATH variable for real path to file. Then you can validate it:  
 
     ~/enum/fred2pdf/trunk$ sed 's|$FRED2PDFPATH|'`pwd`'|' examples/advance_invoice.xml | xmllint -:-noout -:-valid -
-    (dvojtečky mezi pomlčkami zrušte)
+    (cancel colons between dashes)
 -->
 <client>
     <name>IPEX a.s.</name>

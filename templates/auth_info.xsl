@@ -3,14 +3,16 @@
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <!-- 
+
+This template serves as pattern for transfer of auth_info record into PDF. 
 Tato šablona slouží pro převod auth_info.xml záznamu do PDF.
-Vyvořil: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007, 12.2.2007
+Create: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007, 12.2.2007
 
-V layoutu je použito logo cz_nic_logo.jpg, které je uloženo v adresáři templates/
-společně s touto šablonou. Je nutné nastavit správně cestu, pokud se šablona nevolá z adresáře
-skriptu (fred2pdf/trunk):
+There is used a logo (file cz_nic_logo.jpg), which is saved in a folder templates/
+together with this template. It is neccesity to set up path properly, if the template isn't called
+from script folder (fred2pdf/trunk):
 
-(Pred stringparam musi byt dva spojovniky.)
+(There have to be two hyphens before stringparam.)
 $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
