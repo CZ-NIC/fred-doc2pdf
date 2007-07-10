@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+
+<!-- advanced invoice -->
+<str name="Client">Odběratel</str>
+<str name="Invoice No">Faktura č.</str>
+<str name="ICO">IČO</str>
+<str name="VAT number">DIČ</str>
+<str name="Customer residence">Sídlo odběratele</str>
+<str name="Supplier">Dodavatel</str>
+<str name="Tax document for deposit">Daňový doklad na zálohu</str>
+<str name="Variable symbol">Variabilní symbol</str>
+<str name="Invoice date">Datum vystavení faktury</str>
+<str name="Payment date">Datum přijetí zálohy</str>
+<str name="Sheet">List</str>
+<str name="Number of sheets">Počet listů</str>
+<str name="Supply sign">Označení dodávky</str>
+<str name="Draw by CZ.NIC invoice system">Vystaveno fakturačním systémem CZ.NIC</str>
+<str name="Reclamation">Reklamace</str>
+<str name="Invoice attachment no.">Příloha faktury č.</str>
+<str name="Sum">Úhrnem</str>
+<str name="VAT %">% DPH</str>
+<str name="Tax base">Základ daně</str>
+<str name="VAT CZK">Kč DPH</str>
+<str name="Total CZK">Kč celkem</str>
+<str name="To be paid">Celkem k úhradě</str>
+<str name="Voucher-for-call-VAT">Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.</str>
+<str name="Insurance-by-law-and-VAT-liability">Místo plnění se dle zákona 235/2004
+  Sb. o DPH v souladu s §10 odst.6c) váže na sídlo, místo podnikání nebo
+  provozovnu příjemce služby. Povinnost přiznat a zaplatit daň má příjemce
+  služby dle platného zákona v místě jeho sídla, podnikání nebo provozovny.
+  (VAT liability is payable by the recipient of our services.)</str>
+
+<!-- invoice -->
+<str name="Customer residence">Sídlo odběratele</str>
+<str name="Tax point">Datum uskutečnění zdaň.plnění</str>
+<str name="Total">Celkem</str>
+<str name="Paid">Uhrazeno</str>
+<str name="VAT">DPH</str>
+<str name="Change">Změna</str>
+<str name="Realized">Provedena</str>
+<str name="Domain">Doména</str>
+<str name="Service from">Služba do</str>
+<str name="Number">Počet</str>
+<str name="Price">Cena</str>
+<str name="Invoice no">č.fa.</str>
+<str name="CZK draw">čerpáno Kč</str>
+<str name="Deposit balance CZK">zůstatek zálohy Kč</str>
+
+<str name="Period from(date)">Za období od</str>
+<str name="to(date)">do</str>
+<str name="we-invoiced-you">Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM)</str>
+<str name="Registration-domain-names">Registrace doménových jmen (kód RREG), za udržování záznamu o doménovém jménu (kód RUDR), v násobcích roků (Počet) pro doménová jména dle přílohy.</str>
+<str name="VAT-settled-deposit">DPH byla vypořádána na zálohových daňových dokladech</str>
+
+</strings>
