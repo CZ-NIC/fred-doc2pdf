@@ -24,11 +24,8 @@
 <str name="VAT CZK">VAT CZK</str>
 <str name="Total CZK">Total CZK</str>
 <str name="To be paid">To be paid</str>
-<str name="Voucher-for-call-VAT">Daňový doklad na zálohu, slouží k uplatnění nároku na odpočet DPH přijaté zálohy.</str>
-<str name="Insurance-by-law-and-VAT-liability">Místo plnění se dle zákona 235/2004
-  Sb. o DPH v souladu s §10 odst.6c) váže na sídlo, místo podnikání nebo
-  provozovnu příjemce služby. Povinnost přiznat a zaplatit daň má příjemce
-  služby dle platného zákona v místě jeho sídla, podnikání nebo provozovny.
+<str name="Voucher-for-call-VAT">Deposit tax document, it serves to stake the claim for VAT deduction of received deposit.</str>
+<str name="Insurance-by-law-and-VAT-liability">Place of performance is collocated with residence, place of business or business premises of service recipient according to law 235/2004 Collection of Law about VAT with §10 par 6c. Liability to admit and to pay tax has service recipient according to valid law in place of his residence, business or premises.
 (VAT liability is payable by the recipient of our services.)</str>
 
 <!-- invoice -->
@@ -47,10 +44,10 @@
 <str name="CZK draw">CZK draw</str>
 <str name="Deposit balance CZK">Deposit balance CZK</str>
 
-<str name="Period from(date)">Za období od</str>
-<str name="to(date)">do</str>
-<str name="we-invoiced-you">Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM)</str>
-<str name="Registration-domain-names">Registrace doménových jmen (kód RREG), za udržování záznamu o doménovém jménu (kód RUDR), v násobcích roků (Počet) pro doménová jména dle přílohy.</str>
-<str name="VAT-settled-deposit">DPH byla vypořádána na zálohových daňových dokladech</str>
+<str name="Period from(date)">Period from</str>
+<str name="to(date)">to</str>
+<str name="we-invoiced-you">we invoice You supplied services (Contract of cooperation at ENUM domain names registrations)</str>
+<str name="Registration-domain-names">Domain names registration (RREG code), for record maintainance of domain name (RUDR code), in multiplies of years (Number) for domain names according to attachment.</str>
+<str name="VAT-settled-deposit">VAT was settled with deposit tax documents</str>
 
 </strings>
