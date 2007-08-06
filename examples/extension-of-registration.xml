@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <domain>hradorlik.cz</domain>
+  <registrar>REG-NIC</registrar>
+  <actual_date>6.8.2007</actual_date>
+  <termination_date>10.10.2007</termination_date>
+  <holder>
+    <handle>CID:ID01</handle>
+    <name>Stanley Weelang</name>
+    <org>Grinnings z.s.p.o.</org>
+    <street>Wall Street 1230/126</street>
+    <city>New York, CD</city>
+    <zip>23465AG</zip>
+    <country>USA</country>
+  </holder>
+</message>
