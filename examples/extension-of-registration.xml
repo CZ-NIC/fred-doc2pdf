@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <message>
+  <!-- 
+      Usage: 
+       
+      Czech version:
+      xsltproc templates/extension-of-registration.xsl examples/extension-of-registration.xml | doc2pdf.py > document.pdf
+  
+      English version:
+      xsltproc -stringparam lang en templates/extension-of-registration.xsl examples/extension-of-registration.xml | doc2pdf.py > document.pdf
+  -->
   <domain>hradorlik.cz</domain>
   <registrar>REG-NIC</registrar>
-  <actual_date>6.8.2007</actual_date>
-  <termination_date>10.10.2007</termination_date>
+  <actual_date>2007-08-07</actual_date>
+  <termination_date>2007-10-02</termination_date>
   <holder>
     <handle>CID:ID01</handle>
     <name>Stanley Weelang</name>
