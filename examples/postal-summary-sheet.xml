@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<summary>
+  <!-- 
+       Usage: 
+       xsltproc templates/postal-summary-sheet.xsl examples/postal-summary-sheet.xml | doc2pdf.py > document.pdf
+  -->
+<mailing-list>
+  <item>
+    <date>2007-08-08</date>
+    <mailing_number>1234</mailing_number>
+    <name>Company s.r.o.</name>
+    <street>Nádražní 123/16</street>
+    <city>Běchovice</city>
+    <zip>11400</zip>
+  </item>
+  <item>
+    <date>2007-08-08</date>
+    <mailing_number>1235</mailing_number>
+    <name>Organisation</name>
+    <street>Kutnohorská 21</street>
+    <city>Říčany u Prahy</city>
+    <zip>28000</zip>
+  </item>
+  <item>
+    <date>2007-08-08</date>
+    <mailing_number>1234</mailing_number>
+    <name>Company s.r.o.</name>
+    <street>Nádražní 123/16</street>
+    <city>Běchovice</city>
+    <zip>11400</zip>
+  </item>
+  <item>
+    <date>2007-08-08</date>
+    <mailing_number>1235</mailing_number>
+    <name>Organisation</name>
+    <street>Kutnohorská 21</street>
+    <city>Kutná Hora</city>
+    <zip>28000</zip>
+  </item>
+</mailing-list>  
+</summary>

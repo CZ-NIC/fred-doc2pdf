@@ -11,4 +11,10 @@
     </xsl:if>
 </xsl:template>
 
+<xsl:template name="short_date">
+    <xsl:param name="sdt"/>
+    <xsl:if test="$sdt">
+    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.</xsl:if>
+</xsl:template>
+
 </xsl:stylesheet>
