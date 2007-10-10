@@ -51,6 +51,7 @@ import StringIO
 import re
 import ConfigParser
 import getopt
+import warnings
 
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
@@ -164,13 +165,17 @@ def attr_get(node, attrs, dict={}):
                 res[key] = utils.bool_get(node.getAttribute(key))
             elif dict[key]=='int':
                 res[key] = int(node.getAttribute(key))
+    #
+    # Dirty hack for setting pagesize attribute of pageTemplate.
+    # rml2pdf doesn't pass pagesize attribute of pageTemplate into reportlab
+    # template object to support pages with different size in one document.
+    # This hack will do it instead of rml2pdf
+    #
+    if node.localName=='pageTemplate' and node.hasAttribute('pageSize'):
+        ps = map(lambda x:x.strip(), node.getAttribute('pageSize').replace(')', '').replace('(', '').split(','))
+        pageSize = ( utils.unit_get(ps[0]),utils.unit_get(ps[1]) )
+        res['pagesize']=pageSize
     return res
-
-def fred_paragraph_setup(self, text, style, bulletText, frags, cleaner):
-    """Hook original function for resolve problem with occurence character & 
-    during parsing XML code.
-    """
-    HOOKS.get('original_paragraph_setup', fnc)(self, text.replace('&','&amp;'), style, bulletText, frags, cleaner)
 
 """
 Set of functions for register TrueType fonts.
@@ -398,9 +403,6 @@ def init_hooks():
     #
     # ================================================
     
-    # resolve problems with &
-    HOOKS['original_paragraph_setup'] = reportlab.platypus.paragraph.Paragraph._setup
-    
     # Fonts
     HOOKS['original_rml_doc_render'] = trml2pdf._rml_doc.render
     
@@ -420,10 +422,6 @@ def init_hooks():
     
     # fix problem with unicode
     utils.attr_get = attr_get
-    
-    #Hook original function for resolve problem with occurence character & 
-    #during parsing XML code.
-    reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
     
     # ---------------------------------------------
     # Set of functions for register TrueType fonts.
@@ -469,6 +467,15 @@ def run(body):
 
 def main(argv):
     'Main module function'
+    #
+    # Python 2.5 throws this warning. It doesn't brake generation process
+    # so it's filtered
+    #
+    warnings.filterwarnings(
+        "ignore",
+        "struct integer overflow masking is deprecated",
+        DeprecationWarning
+    )
     if sys.stdin.isatty():
         # run as single command
         filename = parse_options(argv)

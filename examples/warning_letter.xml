@@ -1,0 +1,30 @@
+<messages>
+ <message>
+  <domain><![CDATA[example.cz]]></domain>
+  <registrar><![CDATA[REG-REGISTRAR]]></registrar>
+  <actual_date><![CDATA[2007-10-05]]></actual_date>
+  <termination_date><![CDATA[2007-10-15]]></termination_date>
+  <holder>
+   <handle><![CDATA[HOLDER]]></handle>
+   <name><![CDATA[Fred & sons]]></name>
+   <street><![CDATA[Street 123]]></street>
+   <city><![CDATA[Prague]]></city>
+   <zip><![CDATA[11100]]></zip>
+   <country><![CDATA[CZECH REPUBLIC]]></country>
+  </holder>
+ </message>
+ <message>
+  <domain><![CDATA[test.cz]]></domain>
+  <registrar><![CDATA[REG-REGISTRAR]]></registrar>
+  <actual_date><![CDATA[2007-10-05]]></actual_date>
+  <termination_date><![CDATA[2007-10-15]]></termination_date>
+  <holder>
+   <handle><![CDATA[MY-ID]]></handle>
+   <name><![CDATA[Company l.t.d.]]></name>
+   <street><![CDATA[Street 123]]></street>
+   <city><![CDATA[Berlin]]></city>
+   <zip><![CDATA[11100]]></zip>
+   <country><![CDATA[GERMANY]]></country>
+  </holder>
+ </message>    
+</messages>
