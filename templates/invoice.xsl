@@ -265,7 +265,7 @@
     <td><xsl:value-of select='format-number(sumarize/paid, "### ##0.00", "CZK")' /></td>
     <td/>
 </tr>
-<xsl:apply-templates />
+<xsl:apply-templates select="vat_rates" />
 <tr>
     <td><xsl:value-of select="$loc/str[@name='To be paid']"/>:</td>
     <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
