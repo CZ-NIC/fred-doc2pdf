@@ -100,8 +100,8 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 <spacer length="0.6cm"/>
 <para>
 <xsl:value-of select="$loc/str[@name='I hereby confirm my request to obtain password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<b><xsl:value-of select="handle" /></b>,
-<xsl:value-of select="$loc/str[@name='submitted through a web form at the']"/>&SPACE;
-<xsl:value-of select="webform_url" />&SPACE;<xsl:value-of select="$loc/str[@name='on']"/>&SPACE; <b><xsl:value-of select="transaction_date" /></b>,
+<xsl:value-of select="$loc/str[@name='submitted through a web form at the association webpages']"/>
+&SPACE;<xsl:value-of select="$loc/str[@name='on']"/>&SPACE; <b><xsl:value-of select="transaction_date" /></b>,
 <xsl:value-of select="$loc/str[@name='assigned id number']"/>&SPACE; <b><xsl:value-of select="transaction_id" /></b>&SPACE; 
 <xsl:value-of select="$loc/str[@name='Please send the password to']"/>&SPACE; <b><xsl:value-of select="replymail" /></b>.
 </para>
