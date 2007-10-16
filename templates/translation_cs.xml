@@ -4,6 +4,9 @@
 <!-- advanced invoice -->
 <str name="Client">Odběratel</str>
 <str name="Invoice No">Faktura č.</str>
+<str name="Invoice / Vat voucher">Faktura / daňový doklad</str>
+<str name="Advance Payment Request / Vat voucher">Zálohová faktura / daňový doklad</str>
+<str name="No">č</str>
 <str name="ICO">IČO</str>
 <str name="VAT number">DIČ</str>
 <str name="Customer residence">Sídlo odběratele</str>
@@ -18,6 +21,7 @@
 <str name="Draw by CZ.NIC invoice system">Vystaveno fakturačním systémem CZ.NIC</str>
 <str name="Reclamation">Reklamace</str>
 <str name="Invoice attachment no.">Příloha faktury č.</str>
+<str name="Invoice attachment">Příloha faktury</str>
 <str name="Sum">Úhrnem</str>
 <str name="VAT %">% DPH</str>
 <str name="Tax base">Základ daně</str>
@@ -44,6 +48,7 @@
 <str name="Number">Počet</str>
 <str name="Price">Cena</str>
 <str name="Invoice no">č.fa.</str>
+<str name="Invoice number">číslo faktury</str>
 <str name="CZK draw">čerpáno Kč</str>
 <str name="Deposit balance CZK">zůstatek zálohy Kč</str>
 
@@ -52,6 +57,10 @@
 <str name="we-invoiced-you">Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM)</str>
 <str name="Registration-domain-names">Registrace doménových jmen (kód RREG), za udržování záznamu o doménovém jménu (kód RUDR), v násobcích roků (Počet) pro doménová jména dle přílohy.</str>
 <str name="VAT-settled-deposit">DPH byla vypořádána na zálohových daňových dokladech</str>
+<str name="SpZ">SpZ</str>
+<str name="department of the civil law agenda">odbor občanskoprávních agend</str>
+<str name="Municipal Prague cap.city, no ZS/30/3/98">Magistrát hl. m. Prahy, č. ZS/30/3/98</str>
+<str name="Vat voucher">Daňový doklad</str>
 
 <!-- extension of registration -->
 <str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>

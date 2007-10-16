@@ -4,7 +4,10 @@
 <!-- advanced invoice -->
 <str name="Client">Client</str>
 <str name="Invoice No">Invoice No</str>
-<str name="ICO">IČO</str>
+<str name="Invoice / Vat voucher">Invoice / Vat voucher</str>
+<str name="Advance Payment Request / Vat voucher">Advance Payment Req. / Vat voucher</str>
+<str name="No">No</str>
+<str name="ICO">ICO</str>
 <str name="VAT number">VAT</str>
 <str name="Customer residence">Customer residence</str>
 <str name="Supplier">Supplier</str>
@@ -18,6 +21,7 @@
 <str name="Draw by CZ.NIC invoice system">Draw by CZ.NIC invoice system</str>
 <str name="Reclamation">Reclamation</str>
 <str name="Invoice attachment no.">Invoice attachment no.</str>
+<str name="Invoice attachment">Invoice attachment</str>
 <str name="Sum">Sum</str>
 <str name="VAT %">VAT %</str>
 <str name="Tax base">Tax base</str>
@@ -41,6 +45,7 @@
 <str name="Number">Num</str>
 <str name="Price">Price</str>
 <str name="Invoice no">Invoice no</str>
+<str name="Invoice number">Invoice number</str>
 <str name="CZK draw">CZK draw</str>
 <str name="Deposit balance CZK">Deposit balance CZK</str>
 
@@ -49,6 +54,10 @@
 <str name="we-invoiced-you">we invoice You supplied services (Contract of cooperation at ENUM domain names registrations)</str>
 <str name="Registration-domain-names">Domain names registration (RREG code), for record maintainance of domain name (RUDR code), in multiplies of years (Number) for domain names according to attachment.</str>
 <str name="VAT-settled-deposit">VAT was settled with deposit tax documents</str>
+<str name="SpZ">SpZ</str>
+<str name="department of the civil law agenda">department of the civil law agenda</str>
+<str name="Municipal Prague cap.city, no ZS/30/3/98">Municipal Prague cap.city, no ZS/30/3/98</str>
+<str name="Vat voucher">Vat voucher</str>
 
 <!-- extension of registration -->
 <str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>
