@@ -46,6 +46,7 @@
   <xsl:output method="xml" encoding="utf-8"/>
   <xsl:include href="shared_templates.xsl"/>
   <xsl:param name="lang" select="'cs'"/>
+  <xsl:param name="srcpath" select="'templates/'" />
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <!-- root template for rml document generation -->
   <xsl:template match="messages">
@@ -183,10 +184,10 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <image file="templates/logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
+        <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
         <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="3cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
-        <image file="templates/cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
+        <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
         <lineMode width="0.01cm"/>
         <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
