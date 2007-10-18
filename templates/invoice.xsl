@@ -2,10 +2,15 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
+<!-- 
+Usage:
+$ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpath/templates/invoice.xsl yourpath/examples/invoice.xml
+-->
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:output method="xml" encoding="utf-8" />
+<xsl:param name="srcpath" select="'templates/'" />
 <xsl:param name="lang" select="'cs'" />
 <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
@@ -30,7 +35,7 @@
         <fill color="#035e79" />
         <rect x="0" y="26.4cm" width="21cm" height="3.3cm" fill="yes" stroke="no" />
 
-        <image file="templates/white-balls.png" x="12.2cm" y="26.8cm" width="2cm"/>
+        <image file="{$srcpath}white-balls.png" x="12.2cm" y="26.8cm" width="2cm"/>
 
         <fill color="white" />
         <setFont name="Times-Roman" size="14"/>
@@ -105,7 +110,7 @@
         
         <frame id="delivery" x1="1.36cm" y1="3.6cm" width="18.2cm" height="12.4cm" showBoundary="0" />
 
-        <image file="templates/cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
+        <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
         <lineMode width="0.01cm"/>
         <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
@@ -151,7 +156,7 @@
 
         <frame id="delivery" x1="1.36cm" y1="3.5cm" width="18.2cm" height="22.5cm" showBoundary="0" />
 
-        <image file="templates/cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
+        <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
         <lineMode width="0.01cm"/>
         <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
