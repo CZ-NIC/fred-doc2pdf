@@ -97,7 +97,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <drawString x="10.7cm" y="19.6cm"><xsl:value-of select="$loc/str[@name='Invoice date']"/>:</drawString>
         <drawRightString x="19.3cm" y="19.6cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/invoice_date" /></xsl:call-template></drawRightString>
         <drawString x="10.7cm" y="19.2cm"><xsl:value-of select="$loc/str[@name='Tax point']"/>:</drawString>
-        <drawRightString x="19.3cm" y="19.2cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/tax_point" /></xsl:call-template></drawRightString>
+        <drawRightString x="19.3cm" y="19.2cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/advance_payment_date" /></xsl:call-template></drawRightString>
 
         <drawString x="10.7cm" y="16.9cm"><xsl:value-of select="$loc/str[@name='Sheet']"/>: 1</drawString>
         <drawRightString x="19.3cm" y="16.9cm"><xsl:value-of select="$loc/str[@name='Number of sheets']"/>: <pageNumberTotal/></drawRightString>
@@ -166,7 +166,11 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <para><xsl:value-of select="$loc/str[@name='Supply sign']"/>:</para>
 
 <spacer length="0.4cm"/>
-<para><xsl:value-of select="$loc/str[@name='Voucher-for-call-VAT']"/></para>
+<para><xsl:value-of select="$loc/str[@name='Voucher-for-call-VAT']"/>
+<xsl:if test="client/vat_not_apply = 1">
+    &SPACE;<xsl:value-of select="$loc/str[@name='Insurance-by-law-and-VAT-liability']"/>
+</xsl:if>
+</para>
 
 <xsl:apply-templates select="delivery" />
 
