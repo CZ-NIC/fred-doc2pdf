@@ -118,8 +118,8 @@
         <drawString x="7.3cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
         <drawString x="7.3cm" y="0.8cm"><xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
         <drawString x="7.3cm" y="0.5cm"><xsl:value-of select="$loc/str[@name='Czech Republic']"/></drawString>
-        <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
-        <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/> +420 222 745 112</drawString>
+        <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/>&SPACE;<xsl:value-of select="supplier/phone"/></drawString>
+        <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/>&SPACE;<xsl:value-of select="supplier/fax"/></drawString>
         <drawString x="14.8cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='IC']"/>&SPACE;<xsl:value-of select="supplier/ico"/></drawString>
         <drawString x="14.8cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='DIC']"/>&SPACE;<xsl:value-of select="supplier/vat_number"/></drawString>
         <drawString x="17.8cm" y="1.1cm"><xsl:value-of select="supplier/email"/></drawString>
@@ -164,8 +164,8 @@
         <drawString x="7.3cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
         <drawString x="7.3cm" y="0.8cm"><xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
         <drawString x="7.3cm" y="0.5cm"><xsl:value-of select="$loc/str[@name='Czech Republic']"/></drawString>
-        <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
-        <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/> +420 222 745 112</drawString>
+        <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/>&SPACE;<xsl:value-of select="supplier/phone"/></drawString>
+        <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/>&SPACE;<xsl:value-of select="supplier/fax"/></drawString>
         <drawString x="14.8cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='IC']"/>&SPACE;<xsl:value-of select="supplier/ico"/></drawString>
         <drawString x="14.8cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='DIC']"/>&SPACE;<xsl:value-of select="supplier/vat_number"/></drawString>
         <drawString x="17.8cm" y="1.1cm"><xsl:value-of select="supplier/email"/></drawString>
