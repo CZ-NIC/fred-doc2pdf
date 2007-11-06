@@ -8,6 +8,7 @@ Render the standard input (RML) and output a PDF file.
   -? --help               this help
   -f --config=FILENAME    use configuration file
   -o --output=FILENAME    output into file (default is stdout)
+                          special value 'no' for profiling
 
 Examples: 
   doc2pdf input.rml > output.pdf
@@ -45,13 +46,16 @@ Examples:
 #        fontNameBoldItalic="Arial-BoldItalic" fontFileBoldItalic="Arial_Bold_Italic.ttf" 
 #        />
 #    </docinit>
+#
+#    python -m profile doc2pdf.py -o no test_invoice.rml > profile.log
 
 import os, sys
 import StringIO
 import re
 import ConfigParser
 import getopt
-import warnings
+
+from reportlab import platypus
 
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
@@ -80,6 +84,11 @@ def get_default_conf():
 CONFIG = get_default_conf()
 HOOKS = {}
 
+# []
+# _calc_height( 639.968503937 481.228346457 None None )
+cache_tables = {}
+cache_cells = {}
+
 def fnc(*argvs):
     'Function in case if required function mising.'
     sys.stderr.write("Error: Missing function.\n")
@@ -87,11 +96,11 @@ def fnc(*argvs):
 
 
 
-def get_config_from_option():
+def get_config_from_option(argv):
     params = {}
     args = []
     try:
-        opt, args = getopt.getopt(sys.argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
+        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
         status = 1
     except getopt.GetoptError, msg:
         sys.stderr.write('Option Error:%s\n'%msg)
@@ -165,17 +174,13 @@ def attr_get(node, attrs, dict={}):
                 res[key] = utils.bool_get(node.getAttribute(key))
             elif dict[key]=='int':
                 res[key] = int(node.getAttribute(key))
-    #
-    # Dirty hack for setting pagesize attribute of pageTemplate.
-    # rml2pdf doesn't pass pagesize attribute of pageTemplate into reportlab
-    # template object to support pages with different size in one document.
-    # This hack will do it instead of rml2pdf
-    #
-    if node.localName=='pageTemplate' and node.hasAttribute('pageSize'):
-        ps = map(lambda x:x.strip(), node.getAttribute('pageSize').replace(')', '').replace('(', '').split(','))
-        pageSize = ( utils.unit_get(ps[0]),utils.unit_get(ps[1]) )
-        res['pagesize']=pageSize
     return res
+
+def fred_paragraph_setup(self, text, style, bulletText, frags, cleaner):
+    """Hook original function for resolve problem with occurence character & 
+    during parsing XML code.
+    """
+    HOOKS.get('original_paragraph_setup', fnc)(self, text.replace('&','&amp;'), style, bulletText, frags, cleaner)
 
 """
 Set of functions for register TrueType fonts.
@@ -246,7 +251,152 @@ def fred_docinit(self, els):
     'Disable original function for register fonts.'
     pass
 
+"""
+*** Use cache for very long tables ***
+"""    
+class FredTable(platypus.Table):
+    'Optimized for very long tables'
+    
+    def __init__(self, data, colWidths=None, rowHeights=None, style=None,
+                repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, ident=None,
+                hAlign=None,vAlign=None):
+        
+        global cache_cells
+        
+        self.ident = ident
+        self.hAlign = hAlign or 'CENTER'
+        self.vAlign = vAlign or 'MIDDLE'
+        if type(data) not in platypus.tables._SeqTypes:
+            raise ValueError, "%s invalid data type" % self.identity()
+        self._nrows = nrows = len(data)
+        self._cellvalues = []
+        _seqCW = type(colWidths) in platypus.tables._SeqTypes
+        _seqRH = type(rowHeights) in platypus.tables._SeqTypes
+        if nrows:
+            self._ncols = ncols = max(map(platypus.tables._rowLen,data))
+        elif colWidths and _seqCW: 
+            ncols = len(colWidths)
+        else:
+            ncols = 0
+        if not emptyTableAction: emptyTableAction = platypus.tables.rl_config.emptyTableAction
+        if not (nrows and ncols):
+            if emptyTableAction=='error':
+                raise ValueError, "%s must have at least a row and column" % self.identity()
+            elif emptyTableAction=='indicate':
+                self.__class__ = Preformatted
+                global _emptyTableStyle
+                if '_emptyTableStyle' not in globals().keys():
+                    _emptyTableStyle = ParagraphStyle('_emptyTableStyle')
+                    _emptyTableStyle.textColor = colors.red
+                    _emptyTableStyle.backColor = colors.yellow
+                Preformatted.__init__(self,'%s(%d,%d)' % (self.__class__.__name__,nrows,ncols), _emptyTableStyle)
+            elif emptyTableAction=='ignore':
+                self.__class__ = Spacer
+                Spacer.__init__(self,0,0)
+            else:
+                raise ValueError, '%s bad emptyTableAction: "%s"' % (self.identity(),emptyTableAction)
+            return
+    
+        # we need a cleanup pass to ensure data is strings - non-unicode and non-null
+        self._cellvalues = self.normalizeData(data)
+        if not _seqCW: colWidths = ncols*[colWidths]
+        elif len(colWidths) != ncols:
+            raise ValueError, "%s data error - %d columns in data but %d in grid" % (self.identity(),ncols, len(colWidths))
+        if not _seqRH: rowHeights = nrows*[rowHeights]
+        elif len(rowHeights) != nrows:
+            raise ValueError, "%s data error - %d rows in data but %d in grid" % (self.identity(),nrows, len(rowHeights))
+        for i in range(nrows):
+            if len(data[i]) != ncols:
+                raise ValueError, "%s not enough data points in row %d!" % (self.identity(),i)
+        self._rowHeights = self._argH = rowHeights
+        self._colWidths = self._argW = colWidths
 
+        # speed optimalization:
+        self._cellStyles = None
+        if cache_cells.has_key(ncols):
+            if nrows <= cache_cells[ncols][0]:
+                # use cached objects
+                self._cellStyles = cache_cells[ncols][1]
+        
+        if self._cellStyles is None:
+            cellrows = []
+            for i in range(nrows):
+                cellcols = []
+                for j in range(ncols):
+                    cellcols.append(platypus.tables.CellStyle(`(i,j)`))
+                cellrows.append(cellcols)
+            self._cellStyles = cellrows
+            # save into cache:
+            cache_cells[ncols] = (nrows, cellrows)
+    
+        self._bkgrndcmds = []
+        self._linecmds = []
+        self._spanCmds = []
+        self.repeatRows = repeatRows
+        self.repeatCols = repeatCols
+        self.splitByRow = splitByRow
+    
+        if style:
+            self.setStyle(style)
+
+
+    def _calc_height(self, availHeight, availWidth, H=None, W=None):
+
+        global cache_tables
+    
+        # _calc_height( 639.968503937 481.228346457 None None )
+        cache_key = '%f:%f:%d' % (availHeight, availWidth, len(self._argH))
+        
+        if cache_tables.has_key(cache_key):
+            # get parsed values from cache
+            self._rowHeights, self._height, self._rowpositions = cache_tables[cache_key]
+            return
+        
+        HOOKS.get('original_table_calc_height', fnc)(self, availHeight, availWidth, H, W)
+
+        # keep parsed values in cache
+        cache_tables[cache_key] = (self._rowHeights, self._height, self._rowpositions)
+
+
+def fred_table(self, node):
+    length = 0
+    colwidths = None
+    rowheights = None
+    data = []
+    childs = trml2pdf._child_get(node,'tr')
+    if not childs:
+        return None
+    for tr in childs:
+        data2 = []
+        for td in trml2pdf._child_get(tr, 'td'):
+            flow = []
+            for n in td.childNodes:
+                if n.nodeType==node.ELEMENT_NODE:
+                    flow.append( self._flowable(n) )
+            if not len(flow):
+                flow = self._textual(td)
+            data2.append( flow )
+        if len(data2)>length:
+            length=len(data2)
+            for ab in data:
+                while len(ab)<length:
+                    ab.append('')
+        while len(data2)<length:
+            data2.append('')
+        data.append( data2 )
+    if node.hasAttribute('colWidths'):
+        assert length == len(node.getAttribute('colWidths').split(','))
+        colwidths = [utils.unit_get(f.strip()) for f in node.getAttribute('colWidths').split(',')]
+    if node.hasAttribute('rowHeights'):
+        rowheights = [utils.unit_get(f.strip()) for f in node.getAttribute('rowHeights').split(',')]
+    # HOOK: Here is reason why this function is overwritten:
+    # original code: platypus.Table -> new code: FredTable
+    table = FredTable(data = data, colWidths=colwidths, rowHeights=rowheights, **(utils.attr_get(node, ['splitByRow'] ,{'repeatRows':'int','repeatCols':'int'})))
+    if node.hasAttribute('style'):
+        table.setStyle(self.styles.table_styles[node.getAttribute('style')])
+    return table
+
+        
 """
 *** HOOK OF THE TOTAL PAGE NUMBER ***
 
@@ -324,11 +474,11 @@ def parse_options(argv):
     """
     global CONFIG
     
-    if len(sys.argv) < 2:
+    if len(argv) < 2:
         print __doc__
         return None
         
-    status, opt, args = get_config_from_option()
+    status, opt, args = get_config_from_option(argv)
     if not status:
         return None
     
@@ -403,6 +553,12 @@ def init_hooks():
     #
     # ================================================
     
+    # resolve problems with &
+    HOOKS['original_paragraph_setup'] = reportlab.platypus.paragraph.Paragraph._setup
+    
+    # table cache
+    HOOKS['original_table_calc_height'] = reportlab.platypus.tables.Table._calc_height
+    
     # Fonts
     HOOKS['original_rml_doc_render'] = trml2pdf._rml_doc.render
     
@@ -422,6 +578,13 @@ def init_hooks():
     
     # fix problem with unicode
     utils.attr_get = attr_get
+    
+    #Hook original function for resolve problem with occurence character & 
+    #during parsing XML code.
+    reportlab.platypus.paragraph.Paragraph._setup = fred_paragraph_setup
+    
+    #Hook table cache for speed optimalisation
+    trml2pdf._rml_flowable._table = fred_table
     
     # ---------------------------------------------
     # Set of functions for register TrueType fonts.
@@ -449,12 +612,18 @@ def init_hooks():
     reportlab.pdfbase.pdfdoc.PDFPage.check_format = load_num_total_pages
     
     # =============================================
+    # Optimalisation for count long tables
+    reportlab.rl_config.longTableOptimize = 1
+    
 
 def run(body):
     'Run PDF process'
     if __load_configuration__() and import_modules():
         init_hooks()
         if CONFIG.has_key('output'):
+            if CONFIG['output'] == 'no':
+                trml2pdf.parseString(body) # no any pdf output
+                return
             try:
                 fp = open(CONFIG['output'], 'w')
             except IOError, msg:
@@ -467,15 +636,7 @@ def run(body):
 
 def main(argv):
     'Main module function'
-    #
-    # Python 2.5 throws this warning. It doesn't brake generation process
-    # so it's filtered
-    #
-    warnings.filterwarnings(
-        "ignore",
-        "struct integer overflow masking is deprecated",
-        DeprecationWarning
-    )
+    # argv=['./doc2pdf.py', 'invoice.rml']
     if sys.stdin.isatty():
         # run as single command
         filename = parse_options(argv)
