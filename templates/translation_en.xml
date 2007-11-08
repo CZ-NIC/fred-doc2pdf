@@ -2,62 +2,61 @@
 <strings>
 
 <!-- advanced invoice -->
-<str name="Client">Client</str>
+<str name="Client">Ship to</str>
 <str name="Invoice No">Invoice No</str>
 <str name="Invoice / Vat voucher">Invoice / Vat voucher</str>
-<str name="Advance Payment Request / Vat voucher">Advance Payment Req. / Vat voucher</str>
+<str name="Advance Payment Request / Vat voucher">Advance Payment Request / Vat voucher</str>
 <str name="No">No</str>
-<str name="ICO">ICO</str>
-<str name="VAT number">VAT</str>
-<str name="Customer residence">Customer residence</str>
+<str name="ICO">Company reg. No</str>
+<str name="VAT number">VAT reg. No</str>
+<str name="Customer residence">Customer seat</str>
 <str name="Supplier">Supplier</str>
 <str name="Tax document for deposit">Tax document for deposit</str>
-<str name="Variable symbol">Variable symbol</str>
+<str name="Variable symbol">Payment ref.:</str>
 <str name="Invoice date">Invoice date</str>
 <str name="Payment date">Payment date</str>
 <str name="Sheet">Sheet</str>
 <str name="Number of sheets">Number of sheets</str>
-<str name="Supply sign">Supply sign</str>
+<str name="Supply sign">Description</str>
 <str name="Draw by CZ.NIC invoice system">Draw by CZ.NIC invoice system</str>
 <str name="Reclamation">Reclamation</str>
 <str name="Invoice attachment no.">Invoice attachment no.</str>
 <str name="Invoice attachment">Invoice attachment</str>
-<str name="Sum">Sum</str>
+<str name="Sum">Subtotal</str>
 <str name="VAT %">VAT %</str>
 <str name="Tax base">Tax base</str>
 <str name="VAT CZK">VAT CZK</str>
 <str name="Total CZK">Total CZK</str>
 <str name="To be paid">To be paid</str>
-<str name="Voucher-for-call-VAT">Deposit tax document, it serves to stake the claim for VAT deduction of received deposit.</str>
-<str name="Insurance-by-law-and-VAT-liability">Place of performance is collocated with residence, place of business or business premises of service recipient according to law 235/2004 Collection of Law about VAT with §10 par 6c. Liability to admit and to pay tax has service recipient according to valid law in place of his residence, business or premises.
-(VAT liability is payable by the recipient of our services.)</str>
+<str name="Voucher-for-call-VAT">You deposit tax document can be used to claim VAT deduction for the deposit received. </str>
+<str name="Insurance-by-law-and-VAT-liability">VAT liability is payable by the recipient of our services. Pursuant to section 10 of Value Added tax act, the place of taxable supply is abroad</str>
 
 <!-- invoice -->
-<str name="Customer residence">Customer residence</str>
-<str name="Tax point">Tax point</str>
+<str name="Customer residence">Customer seat</str>
+<str name="Tax point">Tax date</str>
 <str name="Total">Total</str>
 <str name="Paid">Paid</str>
 <str name="VAT">VAT</str>
 <str name="Change">Change</str>
-<str name="Realized">Realized</str>
-<str name="Domain">Domain</str>
+<str name="Realized">Effected</str>
+<str name="Domain">Domain Name</str>
 <str name="Service from">Service from</str>
-<str name="Number">Num</str>
+<str name="Number">Number</str>
 <str name="Price">Price</str>
 <str name="Invoice no">Invoice no</str>
-<str name="Invoice number">Invoice number</str>
+<str name="Invoice number">Invoice no</str>
 <str name="CZK draw">CZK draw</str>
 <str name="Deposit balance CZK">Deposit balance CZK</str>
 
-<str name="Period from(date)">Period from</str>
-<str name="to(date)">to</str>
-<str name="we-invoiced-you">we invoice You supplied services (Contract of cooperation at ENUM domain names registrations)</str>
-<str name="Registration-domain-names">Domain names registration (RREG code), for record maintainance of domain name (RUDR code), in multiplies of years (Number) for domain names according to attachment.</str>
-<str name="VAT-settled-deposit">VAT was settled with deposit tax documents</str>
-<str name="SpZ">SpZ</str>
-<str name="department of the civil law agenda">department of the civil law agenda</str>
-<str name="Municipal Prague cap.city, no ZS/30/3/98">Municipal Prague cap.city, no ZS/30/3/98</str>
-<str name="Vat voucher">Vat voucher</str>
+<str name="Period from(date)">For the period (date)</str>
+<str name="to(date)">through (date)</str>
+<str name="we-invoiced-you">We have issued an invoice payable by you for the services provided (Contract on Cooperation Within the Registration of Domain Names)</str>
+<str name="Registration-domain-names">Domain name registration (RREG code), domain name record maintenance (RUDR code) - in multiples of years (Number) for domain names</str>
+<str name="VAT-settled-deposit">VAT has been settled through deposit tax documents</str> 
+<str name="SpZ">Reg # ZS/30/3/98</str> 
+<str name="department of the civil law agenda">Registered in the registry of legal entity interest</str> 
+<str name="Municipal Prague cap.city, no ZS/30/3/98">associations of the Municipal Council of Prague</str> 
+<str name="Vat voucher">Tax document</str>
 
 <!-- extension of registration -->
 <str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>
