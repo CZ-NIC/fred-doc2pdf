@@ -341,6 +341,7 @@ class FredTable(platypus.Table):
 
 
     def _calc_height(self, availHeight, availWidth, H=None, W=None):
+        'replace original at reportlab.platypus.tables._calc_height'
 
         global cache_tables
     
@@ -475,7 +476,6 @@ def parse_options(argv):
     global CONFIG
     
     if len(argv) < 2:
-        print __doc__
         return None
         
     status, opt, args = get_config_from_option(argv)
