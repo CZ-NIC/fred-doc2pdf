@@ -1,0 +1,7 @@
+2007-11-15 Jaromir Talir (version 1.2)
+
+    * speed fixes of pdf generation in rml2pdf
+
+    * update template for invoices with new design
+
+    * new template for warning letter about expiration passing
