@@ -1,147 +1,361 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE xsl:stylesheet [
-<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
-]>
-<!--
-    $ xsltproc templates/helios.xsl examples/invoice.xml | xmllint -.-format -.-encode UTF-8 -
--->
-<xsl:stylesheet version="1.0" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:date="http://exslt.org/dates-and-times"
-    extension-element-prefixes="date"
->
-<xsl:output method="xml" encoding="windows-1250" />
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:date="http://exslt.org/dates-and-times"
+ extension-element-prefixes="date">
+ <xsl:output method="xml" encoding="windows-1250" />
 
-<xsl:template name="local_date">
-    <xsl:param name="sdt"/>
-    <xsl:if test="$sdt">
-    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
-    </xsl:if>
-</xsl:template>
+ <xsl:template name="local_date">
+  <xsl:param name="sdt" />
+  <xsl:if test="$sdt">
+   <xsl:value-of select="substring($sdt,9,2)" />
+   <xsl:text>.</xsl:text>
+   <xsl:value-of select="substring($sdt,6,2)" />
+   <xsl:text>.</xsl:text>
+   <xsl:value-of select="substring($sdt,1,4)" />
+  </xsl:if>
+ </xsl:template>
 
-<xsl:template name='invoice_number'>
-    <xsl:param name='number'/>
-    <xsl:choose>
-         <xsl:when test='substring($number,0,1)="2"'>
-              <xsl:value-of select='concat(substring($number,0,5),substring($number,6))'/>
-         </xsl:when>
-         <xsl:otherwise>
-              <xsl:value-of select='concat(substring($number,0,5),substring($number,6))'/>
-         </xsl:otherwise>
-    </xsl:choose>
-</xsl:template>  
+ <xsl:template name="invoice_number">
+  <xsl:param name="number" select="payment/invoice_number" />
+  <xsl:choose>
+   <xsl:when test="substring($number,0,1)='2'">
+    <xsl:value-of select="concat(substring($number,0,5),substring($number,6))" />
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:value-of select="$number" />
+   </xsl:otherwise>
+  </xsl:choose>
+ </xsl:template>
 
-<xsl:template match="/invoice">
-<xsl:variable name="now" select="date:date-time()"/>
-<HeliosIQ_1>
-<header>
+ <xsl:template name="invoice_group">
+  <xsl:value-of select="substring(payment/invoice_number,0,4)" />
+ </xsl:template>
+
+ <xsl:variable name="pk_dph_19" select="1" />
+ <xsl:variable name="pk_dph_0" select="$pk_dph_19 + 1" />
+ <xsl:variable name="pk_payment_type" select="$pk_dph_0 + 1" />
+ <xsl:variable name="pk_stred" select="$pk_payment_type + 1" />
+ <xsl:variable name="pk_bank_spoj" select="$pk_stred + 1" />
+ <xsl:variable name="pk_skup" select="$pk_bank_spoj + 1" />
+ <xsl:variable name="pk_cz_currency" select="$pk_skup + 1" />
+ <xsl:variable name="pk_bank" select="'BANK'" />
+ <xsl:variable name="pk_maj" select="'MAJ'" />
+ <xsl:variable name="pk_period" select="0" />
+ <xsl:variable name="pk_cisorg" select="0 + count(/list/invoice)" />
+ <xsl:variable name="pk_cznic" select="'CZNIC'" />
+ <xsl:variable name="pk_zeme" select="'ZEME'" />
+ <xsl:variable name="pk_dic" select="0" />
+ <xsl:variable name="pk_inv_groups" select="0" />
+
+ <xsl:template name="pk_sazba_dph">
+  <xsl:param name="sazba" select="''" />
+  <xsl:choose>
+   <xsl:when test="$sazba=0">
+    <xsl:text>FK_</xsl:text>
+    <xsl:value-of select="$pk_dph_0" />
+   </xsl:when>
+   <xsl:when test="$sazba=19">
+    <xsl:text>FK_</xsl:text>
+    <xsl:value-of select="$pk_dph_19" />
+   </xsl:when>
+  </xsl:choose>
+ </xsl:template>
+
+ <xsl:key name="invoices-by-group" match="/list/invoice | /invoice"
+  use="substring(payment/invoice_number,0,4)" />
+
+ <xsl:key name="invoices-by-client" match="/list/invoice | /invoice"
+  use="client/id" />
+
+ <xsl:key name="adv-inv-by-number"
+  match="/list/invoice/advance_payment/applied_invoices/consumed | 
+              /invoice/advance_payment/applied_invoices/consumed"
+  use="number" />
+
+ <xsl:key name="entries-by-year"
+  match="/list/invoice/delivery/vat_rates/entry/years/entry |
+              /invoice/delivery/vat_rates/entry/years/entry"
+  use="year" />
+
+ <!-- support for two input formats, input xml format can have structure
+      either /invoice or /list/invoice -->
+ <xsl:template match="/">
+  <xsl:choose>
+   <xsl:when test="count(list)">
+    <!-- /list/invoice = descent one level down in input xml tree -->
+    <xsl:apply-templates />
+   </xsl:when>
+   <xsl:otherwise>
+    <!-- /invoice = call template on root node -->
+    <xsl:call-template name="list" />
+   </xsl:otherwise>
+  </xsl:choose>
+ </xsl:template>
+
+ <xsl:template match="list">
+  <!-- call template on list node -->
+  <xsl:call-template name="list" />
+ </xsl:template>
+
+ <!-- main template, must ve called in context of group of invoice nodes -->
+ <xsl:template name="list">
+  <xsl:variable name="now" select="substring(date:date-time(),1,19)" />
+  <HeliosIQ_1>
+   <header>
     <delivery>
-        <message>
-            <messageID>FaV<xsl:value-of select="payment/invoice_number"/>.XML</messageID>
-            <sent><xsl:value-of select="$now"/></sent>
-        </message>
-        <to>
-            <address>C:\</address>
-        </to>
-        <from>
-            <address>CZ.NIC, z.s.p.o.</address>
-        </from>
+     <message>
+      <messageID>
+       <xsl:text>FaV</xsl:text>
+       <xsl:call-template name='invoice_number'>
+        <xsl:with-param name='number' select="payment/invoice_number" />
+       </xsl:call-template>
+       <xsl:text>.XML</xsl:text>
+      </messageID>
+      <sent>
+       <xsl:value-of select="$now" />
+      </sent>
+     </message>
+     <to>
+      <address>C:\</address>
+     </to>
+     <from>
+      <address>CZ.NIC, z.s.p.o.</address>
+     </from>
     </delivery>
     <manifest>
-        <document>
-            <name>PohyboveDoklady</name>
-            <description>internal-format-HELIOS:lcs_cz:PohyboveDoklady</description>
-            <version>010020070125</version>
-        </document>
+     <document>
+      <name>PohyboveDoklady</name>
+      <description>
+       <xsl:text>internal-format-HELIOS:lcs_cz:PohyboveDoklady</xsl:text>
+      </description>
+      <version>010020070611</version>
+     </document>
     </manifest>
-</header>
-<body>
-<PohyboveDoklady>
-    <cisloDokladu>
-        <xsl:call-template name='invoice_number'>
-             <xsl:with-param name='number' select="payment/invoice_number"/>
-        </xsl:call-template>    
-    </cisloDokladu>
-    <DruhPohybuZbo>13</DruhPohybuZbo>
-    <TabDokladyZbozi>
-        <DodFak><xsl:value-of select="payment/vs"/></DodFak>
-        <PopisDodavky>Faktura za <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> - <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template></PopisDodavky>
-        <ZaokrouhleniFak>0</ZaokrouhleniFak>
-        <ZaokrouhleniFakVal>0</ZaokrouhleniFakVal>
-        <SazbaDPH>FK_1</SazbaDPH>
-        <SazbaDPH1>FK_2</SazbaDPH1>
-
-        <SumaKc><xsl:value-of select="delivery/sumarize/total_with_vat"/></SumaKc>
-        <CbezDPH1><xsl:value-of select="delivery/sumarize/total"/></CbezDPH1>
-        <CsDPH1><xsl:value-of select="delivery/sumarize/total_with_vat"/></CsDPH1>
-        <CbezDPH1Val><xsl:value-of select="delivery/sumarize/total"/></CbezDPH1Val>
-        <CsDPH1Val><xsl:value-of select="delivery/sumarize/total_with_vat"/></CsDPH1Val>
-
-        <DatPorizeni><xsl:value-of select="payment/invoice_date"/></DatPorizeni>
-        <DatRealizace/>
-        <Splatnost><xsl:value-of select="payment/invoice_date"/></Splatnost>
-        <DUZP><xsl:value-of select="payment/tax_point"/></DUZP>
-        <DatPovinnostiFa/>
-        <DatUctovani/>
-        <UKod><xsl:value-of select='concat("FK_UKOD_",substring(payment/invoice_number,0,4))  '/></UKod>
-        <FormaUhrady>FK_4</FormaUhrady>
-        <IDBankSpoj>FK_5</IDBankSpoj>
-        <CisloOrg>FK_10</CisloOrg>
-        <RadaDokladu>FK_13</RadaDokladu>
-        <PoziceZaokrDPHH>1</PoziceZaokrDPHH>
-        <DIC>FK_12</DIC>
-        <Mena>FK_7</Mena>
-        <IDReal>FK_ZALFAK</IDReal>
-        <PoziceZaokrDPHHla>1</PoziceZaokrDPHHla>
-        <HraniceZaokrDPHHla>2</HraniceZaokrDPHHla>
-        <ZaokrNaPadesat>0</ZaokrNaPadesat>
-    </TabDokladyZbozi>
-<xsl:for-each select='advance_payment/applied_invoices/consumed'>    
-    <TabDoplnkovePol>
+   </header>
+   <body>
+    <xsl:for-each select="invoice">
+     <PohyboveDoklady>
+      <cisloDokladu>
+       <xsl:call-template name='invoice_number'>
+        <xsl:with-param name='number' select="payment/invoice_number" />
+       </xsl:call-template>
+      </cisloDokladu>
+      <DruhPohybuZbo>13</DruhPohybuZbo>
+      <TabDokladyZbozi>
+       <PopisDodavky>
+        <xsl:text>vyuctovani domeny</xsl:text>
+       </PopisDodavky>
+       <ZaokrouhleniFak>0</ZaokrouhleniFak>
+       <ZaokrouhleniFakVal>0</ZaokrouhleniFakVal>
+       <SazbaDPH1>
+        <xsl:call-template name="pk_sazba_dph">
+         <xsl:with-param name="sazba"
+          select="delivery/vat_rates/entry[position()=1]/vatperc" />
+        </xsl:call-template>
+       </SazbaDPH1>
+       <xsl:if test="count(advance_payment)">
+        <Zaloha>
+         <xsl:value-of select="delivery/sumarize/total" />
+        </Zaloha>
+        <ZalohaVal>
+         <xsl:value-of select="delivery/sumarize/total" />
+        </ZalohaVal>
+       </xsl:if>
+       <CbezDPH1>
+        <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+       </CbezDPH1>
+       <CsDPH1>
+        <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+       </CsDPH1>
+       <CbezDPH1Val>
+        <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+       </CbezDPH1Val>
+       <CsDPH1Val>
+        <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+       </CsDPH1Val>
+       <DatPorizeni>
+        <xsl:value-of select="payment/invoice_date" />
+        <xsl:text> 00:00:00</xsl:text>
+       </DatPorizeni>
+       <Splatnost>
+        <xsl:value-of select="payment/invoice_date" />
+        <xsl:text> 00:00:00</xsl:text>
+       </Splatnost>
+       <xsl:if test="count(payment/tax_point)">
+        <DUZP>
+         <xsl:value-of select="payment/tax_point" />
+        </DUZP>
+       </xsl:if>
+       <xsl:if test="count(payment/advance_payment_date)">
+        <DUZP>
+         <xsl:value-of select="payment/advance_payment_date" />
+        </DUZP>
+       </xsl:if>
+       <DatPovinnostiFa>
+        <xsl:text>2007-11-07 00:00:00</xsl:text><!-- TODO -->
+       </DatPovinnostiFa>
+       <UKod>
+        <xsl:text>FK_UKOD_</xsl:text>
+        <xsl:call-template name="invoice_group" />
+       </UKod>
+       <FormaUhrady>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_payment_type" />
+       </FormaUhrady>
+       <xsl:if test="count(payment/period_from)">
+        <IdObdobiStavu>
+         <xsl:text>FK_PER_</xsl:text>
+         <xsl:value-of select="$pk_period + position()" />
+        </IdObdobiStavu>
+       </xsl:if>
+       <IDBankSpoj>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_bank_spoj" />
+       </IDBankSpoj>
+       <CisloOrg>
+        <xsl:text>FK_CL_</xsl:text>
+        <xsl:value-of select="client/id" />
+       </CisloOrg>
+       <RadaDokladu>
+        <xsl:text>FK_DDZ_</xsl:text>
+        <xsl:call-template name="invoice_group" />
+       </RadaDokladu>
+       <PoziceZaokrDPH>1</PoziceZaokrDPH>
+       <DIC>
+        <xsl:text>FK_DIC_</xsl:text>
+        <xsl:value-of select="client/id" />
+       </DIC>
+       <Mena>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_cz_currency" />
+       </Mena>
+       <xsl:if test="count(payment/tax_point)">
+        <IDReal>
+         <xsl:text>FK_ZALFAK_</xsl:text>
+         <xsl:value-of select="payment/invoice_number" />
+        </IDReal>
+       </xsl:if>
+       <PoziceZaokrDPHHla>1</PoziceZaokrDPHHla>
+       <HraniceZaokrDPHHla>2</HraniceZaokrDPHHla>
+       <ZaokrNaPadesat>0</ZaokrNaPadesat>
+      </TabDokladyZbozi>
+      <xsl:for-each select='advance_payment/applied_invoices/consumed'>
+       <TabDoplnkovePol>
         <Auto>4</Auto>
-        <Cislo><xsl:value-of select="position()"/></Cislo>
-        <SazbaDPH>FK_1</SazbaDPH>
-        <KorekceZakladuDane><xsl:value-of select="price"/></KorekceZakladuDane>
-        <KorekceDane>0</KorekceDane>
+        <Cislo>
+         <xsl:value-of select="position()" />
+        </Cislo>
+        <KorekceZakladuDane>
+         <xsl:text>-</xsl:text>
+         <xsl:value-of select="price" />
+        </KorekceZakladuDane>
+        <KorekceZakladuDaneVal>
+         <xsl:text>-</xsl:text>
+         <xsl:value-of select="price" />
+        </KorekceZakladuDaneVal>
         <ParovaciZnak>
-            <xsl:call-template name='invoice_number'>
-                 <xsl:with-param name='number' select="number"/>
-            </xsl:call-template>
+         <xsl:call-template name='invoice_number'>
+          <xsl:with-param name='number' select="number" />
+         </xsl:call-template>
         </ParovaciZnak>
-    </TabDoplnkovePol>
-</xsl:for-each>    
-<xsl:for-each select='delivery/vat_rates/entry/years/entry'>
-    <TabPohybyZbozi>
-        <RegCis>0<xsl:value-of select='year'/></RegCis>
-        <Nazev1>Výnosy roku <xsl:value-of select='year'/></Nazev1>
-        <!-- <MJEvidence>FK_17</MJEvidence> -->
-        <!-- <MJ>FK_17</MJ> -->
-        <SazbaDPH>FK_1</SazbaDPH>
+       </TabDoplnkovePol>
+      </xsl:for-each>
+      <xsl:for-each select='delivery/vat_rates/entry/years/entry'>
+       <TabPohybyZbozi>
+        <RegCis>
+         <xsl:text>0</xsl:text>
+         <xsl:value-of select='year' />
+        </RegCis>
+        <Nazev1>
+         <xsl:text>Výnosy roku </xsl:text>
+         <xsl:value-of select='year' />
+        </Nazev1>
+        <MJEvidence>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select="$pk_maj" />
+        </MJEvidence>
+        <MJ>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select="$pk_maj" />
+        </MJ>
+        <SazbaDPH>
+         <xsl:call-template name="pk_sazba_dph">
+          <xsl:with-param name="sazba" select="../../vatperc" />
+         </xsl:call-template>
+        </SazbaDPH>
         <MnOdebrane>0</MnOdebrane>
-        <JCbezDaniKC><xsl:value-of select='price'/></JCbezDaniKC>
-        <JCsDPHKc><xsl:value-of select='price'/></JCsDPHKc>
-        <JCbezDaniVal><xsl:value-of select='price'/></JCbezDaniVal>
-        <JCsDPHVal><xsl:value-of select='price'/></JCsDPHVal>
-        <CCbezDaniKc><xsl:value-of select='price'/></CCbezDaniKc>
-        <CCsDPHKc><xsl:value-of select='price'/></CCsDPHKc>
-        <CCbezDaniVal><xsl:value-of select='price'/></CCbezDaniVal>
-        <CCsDPHVal><xsl:value-of select='price'/></CCsDPHVal>
-        <JCsSDKc><xsl:value-of select='price'/></JCsSDKc>
-        <JCsSDVal><xsl:value-of select='price'/></JCsSDVal>
-        <JCbezDaniKcPoS><xsl:value-of select='price'/></JCbezDaniKcPoS>
-        <JCsSDKcPoS><xsl:value-of select='price'/></JCsSDKcPoS>
-        <JCsDPHKcPoS><xsl:value-of select='price'/></JCsDPHKcPoS>
-        <JCbezDaniValPoS><xsl:value-of select='price'/></JCbezDaniValPoS>
-        <JCsSDValPoS><xsl:value-of select='price'/></JCsSDValPoS>
-        <JCsDPHValPoS><xsl:value-of select='price'/></JCsDPHValPoS>
-        <CCsSDKc><xsl:value-of select='price'/></CCsSDKc>
-        <CCsSDVal><xsl:value-of select='price'/></CCsSDVal>
-        <CCbezDaniKcPoS><xsl:value-of select='price'/></CCbezDaniKcPoS>
-        <CCsSDKcPoS><xsl:value-of select='price'/></CCsSDKcPoS>
-        <CCsDPHKcPoS><xsl:value-of select='price'/></CCsDPHKcPoS>
-        <CCbezDaniValPoS><xsl:value-of select='price'/></CCbezDaniValPoS>
-        <CCsSDValPoS><xsl:value-of select='price'/></CCsSDValPoS>
-        <CCsDPHValPoS><xsl:value-of select='price'/></CCsDPHValPoS>
+        <JCbezDaniKC>
+         <xsl:value-of select='price' />
+        </JCbezDaniKC>
+        <JCsDPHKc>
+         <xsl:value-of select='price' />
+        </JCsDPHKc>
+        <JCbezDaniVal>
+         <xsl:value-of select='price' />
+        </JCbezDaniVal>
+        <JCsDPHVal>
+         <xsl:value-of select='price' />
+        </JCsDPHVal>
+        <CCbezDaniKc>
+         <xsl:value-of select='price' />
+        </CCbezDaniKc>
+        <CCsDPHKc>
+         <xsl:value-of select='price' />
+        </CCsDPHKc>
+        <CCbezDaniVal>
+         <xsl:value-of select='price' />
+        </CCbezDaniVal>
+        <CCsDPHVal>
+         <xsl:value-of select='price' />
+        </CCsDPHVal>
+        <JCsSDKc>
+         <xsl:value-of select='price' />
+        </JCsSDKc>
+        <JCsSDVal>
+         <xsl:value-of select='price' />
+        </JCsSDVal>
+        <JCbezDaniKcPoS>
+         <xsl:value-of select='price' />
+        </JCbezDaniKcPoS>
+        <JCsSDKcPoS>
+         <xsl:value-of select='price' />
+        </JCsSDKcPoS>
+        <JCsDPHKcPoS>
+         <xsl:value-of select='price' />
+        </JCsDPHKcPoS>
+        <JCbezDaniValPoS>
+         <xsl:value-of select='price' />
+        </JCbezDaniValPoS>
+        <JCsSDValPoS>
+         <xsl:value-of select='price' />
+        </JCsSDValPoS>
+        <JCsDPHValPoS>
+         <xsl:value-of select='price' />
+        </JCsDPHValPoS>
+        <CCsSDKc>
+         <xsl:value-of select='price' />
+        </CCsSDKc>
+        <CCsSDVal>
+         <xsl:value-of select='price' />
+        </CCsSDVal>
+        <CCbezDaniKcPoS>
+         <xsl:value-of select='price' />
+        </CCbezDaniKcPoS>
+        <CCsSDKcPoS>
+         <xsl:value-of select='price' />
+        </CCsSDKcPoS>
+        <CCsDPHKcPoS>
+         <xsl:value-of select='price' />
+        </CCsDPHKcPoS>
+        <CCbezDaniValPoS>
+         <xsl:value-of select='price' />
+        </CCbezDaniValPoS>
+        <CCsSDValPoS>
+         <xsl:value-of select='price' />
+        </CCsSDValPoS>
+        <CCsDPHValPoS>
+         <xsl:value-of select='price' />
+        </CCsDPHValPoS>
         <PrepMnozstvi>1</PrepMnozstvi>
         <MnozstviStorno>0</MnozstviStorno>
         <Mnozstvi>1</Mnozstvi>
@@ -153,231 +367,468 @@
         <EvMnozstvi>0</EvMnozstvi>
         <EvStav>0</EvStav>
         <MnozstviReal>0</MnozstviReal>
-<!--        <DatPorizeni>2007-10-22 14:25:50.983</DatPorizeni> -->
+        <DatPorizeni>
+         <xsl:value-of select='payment/invoice_date' />
+        </DatPorizeni>
         <NastaveniSlev>4681</NastaveniSlev>
         <DruhPohybuZbo>13</DruhPohybuZbo>
-        <SkupZbo>FK_SZ_SLUZBY</SkupZbo>
-        <IDZboSklad>FK_SS_<xsl:value-of select='year'/></IDZboSklad>
+        <SkupZbo>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select='$pk_skup' />
+        </SkupZbo>
+        <IDZboSklad>
+         <xsl:text>FK_SS_</xsl:text>
+         <xsl:value-of select='year' />
+        </IDZboSklad>
         <KJKontrolovat>1</KJKontrolovat>
         <KJSkontrolovano>1</KJSkontrolovano>
-        <Mena>FK_7</Mena>
+        <Mena>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select='$pk_cz_currency' />
+        </Mena>
         <PrepocetMJSD>1</PrepocetMJSD>
-    </TabPohybyZbozi>
-</xsl:for-each>
-
-</PohyboveDoklady>
-
-<Reference>
-<TabDPH>
-    <Polozka>
-        <Klic>FK_1</Klic>
-        <Sazba>0</Sazba>
-        <Nazev>Nulová sazba</Nazev>
-    </Polozka>
-    <Polozka>
-        <Klic>FK_2</Klic>
-        <Sazba>19</Sazba>
-        <Nazev>Zákl. sazba EU</Nazev>
-    </Polozka>
-</TabDPH>
-<TabUKod>
-    <Polozka>
+       </TabPohybyZbozi>
+      </xsl:for-each>
+     </PohyboveDoklady>
+    </xsl:for-each>
+    <Reference>
+     <TabDPH>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_dph_0" />
+       </Klic>
+       <Sazba>0</Sazba>
+       <Nazev>Nulová sazba</Nazev>
+      </Polozka>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_dph_19" />
+       </Klic>
+       <Sazba>19</Sazba>
+       <Nazev>Zákl. sazba EU</Nazev>
+      </Polozka>
+     </TabDPH>
+     <TabFormaUhrady>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_payment_type" />
+       </Klic>
+       <FormaUhrady>Zálohou</FormaUhrady>
+      </Polozka>
+     </TabFormaUhrady>
+     <TabStrom>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_stred" />
+       </Klic>
+       <Cislo>001</Cislo>
+       <Nazev>Středisko 001</Nazev>
+       <DruhSkladu>1</DruhSkladu>
+      </Polozka>
+     </TabStrom>
+     <TabBankSpojeni>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_bank_spoj" />
+       </Klic>
+       <NazevBankSpoj>Nazev</NazevBankSpoj>
+       <CisloUctu>123</CisloUctu>
+       <Prednastaveno>1</Prednastaveno>
+       <IDOrg>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_cznic" />
+       </IDOrg>
+       <Mena>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_cz_currency" />
+       </Mena>
+       <UcetniUcet>221000</UcetniUcet>
+       <Popis>Ucet 221000</Popis>
+       <IDUstavu>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_bank" />
+       </IDUstavu>
+       <CilovaZeme>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_zeme" />
+       </CilovaZeme>
+      </Polozka>
+     </TabBankSpojeni>
+     <TabSkupinyZbozi>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_skup" />
+       </Klic>
+       <SkupZbo>900</SkupZbo>
+       <Nazev>Služby</Nazev>
+      </Polozka>
+     </TabSkupinyZbozi>
+     <TabKodMen>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_cz_currency" />
+       </Klic>
+       <Kod>CZK</Kod>
+       <Nazev>Česká koruna</Nazev>
+       <MinNasobek>0</MinNasobek>
+       <ZaokrouhleniFaktury>0</ZaokrouhleniFaktury>
+      </Polozka>
+     </TabKodMen>
+     <TabMJ>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_maj" />
+       </Klic>
+       <Kod>ks</Kod>
+       <Nazev>kusy</Nazev>
+      </Polozka>
+     </TabMJ>
+     <TabUKod>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='230'])">
+       <Polozka>
         <Klic>FK_UKOD_230</Klic>
         <CisloKontace>19</CisloKontace>
-    </Polozka>
-    <Polozka>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='240'])">
+       <Polozka>
         <Klic>FK_UKOD_240</Klic>
         <CisloKontace>20</CisloKontace>
-    </Polozka>
-    <Polozka>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='120'])">
+       <Polozka>
         <Klic>FK_UKOD_120</Klic>
         <CisloKontace>26</CisloKontace>
-    </Polozka>
-    <Polozka>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='110'])">
+       <Polozka>
         <Klic>FK_UKOD_110</Klic>
         <CisloKontace>27</CisloKontace>
-    </Polozka>
-</TabUKod>
-<TabFormaUhrady>
-    <Polozka>
-        <Klic>FK_4</Klic>
-        <FormaUhrady>Zálohou</FormaUhrady>
-    </Polozka>
-</TabFormaUhrady>
-<TabBankSpojeni>
-    <Polozka>
-        <Klic>FK_5</Klic>
-        <NazevBankSpoj/>
-        <CisloUctu/>
-        <Prednastaveno/>
-        <IDOrg/>
-        <Mena/>
-        <UcetniUcet/>
-        <Popis/>
-        <IDUstavu/>
-        <CilovaZeme/>
-    </Polozka>
-</TabBankSpojeni>
-<TabCisOrg>
-    <Polozka>
-        <Klic>FK_10</Klic>
-        <CisloOrg><xsl:value-of select="client/id + 10000"/></CisloOrg>
-        <Nazev><xsl:value-of select="client/name"/></Nazev>
-
-        <JeOdberatel>1</JeOdberatel>
-        <JeDodavatel>1</JeDodavatel>
-        <Fakturacni>1</Fakturacni>
-
-        <PSC>FK_11</PSC>
-
-        <Ulice><xsl:value-of select="client/address/street"/></Ulice>
-        <Misto><xsl:value-of select="client/address/city"/></Misto>
-        <ICO><xsl:value-of select="client/ico"/></ICO>
-        <DIC>FK_12</DIC>
-        <IdZeme>FK_9</IdZeme>
+       </Polozka>
+      </xsl:if>
+     </TabUKod>
+     <TabPenezniUstavy>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_bank" />
+       </Klic>
+       <KodUstavu>0100</KodUstavu>
+       <AlfaKodUstavu>KOMB</AlfaKodUstavu>
+       <NazevUstavu>
+        <xsl:text>Komerční banka, a.s.</xsl:text>
+       </NazevUstavu>
+       <SWIFTUstavu>KOMBCZPP</SWIFTUstavu>
+      </Polozka>
+     </TabPenezniUstavy>
+     <xsl:if test="count(invoice/payment[period_from])">
+      <TabObdobiStavu>
+       <xsl:for-each select="invoice/payment[period_from]">
+        <Polozka>
+         <Klic>
+          <xsl:text>FK_PER_</xsl:text>
+          <xsl:value-of select="$pk_period + position()" />
+         </Klic>
+         <DatumOd>
+          <xsl:choose>
+           <xsl:when test="count(period_from)">
+            <xsl:value-of select="period_from" />
+            <xsl:text> 00:00:00.000</xsl:text>
+           </xsl:when>
+           <xsl:otherwise>
+            <xsl:value-of select="advance_payment_date" />
+            <xsl:text> 00:00:00.000</xsl:text>
+           </xsl:otherwise>
+          </xsl:choose>
+         </DatumOd>
+         <DatumDo>
+          <xsl:choose>
+           <xsl:when test="count(period_to)">
+            <xsl:value-of select="period_to" />
+            <xsl:text> 23:59:59.997</xsl:text>
+           </xsl:when>
+           <xsl:otherwise>
+            <xsl:value-of select="advance_payment_date" />
+            <xsl:text> 23:59:59.997</xsl:text>
+           </xsl:otherwise>
+          </xsl:choose>
+         </DatumDo>
+         <Nazev>10/2007</Nazev><!-- TODO -->
+        </Polozka>
+       </xsl:for-each>
+      </TabObdobiStavu>
+     </xsl:if>
+     <TabZeme>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_zeme" />
+       </Klic>
+       <ISOKod>CZ</ISOKod>
+       <Nazev>Česká republika</Nazev>
+       <CelniKod>CZ</CelniKod>
+       <EU>1</EU>
+      </Polozka>
+     </TabZeme>
+     <TabCisOrg>
+      <xsl:for-each
+       select="invoice[
+			          count(. | key('invoices-by-client',client/id)[1]) = 1
+               ]">
+       <Polozka>
+        <Klic>
+         <xsl:text>FK_CL_</xsl:text>
+         <xsl:value-of select="client/id" />
+        </Klic>
+        <CisloOrg>
+         <xsl:value-of select="client/id + 10000" />
+        </CisloOrg>
+        <Nazev>
+         <xsl:value-of select="client/name" />
+        </Nazev>
+        <PSC>
+         <xsl:value-of select="client/address/zip" />
+        </PSC>
+        <Ulice>
+         <xsl:value-of select="client/address/street" />
+        </Ulice>
+        <Misto>
+         <xsl:value-of select="client/address/city" />
+        </Misto>
+        <ICO>
+         <xsl:value-of select="client/ico" />
+        </ICO>
+        <DIC>
+         <xsl:text>FK_DIC_</xsl:text>
+         <xsl:value-of select="client/id" />
+        </DIC>
         <SlevaSozNa>2</SlevaSozNa>
         <SlevaSkupZbo>2</SlevaSkupZbo>
         <SlevaKmenZbo>2</SlevaKmenZbo>
         <SlevaStavSkladu>2</SlevaStavSkladu>
         <SlevaZbozi>2</SlevaZbozi>
         <SlevaOrg>2</SlevaOrg>
-    </Polozka>
-</TabCisOrg>
-<TabKodMen>
-    <Polozka>
-        <Klic>FK_7</Klic>
-        <Kod>CZK</Kod>
-        <Nazev>Česká koruna</Nazev>
-        <MinNasobek>0</MinNasobek>
-        <ZaokrouhleniFaktury>0</ZaokrouhleniFaktury>
-    </Polozka>
-</TabKodMen>
-<TabZeme>
-    <Polozka>
-        <Klic>FK_9</Klic>
-        <ISOKod>CZ</ISOKod>
-        <Nazev>Česká republika</Nazev>
-        <CelniKod>CZ</CelniKod>
-        <EU>1</EU>
-    </Polozka>
-</TabZeme>
-<TabPSC>
-    <Polozka>
-        <Klic>FK_11</Klic>
-        <Cislo><xsl:value-of select="client/address/zip"/></Cislo>
-        <Mesto><xsl:value-of select="client/address/city"/></Mesto>
-        <Posta><xsl:value-of select="client/address/city"/></Posta>
-    </Polozka>
-</TabPSC>
-<TabDICOrg>
-    <Polozka>
-        <Klic>FK_12</Klic>
-        <DIC><xsl:value-of select="client/vat_number"/></DIC>
-        <CisloOrg>FK_10</CisloOrg>
-        <ISOZeme>FK_9</ISOZeme>
-    </Polozka>
-</TabDICOrg>
-<TabDruhDokZbo>
-    <Polozka>
-        <Klic>FK_13</Klic>
+       </Polozka>
+      </xsl:for-each>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_cznic" />
+       </Klic>
+      </Polozka>
+     </TabCisOrg>
+     <TabDICOrg>
+      <xsl:for-each
+       select="invoice[
+				         count(. | key('invoices-by-client',client/id)[1]) = 1
+               ]">
+       <Polozka>
+        <Klic>
+         <xsl:text>FK_DIC_</xsl:text>
+         <xsl:value-of select="client/id" />
+        </Klic>
+        <DIC>
+         <!-- in case of abroad company, append VAT (VGD requirement) -->
+         <xsl:if test="substring(client/vat_number,0,3)!='CZ'">
+          <xsl:text>VAT</xsl:text>
+         </xsl:if>
+         <xsl:value-of select="client/vat_number" />
+        </DIC>
+        <CisloOrg>
+         <xsl:text>FK_CL_</xsl:text>
+         <xsl:value-of select="client/id" />
+        </CisloOrg>
+        <ISOZeme>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select="$pk_zeme" />
+        </ISOZeme>
+       </Polozka>
+      </xsl:for-each>
+     </TabDICOrg>
+     <TabDruhDokZbo>
+      <xsl:for-each
+       select="invoice[
+                count(. | 
+                 key('invoices-by-group',substring(payment/invoice_number,0,4)
+              	)[1]) = 1]">
+       <Polozka>
+        <Klic>
+         <xsl:text>FK_DDZ_</xsl:text>
+         <xsl:call-template name="invoice_group" />
+        </Klic>
         <DruhPohybuZbo>13</DruhPohybuZbo>
-        <RadaDokladu><xsl:value-of select="substring(payment/invoice_number, 0, 4)"/></RadaDokladu>
-        <Nazev>FV registrátoři ENUM - zúčtování</Nazev>
+        <RadaDokladu>
+         <xsl:call-template name="invoice_group" />
+        </RadaDokladu>
+        <Nazev>
+         <xsl:text>Rada faktur </xsl:text>
+         <xsl:call-template name="invoice_group" />
+        </Nazev>
         <PohybSkladu>1</PohybSkladu>
-        <DefOKReal>1</DefOKReal>
-        <DefOKUcto>1</DefOKUcto>
-        <UKod>FK_3</UKod>
-        <FormaUhrady>FK_4</FormaUhrady>
+        <UKod>
+         <xsl:text>FK_UKOD_</xsl:text>
+         <xsl:call-template name="invoice_group" />
+        </UKod>
         <UctoCislovani>1</UctoCislovani>
-        <VyrZaplZaloh>1</VyrZaplZaloh>
-    </Polozka>
-</TabDruhDokZbo>
-<TabZalFak>
-    <Polozka>
-        <Klic>FK_ZALFAK</Klic>
-<xsl:for-each select='advance_payment/applied_invoices/consumed'>    
-        <ZalohovaFaktura>
-            <IDZal>FK_DZ_<xsl:value-of select="number"/></IDZal>
-            <CsDPH1><xsl:value-of select="price"/></CsDPH1>
-            <CbezDPH1><xsl:value-of select="price"/></CbezDPH1>
-            <CastkaDPH1>0</CastkaDPH1>
-            <SazbaDPH1>FK_1</SazbaDPH1>
-            <Popis><xsl:value-of select="number"/></Popis>
-<!--            <Datum>1970-01-01 00:00:00.000</Datum> --> <!--TODO-->
-        </ZalohovaFaktura>
-</xsl:for-each>
-    </Polozka>
-</TabZalFak>
-<TabDokladyZbozi>
-<xsl:for-each select='advance_payment/applied_invoices/consumed'>
-    <xsl:variable name='num'>
-        <xsl:call-template name='invoice_number'>
-            <xsl:with-param name='number' select="number"/>
-        </xsl:call-template>
-    </xsl:variable>    
-    <Polozka>
-        <Klic>FK_DZ_<xsl:value-of select="number"/></Klic>
-        <DruhPohybuZbo>13</DruhPohybuZbo>
-        <PoradoveCislo><xsl:value-of select="substring($num, 4)"/></PoradoveCislo>
-        <RadaDokladu><xsl:value-of select="substring($num, 0, 4)"/></RadaDokladu>
- <!--       <DatPorizeni>1970-01-01 00:00:00.000</DatPorizeni> --> <!--TODO-->
-    </Polozka>
-</xsl:for-each>
-</TabDokladyZbozi>
-<TabSkupinyZbozi>
-    <Polozka>
-        <Klic>FK_SZ_SLUZBY</Klic>
-        <SkupZbo>900</SkupZbo>
-        <Nazev>Služby</Nazev>
-    </Polozka>
-</TabSkupinyZbozi>
-<TabMJ>
-    <Polozka>
-        <Klic>FK_MJ_KUSY</Klic>
-        <Kod>ks</Kod>
-        <Nazev>kusy</Nazev>
-    </Polozka>
-</TabMJ>
-<TabStavSkladu>
-<xsl:for-each select='delivery/vat_rates/entry/years/entry'>
-    <Polozka>
-        <Klic>FK_SS_<xsl:value-of select='year'/></Klic>
-        <JizNaSklade>1</JizNaSklade>
-        <IDKmenZbozi>FK_KZ_<xsl:value-of select='year'/></IDKmenZbozi>
-        <IDSklad>FK_STRED</IDSklad>
-    </Polozka>
-</xsl:for-each>    
-</TabStavSkladu>
-<TabKmenZbozi>
-<xsl:for-each select='delivery/vat_rates/entry/years/entry'>
-    <Polozka>
-        <Klic>FK_KZ_<xsl:value-of select='year'/></Klic>
-        <PrepMnozstvi>1</PrepMnozstvi>
-        <SazbaDPHVstup>FK_1</SazbaDPHVstup>
-        <SazbaDPHVystup>FK_1</SazbaDPHVystup>
-        <RegCis>0<xsl:value-of select='year'/></RegCis>
-        <Nazev1>Výnosy roku <xsl:value-of select='year'/></Nazev1>
-        <DruhSkladu>0</DruhSkladu>
-        <SkupZbo>FK_SZ_SLUZBY</SkupZbo>
-        <MJEvidence>FK_MJ_KUSY</MJEvidence>
-        <MJVstup>FK_MJ_KUSY</MJVstup>
-        <MJVystup>FK_MJ_KUSY</MJVystup>
-        <ZakladSDvSJ>0</ZakladSDvSJ>
-    </Polozka>
-</xsl:for-each>    
-</TabKmenZbozi>
-<TabStrom>
-    <Polozka>
-        <Klic>FK_Stred</Klic>
-        <Cislo>001</Cislo>
-        <Nazev>Středisko 001</Nazev>
-        <DruhSkladu>1</DruhSkladu>
-    </Polozka>
-</TabStrom>
-</Reference>
-</body>
-</HeliosIQ_1>
-</xsl:template>
-
+       </Polozka>
+      </xsl:for-each>
+     </TabDruhDokZbo>
+     <xsl:if test="count(invoice/advance_payment/applied_invoices/consumed)">
+      <TabZalFak>
+       <xsl:for-each
+        select="invoice[advance_payment/applied_invoices/consumed]">
+        <Polozka>
+         <Klic>
+          <xsl:text>FK_ZALFAK_</xsl:text>
+          <xsl:value-of select='payment/invoice_number' />
+         </Klic>
+         <xsl:for-each select='advance_payment/applied_invoices/consumed'>
+          <ZalohovaFaktura>
+           <IDZal>
+            <xsl:text>FK_DZ_</xsl:text>
+            <xsl:value-of select="number" />
+           </IDZal>
+           <CsDPH1>
+            <xsl:value-of select="price" />
+           </CsDPH1>
+           <CbezDPH1>
+            <xsl:value-of select="price" />
+           </CbezDPH1>
+           <CastkaDPH1>0</CastkaDPH1>
+           <SazbaDPH1>
+            <xsl:call-template name="pk_sazba_dph">
+             <xsl:with-param name="sazba"
+              select="../../../
+                      delivery/vat_rates/entry[position()=1]/vatperc" />
+            </xsl:call-template>
+           </SazbaDPH1>
+           <Popis>
+            <xsl:value-of select="number" />
+           </Popis>
+           <!--            <Datum>1970-01-01 00:00:00.000</Datum> -->
+           <!--TODO-->
+          </ZalohovaFaktura>
+         </xsl:for-each>
+        </Polozka>
+       </xsl:for-each>
+      </TabZalFak>
+      <TabDokladyZbozi>
+       <xsl:for-each
+        select="invoice/advance_payment/applied_invoices/consumed[
+                 count(. | key('adv-inv-by-number',number)[1]) = 1
+                ]">
+        <Polozka>
+         <xsl:variable name='num'>
+          <xsl:call-template name='invoice_number'>
+           <xsl:with-param name='number' select="number" />
+          </xsl:call-template>
+         </xsl:variable>
+         <Klic>
+          <xsl:text>FK_DZ_</xsl:text>
+          <xsl:value-of select="number" />
+         </Klic>
+         <DruhPohybuZbo>13</DruhPohybuZbo>
+         <PoradoveCislo>
+          <xsl:value-of select="substring($num, 4)" />
+         </PoradoveCislo>
+         <RadaDokladu>
+          <xsl:value-of select="substring($num, 0, 4)" />
+         </RadaDokladu>
+         <!--       <DatPorizeni>1970-01-01 00:00:00.000</DatPorizeni> -->
+         <!--TODO-->
+        </Polozka>
+       </xsl:for-each>
+      </TabDokladyZbozi>
+      <TabStavSkladu>
+       <xsl:for-each
+        select="invoice/delivery/vat_rates/entry/years/entry[
+                 count(. | key('entries-by-year',year)[1]) = 1
+                ]">
+        <Polozka>
+         <Klic>
+          <xsl:text>FK_SS_</xsl:text>
+          <xsl:value-of select='year' />
+         </Klic>
+         <JizNaSklade>1</JizNaSklade>
+         <IDKmenZbozi>
+          <xsl:text>FK_KZ_</xsl:text>
+          <xsl:value-of select='year' />
+         </IDKmenZbozi>
+         <IDSklad>
+          <xsl:text>FK_</xsl:text>
+          <xsl:value-of select='$pk_stred' />
+         </IDSklad>
+        </Polozka>
+       </xsl:for-each>
+      </TabStavSkladu>
+      <TabKmenZbozi>
+       <xsl:for-each
+        select="invoice/delivery/vat_rates/entry/years/entry[
+                 count(. | key('entries-by-year',year)[1]) = 1
+                ]">
+        <Polozka>
+         <Klic>
+          <xsl:text>FK_KZ_</xsl:text>
+          <xsl:value-of select='year' />
+         </Klic>
+         <PrepMnozstvi>1</PrepMnozstvi>
+         <SazbaDPHVstup>
+          <xsl:call-template name="pk_sazba_dph">
+           <xsl:with-param name="sazba" select="../../vatperc" />
+          </xsl:call-template>
+         </SazbaDPHVstup>
+         <SazbaDPHVystup>
+          <xsl:call-template name="pk_sazba_dph">
+           <xsl:with-param name="sazba" select="../../vatperc" />
+          </xsl:call-template>
+         </SazbaDPHVystup>
+         <RegCis>
+          <xsl:text>0</xsl:text>
+          <xsl:value-of select='year' />
+         </RegCis>
+         <Nazev1>
+          <xsl:text>Výnosy roku </xsl:text>
+          <xsl:value-of select='year' />
+         </Nazev1>
+         <DruhSkladu>0</DruhSkladu>
+         <SkupZbo>
+          <xsl:text>FK_</xsl:text>
+          <xsl:value-of select='$pk_skup' />
+         </SkupZbo>
+         <MJEvidence>
+          <xsl:text>FK_</xsl:text>
+          <xsl:value-of select="$pk_maj" />
+         </MJEvidence>
+         <MJVstup>
+          <xsl:text>FK_</xsl:text>
+          <xsl:value-of select="$pk_maj" />
+         </MJVstup>
+         <MJVystup>
+          <xsl:text>FK_</xsl:text>
+          <xsl:value-of select="$pk_maj" />
+         </MJVystup>
+         <ZakladSDvSJ>0</ZakladSDvSJ>
+        </Polozka>
+       </xsl:for-each>
+      </TabKmenZbozi>
+     </xsl:if>
+    </Reference>
+   </body>
+  </HeliosIQ_1>
+ </xsl:template>
 
 </xsl:stylesheet>
