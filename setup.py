@@ -341,27 +341,30 @@ class FredInstall(install.install):
             open(path, 'w').write(body)
             sys.stdout.write("Variable CONFIG_FILENAME changed in source file '%s'.\n"%path)
 
+templatesContent = os.listdir(
+  os.path.join(os.path.dirname(sys.argv[0]),"templates")
+)
+FILES1 = " ".join(
+  [filename for filename in templatesContent 
+    if os.path.isfile(os.path.join("templates",filename))])
 
-FILES1 = """advance_invoice.xsl  auth_info_en.xml  cz_nic_logo.jpg
-    fred_invoice.dtd  invoice.xsl
-    auth_info_cs.xml     auth_info.xsl     
-    fred_advance_invoice.dtd  helios.xsl"""            
-FILES2 = """advance_invoice.pdf  auth_info.rml                     
-    helios.xml   invoice.xml advance_invoice.xml  auth_info.xml
-    invoice.pdf  migrace.xml auth_info.pdf        
-    helios-popis-formatu.text_v_utf8  invoice.rml 
-    test_czech_encoding.rml"""
+examplesContent = os.listdir(
+  os.path.join(os.path.dirname(sys.argv[0]),"examples")
+)
+FILES2 = " ".join(
+  [filename for filename in examplesContent 
+    if os.path.isfile(os.path.join("examples",filename))])
 
-setup(name = 'Fred2PDF',
+setup(name = 'fred2pdf',
     description = 'PDF creator module',
     author = 'Zdenek Bohm, CZ.NIC',
     author_email = 'zdenek.bohm@nic.cz',
     url = 'http://enum.nic.cz/',
-    version = '1.1.0',
+    version = '1.2.1',
     license = 'GNU GPL',
     cmdclass = { 'config': Config, 'install': FredInstall }, 
 
-    scripts = (MAIN_SCRIPT_NAME, ),
+    scripts = (MAIN_SCRIPT_NAME, "fred-doc2pdf" ),
     
     data_files=[
         ('/etc/fred/',[]),
