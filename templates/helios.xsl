@@ -18,7 +18,7 @@
  <xsl:template name="invoice_number">
   <xsl:param name="number" select="payment/invoice_number" />
   <xsl:choose>
-   <xsl:when test="substring($number,0,1)='2'">
+   <xsl:when test="substring($number,0,2)='2'">
     <xsl:value-of select="concat(substring($number,0,5),substring($number,6))" />
    </xsl:when>
    <xsl:otherwise>
@@ -136,9 +136,7 @@
     <xsl:for-each select="invoice">
      <PohyboveDoklady>
       <cisloDokladu>
-       <xsl:call-template name='invoice_number'>
-        <xsl:with-param name='number' select="payment/invoice_number" />
-       </xsl:call-template>
+       <xsl:call-template name='invoice_number'/>
       </cisloDokladu>
       <DruhPohybuZbo>13</DruhPohybuZbo>
       <TabDokladyZbozi>
@@ -147,6 +145,12 @@
        </PopisDodavky>
        <ZaokrouhleniFak>0</ZaokrouhleniFak>
        <ZaokrouhleniFakVal>0</ZaokrouhleniFakVal>
+       <SazbaDPH>
+        <xsl:call-template name="pk_sazba_dph">
+         <xsl:with-param name="sazba"
+          select="delivery/vat_rates/entry[position()=1]/vatperc" />
+        </xsl:call-template>
+       </SazbaDPH>
        <SazbaDPH1>
         <xsl:call-template name="pk_sazba_dph">
          <xsl:with-param name="sazba"
@@ -155,10 +159,10 @@
        </SazbaDPH1>
        <xsl:if test="count(advance_payment)">
         <Zaloha>
-         <xsl:value-of select="delivery/sumarize/total" />
+         <xsl:value-of select="sum(delivery/vat_rates/entry/total)" />
         </Zaloha>
         <ZalohaVal>
-         <xsl:value-of select="delivery/sumarize/total" />
+         <xsl:value-of select="sum(delivery/vat_rates/entry/total)" />
         </ZalohaVal>
        </xsl:if>
        <CbezDPH1>
@@ -245,14 +249,27 @@
         <Cislo>
          <xsl:value-of select="position()" />
         </Cislo>
+        <SazbaDPH>
+         <xsl:call-template name="pk_sazba_dph">
+          <xsl:with-param name="sazba" select="vat_rate" />
+         </xsl:call-template>        
+        </SazbaDPH>
         <KorekceZakladuDane>
          <xsl:text>-</xsl:text>
          <xsl:value-of select="price" />
         </KorekceZakladuDane>
+        <KorekceDane>
+         <xsl:text>-</xsl:text>
+         <xsl:value-of select="vat" />
+        </KorekceDane>
         <KorekceZakladuDaneVal>
          <xsl:text>-</xsl:text>
-         <xsl:value-of select="price" />
+         <xsl:value-of select="total" />
         </KorekceZakladuDaneVal>
+        <KorekceDaneVal>
+         <xsl:text>-</xsl:text>
+         <xsl:value-of select="total_vat" />
+        </KorekceDaneVal>
         <ParovaciZnak>
          <xsl:call-template name='invoice_number'>
           <xsl:with-param name='number' select="number" />
@@ -288,25 +305,25 @@
          <xsl:value-of select='price' />
         </JCbezDaniKC>
         <JCsDPHKc>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </JCsDPHKc>
         <JCbezDaniVal>
          <xsl:value-of select='price' />
         </JCbezDaniVal>
         <JCsDPHVal>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </JCsDPHVal>
         <CCbezDaniKc>
          <xsl:value-of select='price' />
         </CCbezDaniKc>
         <CCsDPHKc>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </CCsDPHKc>
         <CCbezDaniVal>
          <xsl:value-of select='price' />
         </CCbezDaniVal>
         <CCsDPHVal>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </CCsDPHVal>
         <JCsSDKc>
          <xsl:value-of select='price' />
@@ -321,7 +338,7 @@
          <xsl:value-of select='price' />
         </JCsSDKcPoS>
         <JCsDPHKcPoS>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </JCsDPHKcPoS>
         <JCbezDaniValPoS>
          <xsl:value-of select='price' />
@@ -330,7 +347,7 @@
          <xsl:value-of select='price' />
         </JCsSDValPoS>
         <JCsDPHValPoS>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </JCsDPHValPoS>
         <CCsSDKc>
          <xsl:value-of select='price' />
@@ -345,7 +362,7 @@
          <xsl:value-of select='price' />
         </CCsSDKcPoS>
         <CCsDPHKcPoS>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </CCsDPHKcPoS>
         <CCbezDaniValPoS>
          <xsl:value-of select='price' />
@@ -354,7 +371,7 @@
          <xsl:value-of select='price' />
         </CCsSDValPoS>
         <CCsDPHValPoS>
-         <xsl:value-of select='price' />
+         <xsl:value-of select='total' />
         </CCsDPHValPoS>
         <PrepMnozstvi>1</PrepMnozstvi>
         <MnozstviStorno>0</MnozstviStorno>
@@ -567,7 +584,7 @@
            </xsl:otherwise>
           </xsl:choose>
          </DatumDo>
-         <Nazev>10/2007</Nazev><!-- TODO -->
+         <Nazev>Obdobi</Nazev>
         </Polozka>
        </xsl:for-each>
       </TabObdobiStavu>
@@ -679,11 +696,18 @@
          <xsl:call-template name="invoice_group" />
         </Nazev>
         <PohybSkladu>1</PohybSkladu>
+        <DefOKReal>1</DefOKReal>
+        <DefOKUcto>1</DefOKUcto>
         <UKod>
          <xsl:text>FK_UKOD_</xsl:text>
          <xsl:call-template name="invoice_group" />
         </UKod>
+        <FormaUhrady>
+         <xsl:text>FK_</xsl:text>
+         <xsl:value-of select="$pk_payment_type" />
+        </FormaUhrady>
         <UctoCislovani>1</UctoCislovani>
+        <VyrZaplZaloh>1</VyrZaplZaloh>
        </Polozka>
       </xsl:for-each>
      </TabDruhDokZbo>
@@ -703,12 +727,23 @@
             <xsl:value-of select="number" />
            </IDZal>
            <CsDPH1>
-            <xsl:value-of select="price" />
+            <xsl:value-of select="pricevat" />
            </CsDPH1>
            <CbezDPH1>
             <xsl:value-of select="price" />
            </CbezDPH1>
-           <CastkaDPH1>0</CastkaDPH1>
+           <CastkaDPH1>
+            <xsl:value-of select="vat" />
+           </CastkaDPH1>
+           <CsDPH1Val>
+            <xsl:value-of select="pricevat" />
+           </CsDPH1Val>
+           <CbezDPH1Val>
+            <xsl:value-of select="total" />
+           </CbezDPH1Val>
+           <CastkaDPH1Val>
+            <xsl:value-of select="totalvat" />
+           </CastkaDPH1Val>
            <SazbaDPH1>
             <xsl:call-template name="pk_sazba_dph">
              <xsl:with-param name="sazba"
@@ -719,8 +754,9 @@
            <Popis>
             <xsl:value-of select="number" />
            </Popis>
-           <!--            <Datum>1970-01-01 00:00:00.000</Datum> -->
-           <!--TODO-->
+           <Datum>
+            <xsl:value-of select='crtime' />
+           </Datum>
           </ZalohovaFaktura>
          </xsl:for-each>
         </Polozka>
@@ -748,8 +784,9 @@
          <RadaDokladu>
           <xsl:value-of select="substring($num, 0, 4)" />
          </RadaDokladu>
-         <!--       <DatPorizeni>1970-01-01 00:00:00.000</DatPorizeni> -->
-         <!--TODO-->
+         <DatPorizeni>
+          <xsl:value-of select="crtime" />
+         </DatPorizeni>
         </Polozka>
        </xsl:for-each>
       </TabDokladyZbozi>
