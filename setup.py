@@ -223,7 +223,8 @@ def save_config(conf):
     config = ConfigParser.SafeConfigParser()
     config.add_section(CONFIG_SECTION)
     for option, value in conf.items():
-        config.set(CONFIG_SECTION, option, value)
+        if option != 'config':
+            config.set(CONFIG_SECTION, option, value)
     
     try:
         fp = open(CONFIG_FILENAME, 'w')
