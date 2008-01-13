@@ -47,7 +47,7 @@ Examples:
 #        />
 #    </docinit>
 #
-#    python -m profile doc2pdf.py -o no test_invoice.rml > profile.log
+#    python -m profile fred-doc2pdf -o no test_invoice.rml > profile.log
 
 import os, sys
 import StringIO
@@ -58,7 +58,7 @@ import getopt
 from reportlab import platypus
 
 # (Path and) Name of the configuration file
-CONFIG_FILENAME = '/etc/fred/fred2pdf.conf'
+CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
 

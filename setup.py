@@ -41,7 +41,7 @@ PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono',
 
 # ----------------------------------------
 
-MAIN_SCRIPT_NAME = 'doc2pdf.py'
+MAIN_SCRIPT_NAME = 'fred-doc2pdf'
 OK = 1 # define true
 
     
@@ -355,7 +355,7 @@ FILES2 = " ".join(
   [filename for filename in examplesContent 
     if os.path.isfile(os.path.join("examples",filename))])
 
-setup(name = 'fred2pdf',
+setup(name = 'fred-doc2pdf',
     description = 'PDF creator module',
     author = 'Zdenek Bohm, CZ.NIC',
     author_email = 'zdenek.bohm@nic.cz',
@@ -368,9 +368,9 @@ setup(name = 'fred2pdf',
     
     data_files=[
         ('/etc/fred/',[]),
-        ('share/fred2pdf_docs/templates', map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
+        ('share/fred-doc2pdf/templates', map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
         ), 
-        ('share/fred2pdf_docs/examples', map(lambda s:'examples/%s'%s, re.split('\s*', FILES2)), 
+        ('share/fred-doc2pdf/examples', map(lambda s:'examples/%s'%s, re.split('\s*', FILES2)), 
         )
         ]
 
