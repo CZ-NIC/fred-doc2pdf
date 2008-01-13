@@ -14,8 +14,17 @@ from distutils.sysconfig import get_python_lib
 from distutils.util import change_root
 
 import ConfigParser
-from doc2pdf import CONFIG_FILENAME, CONFIG_SECTION, CONFIG_OPTIONS, get_default_conf
+CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
+CONFIG_SECTION = 'main'
+CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
 
+def get_default_conf():
+    conf = {}
+    for name in CONFIG_OPTIONS:
+        conf[name] = ''
+    # default configuration pathfilename
+    conf['config'] = CONFIG_FILENAME
+    return conf
 
 # ----------------------------------------
 # Here you can configure config variables:

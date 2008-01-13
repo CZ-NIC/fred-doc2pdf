@@ -11,8 +11,8 @@ Render the standard input (RML) and output a PDF file.
                           special value 'no' for profiling
 
 Examples: 
-  doc2pdf input.rml > output.pdf
-  doc2pdf -o output.pdf input.rml
+  fred-doc2pdf input.rml > output.pdf
+  fred-doc2pdf -o output.pdf input.rml
   xsltproc template.xsl data.xml | doc2pdf > output.pdf
   xsltproc template.xsl data.xml | doc2pdf -o output.pdf
 """
