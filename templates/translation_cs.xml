@@ -38,7 +38,10 @@
 <!-- invoice -->
 <str name="Customer residence">Sídlo odběratele</str>
 <str name="Tax point">Datum uskutečnění zdaň.plnění</str>
+<str name="Vat_part1">Sazba</str>
+<str name="Vat_part2">daně</str>
 <str name="Total">Celkem</str>
+<str name="free of tax">bez daně</str>
 <str name="Paid">Uhrazeno</str>
 <str name="VAT">DPH</str>
 <str name="Change">Změna</str>

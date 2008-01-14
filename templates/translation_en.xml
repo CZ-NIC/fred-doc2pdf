@@ -34,7 +34,10 @@
 <!-- invoice -->
 <str name="Customer residence">Customer seat</str>
 <str name="Tax point">Tax date</str>
+<str name="Vat_part1">VAT</str>
+<str name="Vat_part2"></str>
 <str name="Total">Total</str>
+<str name="free of tax">free of tax</str>
 <str name="Paid">Paid</str>
 <str name="VAT">VAT</str>
 <str name="Change">Change</str>

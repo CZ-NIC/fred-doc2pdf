@@ -150,9 +150,11 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <lineMode width="0.1cm"/>
         <lines>0.8cm 25.5cm 1.3cm 25.5cm</lines>
 
+	<!--
         <stroke color="black"/>
         <lineMode width="0.5"/>
         <lines>1.5cm 25.16cm 19.4cm 25.16cm</lines>
+	-->
 
         <frame id="delivery" x1="1.36cm" y1="3.5cm" width="18.2cm" height="22.5cm" showBoundary="0" />
 
@@ -211,15 +213,25 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
     <blockTableStyle id="appendix">
       <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
-      <blockAlignment value="RIGHT" start="4,0" stop="6,-1"/>
-      <blockBottomPadding length="0.3cm" start="0,0" stop="-1,0" />
-      <lineStyle kind="LINEBELOW" start="0,-1" stop="-1,-1" thickness="0.5" colorName="black"/>
+      <blockAlignment value="RIGHT" start="4,0" stop="-1,-1"/>
+
+      <!-- blockBottomPadding length="0.3cm" start="0,0" stop="-1,0" / -->
+
+      <!-- line and text bottom -->
+      <lineStyle kind="LINEBELOW" start="0,-2" stop="-1,-2" thickness="0.5" colorName="black"/>
       <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
+
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
-      <blockTopPadding length="0" start="0,2" stop="-1,-2" />
-      <blockBottomPadding length="0" start="0,1" stop="-1,-2" />
-      <blockTopPadding length="0.5cm" start="0,-1" stop="-1,-1" />
+      <blockTopPadding length="0" start="0,0" stop="-1,-2" />
+      <blockBottomPadding length="0" start="0,0" stop="-1,-2" />
+
+      <!-- padding table header -->
+      <blockBottomPadding length="0.1cm" start="0,1" stop="-1,1" />
+      <lineStyle kind="LINEBELOW" start="0,1" stop="-1,1" thickness="0.5" colorName="black"/>
+      <blockTopPadding length="0.2cm" start="0,2" stop="-1,2" />
+
+      <blockTopPadding length="0.3cm" start="0,-1" stop="-1,-1" />
     </blockTableStyle>
 
 </stylesheet>
@@ -332,7 +344,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 </xsl:template>
 
 <xsl:template match="appendix">
-    <blockTable colWidths="1.3cm,2cm,6.2cm,2.1cm,1.6cm,2.2cm,2.5cm" repeatRows="1" style="appendix">
+    <blockTable colWidths="1.3cm,2cm,5.6cm,2.1cm,1.4cm,2.2cm,1.2cm,2cm" repeatRows="2" style="appendix">
     <tr>
         <td><xsl:value-of select="$loc/str[@name='Change']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Realized']"/></td>
@@ -340,7 +352,18 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <td><xsl:value-of select="$loc/str[@name='Service from']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Number']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Price']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='Vat_part1']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Total']"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><xsl:value-of select="$loc/str[@name='free of tax']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='Vat_part2']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='free of tax']"/></td>
     </tr>
     <xsl:apply-templates select="items" />
     <xsl:apply-templates select="sumarize_items" />
@@ -352,6 +375,20 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <xsl:sort select="timestamp" />
     <xsl:sort select="subject" />
     <xsl:sort select="code" />
+
+    <xsl:choose>
+        <xsl:when test="string-length(subject) > 38">
+            <xsl:call-template name="item-two-lines"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:call-template name="item-one-line"/>
+        </xsl:otherwise>
+    </xsl:choose>
+    </xsl:for-each>
+
+</xsl:template>
+
+<xsl:template name="item-one-line">
         <tr>
             <td><xsl:value-of select='code' /></td>
             <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="timestamp" /></xsl:call-template></td>
@@ -359,14 +396,39 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
             <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="expiration" /></xsl:call-template></td>
             <td><xsl:value-of select='count' /></td>
             <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+            <td><xsl:value-of select='vat_rate' />%</td>
             <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
         </tr>
-    </xsl:for-each>
 </xsl:template>
+
+<xsl:template name="item-two-lines">
+        <tr>
+            <td><xsl:value-of select='code' /></td>
+            <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="timestamp" /></xsl:call-template></td>
+            <td><xsl:value-of select='subject' /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="expiration" /></xsl:call-template></td>
+            <td><xsl:value-of select='count' /></td>
+            <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+            <td><xsl:value-of select='vat_rate' />%</td>
+            <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+        </tr>
+</xsl:template>
+
 
 <xsl:template match="sumarize_items">
 <tr>
     <td><xsl:value-of select="$loc/str[@name='Total']"/></td>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>

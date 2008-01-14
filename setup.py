@@ -372,6 +372,7 @@ setup(name = 'fred-doc2pdf',
     url = 'http://enum.nic.cz/',
     version = '1.2.1',
     license = 'GNU GPL',
+    long_description = 'The module of the Fred system.', 
     cmdclass = { 'config': Config, 'install': FredInstall }, 
 
     scripts = (MAIN_SCRIPT_NAME, "fred-doc2pdf" ),
