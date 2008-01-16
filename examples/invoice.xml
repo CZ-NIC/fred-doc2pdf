@@ -60,6 +60,20 @@
             <basetax>42017</basetax>
             <vat>7983</vat>
             <total>50000</total>
+            <years>
+              <entry>
+                <year>2007</year>
+                <price>1.10</price>
+                <vat>0.20</vat>
+                <total>1.30</total>
+              </entry>
+              <entry>
+                <year>2008</year>
+                <price>3.90</price>
+                <vat>0.74</vat>
+                <total>4.64</total>
+              </entry>
+            </years>
         </entry>
     </vat_rates>
     <sumarize>
@@ -75,12 +89,26 @@
 <advance_payment>
     <applied_invoices>
         <consumed>
+            <number>110700004</number>
+            <price>5.00</price>
+            <balance>40.00</balance>
+            <vat>0.95</vat>
+            <vat_rate>19</vat_rate>
+            <pricevat>5.95</pricevat>
+            <total>100.00</total>
+            <total_vat>19.00</total_vat>
+            <total_with_vat>119.00</total_with_vat>
+            <crtime>2007-01-23 10:11:37</crtime>
+        </consumed>
+        <consumed>
             <number>2006112</number>
             <invoice_date>2007-01-23 14:15:16.760</invoice_date>
             <price>80000</price>
             <price_with_vat>95200</price_with_vat>
             <vat>15200</vat>
             <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
         </consumed>
         <consumed>
             <number>2006111</number>
@@ -89,6 +117,8 @@
             <price_with_vat>7140</price_with_vat>
             <vat>1140</vat>
             <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
         </consumed>
         <consumed>
             <number>2006113</number>
@@ -97,6 +127,8 @@
             <price_with_vat>26061</price_with_vat>
             <vat>4161</vat>
             <balance>28100</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
         </consumed>
         <consumed>
             <number>2006110</number>
@@ -105,6 +137,8 @@
             <price_with_vat>4760</price_with_vat>
             <vat>760</vat>
             <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
         </consumed>
     </applied_invoices>
 </advance_payment>

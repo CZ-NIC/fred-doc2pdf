@@ -54,6 +54,7 @@
 <str name="Invoice number">číslo faktury</str>
 <str name="CZK draw">čerpáno Kč</str>
 <str name="Deposit balance CZK">zůstatek zálohy Kč</str>
+<str name="Deposit Total">záloha celkem</str>
 
 <str name="Period from(date)">Za období od</str>
 <str name="to(date)">do</str>

@@ -150,12 +150,6 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <lineMode width="0.1cm"/>
         <lines>0.8cm 25.5cm 1.3cm 25.5cm</lines>
 
-	<!--
-        <stroke color="black"/>
-        <lineMode width="0.5"/>
-        <lines>1.5cm 25.16cm 19.4cm 25.16cm</lines>
-	-->
-
         <frame id="delivery" x1="1.36cm" y1="3.5cm" width="18.2cm" height="22.5cm" showBoundary="0" />
 
         <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
@@ -187,9 +181,9 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <paraStyle fontSize="9"/>
 
     <blockTableStyle id="tbl_delivery">
-      <lineStyle kind="LINEABOVE" start="0,0"  stop="2,0"  thickness="0.5" colorName="black"/>
-      <lineStyle kind="LINEBELOW" start="0,-1" stop="2,-1" thickness="0.5" colorName="black"/>
-      <blockAlignment value="RIGHT" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" start="0,0"  stop="-1,0"  thickness="0.5" colorName="black"/>
+      <lineStyle kind="LINEBELOW" start="0,-1" stop="-1,-1" thickness="0.5" colorName="black"/>
+      <blockAlignment value="RIGHT" start="1,0" stop="3,-1"/>
       <blockFont name="Times-Bold" start="0,-1" stop="-1,-1" />
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockTopPadding length="0" start="0,1" stop="-1,-2" />
@@ -209,13 +203,12 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <blockTopPadding length="0" start="0,1" stop="-1,-1" />
       <blockBottomPadding length="0" start="0,1" stop="-1,-2" />
       <blockBottomPadding length="0.3cm" start="0,-1" stop="-1,-1" />
+      <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
     </blockTableStyle>
 
     <blockTableStyle id="appendix">
       <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
       <blockAlignment value="RIGHT" start="4,0" stop="-1,-1"/>
-
-      <!-- blockBottomPadding length="0.3cm" start="0,0" stop="-1,0" / -->
 
       <!-- line and text bottom -->
       <lineStyle kind="LINEBELOW" start="0,-2" stop="-1,-2" thickness="0.5" colorName="black"/>
@@ -271,22 +264,14 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <xsl:template match="delivery">
 <spacer length="0.4cm"/>
-<blockTable colWidths="7cm,4.2cm,6.6cm" style="tbl_delivery">
-<tr>
-    <td><xsl:value-of select="$loc/str[@name='Total']"/>:</td>
-    <td><xsl:value-of select='format-number(sumarize/total, "### ##0.00", "CZK")' /></td>
-    <td/>
-</tr>
-<tr>
-    <td><xsl:value-of select="$loc/str[@name='Paid']"/>:</td>
-    <td><xsl:value-of select='format-number(sumarize/paid, "### ##0.00", "CZK")' /></td>
-    <td/>
-</tr>
+<blockTable colWidths="5cm,4.2cm,2cm,2cm,4.6cm" style="tbl_delivery" >
 <xsl:apply-templates select="vat_rates" />
 <tr>
     <td><xsl:value-of select="$loc/str[@name='To be paid']"/>:</td>
     <td><xsl:value-of select='format-number(sumarize/to_be_paid, "### ##0.00", "CZK")' /></td>
-    <td/>
+    <td></td>
+    <td></td>
+    <td></td>
 </tr>
 </blockTable>
 </xsl:template>
@@ -297,13 +282,32 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <xsl:template match="entry">
 <tr>
-    <td><xsl:value-of select="$loc/str[@name='Tax base']"/><xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
-    <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select="$loc/str[@name='Total']"/> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
+    <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
+    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
-    <td><xsl:value-of select="$loc/str[@name='VAT']"/><xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
+    <td><xsl:value-of select="$loc/str[@name='Paid']"/> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
+    <td><xsl:value-of select='concat("-", format-number(total, "### ##0.00", "CZK"))' /></td>
+    <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
+    <td><xsl:value-of select='concat("-", format-number(vat, "### ##0.00", "CZK"))' /></td>
+    <td></td>
+</tr>
+
+<tr>
+    <td><xsl:value-of select="$loc/str[@name='Tax base']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
+    <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
     <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+    <td></td>
+    <td></td>
     <td></td>
 </tr>
 </xsl:template>
@@ -318,12 +322,14 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <para><xsl:value-of select="$loc/str[@name='VAT-settled-deposit']"/>:</para>
 
     <spacer length="0.2cm"/>
-    <blockTable colWidths="3cm,2.5cm,5.7cm,6.6cm" repeatRows="1" style="tbl_advance_payment">
+    <blockTable colWidths="3.4cm,3.4cm,1.4cm,2.8cm,3.4cm,3.4cm" repeatRows="1" style="tbl_advance_payment">
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Invoice number']"/></td>
         <td><xsl:value-of select="$loc/str[@name='CZK draw']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='VAT %']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='VAT']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Deposit balance CZK']"/></td>
-        <td/>
+        <td><xsl:value-of select="$loc/str[@name='Deposit Total']"/></td>
       </tr>
     <xsl:apply-templates select="applied_invoices" />
     </blockTable>
@@ -337,8 +343,10 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <tr>
         <td><xsl:value-of select='number' /></td>
         <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
+        <td><xsl:value-of select='format-number(vat_rate, "#0")' /></td>
+        <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
         <td><xsl:value-of select='format-number(balance, "### ##0.00", "CZK")' /></td>
-        <td></td>
+        <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
     </tr>
     </xsl:for-each>
 </xsl:template>
