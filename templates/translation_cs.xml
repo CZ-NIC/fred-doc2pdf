@@ -60,7 +60,8 @@
 <str name="to(date)">do</str>
 <str name="we-invoiced-you">Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen ENUM)</str>
 <str name="Registration-domain-names">Registrace doménových jmen (kód RREG), za udržování záznamu o doménovém jménu (kód RUDR), v násobcích roků (Počet) pro doménová jména dle přílohy.</str>
-<str name="VAT-settled-deposit">DPH byla vypořádána na zálohových daňových dokladech</str>
+<str name="VAT-settled-deposit">DPH byla vypořádána na daňových dokladech na přijatou
+platbu a činí v úrovni bez daně</str>
 <str name="SpZ">SpZ</str>
 <str name="department of the civil law agenda">odbor občanskoprávních agend</str>
 <str name="Municipal Prague cap.city, no ZS/30/3/98">Magistrát hl. m. Prahy, č. ZS/30/3/98</str>
