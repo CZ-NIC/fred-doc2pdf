@@ -244,19 +244,30 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <para>
 <xsl:value-of select="$loc/str[@name='Period from(date)']"/>&SPACE; <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> &SPACE;
 <xsl:value-of select="$loc/str[@name='to(date)']"/>&SPACE; <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template> &SPACE;
+<xsl:choose>
+<xsl:when test="count(appendix/items/item)">
 <xsl:value-of select="$loc/str[@name='we-invoiced-you']"/>:
-</para>
-
 <spacer length="0.4cm"/>
-<para><xsl:value-of select="$loc/str[@name='Registration-domain-names']"/></para>
+</xsl:when>
+<xsl:otherwise>
+<xsl:value-of select="$loc/str[@name='contractual-fine']"/>:
+</xsl:otherwise>
+</xsl:choose>
+</para>
+<xsl:if test="count(appendix/items/item)">
+<para>
+  <xsl:value-of select="$loc/str[@name='Registration-domain-names']"/>
+</para>
+</xsl:if>
+
 
 <xsl:apply-templates select="delivery" />
 
-<setNextTemplate name="appendix"/>
-
+  <setNextTemplate name="appendix"/>
 <xsl:apply-templates select="advance_payment" />
-<xsl:apply-templates select="appendix" />
-
+<xsl:if test="count(appendix/items/item)">
+  <xsl:apply-templates select="appendix" />
+</xsl:if>
 </story>
 
 </document>
@@ -298,14 +309,17 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <tr>
     <td><xsl:value-of select="$loc/str[@name='Tax base']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
-    <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td>
+ <!--   <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td> --> <!-- there should be allways 0 -->
+<td><xsl:value-of select='format-number(0, "### ##0.00", "CZK")' /></td>
     <td></td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
-    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+<!--    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td> -->
+<!-- there should be allways 0 -->
+<td><xsl:value-of select='format-number(0, "### ##0.00", "CZK")' /></td>
     <td></td>
     <td></td>
     <td></td>
@@ -334,7 +348,6 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <xsl:apply-templates select="applied_invoices" />
     </blockTable>
 
-    <pageBreak/>
 </xsl:template>
 
 <xsl:template match="applied_invoices">
@@ -352,6 +365,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 </xsl:template>
 
 <xsl:template match="appendix">
+    <pageBreak/>
     <blockTable colWidths="1.3cm,2cm,5.6cm,2.1cm,1.4cm,2.2cm,1.2cm,2cm" repeatRows="2" style="appendix">
     <tr>
         <td><xsl:value-of select="$loc/str[@name='Change']"/></td>
