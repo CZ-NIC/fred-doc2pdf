@@ -55,6 +55,8 @@
 <str name="CZK draw">čerpáno Kč</str>
 <str name="Deposit balance CZK">zůstatek zálohy Kč</str>
 <str name="Deposit Total">záloha celkem</str>
+<str name="no VAT">bez DPH</str>
+<str name="with VAT">s DPH</str>
 
 <str name="Period from(date)">Za období od</str>
 <str name="to(date)">do</str>

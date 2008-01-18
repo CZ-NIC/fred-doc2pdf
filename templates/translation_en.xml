@@ -51,6 +51,8 @@
 <str name="CZK draw">CZK draw</str>
 <str name="Deposit balance CZK">Deposit balance CZK</str>
 <str name="Deposit Total">Deposit Total</str>
+<str name="no VAT">no VAT</str>
+<str name="with VAT">with VAT</str>
 
 <str name="Period from(date)">For the period (date)</str>
 <str name="to(date)">through (date)</str>
