@@ -178,7 +178,7 @@
         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
        </CsDPH1Val>
        <DatPorizeni>
-        <xsl:value-of select="payment/invoice_date" />
+        <xsl:value-of select="payment/tax_point" />
         <xsl:text> 00:00:00</xsl:text>
        </DatPorizeni>
        <Splatnost>
