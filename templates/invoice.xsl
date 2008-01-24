@@ -23,6 +23,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     </xsl:if>
 </xsl:template>
 
+
 <xsl:template match="/invoice">
 <document>
 
@@ -300,20 +301,21 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <xsl:template match="entry">
 <tr>
-    <td><xsl:value-of select="$loc/str[@name='Total']"/> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
+    <td><xsl:value-of select="$loc/str[@name='Total']"/><xsl:if test="count(/invoice/appendix/items/item)"> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</xsl:if></td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
-    <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
-    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</xsl:if></td>
+    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></xsl:if></td>
     <td></td>
 </tr>
 <tr>
-    <td><xsl:value-of select="$loc/str[@name='Paid']"/> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
+    <td><xsl:value-of select="$loc/str[@name='Paid']"/><xsl:if test="count(/invoice/appendix/items/item)"> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</xsl:if></td>
     <td><xsl:value-of select='concat("-", format-number(total, "### ##0.00", "CZK"))' /></td>
-    <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
-    <td><xsl:value-of select='concat("-", format-number(vat, "### ##0.00", "CZK"))' /></td>
+    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</xsl:if></td>
+    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='concat("-", format-number(vat, "### ##0.00", "CZK"))' /></xsl:if></td>
     <td></td>
 </tr>
 
+<xsl:if test="count(/invoice/appendix/items/item)">
 <tr>
     <td><xsl:value-of select="$loc/str[@name='Tax base']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")' />%:</td>
  <!--   <td><xsl:value-of select='format-number(basetax, "### ##0.00", "CZK")' /></td> --> <!-- there should be allways 0 -->
@@ -331,6 +333,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <td></td>
     <td></td>
 </tr>
+</xsl:if>
 </xsl:template>
 
 <xsl:template match="advance_payment">
@@ -347,8 +350,8 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Invoice number']"/></td>
         <td><xsl:value-of select="$loc/str[@name='CZK draw']"/></td>
-        <td><xsl:value-of select="$loc/str[@name='VAT %']"/></td>
-        <td><xsl:value-of select="$loc/str[@name='VAT']"/></td>
+        <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select="$loc/str[@name='VAT %']"/></xsl:if></td>
+        <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select="$loc/str[@name='VAT']"/></xsl:if></td>
         <td><xsl:value-of select="$loc/str[@name='Deposit balance CZK']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Deposit Total']"/></td>
       </tr>
@@ -371,8 +374,8 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <tr>
         <td><xsl:value-of select='number' /></td>
         <td><xsl:value-of select='format-number(price, "### ##0.00", "CZK")' /></td>
-        <td><xsl:value-of select='format-number(vat_rate, "#0")' /></td>
-        <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+        <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='format-number(vat_rate, "#0")' /></xsl:if></td>
+        <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></xsl:if></td>
         <td><xsl:value-of select='format-number(balance, "### ##0.00", "CZK")' /></td>
         <td><xsl:value-of select='format-number(total_with_vat, "### ##0.00", "CZK")' /></td>
     </tr>
