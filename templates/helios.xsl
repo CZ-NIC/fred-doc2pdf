@@ -19,7 +19,9 @@
   <xsl:param name="number" select="payment/invoice_number" />
   <xsl:choose>
    <xsl:when test="substring($number,0,2)='2'">
-    <xsl:value-of select="concat(substring($number,0,5),substring($number,6))" />
+    <!-- TODO fix this test to remove 0 just in case of 2307 and 2407 
+    <xsl:value-of select="concat(substring($number,0,5),substring($number,6))" /> -->
+    <xsl:value-of select="$number" />
    </xsl:when>
    <xsl:otherwise>
     <xsl:value-of select="$number" />
