@@ -18,9 +18,10 @@
  <xsl:template name="invoice_number">
   <xsl:param name="number" select="payment/invoice_number" />
   <xsl:choose>
-   <xsl:when test="substring($number,0,2)='2'">
-    <!-- TODO fix this test to remove 0 just in case of 2307 and 2407 
-    <xsl:value-of select="concat(substring($number,0,5),substring($number,6))" /> -->
+   <xsl:when
+    test="substring($number,0,5)='2307' or substring($number,0,5)='2407'">
+    <xsl:value-of
+     select="concat(substring($number,0,5),substring($number,6))" />
     <xsl:value-of select="$number" />
    </xsl:when>
    <xsl:otherwise>
@@ -80,7 +81,7 @@
   use="year" />
 
  <!-- support for two input formats, input xml format can have structure
-      either /invoice or /list/invoice -->
+  either /invoice or /list/invoice -->
  <xsl:template match="/">
   <xsl:choose>
    <xsl:when test="count(list)">
@@ -138,7 +139,7 @@
     <xsl:for-each select="invoice">
      <PohyboveDoklady>
       <cisloDokladu>
-       <xsl:call-template name='invoice_number'/>
+       <xsl:call-template name='invoice_number' />
       </cisloDokladu>
       <DruhPohybuZbo>13</DruhPohybuZbo>
       <TabDokladyZbozi>
@@ -180,7 +181,14 @@
         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
        </CsDPH1Val>
        <DatPorizeni>
-        <xsl:value-of select="payment/tax_point" />
+        <xsl:choose>
+         <xsl:when test="count(payment/tax_point)">
+          <xsl:value-of select="payment/tax_point" />
+         </xsl:when>
+         <xsl:when test="count(payment/advance_payment_date)">
+          <xsl:value-of select="payment/advance_payment_date" />
+         </xsl:when>
+        </xsl:choose>
         <xsl:text> 00:00:00</xsl:text>
        </DatPorizeni>
        <Splatnost>
@@ -198,7 +206,7 @@
         </DUZP>
        </xsl:if>
        <DatPovinnostiFa>
-        <xsl:text>2007-11-07 00:00:00</xsl:text><!-- TODO -->
+        <xsl:text>2007-11-07 00:00:00</xsl:text>
        </DatPovinnostiFa>
        <UKod>
         <xsl:text>FK_UKOD_</xsl:text>
@@ -254,7 +262,7 @@
         <SazbaDPH>
          <xsl:call-template name="pk_sazba_dph">
           <xsl:with-param name="sazba" select="vat_rate" />
-         </xsl:call-template>        
+         </xsl:call-template>
         </SazbaDPH>
         <KorekceZakladuDane>
          <xsl:text>-</xsl:text>
@@ -713,7 +721,8 @@
        </Polozka>
       </xsl:for-each>
      </TabDruhDokZbo>
-     <xsl:if test="count(invoice/advance_payment/applied_invoices/consumed)">
+     <xsl:if
+      test="count(invoice/advance_payment/applied_invoices/consumed)">
       <TabZalFak>
        <xsl:for-each
         select="invoice[advance_payment/applied_invoices/consumed]">

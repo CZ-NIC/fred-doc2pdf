@@ -1,3 +1,10 @@
+2008-02-19 Jaromir Talir
+
+    * helios template update
+	- fixing removing of 0 from old invoice numbering schema
+	- fixing generation of element DatPorizeni
+    * fred2pdf fixes made in r4415 was accidentaly revert, now are back
+
 2008-01-09 Jaromir Talir (version 1.3.0)
 	
     * helios integration
