@@ -22,7 +22,6 @@
     test="substring($number,0,5)='2307' or substring($number,0,5)='2407'">
     <xsl:value-of
      select="concat(substring($number,0,5),substring($number,6))" />
-    <xsl:value-of select="$number" />
    </xsl:when>
    <xsl:otherwise>
     <xsl:value-of select="$number" />
@@ -763,7 +762,9 @@
             </xsl:call-template>
            </SazbaDPH1>
            <Popis>
-            <xsl:value-of select="number" />
+            <xsl:call-template name='invoice_number'>
+             <xsl:with-param name='number' select="number" />
+            </xsl:call-template>
            </Popis>
            <Datum>
             <xsl:value-of select='crtime' />
