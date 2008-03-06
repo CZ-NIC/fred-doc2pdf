@@ -379,9 +379,8 @@ setup(name = 'fred-doc2pdf',
     
     data_files=[
         ('/etc/fred/',[]),
-        ('share/fred-doc2pdf/templates', map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
-        ), 
-        ('share/fred-doc2pdf/examples', map(lambda s:'examples/%s'%s, re.split('\s*', FILES2)), 
+        ('share/fred-doc2pdf/templates', 
+         map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
         )
         ]
 
