@@ -767,7 +767,7 @@
             </xsl:call-template>
            </Popis>
            <Datum>
-            <xsl:value-of select='crtime' />
+            <xsl:value-of select="crtime" />
            </Datum>
           </ZalohovaFaktura>
          </xsl:for-each>
@@ -797,7 +797,7 @@
           <xsl:value-of select="substring($num, 0, 4)" />
          </RadaDokladu>
          <DatPorizeni>
-          <xsl:value-of select="crtime" />
+          <xsl:value-of select="../../../payment/tax_point" />
          </DatPorizeni>
         </Polozka>
        </xsl:for-each>
