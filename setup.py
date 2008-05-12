@@ -1,30 +1,21 @@
 #!/usr/bin/python
-#
-"""Usage:
-   sudo python setup.py config
-   sudo python setup.py install
+
 """
-import sys
-import os
-import re
+Usage:
+    sudo python setup.py install
+"""
 
-from distutils.core import setup
-from distutils.command import config,  install
+import sys, os, re
+
+from freddist.core import setup
+from freddist.command.install import install
+from freddist.command.install_scripts import install_scripts
+from freddist.file_util import *
 from distutils.sysconfig import get_python_lib
-from distutils.util import change_root
 
-import ConfigParser
-CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
+CONFIG_FILENAME = 'fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
-
-def get_default_conf():
-    conf = {}
-    for name in CONFIG_OPTIONS:
-        conf[name] = ''
-    # default configuration pathfilename
-    conf['config'] = CONFIG_FILENAME
-    return conf
 
 # ----------------------------------------
 # Here you can configure config variables:
@@ -51,90 +42,89 @@ PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono',
 # ----------------------------------------
 
 MAIN_SCRIPT_NAME = 'fred-doc2pdf'
-OK = 1 # define true
 
-    
 def try_import(modulename):
-    'Check is exists module name'
-    status = 1
+    """Check if exists module named `modulename'"""
     try:
-        exec('import %s'%modulename)
-    except ImportError,  msg:
-        sys.stderr.write('ImportError: %s\n'%msg)
-        status = 0
+        exec('import %s' % modulename)
+    except ImportError, msg:
+        sys.stderr.write('ImportError: %s\n' % msg)
+        return False
     else:
-        sys.stdout.write('Module %s was found.\n'%modulename)
-    return status
-
+        sys.stdout.write('Module %s was found.\n' % modulename)
+    return True
 
 def check_reportlab():
-    'Check is exists reportlab module'
-    status = try_import(MODULE_REPORTLAB)
-    if not status:
-        sys.stderr.write('Try install: apt-get install python-reportlab\n')
-        return status, MODULE_REPORTLAB
-        
-    exec('import %s'%MODULE_REPORTLAB)
-    try:
-        version = eval('%s.Version'%MODULE_REPORTLAB)
-        fversion = float(version)
-    except AttributeError, msg:
-        sys.stderr.write('AttributeError: %s\n'%msg)
-    except ValueError, msg:
-        sys.stderr.write('ValueError: %s\n'%msg)
-    else:
-        if fversion < 2.0:
-            sys.stderr.write('Error: Module %s version %s is lower than minimum 2.0.\n'%(MODULE_REPORTLAB, version))
-            status = 0
-        else:
-            sys.stdout.write('Checked %s version: %s\n'%(MODULE_REPORTLAB, version))
-    return status, MODULE_REPORTLAB
+    """Check if `reportlab' module exists"""
+    if not try_import(MODULE_REPORTLAB):
+        sys.stderr.write('Module `python-reportlab\' not found, you will need to install it.\n')
+        return False, MODULE_REPORTLAB
 
+    exec('import %s' % MODULE_REPORTLAB)
+    try:
+        version = eval('%s.Version' % MODULE_REPORTLAB)
+        fVersion = float(version)
+    except AttributeError, msg:
+        sys.stderr.write('AttributeError: %s\n' % msg)
+    except ValueError, msg:
+        sys.stderr.write('ValueError: %s\n' % msg)
+    else:
+        if fVersion < 2.0:
+            sys.stderr.write('Error: Module %s version %s is lower than minimum 2.0.\n' % (MODULE_REPORTLAB, version))
+            return False, MODULE_REPORTLAB
+        else:
+            sys.stdout.write('Checked %s version: %s\n' % (MODULE_REPORTLAB, version))
+    return True, MODULE_REPORTLAB
 
 def check_trml2pdf():
-    'Check Tiny RML templating module'
-    
-    # find in standrard module path
+    """Check Tiny RML templating module"""
+
+    #try to find it in standard module path
     for modulename in MODULES_TINYRML:
-        status = try_import(modulename)
-        if status:
-            return status, modulename, ''
-    
+        if try_import(modulename):
+            return True, modulename, ''
+
     path = os.path.join(get_python_lib(), TINYERP_PATH)
-    sys.stdout.write('Insert path: %s\n'%path)
     sys.path.insert(0, path)
 
-    # try again with explicit path
+    #try again with explicit path
     for modulename in MODULES_TINYRML:
-        status = try_import(modulename)
-        if status:
-            return status, modulename, path
-    
-    sys.stderr.write('Try install: apt-get install tinyerp-server\n')
-    return 0, '', ''
-    
+        if try_import(modulename):
+            return True, modulename, path
+    sys.path.pop(0)
+
+    path = os.path.join('/usr/lib', TINYERP_PATH)
+    sys.path.insert(0, path)
+
+    #try again with another explicit path
+    for modulename in MODULES_TINYRML:
+        if try_import(modulename):
+            return True, modulename, path
+    sys.path.pop(0)
+
+    sys.stderr.write('Module `TinyERP\' not found, you will need to install it.\n')
+    return False, '', ''
 
 def get_popen_result(command):
-    'Returns result from shell command find'
-    status = 1
+    """Returns result from shell command find"""
+    status = True
     data = ''
     try:
         pipes = os.popen3(command)
     except IOError, msg:
         sys.stderr.write('IOError: %s\n'%msg)
-        status = 0
+        status = False
     else:
         data = pipes[1].read()
         errors = pipes[2].read()
         map(lambda f: f.close(), pipes)
         if errors:
             sys.stderr.write('PipeError: %s\n'%errors)
-            status = 0
+            status = False
     return status, data
-    
 
 def find_font_folders():
-    'Returs list of folders'
+    """Returs list of folders"""
 
     sys.stdout.write("Looking for folders '%s'...\n"%"', '".join(PREFERRED_FONT_FOLDERS))
     cmd = 'find %s -type d%s'%(FONT_ROOT, ' -or'.join(map(lambda s: ' -iname %s'%s, PREFERRED_FONT_FOLDERS)))
@@ -148,10 +138,11 @@ def find_font_folders():
     return status, font_folders
 
 def join_font_types(plain, fontnames):
-    """Chceck if name has all types: plain, obligue, bold, bold-obligue.
+    """
+    Chceck if name has all types: plain, obligue, bold, bold-obligue.
     If is it true, returns string with this names.
     """
-    font_familly = ''
+    font_family = ''
     font_name, ext = plain.split('.')
     
     obligue, bold, bold_obligue = ['']*3
@@ -165,15 +156,15 @@ def join_font_types(plain, fontnames):
             bold_obligue = name
     
     if obligue and bold and bold_obligue:
-        font_familly = ' '.join((plain,  obligue,  bold,  bold_obligue))
-        sys.stdout.write("Found font familly '%s'\n"%plain)
+        font_family = ' '.join((plain,  obligue,  bold,  bold_obligue))
+        sys.stdout.write("Found font family '%s'\n"%plain)
     
-    return font_familly
+    return font_family
 
-def find_font_familly(font_folders):
-    'Returns status,  path to the font,  font familly names (4 names)'
-    status = 0
-    font_folder_name, font_familly = '', ''
+def find_font_family(font_folders):
+    'Returns status,  path to the font,  font family names (4 names)'
+    status = False
+    font_folder_name, font_family = '', ''
     font_filenames = map(lambda s: '%s.ttf'%s, PREFERRED_FONT_NAMES)
     
     for folder_name in font_folders:
@@ -190,200 +181,125 @@ def find_font_familly(font_folders):
             font_names.append(os.path.basename(p))
         
         print "Found %d fonts in folder '%s'."%(len(font_names), folder_name)
-        # find font familly
-        # looking for fonty types (4 types = one familly)
+        # find font family
+        # looking for fonty types (4 types = one family)
         for font_type in font_filenames:
             if font_type in font_names:
-                font_familly = join_font_types(font_type, font_names)
-                if font_familly:
-                    status = 1
+                font_family = join_font_types(font_type, font_names)
+                if font_family:
+                    status = True
                     font_folder_name = font_paths[font_names.index(font_type)]
                     break
     if not status:
         sys.stderr.write('Error: Suitable font was not found.\n')
         sys.stderr.write('Try install: sudo apt-get intall ttf-freefont\n')
-    return status, font_folder_name, font_familly
+    return status, font_folder_name, font_family
 
-
-def find_font_path_and_familly():
-    'Find truetype fonts'
-    status, font_path, font_names = 0, '', ''
+def find_font_path_and_family():
+    """Find truetype fonts"""
+    status, font_path, font_names = False, '', ''
     font_names = []
     status, font_folders = find_font_folders()
     if status and len(font_folders):
-        status, font_path, font_names = find_font_familly(font_folders)
+        status, font_path, font_names = find_font_family(font_folders)
     else:
-        status = 0
+        status = False
     return status, font_path, font_names
-    
 
-def save_config(conf):
-    'Save data into config'
-    
-    config = ConfigParser.SafeConfigParser()
-    config.add_section(CONFIG_SECTION)
-    for option, value in conf.items():
-        if option != 'config':
-            config.set(CONFIG_SECTION, option, value)
-    
-    try:
-        fp = open(CONFIG_FILENAME, 'w')
-        config.write(fp)
-        fp.close()
-        sys.stdout.write("Configuration file '%s' created OK.\n"%CONFIG_FILENAME)
-    except IOError, msg:
-        sys.stderr.write('IOError: %s\n'%msg)
-        return None
+class Install(install):
+    description = "Install fred2pdf"
 
-    return OK
-    
+    def update_fred2pdf_config(self):
+        values = []
+        status = True
+        stat, reportlab_name = check_reportlab()
+        if not stat:
+            status = False
 
-def is_exists():
-    'Check if configuration file exists'
-    return os.path.isfile(CONFIG_FILENAME)
+        stat, trml_name, path = check_trml2pdf()
+        if not stat:
+            status = False
 
-def is_writable():
-    'Chcek rights - if file is writable'
-    status = 1
-    try:
-        # create folders
-        parts = CONFIG_FILENAME.split('/')[:-1]
-        for n in range(len(parts)):
-            path = '/'.join(parts[:n+1])
-            if not path: continue
-            if not os.path.isdir(path):
-                os.mkdir(path)
-        
-        # try write to file
-        f = open(CONFIG_FILENAME, 'w')
-        
-    except IOError, msg:
-        sys.stdout.write('IOError (is writable): %s\n'%msg)
-        status = 0
-    else:
-        f.close()
-        os.unlink(CONFIG_FILENAME)
-    return status
+        stat, font_path, font_family = find_font_path_and_family()
+        if not stat:
+            status = False
+        if not status:
+            sys.stdout.write('Some problems occured.\n\
+                    Clear out them and try again.\n')
+            return status
+        #print reportlab_name, '-', trml_name,'-',  path, '-', font_path, '-', font_family
 
-    
-def make_config():
-    'Test checking configuration'
-    
-    if not is_writable():
-        return 0
-    
-    status = 1
-    
-    conf = get_default_conf() # from doc2pdf
+        values.append(('TRML_MODULE_NAME', trml_name))
+        values.append(('MODULE_PATH', path))
+        values.append(('TRUE_TYPE_PATH', font_path))
+        values.append(('DEFAULT_FONT_TTF', font_family))
 
-    stat, reportlab_name = check_reportlab()
-    if not stat:
-        status = 0
-    
-    stat, trml_name, path = check_trml2pdf()
-    if stat:
-        conf['trml_module_name'] = trml_name
-        if path:
-            conf['module_path'] = path # particular path
-    else:
-        status = 0
-    
-    stat, font_path, font_familly = find_font_path_and_familly()
-    if stat:
-        conf['true_type_path'] = font_path
-        conf['default_font_ttf'] = font_familly
-    else:
-        status = 0
+        if not os.path.isdir('build'):
+            # create `build' directory if needed
+            os.makedirs('build')
 
-    if status:
-        status = save_config(conf)
-    else:
-        sys.stdout.write('Configuration file was not created.\nClear out problems and try again.\n')
-    return status
-
-def main_config(inst):
-    'Main function for make configuration'
-    global CONFIG_FILENAME
-    
-    if 'bdist' in sys.argv[1:]:
-        return 1 # not run script in bdist mode
-    
-    if inst.root:
-        # change path to configuration file path
-        CONFIG_FILENAME = change_root(inst.root, CONFIG_FILENAME)
-        sys.stdout.write("Configuration filepath has been modified to '%s'.\n"%CONFIG_FILENAME)
-# temporary disabled because it set path during bdist_rpm to /var/tmp/
-# so rpm installed doc2pdf has invalid config file path
-#        inst.fred2pdf_changed_path = 1
-    
-    if is_exists():
-        sys.stdout.write('Configuration file already exists.\n')
-        status = 1
-    else:
-        status = make_config()
-    return status
-
-
-class Config(config.config):
-    """This is config class, which checks for fred2pdf 
-    specific prerequisities.
-    """
-    description = "Check prerequisities of fred2pdf"
+        self.replace_pattern(
+                os.path.join(self.srcdir, 'conf', CONFIG_FILENAME + '.install'),
+                os.path.join('build', CONFIG_FILENAME),
+                values)
+        print "Configuration file %s has been updated" % CONFIG_FILENAME
+        return True
 
     def run(self):
-        if main_config(self):
-            config.config.run(self)
+        self.update_fred2pdf_config()
+        return install.run(self)
+# class Install
 
-class FredInstall(install.install):
-    """This is config class, which checks for fred2pdf 
-    specific prerequisities.
-    """
-    description = "Install fred2pdf witch create config"
+class Install_scripts(install_scripts):
+    def update_fred_doc2pdf_script(self):
+        values = []
+
+        if self.get_actual_root():
+            values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'" + 
+                    os.path.join(self.root,
+                        self.localstatedir.lstrip(os.path.sep), 
+                        CONFIG_FILENAME) + "'"))
+        else:
+            values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'"  + 
+                    os.path.join(self.localstatedir, CONFIG_FILENAME) + "'"))
+
+        self.replace_pattern(
+                os.path.join(self.build_dir, MAIN_SCRIPT_NAME), None, values)
+        print "Script file %s has been updated" % MAIN_SCRIPT_NAME
 
     def run(self):
-        if main_config(self):
-            install.install.run(self)
-        if getattr(self, 'fred2pdf_changed_path', None):
-            # write changed CONFIG_FILENAME of the path to main script
-            path = os.path.join(self.install_scripts, MAIN_SCRIPT_NAME)
-            body = open(path).read()
-            body = re.sub("CONFIG_FILENAME\s*=\s*['\"][^'\"]+['\"]", "CONFIG_FILENAME = '%s'"%CONFIG_FILENAME, body, 1)
-            open(path, 'w').write(body)
-            sys.stdout.write("Variable CONFIG_FILENAME changed in source file '%s'.\n"%path)
+        self.update_fred_doc2pdf_script()
+        return install_scripts.run(self)
 
-templatesContent = os.listdir(
-  os.path.join(os.path.dirname(sys.argv[0]),"templates")
-)
-FILES1 = " ".join(
-  [filename for filename in templatesContent 
-    if os.path.isfile(os.path.join("templates",filename))])
-
-examplesContent = os.listdir(
-  os.path.join(os.path.dirname(sys.argv[0]),"examples")
-)
-FILES2 = " ".join(
-  [filename for filename in examplesContent 
-    if os.path.isfile(os.path.join("examples",filename))])
-
-setup(name = 'fred-doc2pdf',
-    description = 'PDF creator module',
-    author = 'Zdenek Bohm, CZ.NIC',
-    author_email = 'zdenek.bohm@nic.cz',
-    url = 'http://enum.nic.cz/',
-    version = '1.3.0',
-    license = 'GNU GPL',
-    long_description = 'The module of the Fred system.', 
-    cmdclass = { 'config': Config, 'install': FredInstall }, 
-
-    scripts = (MAIN_SCRIPT_NAME, "fred-doc2pdf" ),
-    
-    data_files=[
-        ('/etc/fred/',[]),
-        ('share/fred-doc2pdf/templates', 
-         map(lambda s:'templates/%s'%s, re.split('\s*', FILES1))
+def main():
+    try:
+        setup(name='fred-doc2pdf',
+                description='PDF creator module',
+                author='Zdenek Bohm, CZ.NIC',
+                author_email='zdenek.bohm@nic.cz',
+                url='http://fred.nic.cz',
+                version='1.3.0',
+                license='GNU GPL',
+                long_description='The module of the FRED system',
+                cmdclass={
+                    'install':Install,
+                    'install_scripts':Install_scripts},
+                scripts=[
+                    MAIN_SCRIPT_NAME],
+                data_files=[
+                    ('SYSCONFDIR/fred/', [
+                        os.path.join('build', CONFIG_FILENAME)]),
+                    ('DATAROOTDIR/fred-doc2pdf/templates',
+                        all_files_in_2('templates')
+                    )
+                ],
+                srcdir=os.path.dirname(sys.argv[0]),
         )
-        ]
+        return True
+    except Exception, e:
+        sys.stderr.write("Error: %s\n" % e)
+        return False
 
-
-    )
-    
+if __name__=='__main__':
+    if main():
+        print "All done!"
