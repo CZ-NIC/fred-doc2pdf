@@ -253,15 +253,8 @@ class Install(install):
 class Install_scripts(install_scripts):
     def update_fred_doc2pdf_script(self):
         values = []
-
-        if self.get_actual_root():
-            values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'" + 
-                    os.path.join(self.root,
-                        self.sysconfdir.lstrip(os.path.sep), 
-                        'fred', CONFIG_FILENAME) + "'"))
-        else:
-            values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'"  + 
-                    os.path.join(self.sysconfdir, 'fred', CONFIG_FILENAME) + "'"))
+        values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'',
+            r"\1'%s'" % os.path.join(self.getDir('sysconfdir'), 'fred', CONFIG_FILENAME)))
 
         self.replace_pattern(
                 os.path.join(self.build_dir, MAIN_SCRIPT_NAME), None, values)
