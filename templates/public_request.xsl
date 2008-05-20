@@ -4,9 +4,10 @@
 ]>
 <!-- 
 
-This template serves as pattern for transfer of auth_info record into PDF. 
-Tato šablona slouží pro převod auth_info.xml záznamu do PDF.
-Create: Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007, 12.2.2007
+This template serves as pattern for transfer of public_request.xml record into PDF. 
+Tato šablona slouží pro převod public_request.xml záznamu do PDF.
+Create: Aleš Doležal <ales.dolezal@nic.cz>; 20.5.2008,
+based on template created by Zdeněk Böhm <zdenek.bohm@nic.cz>; 1.2.2007, 12.2.2007
 
 There is used a logo (file cz_nic_logo.jpg), which is saved in a folder templates/
 together with this template. It is neccesity to set up path properly, if the template isn't called
@@ -66,19 +67,19 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="handle" /></b>,
+            <b><xsl:value-of select="handle" /></b>
+            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="date" /></b>,
+            <b><xsl:value-of select="date" /></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
             &SPACE;
             <b><xsl:value-of select="id" /></b>
-            &SPACE; 
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="replymail" /></b>
+            <b><xsl:value-of select="replymail" /></b>.
         </para>
         <spacer length="0.6cm"/>
         <para>
@@ -92,16 +93,16 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="handle" /></b>,
+            <b><xsl:value-of select="handle"/></b>
+            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="date" /></b>,
+            <b><xsl:value-of select="date"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="id" /></b>
-            &SPACE; 
+            <b><xsl:value-of select="id"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
         </para>
         <spacer length="0.6cm"/>
@@ -116,16 +117,16 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="handle"/></b>,
+            <b><xsl:value-of select="handle"/></b>
+            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
             &SPACE;
-            <b><xsl:value-of select="date"/></b>,
+            <b><xsl:value-of select="date"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
             &SPACE;
             <b><xsl:value-of select="id"/></b>
-            &SPACE; 
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
@@ -149,6 +150,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         </xsl:if>
 
 <document>
+    <!--TODO i cannot change title parameter in template element-->
     <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
         title="public request" author="CZ.NIC">
 

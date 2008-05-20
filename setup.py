@@ -257,11 +257,11 @@ class Install_scripts(install_scripts):
         if self.get_actual_root():
             values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'" + 
                     os.path.join(self.root,
-                        self.localstatedir.lstrip(os.path.sep), 
-                        CONFIG_FILENAME) + "'"))
+                        self.sysconfdir.lstrip(os.path.sep), 
+                        'fred', CONFIG_FILENAME) + "'"))
         else:
             values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'', r'\1' + "'"  + 
-                    os.path.join(self.localstatedir, CONFIG_FILENAME) + "'"))
+                    os.path.join(self.sysconfdir, 'fred', CONFIG_FILENAME) + "'"))
 
         self.replace_pattern(
                 os.path.join(self.build_dir, MAIN_SCRIPT_NAME), None, values)

@@ -10,15 +10,17 @@
             5 - žádost o odblokování update
         -->
 
-        <type>3</type>
+        <type>1</type>
+
         <!-- handle type:
             1 - kontakt
             2 - sada jmenných serverů
             3 - doména
         -->
+
         <handle type="3">pokus.cz</handle>
-        <date>01.02.2007</date>
-        <id>7569223</id>
+        <date>20.05.2008</date>
+        <id>123456789</id>
         <replymail>hokus@pokus.cz</replymail>
     </public_request>
 </enum_whois>

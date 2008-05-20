@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-    <str name="head">Vyžádání změny v AuthInfo záznamu</str>
+    <str name="head">Potvrzení žádosti o zrušení blokace</str>
 
     <str name="subject">Věc: Potvrzení žádosti o zrušení blokace</str>
 
@@ -11,8 +11,8 @@
     <str name="line_1">Potvrzuji tímto žádost o zrušení zablokování změny určeného registrátora</str>
     <str name="line_2">která byla podána prostřednictvím webového formuláře na stránce http://www.nic.cz/whois/</str>
     <str name="line_3">dne</str>
-    <str name="line_4">s přiděleným identifikačním číslem</str>
-    <str name="line_5">a žádám o odstranění příslušné blokace.</str>
+    <str name="line_4"> s přiděleným identifikačním číslem</str>
+    <str name="line_5"> a žádám o odstranění příslušné blokace.</str>
     <str name="line_6">Jméno a úředně ověřený podpis zodpovědné osoby:</str>
     <str name="line_7"></str>
     <str name="line_8"></str>

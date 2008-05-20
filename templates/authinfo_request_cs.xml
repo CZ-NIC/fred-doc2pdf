@@ -11,8 +11,8 @@
     <str name="line_1">Potvrzuji tímto žádost o poskytnutí hesla</str>
     <str name="line_2">podanou prostřednictvím webového formuláře na stránkách sdružení</str>
     <str name="line_3">dne</str>
-    <str name="line_4">které bylo přiděleno identifikační číslo</str>
-    <str name="line_5">a žádám o poskytnutí příslušného hesla na adresu</str>
+    <str name="line_4">, které bylo přiděleno identifikační číslo</str>
+    <str name="line_5">. Žádám o poskytnutí příslušného hesla na adresu</str>
     <str name="line_6">Jméno a úředně ověřený podpis zodpovědné osoby:</str>
     <str name="line_7"></str>
     <str name="line_8"></str>
