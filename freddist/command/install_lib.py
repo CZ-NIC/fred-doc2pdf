@@ -1,9 +1,9 @@
 import re, os
-from distutils.command.install_scripts import install_scripts as _install_scripts
+from distutils.command.install_lib import install_lib as _install_lib
 from install_parent import install_parent
 
-class install_scripts(_install_scripts, install_parent):
-    user_options = _install_scripts.user_options
+class install_lib(_install_lib, install_parent):
+    user_options = _install_lib.user_options
     user_options.append(('root=', None,
         'install everything relative to this alternate root directory'))
     user_options.append(('prefix=', None,
@@ -29,11 +29,11 @@ class install_scripts(_install_scripts, install_parent):
     user_options.append(('preservepath', None, 
         'Preserve path(s) in configuration file(s).'))
 
-    boolean_options = _install_scripts.boolean_options
+    boolean_options = _install_lib.boolean_options
     boolean_options.append('preservepath')
 
     def __init__(self, *attrs):
-        _install_scripts.__init__(self, *attrs)
+        _install_lib.__init__(self, *attrs)
 
         self.is_bdist_mode = None
 
@@ -53,7 +53,7 @@ class install_scripts(_install_scripts, install_parent):
                 [type(self.root) is not None and self.root or ''])[0]
 
     def initialize_options(self):
-        _install_scripts.initialize_options(self)
+        _install_lib.initialize_options(self)
         self.prefix = None
         self.sysconfdir = None
         self.localstatedir = None
@@ -83,7 +83,7 @@ class install_scripts(_install_scripts, install_parent):
                 ('infodir', 'infodir'))
 
         self.srcdir = self.distribution.srcdir
-        _install_scripts.finalize_options(self)
+        _install_lib.finalize_options(self)
 
     def run(self):
-        _install_scripts.run(self)
+        _install_lib.run(self)
