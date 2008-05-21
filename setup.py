@@ -286,7 +286,6 @@ def main():
                         all_files_in_2('templates')
                     )
                 ],
-                srcdir=os.path.dirname(sys.argv[0]),
         )
         return True
     except Exception, e:
