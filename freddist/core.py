@@ -40,8 +40,6 @@ def setup(**attrs):
     if attrs['srcdir'] == '':
         attrs['srcdir'] = os.curdir
 
-    print attrs['srcdir']
-
     # Determine the distribution class -- either caller-supplied or
     # our Distribution (see below).
     klass = attrs.get('distclass')

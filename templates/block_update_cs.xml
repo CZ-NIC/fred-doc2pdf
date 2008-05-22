@@ -9,13 +9,13 @@
     <str name="subject">Věc: Potvrzení žádosti o blokaci</str>
 
     <str name="line_1">Potvrzuji tímto žádost o zablokování všech změn u</str>
-    <str name="line_2">která byla podána prostřednictvím webového formuláře na stránce http://www.nic.cz/whois/</str>
+    <str name="line_2">která byla podána prostřednictvím webového formuláře na stránkách sdružení</str>
     <str name="line_3">dne</str>
     <str name="line_4"> s přiděleným identifikačním číslem</str>
     <str name="line_5"> a žádám o provedení příslušné blokace.</str>
     <str name="line_6">Souhlasím s tím, že u dané(-ho)</str>
     <str name="line_7">nebude možné provést žádnou změnu až do okamžiku,</str>
-    <str name="line_8">kdy tuto blokaci zruším pomocí příslušného formuláře na www.nic.cz.</str>
+    <str name="line_8">kdy tuto blokaci zruším pomocí příslušného formuláře na stránkách sdružení.</str>
     <str name="line_9">Jméno a úředně ověřený podpis zodpovědné osoby:</str>
 
     <str name="footer_1">Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:</str>

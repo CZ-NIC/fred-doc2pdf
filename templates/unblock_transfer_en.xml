@@ -9,7 +9,7 @@
     <str name="subject">Subject: Confirmation of request for cancellation of blocking of</str>
 
     <str name="line_1">I hereby confirm the request for cancellation of the blocking of the change of the sponsoring registrar of the</str>
-    <str name="line_2">submitted through the web form on the web site http://www.nic.cz/whois/</str>
+    <str name="line_2">submitted through the web form at the association webpages</str>
     <str name="line_3">on</str>
     <str name="line_4">, with the assigned identification number</str>
     <str name="line_5">, and I request the cancellation of the specified blocking option.</str>
