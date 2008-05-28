@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-    <str name="head">Vyžádání změny v AuthInfo záznamu</str>
+    <str name="head">Žádost o zaslání hesla k transferu</str>
 
     <str name="re_contact">ke kontaktu</str>
     <str name="re_nsset">k sadě nameserverů</str>
