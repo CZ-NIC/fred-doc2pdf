@@ -1,0 +1,3 @@
+[bdist_rpm]
+requires=python-reportlab >= 2.0, tinyerp-server >= 4.0.3
+
