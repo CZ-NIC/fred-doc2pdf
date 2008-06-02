@@ -212,11 +212,24 @@ class Install(install):
     def update_fred2pdf_config(self):
         values = []
         status = True
-        stat, reportlab_name = check_reportlab()
+
+        if not self.no_check_deps:
+            stat, reportlab_name = check_reportlab()
+        else:
+            stat = True
+            reportlab_name = 'reportlab'
         if not stat:
             status = False
 
-        stat, trml_name, path = check_trml2pdf()
+        if not self.no_check_deps:
+            stat, trml_name, path = check_trml2pdf()
+        else:
+            stat = True
+            trml_name = 'rml2pdf'
+            path = '/usr/lib/tinyerp-server/report/render'
+
+        print stat, trml_name, path
+        exit(0)
         if not stat:
             status = False
 

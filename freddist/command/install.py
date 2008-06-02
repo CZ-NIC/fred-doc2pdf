@@ -53,11 +53,14 @@ class install(_install, install_parent):
         'do not record list of installed files'))
     user_options.append(('dont-create-pycpyo', None,
         'do not create compiled pyc and optimized pyo files'))
+    user_options.append(('no-check-deps', None,
+        'do not check dependencie'))
 
     boolean_options = _install.boolean_options
     boolean_options.append('preservepath')
     boolean_options.append('dont_record')
     boolean_options.append('dont_create_pycpyo')
+    boolean_options.append('no-check-deps')
 
     def __init__(self, *attrs):
         _install.__init__(self, *attrs)
@@ -99,6 +102,8 @@ class install(_install, install_parent):
         self.preservepath = None
         self.dont_record = None
         self.dont_create_pycpyo = None
+        self.no_check_deps = None
+
 
     def finalize_options(self):
         self.srcdir = self.distribution.srcdir
