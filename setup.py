@@ -228,12 +228,16 @@ class Install(install):
             trml_name = 'rml2pdf'
             path = '/usr/lib/tinyerp-server/report/render'
 
-        print stat, trml_name, path
-        exit(0)
         if not stat:
             status = False
 
-        stat, font_path, font_family = find_font_path_and_family()
+        if not self.no_check_deps:
+            stat, font_path, font_family = find_font_path_and_family()
+        else:
+            stat = True
+            font_path = '/usr/share/fonts/truetype/freefont'
+            font_family = 'FreeSans.ttf FreeSansOblique.ttf FreeSansBold.ttf FreeSansBoldOblique.ttf'
+
         if not stat:
             status = False
         if not status:
