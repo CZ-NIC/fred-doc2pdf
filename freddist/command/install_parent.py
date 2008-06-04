@@ -135,6 +135,43 @@ class install_parent(Command):
         # if not self.record and not self.dont_record:
             # self.record = 'install.log'
 
+    def set_directories(self, prefix=None):
+        if prefix:
+            self.prefix = prefix
+
+        if not self.sysconfdir:
+            self.sysconfdir = os.path.join(self.prefix, 'etc')
+        if not self.localstatedir:
+            self.localstatedir = os.path.join(self.prefix, 'var')
+        if not self.libexecdir:
+            self.libexecdir = os.path.join(self.prefix, 'libexec')
+        if not self.libdir:
+            self.libdir = os.path.join(self.prefix, 'lib')
+        if not self.datarootdir:
+            self.datarootdir = os.path.join(self.prefix, 'share')
+        if not self.datadir:
+            self.datadir = self.datarootdir
+        if not self.infodir:
+            self.infodir = os.path.join(self.datarootdir, 'info')
+        if not self.mandir:
+            self.mandir = os.path.join(self.datarootdir, 'man')
+        if not self.docdir:
+            self.docdir = os.path.join(
+                    self.datarootdir, 'doc', self.distribution.metadata.name)
+        if not self.bindir:
+            self.bindir = os.path.join(self.prefix, 'bin')
+        if not self.sbindir:
+            self.sbindir = os.path.join(self.prefix, 'sbin')
+        if not self.localedir:
+            self.localedir = os.path.join(self.datarootdir, 'locale')
+        if not self.pythondir:
+            self.pythondir = os.path.join(self.libdir, 'python%d.%d' % 
+                    (sys.version_info[0], sys.version_info[1]))
+        if not self.purelibdir:
+            self.purelibdir = os.path.join(self.pythondir, 'site-packages')
+
+
+
     def replace_pattern(self, fileOpen, fileSave=None, values = []):
         """
         Replace given patterns with new values, for example in config files.

@@ -60,7 +60,12 @@ class install(_install, install_parent):
     boolean_options.append('preservepath')
     boolean_options.append('dont_record')
     boolean_options.append('dont_create_pycpyo')
-    boolean_options.append('no-check-deps')
+    boolean_options.append('no_check_deps')
+
+    # user_options.extend(install_parent.user_options)
+# 
+    # boolean_options = _install.boolean_options
+    # boolean_options.extend(install_parent.boolean_options)
 
     def __init__(self, *attrs):
         _install.__init__(self, *attrs)
@@ -74,6 +79,7 @@ class install(_install, install_parent):
     def finalize_options(self):
         _install.finalize_options(self)
         install_parent.finalize_options(self)
+        #self.set_directories()
         if not self.record and not self.dont_record:
             self.record = 'install.log'
 

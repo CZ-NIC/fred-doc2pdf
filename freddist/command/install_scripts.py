@@ -43,6 +43,8 @@ class install_scripts(_install_scripts, install_parent):
         'locale-dependent data [DATAROOTDIR/locale]'))
     user_options.append(('preservepath', None, 
         'Preserve path(s) in configuration file(s).'))
+    user_options.append(('dont-record', None,
+        'do not record list of installed files'))
     user_options.append(('dont-create-pycpyo', None,
         'do not create compiled pyc and optimized pyo files'))
     user_options.append(('no-check-deps', None,
@@ -51,8 +53,13 @@ class install_scripts(_install_scripts, install_parent):
 
     boolean_options = _install_scripts.boolean_options
     boolean_options.append('preservepath')
+    boolean_options.append('dont_record')
     boolean_options.append('dont_create_pycpyo')
-    boolean_options.append('no-check-deps')
+    boolean_options.append('no_check_deps')
+
+    # user_options.extend(install_parent.user_options)
+    # boolean_options = _install_scripts.boolean_options
+    # boolean_options.extend(install_parent.boolean_options)
 
     def __init__(self, *attrs):
         _install_scripts.__init__(self, *attrs)
@@ -67,28 +74,33 @@ class install_scripts(_install_scripts, install_parent):
 
     def finalize_options(self):
         _install_scripts.finalize_options(self)
-        self.set_undefined_options('install',
-                ('prefix', 'prefix'),
-                ('sysconfdir', 'sysconfdir'),
-                ('localstatedir', 'localstatedir'),
-                ('libexecdir', 'libexecdir'),
-                ('preservepath', 'preservepath'),
-                ('root', 'root'),
-                ('libdir', 'libdir'),
-                ('datarootdir', 'datarootdir'),
-                ('datadir', 'datadir'),
-                ('mandir', 'mandir'),
-                ('docdir', 'docdir'),
-                ('bindir', 'bindir'),
-                ('sbindir', 'sbindir'),
-                ('localedir', 'localedir'),
-                ('pythondir', 'pythondir'),
-                ('purelibdir', 'purelibdir'),
-                ('infodir', 'infodir'),
-                ('dont_create_pycpyo', 'dont_create_pycpyo'),
-                ('no_check_deps', 'no_check_deps'),
-                ('record', 'record'))
-        install_parent.finalize_options(self)
+        if 'install' in sys.argv:
+            #install_parent.finalize_options(self)
+            self.set_undefined_options('install',
+                    ('prefix', 'prefix'),
+                    ('sysconfdir', 'sysconfdir'),
+                    ('localstatedir', 'localstatedir'),
+                    ('libexecdir', 'libexecdir'),
+                    ('preservepath', 'preservepath'),
+                    ('root', 'root'),
+                    ('libdir', 'libdir'),
+                    ('datarootdir', 'datarootdir'),
+                    ('datadir', 'datadir'),
+                    ('mandir', 'mandir'),
+                    ('docdir', 'docdir'),
+                    ('bindir', 'bindir'),
+                    ('sbindir', 'sbindir'),
+                    ('localedir', 'localedir'),
+                    ('pythondir', 'pythondir'),
+                    ('purelibdir', 'purelibdir'),
+                    ('infodir', 'infodir'),
+                    ('dont_create_pycpyo', 'dont_create_pycpyo'),
+                    ('dont_record', 'dont_record'),
+                    ('no_check_deps', 'no_check_deps'),
+                    ('record', 'record'))
+        else:
+           # self.set_directories(self.prefix)
+            install_parent.finalize_options(self)
         #self.srcdir = self.distribution.srcdir
         if not self.record and not self.dont_record:
             self.record = 'install.log'
