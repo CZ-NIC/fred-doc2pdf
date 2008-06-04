@@ -1,6 +1,6 @@
 include templates/*
 include examples/*
-include setup.cfg
+#include setup.cfg
 include setup.py
 
 include conf/*.install
