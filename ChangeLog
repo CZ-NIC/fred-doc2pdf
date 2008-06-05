@@ -1,5 +1,9 @@
+2008-06-05 Jaromir Talir, Ales Dolezal (version 1.4.1)
+
+    * small build process changes
+
 2008-05-30 Jaromir Talir, Ales Dolezal (version 1.4.0)
-	
+
     * new build system fred-dist
 
     * impementation of new public request template
