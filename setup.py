@@ -32,7 +32,7 @@ TINYERP_PATH = 'tinyerp-server/report/render'
 FONT_ROOT = '/usr/share/fonts'
 
 # Folder names where process looking for fonts
-PREFERRED_FONT_FOLDERS = ('freefont', 'truetype')
+PREFERRED_FONT_FOLDERS = ('freefont', 'truetype', 'freefont-ttf')
 
 # Font names which process looking for
 PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono', 
