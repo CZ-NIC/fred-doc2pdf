@@ -281,7 +281,7 @@ class Install_scripts(install_scripts):
         self.update_fred_doc2pdf_script()
         return install_scripts.run(self)
 
-def main():
+def main(directory):
     try:
         setup(name='fred-doc2pdf',
                 description='PDF creator module',
@@ -299,10 +299,14 @@ def main():
                 data_files=[
                     ('SYSCONFDIR/fred/', [
                         os.path.join('build', CONFIG_FILENAME)]),
-                    ('DATAROOTDIR/fred-doc2pdf/templates',
-                        all_files_in_2('templates')
-                    )
-                ],
+                    # ('DATAROOTDIR/fred-doc2pdf/templates',
+                        # all_files_in_2('templates')
+                    # )
+                ]
+                + all_files_in_4(
+                    os.path.join('DATAROOTDIR', 'fred-doc2pdf', 'templates'),
+                    os.path.join(directory, 'templates'))
+                ,
         )
         return True
     except Exception, e:
@@ -310,5 +314,10 @@ def main():
         return False
 
 if __name__=='__main__':
-    if main():
+    dir = ''
+    if 'bdist' in sys.argv:
+        dir = ''
+    else:
+        dir = os.path.dirname(sys.argv[0])
+    if main(dir):
         print "All done!"
