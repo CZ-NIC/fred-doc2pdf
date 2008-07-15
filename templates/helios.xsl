@@ -668,8 +668,10 @@
          <xsl:value-of select="client/id" />
         </Klic>
         <DIC>
-         <!-- in case of abroad company, append VAT (VGD requirement) -->
-         <xsl:if test="substring(client/vat_number,0,3)!='CZ'">
+         <!-- in case of VAT starts with a number, 
+	      prepend VAT (VGD requirement) before this number -->
+         <xsl:if 
+          test="contains('0123456789',substring(client/vat_number,0,2))">
           <xsl:text>VAT</xsl:text>
          </xsl:if>
          <xsl:value-of select="client/vat_number" />

@@ -1,4 +1,9 @@
-2008-06-05 Jaromir Talir (version 1.4.2)
+2008-07-15 Jaromir Talir (version 1.4.2)
+
+    * update helios template 
+	- enhanced VAT string prependation
+	
+2008-06-05 Jaromir Talir 
 
     * rpm build fixes
 	
