@@ -1,3 +1,9 @@
+2008-08-19 Ales Dolezal
+
+	* new setup options, which provides way to manually set up some
+	  parameters (trml name and path and font names and path) if used
+	  with ``--no-check-deps'' option.
+
 2008-07-15 Jaromir Talir (version 1.4.2)
 
     * update helios template 

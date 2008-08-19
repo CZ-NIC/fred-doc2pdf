@@ -209,45 +209,53 @@ def find_font_path_and_family():
 class Install(install):
     description = "Install fred2pdf"
 
+    user_options = install.user_options
+    user_options.append(('trml-name=', None,
+        'name of trml module'))
+    user_options.append(('trml-path=', None,
+        'path to trml module'))
+    user_options.append(('font-names=', None,
+        'default names for true-type fonts'))
+    user_options.append(('font-path=', None,
+        'path to true-type fonts'))
+
+    def initialize_options(self):
+        install.initialize_options(self)
+        self.trml_name = None
+        self.trml_path = None
+        self.font_names = None
+        self.font_path  = None
+
+    def finalize_options(self):
+        install.finalize_options(self)
+# 
     def update_fred2pdf_config(self):
         values = []
         status = True
 
-        if not self.no_check_deps:
-            stat, reportlab_name = check_reportlab()
+        if self.no_check_deps:
+            if not self.trml_name:
+                self.trml_name = 'rml2pdf'
+            if not self.trml_path:
+                self.trml_path = '/usr/lib/tinyerp-server/report/render'
+            if not self.font_names:
+                self.font_names = 'FreeSans.ttf FreeSansOblique.ttf FreeSansBold.ttf FreeSansBoldOblique.ttf'
+            if not self.font_path:
+                self.font_path = '/usr/share/fonts/truetype/freefont'
+
+            trml_name = self.trml_name
+            trml_path = self.trml_path
+            font_path = self.font_path
+            font_family = self.font_names
         else:
-            stat = True
-            reportlab_name = 'reportlab'
-        if not stat:
-            status = False
-
-        if not self.no_check_deps:
-            stat, trml_name, path = check_trml2pdf()
-        else:
-            stat = True
-            trml_name = 'rml2pdf'
-            path = '/usr/lib/tinyerp-server/report/render'
-
-        if not stat:
-            status = False
-
-        if not self.no_check_deps:
-            stat, font_path, font_family = find_font_path_and_family()
-        else:
-            stat = True
-            font_path = '/usr/share/fonts/truetype/freefont'
-            font_family = 'FreeSans.ttf FreeSansOblique.ttf FreeSansBold.ttf FreeSansBoldOblique.ttf'
-
-        if not stat:
-            status = False
-        if not status:
-            sys.stdout.write('Some problems occured.\n\
-                    Clear out them and try again.\n')
-            return status
-        #print reportlab_name, '-', trml_name,'-',  path, '-', font_path, '-', font_family
+            stat1, trml_name, trml_path = check_trml2pdf()
+            stat2, font_path, font_family = find_font_path_and_family()
+            if not stat1 or not stat2:
+                sys.stdout.write('Some problems occured.\nClear them out and try again.\n')
+                return False
 
         values.append(('TRML_MODULE_NAME', trml_name))
-        values.append(('MODULE_PATH', path))
+        values.append(('MODULE_PATH', trml_path))
         values.append(('TRUE_TYPE_PATH', font_path))
         values.append(('DEFAULT_FONT_TTF', font_family))
 
@@ -299,9 +307,6 @@ def main(directory):
                 data_files=[
                     ('SYSCONFDIR/fred/', [
                         os.path.join('build', CONFIG_FILENAME)]),
-                    # ('DATAROOTDIR/fred-doc2pdf/templates',
-                        # all_files_in_2('templates')
-                    # )
                 ]
                 + all_files_in_4(
                     os.path.join('DATAROOTDIR', 'fred-doc2pdf', 'templates'),
