@@ -1,3 +1,4 @@
 [bdist_rpm]
 requires=python-reportlab >= 2.0, tinyerp-server >= 4.0.3, freefont
-install-extra-opts=--prefix=/usr --sysconfdir=/etc
+install-extra-opts=--no-check-deps --prefix=/usr --sysconfdir=/etc --trml-path=/usr/lib/python2.5/site-packages/tinyerp-server/report/render --trml-name=rml2pdf --font-path=/usr/share/fonts/freefont --font-names="FreeSans.ttf FreeSansOblique.ttf FreeSansBold.ttf FreeSansBoldOblique.ttf"
+

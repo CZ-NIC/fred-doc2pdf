@@ -296,7 +296,7 @@ def main(directory):
                 author='Zdenek Bohm, CZ.NIC',
                 author_email='zdenek.bohm@nic.cz',
                 url='http://fred.nic.cz',
-                version='1.4.2',
+                version='2.0',
                 license='GNU GPL',
                 long_description='The module of the FRED system',
                 cmdclass={
