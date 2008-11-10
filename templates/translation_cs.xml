@@ -84,16 +84,16 @@ platbu a činí v úrovni bez daně</str>
 <str name="Dear holder of">Vážený držiteli doménového jména</str>
 <str name="domain name"></str>
 
-<str name="The CZ.NIC z.s.p.o. company, an administrator...">CZ.NIC z.s.p.o., správce národní domény .cz, Vás upozorňuje, že dosud neobdržel pokyn k obnovení registrace doménového jména uvedeného výše. Doména je v současné době nefunkční, je vyřazena ze zóny .cz (viz Pravidla registrace v doméně .cz na adrese www.nic.cz).</str>
+<str name="The CZ.NIC z.s.p.o. company, an administrator...">CZ.NIC, z.s.p.o., správce národní domény .cz, Vás upozorňuje, že dosud neobdrželo pokyn k obnovení registrace doménového jména, uvedeného výše. Doména je v současné době nefunkční, je vyřazena ze zóny .cz (viz Pravidla registrace v doméně .cz na adrese www.nic.cz).</str>
 
-<str name="Should you be interested in keeping this domain name...">Pokud máte zájem toto doménové jméno držet i nadále, spojte se urychleně s určeným registrátorem a řešte případnou reklamaci a domluvte další postup. Rovněž máte možnost oslovit jiného určeného registrátora a prodloužení registrace svěřit jemu.
-Aktuální seznam firem, se kterými sdružení CZ.NIC má uzavřenou smlouvu o statutu registrátora, najdete rovněž na www.nic.cz. </str>
+<str name="Should you be interested in keeping this domain name...">Pokud máte zájem toto doménové jméno vlastnit i nadále, spojte se urychleně s určeným registrátorem, řešte případnou reklamaci a domluvte další postup. Rovněž máte možnost oslovit jiného registrátora a prodloužení registrace domény svěřit jemu.
+Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o statutu registrátora, najdete rovněž na www.nic.cz. </str>
 
-<str name="hould the registration of the domain name...">Pokud nebude registrace doménového jména včas prodloužena, bude dne</str>
+<str name="hould the registration of the domain name...">Pokud nebude registrace doménového jména včas obnovena, bude dne</str>
 
 <str name="and the domain name shall be open...">zrušena a doménové jméno uvolněno případným dalším zájemcům!</str>
 
-<str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">CZ.NIC evidoval v Centrální databázi ke dni vystavení tohoto dopisu údaje</str>
+<str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">CZ.NIC, z.s.p.o., evidovalo v centrální databázi ke dni vystavení tohoto dopisu následující údaje</str>
 
 <str name="Domain name">Jméno domény</str>
 <str name="Holder">Držitel</str>
