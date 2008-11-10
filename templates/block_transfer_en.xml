@@ -5,6 +5,7 @@
     <str name="re_contact">contact</str>
     <str name="re_nsset">nameserver set</str>
     <str name="re_domain">domain name</str>
+    <str name="re_keyset">keyset</str>
 
     <str name="subject">Subject: Confirmation of request for blocking of</str>
 

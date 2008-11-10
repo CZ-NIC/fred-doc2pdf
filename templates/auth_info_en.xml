@@ -5,6 +5,7 @@
 <str name="contact">contact</str>
 <str name="nameserver set">nameserver set</str>
 <str name="domain name">domain name</str>
+<str name="keyset">keyset</str>
 <str name="handle">handle</str>
 
 <str name="Re: Confirmation of Request for password for">Re: Confirmation of Request for password for</str>

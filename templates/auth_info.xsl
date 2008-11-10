@@ -25,6 +25,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <xsl:when test="$type_id = 1"><xsl:value-of select="$loc/str[@name='contact']"/></xsl:when>
         <xsl:when test="$type_id = 2"><xsl:value-of select="$loc/str[@name='nameserver set']"/></xsl:when>
         <xsl:when test="$type_id = 3"><xsl:value-of select="$loc/str[@name='domain name']"/></xsl:when>
+        <xsl:when test="$type_id = 4"><xsl:value-of select="$loc/str[@name='keyset']"/></xsl:when>
         <xsl:otherwise><xsl:value-of select="$loc/str[@name='handle']"/></xsl:otherwise>
     </xsl:choose>
 </xsl:template>

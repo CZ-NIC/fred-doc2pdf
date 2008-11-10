@@ -57,6 +57,12 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <xsl:when test="$type = 3 and $type_id = 3"><xsl:value-of select="document(concat('unblock_transfer_', $lang, '.xml'))/strings/str[@name=concat($str, '_domain')]"/></xsl:when>
             <xsl:when test="$type = 4 and $type_id = 3"><xsl:value-of select="document(concat('block_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_domain')]"/></xsl:when>
             <xsl:when test="$type = 5 and $type_id = 3"><xsl:value-of select="document(concat('unblock_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_domain')]"/></xsl:when>
+
+            <xsl:when test="$type = 1 and $type_id = 4"><xsl:value-of select="document(concat('authinfo_request_', $lang, '.xml'))/strings/str[@name=concat($str, '_keyset')]"/></xsl:when>
+            <xsl:when test="$type = 2 and $type_id = 4"><xsl:value-of select="document(concat('block_transfer_', $lang, '.xml'))/strings/str[@name=concat($str, '_keyset')]"/></xsl:when>
+            <xsl:when test="$type = 3 and $type_id = 4"><xsl:value-of select="document(concat('unblock_transfer_', $lang, '.xml'))/strings/str[@name=concat($str, '_keyset')]"/></xsl:when>
+            <xsl:when test="$type = 4 and $type_id = 4"><xsl:value-of select="document(concat('block_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_keyset')]"/></xsl:when>
+            <xsl:when test="$type = 5 and $type_id = 4"><xsl:value-of select="document(concat('unblock_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_keyset')]"/></xsl:when>
         </xsl:choose>
     </xsl:template>
 
