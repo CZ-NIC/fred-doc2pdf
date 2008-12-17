@@ -309,9 +309,9 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 </tr>
 <tr>
     <td><xsl:value-of select="$loc/str[@name='Paid']"/><xsl:if test="count(/invoice/appendix/items/item)"> (<xsl:value-of select='format-number(vatperc, "#0")'/>%):</xsl:if></td>
-    <td><xsl:value-of select='concat("-", format-number(total, "### ##0.00", "CZK"))' /></td>
+    <td><xsl:value-of select='format-number(- total, "### ##0.00", "CZK")' /></td>
     <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</xsl:if></td>
-    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='concat("-", format-number(vat, "### ##0.00", "CZK"))' /></xsl:if></td>
+    <td><xsl:if test="count(/invoice/appendix/items/item)"><xsl:value-of select='format-number(- vat, "### ##0.00", "CZK")' /></xsl:if></td>
     <td></td>
 </tr>
 
