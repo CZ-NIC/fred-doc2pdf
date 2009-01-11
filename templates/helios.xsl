@@ -264,20 +264,16 @@
          </xsl:call-template>
         </SazbaDPH>
         <KorekceZakladuDane>
-         <xsl:text>-</xsl:text>
-         <xsl:value-of select="price" />
+         <xsl:value-of select="-price" />
         </KorekceZakladuDane>
         <KorekceDane>
-         <xsl:text>-</xsl:text>
-         <xsl:value-of select="vat" />
+         <xsl:value-of select="-vat" />
         </KorekceDane>
         <KorekceZakladuDaneVal>
-         <xsl:text>-</xsl:text>
-         <xsl:value-of select="total" />
+         <xsl:value-of select="-total" />
         </KorekceZakladuDaneVal>
         <KorekceDaneVal>
-         <xsl:text>-</xsl:text>
-         <xsl:value-of select="total_vat" />
+         <xsl:value-of select="-total_vat" />
         </KorekceDaneVal>
         <ParovaciZnak>
          <xsl:call-template name='invoice_number'>
