@@ -1,3 +1,7 @@
+2008-05-25 Jaromir Talir (version 2.0.2)
+
+    * bugfix doubled '-' sign in case of negative numbers in helios template  
+
 2008-12-17 Jaromir Talir (version 2.0.1)
 
     * bugfix negative numbers in invoice template
