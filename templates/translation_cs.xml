@@ -6,6 +6,7 @@
 <str name="Invoice No">Faktura č.</str>
 <str name="Invoice / Vat voucher">Faktura / daňový doklad</str>
 <str name="Advance Payment Request / Vat voucher">Zálohová faktura / daňový doklad</str>
+<str name="Tax credit">Daňový dobropis</str>
 <str name="No">č</str>
 <str name="ICO">IČO</str>
 <str name="VAT number">DIČ</str>
@@ -34,7 +35,8 @@
   provozovnu příjemce služby. Povinnost přiznat a zaplatit daň má příjemce
   služby dle platného zákona v místě jeho sídla, podnikání nebo provozovny.
   (VAT liability is payable by the recipient of our services.)</str>
-
+<str name="Tax credit text">Dobropisujeme vám daňový doklad č.</str>
+  
 <!-- invoice -->
 <str name="Customer residence">Sídlo odběratele</str>
 <str name="Tax point">Datum uskutečnění zdaň.plnění</str>

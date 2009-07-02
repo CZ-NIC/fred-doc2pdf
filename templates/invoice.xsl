@@ -40,7 +40,17 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
         <fill color="white" />
         <setFont name="Times-Roman" size="14"/>
-        <drawRightString x="19.3cm" y="27.9cm"><xsl:value-of select="$loc/str[@name='Invoice / Vat voucher']"/></drawRightString>
+        <drawRightString x="19.3cm" y="27.9cm">
+            <xsl:choose>
+                <xsl:when test="number(delivery/sumarize/total)&lt;0">
+                    <xsl:value-of select="$loc/str[@name='Tax credit']"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$loc/str[@name='Invoice / Vat voucher']"/>
+                </xsl:otherwise>        
+            </xsl:choose>
+            
+        </drawRightString>
         <drawRightString x="19.3cm" y="27cm"><xsl:value-of select="$loc/str[@name='No']"/>. <xsl:value-of select="payment/invoice_number"/></drawRightString>
 
         <stroke color="#035e79"/>
@@ -250,16 +260,31 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <spacer length="0.4cm"/>
 <para>
-<xsl:value-of select="$loc/str[@name='Period from(date)']"/>&SPACE; <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_from" /></xsl:call-template> &SPACE;
-<xsl:value-of select="$loc/str[@name='to(date)']"/>&SPACE; <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/period_to" /></xsl:call-template> &SPACE;
 <xsl:choose>
-<xsl:when test="count(appendix/items/item)">
-<xsl:value-of select="$loc/str[@name='we-invoiced-you']"/>:
-<spacer length="0.4cm"/>
-</xsl:when>
-<xsl:otherwise>
-<xsl:value-of select="$loc/str[@name='contractual-fine']"/>:
-</xsl:otherwise>
+ <xsl:when test="number(delivery/sumarize/total)&lt;0">
+  <xsl:value-of select="$loc/str[@name='Tax credit text']"/>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="payment/tax_credit_number"/>
+ </xsl:when>
+ <xsl:otherwise>
+  <xsl:value-of select="$loc/str[@name='Period from(date)']"/>&SPACE; 
+  <xsl:call-template name="local_date">
+   <xsl:with-param name="sdt" select="payment/period_from"/>
+  </xsl:call-template> &SPACE;
+  <xsl:value-of select="$loc/str[@name='to(date)']"/>&SPACE; 
+  <xsl:call-template name="local_date">
+   <xsl:with-param name="sdt" select="payment/period_to" />
+  </xsl:call-template> &SPACE;
+  <xsl:choose>
+   <xsl:when test="count(appendix/items/item)">
+    <xsl:value-of select="$loc/str[@name='we-invoiced-you']"/>:
+    <spacer length="0.4cm"/>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:value-of select="$loc/str[@name='contractual-fine']"/>:
+   </xsl:otherwise>
+  </xsl:choose>
+ </xsl:otherwise>
 </xsl:choose>
 </para>
 <xsl:if test="count(appendix/items/item)">

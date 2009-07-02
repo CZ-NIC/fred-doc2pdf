@@ -6,6 +6,7 @@
 <str name="Invoice No">Invoice No</str>
 <str name="Invoice / Vat voucher">Invoice / Vat voucher</str>
 <str name="Advance Payment Request / Vat voucher">Advance Payment Request / Vat voucher</str>
+<str name="Tax credit">Tax credit</str>
 <str name="No">No</str>
 <str name="ICO">Company reg. No</str>
 <str name="VAT number">VAT reg. No</str>
@@ -30,6 +31,7 @@
 <str name="To be paid">To be paid</str>
 <str name="Voucher-for-call-VAT">You deposit tax document can be used to claim VAT deduction for the deposit received. </str>
 <str name="Insurance-by-law-and-VAT-liability">VAT liability is payable by the recipient of our services. Pursuant to section 10 of Value Added tax act, the place of taxable supply is abroad</str>
+<str name="Tax credit text">Tax credit of invoice no.</str>
 
 <!-- invoice -->
 <str name="Customer residence">Customer seat</str>

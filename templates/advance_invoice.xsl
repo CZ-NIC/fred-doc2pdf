@@ -39,7 +39,16 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
         <fill color="white" />
         <setFont name="Times-Roman" size="14"/>
-        <drawRightString x="19.3cm" y="27.9cm"><xsl:value-of select="$loc/str[@name='Advance Payment Request / Vat voucher']"/></drawRightString>
+        <drawRightString x="19.3cm" y="27.9cm">
+            <xsl:choose>
+                <xsl:when test="number(delivery/sumarize/total)&lt;0">
+                    <xsl:value-of select="$loc/str[@name='Tax credit']"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$loc/str[@name='Advance Payment Request / Vat voucher']"/>
+                </xsl:otherwise>        
+            </xsl:choose>
+        </drawRightString>
         <drawRightString x="19.3cm" y="27cm"><xsl:value-of select="$loc/str[@name='No']"/>. <xsl:value-of select="payment/invoice_number"/></drawRightString>
 
         <stroke color="#035e79"/>
@@ -166,7 +175,18 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <para><xsl:value-of select="$loc/str[@name='Supply sign']"/>:</para>
 
 <spacer length="0.4cm"/>
-<para><xsl:value-of select="$loc/str[@name='Voucher-for-call-VAT']"/>
+<para>
+    <xsl:choose>
+        <xsl:when test="number(delivery/sumarize/total)&lt;0">
+            <xsl:value-of select="$loc/str[@name='Tax credit text']"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="payment/tax_credit_number"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$loc/str[@name='Voucher-for-call-VAT']"/>
+        </xsl:otherwise>        
+    </xsl:choose>
+    
 <xsl:if test="client/vat_not_apply = 1">
     &SPACE;<xsl:value-of select="$loc/str[@name='Insurance-by-law-and-VAT-liability']"/>
 </xsl:if>
