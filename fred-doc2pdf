@@ -263,8 +263,9 @@ class FredTable(platypus.Table):
     'Optimized for very long tables'
     
     def __init__(self, data, colWidths=None, rowHeights=None, style=None,
-                repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, ident=None,
-                hAlign=None,vAlign=None):
+                repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, 
+                ident=None, hAlign=None,vAlign=None):
+        "Compatible with Reportlab verion 2.1 and 2.3"
         
         global cache_cells
         
@@ -272,49 +273,58 @@ class FredTable(platypus.Table):
         self.hAlign = hAlign or 'CENTER'
         self.vAlign = vAlign or 'MIDDLE'
         if type(data) not in platypus.tables._SeqTypes:
-            raise ValueError, "%s invalid data type" % self.identity()
+            raise ValueError("%s invalid data type" % self.identity())
         self._nrows = nrows = len(data)
         self._cellvalues = []
         _seqCW = type(colWidths) in platypus.tables._SeqTypes
         _seqRH = type(rowHeights) in platypus.tables._SeqTypes
-        if nrows:
-            self._ncols = ncols = max(map(platypus.tables._rowLen,data))
-        elif colWidths and _seqCW: 
-            ncols = len(colWidths)
-        else:
-            ncols = 0
+        if nrows: self._ncols = ncols = max(map(platypus.tables._rowLen, data))
+        elif colWidths and _seqCW: ncols = len(colWidths)
+        else: ncols = 0
         if not emptyTableAction: emptyTableAction = platypus.tables.rl_config.emptyTableAction
         if not (nrows and ncols):
             if emptyTableAction=='error':
-                raise ValueError, "%s must have at least a row and column" % self.identity()
+                raise ValueError("%s must have at least a row and column" % self.identity())
             elif emptyTableAction=='indicate':
-                self.__class__ = Preformatted
+                self.__class__ = platypus.tables.Preformatted
                 global _emptyTableStyle
                 if '_emptyTableStyle' not in globals().keys():
-                    _emptyTableStyle = ParagraphStyle('_emptyTableStyle')
-                    _emptyTableStyle.textColor = colors.red
-                    _emptyTableStyle.backColor = colors.yellow
-                Preformatted.__init__(self,'%s(%d,%d)' % (self.__class__.__name__,nrows,ncols), _emptyTableStyle)
+                    _emptyTableStyle = platypus.tables.ParagraphStyle('_emptyTableStyle')
+                    _emptyTableStyle.textColor = platypus.tables.colors.red
+                    _emptyTableStyle.backColor = platypus.tables.colors.yellow
+                platypus.tables.Preformatted.__init__(self,'%s(%d,%d)' % (self.__class__.__name__,nrows,ncols), _emptyTableStyle)
             elif emptyTableAction=='ignore':
-                self.__class__ = Spacer
-                Spacer.__init__(self,0,0)
+                self.__class__ = platypus.tables.Spacer
+                platypus.tables.Spacer.__init__(self,0,0)
             else:
-                raise ValueError, '%s bad emptyTableAction: "%s"' % (self.identity(),emptyTableAction)
+                raise ValueError('%s bad emptyTableAction: "%s"' % (self.identity(),emptyTableAction))
             return
-    
+
         # we need a cleanup pass to ensure data is strings - non-unicode and non-null
         self._cellvalues = self.normalizeData(data)
         if not _seqCW: colWidths = ncols*[colWidths]
-        elif len(colWidths) != ncols:
-            raise ValueError, "%s data error - %d columns in data but %d in grid" % (self.identity(),ncols, len(colWidths))
+        elif len(colWidths)!=ncols:
+            if platypus.tables.rl_config.allowShortTableRows and isinstance(colWidths,list):
+                n = len(colWidths)
+                if n<ncols:
+                    colWidths[n:] = (ncols-n)*[colWidths[-1]]
+                else:
+                    colWidths = colWidths[:ncols]
+            else:
+                raise ValueError("%s data error - %d columns in data but %d in column widths" % (self.identity(),ncols, len(colWidths)))
         if not _seqRH: rowHeights = nrows*[rowHeights]
         elif len(rowHeights) != nrows:
-            raise ValueError, "%s data error - %d rows in data but %d in grid" % (self.identity(),nrows, len(rowHeights))
-        for i in range(nrows):
-            if len(data[i]) != ncols:
-                raise ValueError, "%s not enough data points in row %d!" % (self.identity(),i)
+            raise ValueError("%s data error - %d rows in data but %d in row heights" % (self.identity(),nrows, len(rowHeights)))
+        for i,d in enumerate(data):
+            n = len(d)
+            if n!=ncols:
+                if platypus.tables.rl_config.allowShortTableRows and isinstance(d,list):
+                    d[n:] = (ncols-n)*['']
+                else:
+                    raise ValueError("%s expected %d not %d columns in row %d!" % (self.identity(),ncols,n,i))
         self._rowHeights = self._argH = rowHeights
         self._colWidths = self._argW = colWidths
+        cellrows = []
 
         # speed optimalization:
         self._cellStyles = None
@@ -322,25 +332,26 @@ class FredTable(platypus.Table):
             if nrows <= cache_cells[ncols][0]:
                 # use cached objects
                 self._cellStyles = cache_cells[ncols][1]
-        
+
         if self._cellStyles is None:
             cellrows = []
-            for i in range(nrows):
+            for i in xrange(nrows):
                 cellcols = []
-                for j in range(ncols):
+                for j in xrange(ncols):
                     cellcols.append(platypus.tables.CellStyle(`(i,j)`))
                 cellrows.append(cellcols)
             self._cellStyles = cellrows
             # save into cache:
             cache_cells[ncols] = (nrows, cellrows)
-    
+        
         self._bkgrndcmds = []
         self._linecmds = []
         self._spanCmds = []
+        self._nosplitCmds = []
         self.repeatRows = repeatRows
         self.repeatCols = repeatCols
         self.splitByRow = splitByRow
-    
+
         if style:
             self.setStyle(style)
 

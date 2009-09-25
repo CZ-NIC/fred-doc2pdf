@@ -1,0 +1,191 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+    cat <<MSG
+Usage: create_invoice_xml number-of-items > invoice.xml
+number-of-items: How many items will be created.
+
+Create rml:
+tests/create_invoice_xml 20 | xsltproc templates/invoice.xsl -
+
+Create pdf:
+tests/create_invoice_xml 20 | xsltproc templates/invoice.xsl - | ./fred-doc2pdf > /tmp/test1.pdf
+
+Test duration:
+time tests/create_invoice_xml 10000 | xsltproc templates/invoice.xsl - | ./fred-doc2pdf > /tmp/test10000.pdf
+
+MSG
+    exit 1
+fi
+
+
+# print a first part of the document
+cat <<MSG
+<?xml version="1.0" encoding="utf-8"?>
+<invoice>
+<client>
+    <name>IPEX a.s.</name>
+    <address>
+        <street>Široká 37</street>
+        <city>České Budějovice</city>
+        <zip>370 01</zip>
+    </address>
+    <ico>45021295</ico>
+    <vat_number>CZ45021295</vat_number>
+</client>
+
+<supplier>
+    <name>CZ.NIC, z.s.p.o.</name>
+    <fullname>CZ.NIC, zájmové sdružení právnických osob</fullname>
+    <address>
+        <street>Americká 23</street>
+        <city>Praha 2</city>
+        <zip>120 00</zip>
+    </address>
+    <ico>67985726</ico>
+    <vat_number>CZ67985726</vat_number>
+    <registration>SpZ: odb. občanskopr. agend Magist. hl. m. Prahy, č. ZS/30/3/98</registration>
+    <reclamation>CZ.NIC, z.s.p.o., Americká 23, 120 00 Praha 2</reclamation>
+    <url>www.nic.cz</url>
+    <email>podpora@nic.cz</email>
+    <phone>+420 222 745 111</phone>
+    <fax>+420 222 745 112</fax>
+</supplier>
+
+<payment>
+    <invoice_number>2406000590</invoice_number>
+    <previous_invoice_number>2406000589</previous_invoice_number>
+    <invoice_date>2006-10-03</invoice_date>
+    <tax_point>2006-10-02</tax_point>
+    <vs>45021295</vs>
+    <period_from>2006-06-01</period_from>
+    <period_to>2007-01-10</period_to>
+</payment>
+
+<delivery>
+    <vat_rates>
+        <entry>
+            <vatperc>19</vatperc>
+            <basetax>42017</basetax>
+            <vat>7983</vat>
+            <total>50000</total>
+            <years>
+              <entry>
+                <year>2007</year>
+                <price>1.10</price>
+                <vat>0.20</vat>
+                <total>1.30</total>
+              </entry>
+              <entry>
+                <year>2008</year>
+                <price>3.90</price>
+                <vat>0.74</vat>
+                <total>4.64</total>
+              </entry>
+            </years>
+        </entry>
+    </vat_rates>
+    <sumarize>
+        <total>111900</total>
+        <paid>-111900</paid>
+        <paid_vat>-21261</paid_vat>
+        <to_be_paid>0</to_be_paid>
+        <total_with_vat>133161</total_with_vat>
+    </sumarize>
+</delivery>
+
+
+<advance_payment>
+    <applied_invoices>
+        <consumed>
+            <number>110700004</number>
+            <price>5.00</price>
+            <balance>40.00</balance>
+            <vat>0.95</vat>
+            <vat_rate>19</vat_rate>
+            <pricevat>5.95</pricevat>
+            <total>100.00</total>
+            <total_vat>19.00</total_vat>
+            <total_with_vat>119.00</total_with_vat>
+            <crtime>2007-01-23 10:11:37</crtime>
+        </consumed>
+        <consumed>
+            <number>2006112</number>
+            <invoice_date>2007-01-23 14:15:16.760</invoice_date>
+            <price>80000</price>
+            <price_with_vat>95200</price_with_vat>
+            <vat>15200</vat>
+            <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
+        </consumed>
+        <consumed>
+            <number>2006111</number>
+            <invoice_date>2007-01-22 14:15:16.760</invoice_date>
+            <price>6000</price>
+            <price_with_vat>7140</price_with_vat>
+            <vat>1140</vat>
+            <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
+        </consumed>
+        <consumed>
+            <number>2006113</number>
+            <invoice_date>2007-01-21 14:15:16.760</invoice_date>
+            <price>21900</price>
+            <price_with_vat>26061</price_with_vat>
+            <vat>4161</vat>
+            <balance>28100</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
+        </consumed>
+        <consumed>
+            <number>2006110</number>
+            <invoice_date>2007-01-20 14:15:16.760</invoice_date>
+            <price>4000</price>
+            <price_with_vat>4760</price_with_vat>
+            <vat>760</vat>
+            <balance>0</balance>
+            <vat_rate>19</vat_rate>
+            <total>200</total>
+        </consumed>
+    </applied_invoices>
+</advance_payment>
+
+<appendix>
+
+    <items>
+MSG
+
+PATT="%#0${#1}d"
+for i in `seq 1 $1`;
+do
+    cat <<MSG
+        <item>
+            <subject>domena`printf $PATT $i`.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+MSG
+done 
+
+# print the last part of document
+cat <<MSG
+    </items>
+
+    <sumarize_items>
+        <total>111900</total>
+    </sumarize_items>
+
+</appendix>
+
+</invoice>
+MSG
+
+

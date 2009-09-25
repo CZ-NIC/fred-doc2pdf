@@ -1,0 +1,55 @@
+Report of Test for the speed optimalization
+
+
+Reportlab version:
+    python -c 'import trml2pdf; print trml2pdf.trml2pdf.reportlab.Version'
+    2.1
+    python2.6 -c 'import trml2pdf; print trml2pdf.trml2pdf.reportlab.Version'
+    2.3
+
+Prepare RML template:
+    cd ~/enum/doc2pdf/trunk
+    tests/create_invoice_xml 10000 | xsltproc templates/invoice.xsl - > /tmp/template.rml
+
+
+Testing command:
+     time ./fred-doc2pdf /tmp/template.rml > /tmp/test10000.pdf
+
+1. TEST:
+    Python version: 2.5
+    Reportlab version: 2.1
+    Testing command:
+        time ./fred-doc2pdf /tmp/template.rml > /tmp/test10000.pdf
+
+NOT optimised (disabled FredTable.__init__):
+            test.1      test.2      test.3
+    real	2m50.484s   2m48.956s   2m52.491s
+    user	2m49.955s   2m48.423s   2m50.211s
+    sys	    0m0.412s    0m0.352s    0m0.384s
+
+Optimised:
+            test.1      test.2      test.3
+    real	0m46.606s   0m46.495s   0m49.062s
+    user	0m46.099s   0m46.007s   0m46.723s
+    sys	    0m0.468s    0m0.468s    0m0.516s
+
+
+
+2. TEST:
+    Python version: 2.6
+    Reportlab version: 2.3
+    Testing command:
+        time python2.6 ./fred-doc2pdf /tmp/template.rml > /tmp/test10000p26opt.pdf
+
+NOT optimised (disabled FredTable.__init__):
+            test.1      test.2      test.3
+    real	3m8.098s    2m56.334s   2m57.207s
+    user	3m5.764s    2m55.707s   2m55.551s
+    sys	    0m0.380s    0m0.544s    0m0.384s
+
+Optimised:
+            test.1      test.2      test.3
+    real	0m59.665s   1m3.223s    1m2.015s
+    user	0m57.896s   1m2.244s    0m59.808s
+    sys	    0m0.476s    0m0.492s    0m0.592s
+

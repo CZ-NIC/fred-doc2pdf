@@ -1,3 +1,7 @@
+2009-09-14 Zdenek Bohm (version 2.0.3)
+
+    * Fixed incompability with reportlab version > 2.1
+
 2009-07-02 Jaromir Talir (version 2.0.3)
 
     * Fixed czech translation for invoice template text
