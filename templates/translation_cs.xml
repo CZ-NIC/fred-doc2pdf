@@ -64,6 +64,7 @@
 <str name="to(date)">do</str>
 <str name="we-invoiced-you">Vám fakturujeme poskytnuté služby (Smlouva o spolupráci při registracích doménových jmen)</str>
 <str name="contractual-fine">Vám fakturujeme smluvní pokutu dle článku 4.3.1. Obchodních podmínek pro registrátory, které jsou součástí Smlouvy o spoluprácu při registraci doménových jmen</str>
+<str name="years-fee">Vám fakturujeme roční poplatek za připojení do Centrálního registru</str>
 <str name="Registration-domain-names">Registrace doménových jmen (kód RREG), za udržování záznamu o doménovém jménu (kód RUDR), v násobcích roků (Počet) pro doménová jména dle přílohy.</str>
 <str name="VAT-settled-deposit">DPH byla vypořádána na daňových dokladech na přijatou
 platbu a činí v úrovni bez daně</str>
