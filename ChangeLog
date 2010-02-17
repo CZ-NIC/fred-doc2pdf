@@ -1,4 +1,9 @@
-2009-09-14 Zdenek Bohm (version 2.0.3)
+2010-02-17 Zdenek Bohm,  Jaromir Talir (version 2.0.4)
+
+    * Template for accounting software helios updated to support new year
+      prefix for invoice numbers and new vat rate
+
+    * Added support for years fee
 
     * Fixed incompability with reportlab version > 2.1
 
