@@ -34,7 +34,8 @@
  </xsl:template>
 
  <xsl:variable name="pk_dph_19" select="1" />
- <xsl:variable name="pk_dph_0" select="$pk_dph_19 + 1" />
+ <xsl:variable name="pk_dph_20" select="$pk_dph_19 + 1" />
+ <xsl:variable name="pk_dph_0" select="$pk_dph_20 + 1" />
  <xsl:variable name="pk_payment_type" select="$pk_dph_0 + 1" />
  <xsl:variable name="pk_stred" select="$pk_payment_type + 1" />
  <xsl:variable name="pk_bank_spoj" select="$pk_stred + 1" />
@@ -60,6 +61,13 @@
     <xsl:text>FK_</xsl:text>
     <xsl:value-of select="$pk_dph_19" />
    </xsl:when>
+   <xsl:when test="$sazba=20">
+    <xsl:text>FK_</xsl:text>
+    <xsl:value-of select="$pk_dph_20" />
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:message terminate = "yes">MISSING VAT RATE</xsl:message>
+   </xsl:otherwise>
   </xsl:choose>
  </xsl:template>
 
@@ -429,7 +437,15 @@
         <xsl:value-of select="$pk_dph_19" />
        </Klic>
        <Sazba>19</Sazba>
-       <Nazev>Zákl. sazba EU</Nazev>
+       <Nazev>Stará zákl. sazba EU</Nazev>
+      </Polozka>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_dph_20" />
+       </Klic>
+       <Sazba>20</Sazba>
+       <Nazev>Nová zákl. sazba EU</Nazev>
       </Polozka>
      </TabDPH>
      <TabFormaUhrady>
@@ -540,6 +556,34 @@
        <Polozka>
         <Klic>FK_UKOD_110</Klic>
         <CisloKontace>27</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='231'])">
+       <Polozka>
+        <Klic>FK_UKOD_231</Klic>
+        <CisloKontace>43</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='241'])">
+       <Polozka>
+        <Klic>FK_UKOD_241</Klic>
+        <CisloKontace>42</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='121'])">
+       <Polozka>
+        <Klic>FK_UKOD_121</Klic>
+        <CisloKontace>40</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='111'])">
+       <Polozka>
+        <Klic>FK_UKOD_111</Klic>
+        <CisloKontace>41</CisloKontace>
        </Polozka>
       </xsl:if>
      </TabUKod>
