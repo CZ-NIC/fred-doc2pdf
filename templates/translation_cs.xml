@@ -104,4 +104,29 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Date of termination of the registration">Datum zrušení registrace</str>
 <str name="Operations manager, CZ.NIC, z.s.p.o.">Provozní ředitel, CZ.NIC, z.s.p.o.</str>
 
+<!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->
+<str name="Subject: Notice re...">Věc: Upozornění na nefunkční email v evidenci registru doménových jmen .cz</str>
+<str name="Dear Sir or Madam">Vážená paní, vážený pane,</str>
+
+
+<str name="Obsolete_email_warn_part1"> sdružení CZ.NIC zaznamenalo v rámci pravidelně probíhajících kontrol údajů v centrálním registru doménových jmen .cz, že v záznamu o Vaší kontaktní osobě je uveden nefunkční či neexistující e-mail
+</str>
+<str name="Obsolete_email_warn_part2"> Vzhledem k tomu, že e-mail je jedním z důležitých a povinných údajů v registru, žádáme Vás o její urychlenou (okamžitou) opravu. Níže naleznete výpis údajů, které jsou o Vaší osobě evidovány; zjistíte-li jakékoliv další neplatné či nesprávné údaje, 
+    opravte je, prosím, také.
+</str>
+
+<str name="Make the change..."> Změnu proveďte prostřednictvím svého registrátora: </str>
+<str name="www">WWW registrátora</str>
+<str name="Details recorded for your contact"> Evidované údaje o Vašem kontaktu:</str>
+<str name="organization">Organizace: </str>
+<str name="name">Jméno: </str>
+<str name="address">Adresa: </str>
+<str name="Identifier">Identifikátor: </str>
+<str name="identification type">Typ identifikace: </str>
+<str name="ID">Identifikační údaj: </str>
+<str name="email">E-mail: </str>
+<str name="notify_email">E-mail pro oznámení </str>
+<str name="telephone">Telefon: </str>
+<str name="fax">Fax: </str>
+
 </strings>
