@@ -64,26 +64,6 @@
         </xsl:call-template>
         <pageTemplate id="first" pageSize="(29.7cm, 21cm)" leftMargin="1.1cm" rightMargin="1.1cm" topMargin="1.8cm" bottomMargin="1.3cm">
 
-            <!-- to remove TODO
-          <pageGraphics>
-            <setFont name="Times-Roman" size="12"/>
-            <drawString x="1.1cm" y="18.8cm">ODESÍLATEL: 
-
-
-
-
-                <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/>, <xsl:value-of select="$loc/str[@name='Americka 23, 120 00 Prague 2']"/>
-
-
-            </drawString>
-            <setFont name="Times-Roman" size="8"/>
-            <drawString x="24cm" y="19.6cm">Číslo přílohy</drawString>
-            <drawString x="24cm" y="19.3cm">přijímací knihy</drawString>
-            <rect x="26.5cm" y="19cm" width="2.1cm" height="1cm" fill="no" stroke="yes"/>
-          </pageGraphics>
-          -->
-
-
 
           <frame id="delivery" x1="0.8cm" y1="0.8cm" width="28cm" height="17.6cm" showBoundary="0"/>
         </pageTemplate>
@@ -91,9 +71,10 @@
 
       </template>
       <stylesheet>
-        <paraStyle name="main" spaceAfter="0.6cm" fontName="Times-Roman"/>
+        <paraStyle name="main" spaceAfter="0.4cm" fontName="Times-Roman"/>
         <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
         <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
+        <paraStyle name="subject" spaceAfter="0.6cm" fontSize="12" fontName="Times-Bold"/>
         <blockTableStyle id="tbl_delivery">
           <blockAlignment value="CENTER" start="0,0" stop="5,2"/>
           <blockValign value="BOTTOM" start="0,0" stop="4,2"/>
@@ -149,6 +130,7 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
+        <setFont name="Times-Roman" size="12"/>
         <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
         <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="3cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
@@ -184,70 +166,101 @@
   <xsl:template name="onePageObsoleteContact">
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+
+
     <para style="address-name">
-      <xsl:value-of select="holder/name"/>
+      <xsl:value-of select="name"/>
     </para>
     <para style="address">
-      <xsl:value-of select="holder/street"/>
+      <xsl:value-of select="street1"/>
     </para>
-    <para style="address"><xsl:value-of select="holder/zip"/>&SPACE;<xsl:value-of select="holder/city"/></para>
+    <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/></para>
     <para style="address">
-      <xsl:value-of select="holder/country"/>
+      <xsl:value-of select="country"/>
     </para>
     <nextFrame/>
+
     <!-- beginning -->
-
-
-    <para style="main"><xsl:value-of select="$loc/str[@name='Subject: Obsolete email address...']"/>&SPACE;<xsl:value-of select="domain"/>&SPACE;<xsl:value-of select="$loc/str[@name='domain(subject)']"/></para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='Dear holder of']"/>&SPACE;<xsl:value-of select="domain"/>&SPACE;<xsl:value-of select="$loc/str[@name='domain name']"/>,
+    <para style="subject"><xsl:value-of select="$loc/str[@name='Subject: Notice re...']"/>&SPACE;<xsl:value-of select="domain"/>&SPACE;<xsl:value-of select="$loc/str[@name='domain(subject)']"/></para>
+            
+    <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
     </para>
+
+    <xsl:choose>
+        <xsl:when test="$lang='cs'">
+            <para style="main">
+                sdružení CZ.NIC zaznamenalo v rámci pravidelně probíhajících kontrol údajů v centrálním registru doménových jmen .cz, že v záznamu o Vaší kontaktní osobě je uveden <bold>nefunkční či neexistující e-mail</bold>
+            </para>
+        </xsl:when>
+        <xsl:otherwise>
+            <para style="main">
+                During regular data checks in the central .cz domain name registry, the CZ.NIC Association has noticed that in the record for your contact person the given <bold>email does not work or does not exist.</bold>
+            </para>
+        </xsl:otherwise>
+    </xsl:choose>    
+    <xsl:choose>
+        <xsl:when test="$lang='cs'">
+            <para style="main">
+                Vzhledem k tomu, že e-mail je jedním z <bold>důležitých a povinných údajů v registru,</bold> žádáme Vás o její <bold>urychlenou (okamžitou) opravu.</bold> Níže naleznete výpis údajů, které jsou o Vaší osobě evidovány; zjistíte-li jakékoliv další neplatné či nesprávné údaje, 
+                opravte je, prosím, také.
+            </para>
+        </xsl:when>
+        <xsl:otherwise>
+            <para style="main">
+                Since the email is one of the <bold>important and mandatory details in the registry,</bold> we ask you to <bold> fix this urgently (immediately). </bold>Below you will find an extract of the details which are recorded for your contact person; if you notice any other invalid or incorrect details, <bold>please correct them too.</bold>
+            </para>
+        </xsl:otherwise>
+    </xsl:choose>    
+
     <para style="main">
-        <xsl:value-of select="$loc/str[@name='Obsolete_email_warn_part1']"/>
+        <xsl:value-of select="$loc/str[@name='Make the change...']"/>
     </para>
 
-    <para style="main">
-        <xsl:value-of select="$loc/str[@name='Obsolete_email_warn_part2']"/>
-    </para>
-
-    <para style="main">
-        <xsl:value-of select="$loc/str[@name='To make the change...']"/>
-    </para>
-
-
-     <para style="main"><xsl:value-of select="$loc/str[@name='Designated registrar']"/>&SPACE;<xsl:value-of select="registrar"/>
+     <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>&SPACE;<xsl:value-of select="registrar"/>
      </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
+     <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
      </para>
 
+     <spacer length="1.2cm"/>
      <para style="main">
-         <xsl:value-of select="$loc/str[@name='Your contact data']"/>
+         <xsl:value-of select="$loc/str[@name='Details recorded for your contact']"/>
      </para>
 
 
-     <para style="main"><xsl:value-of select="$loc/str[@name='organization']"/>&SPACE;<xsl:value-of select="organization"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='name']"/>&SPACE;<xsl:value-of select="name"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='address']"/>&SPACE;<xsl:value-of select="street1"/>
-     </para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='Identifier']"/>&SPACE;<xsl:value-of select="registrar_web"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='DIC']"/>&SPACE;<xsl:value-of select="registrar_web"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='identification type']"/>&SPACE;<xsl:value-of select="ssn_type"/>
-     </para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='ID']"/>&SPACE;<xsl:value-of select="registrar_web"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='email']"/>&SPACE;<xsl:value-of select="email"/>
-     </para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='notify_email']"/>&SPACE;<xsl:value-of select="notify_email"/>
-     </para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='telephone']"/>&SPACE;<xsl:value-of select="telephone"/>
-     </para>
-     <para style="main"><xsl:value-of select="$loc/str[@name='fax']"/>&SPACE;<xsl:value-of select="fax"/>
-     </para>
+    <blockTable>
 
-    
+ <tr> <td><xsl:value-of select="$loc/str[@name='organization']"/> </td> <td> <xsl:value-of select="organization"/>
+     </td> </tr>
+     <tr> <td><xsl:value-of select="$loc/str[@name='name']"/> </td> <td> <xsl:value-of select="name"/>
+     </td> </tr>
+
+     <tr> <td><xsl:value-of select="$loc/str[@name='address']"/> </td> <td> <xsl:value-of select="street1"/>
+     </td> </tr>
+    <tr> <td><xsl:value-of select="$loc/str[@name='Identifier']"/> </td> <td> <xsl:value-of select="registrar_web"/>
+     </td> </tr>
+     <tr> <td><xsl:value-of select="$loc/str[@name='DIC']"/> </td> <td> <xsl:value-of select="registrar_web"/>
+     </td> </tr>
+     <tr> <td><xsl:value-of select="$loc/str[@name='identification type']"/> </td> <td> <xsl:value-of select="ssn_type"/>
+     </td> </tr>
+    <tr> <td><xsl:value-of select="$loc/str[@name='ID']"/> </td> <td> <xsl:value-of select="registrar_web"/>
+     </td> </tr>
+     <tr> <td><xsl:value-of select="$loc/str[@name='email']"/> </td> <td> <xsl:value-of select="email"/>
+     </td> </tr>
+    <tr> <td><xsl:value-of select="$loc/str[@name='notify_email']"/> </td> <td> <xsl:value-of select="notify_email"/>
+     </td> </tr>
+    <tr> <td><xsl:value-of select="$loc/str[@name='telephone']"/> </td> <td> <xsl:value-of select="telephone"/>
+     </td> </tr>
+
+     <!--
+     <xsl:if test="fax">
+     <tr> <td><xsl:value-of select="$loc/str[@name='fax']"/> </td> <td> <xsl:value-of select="fax"/>
+     </td> </tr>
+     </xsl:if>
+     -->
+
+    </blockTable>
+
+    <xsl:value-of select="$loc/str[@name='Last update']"/> <!-- something to do with actual date... -->
 
     <!-- so far 
 
