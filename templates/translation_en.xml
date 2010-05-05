@@ -115,11 +115,12 @@ See also www.nic.cz for an update list of the companies having a contract with C
 <str name="name">Name: </str>
 <str name="address">Address: </str>
 <str name="Identifier">Identifier: </str>
-<str name="identification type">Identification type: </str>
-<str name="ID">Identification type: </str>
+<str name="Identification type">Identification type: </str>
+<str name="ID">Identification details: </str>
 <str name="email">Email: </str>
 <str name="notify_email">Email for notifications: </str>
 <str name="telephone">Phone: </str>
 <str name="fax">Fax: </str>
+<str name="Last update">Last update: </str>
 
 </strings>
