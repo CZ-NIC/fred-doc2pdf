@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY AMP "&#38;">
 ]>
+
 <!-- 
  Generate RML document containing letters with warning about domain expiration
  in czech and english version for each domain and final summary table for
@@ -53,6 +55,7 @@
     <document>
       <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="Non-functional record in the domain registry" author="CZ.NIC">
 
+          <!-- page templates -->
 
         <xsl:call-template name="pageTemplate">
           <xsl:with-param name="lang" select="'cs'"/>
@@ -62,10 +65,12 @@
           <xsl:with-param name="lang" select="'en'"/>
           <xsl:with-param name="templateName" select="'main_en'"/>
         </xsl:call-template>
+
         <pageTemplate id="first" pageSize="(29.7cm, 21cm)" leftMargin="1.1cm" rightMargin="1.1cm" topMargin="1.8cm" bottomMargin="1.3cm">
 
           <frame id="delivery" x1="0.8cm" y1="0.8cm" width="28cm" height="17.6cm" showBoundary="0"/>
         </pageTemplate>
+
 
 
       </template>
@@ -112,6 +117,9 @@
 
         <paraStyle name="th" fontSize="8"/>
       </stylesheet>
+
+      <!-- content itself -->
+
       <story>
 
         <xsl:for-each select="contact">
@@ -119,6 +127,8 @@
           <xsl:call-template name="onePageObsoleteContact">
             <xsl:with-param name="lang" select="'cs'"/>
           </xsl:call-template>
+
+
           <setNextTemplate name="main_en"/>
           <nextFrame/>
 
@@ -145,7 +155,7 @@
       <pageGraphics>
         <setFont name="Times-Roman" size="12"/>
         <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
-        <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="3cm" showBoundary="0"/>
+        <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="5cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
@@ -175,14 +185,20 @@
       </pageGraphics>
     </pageTemplate>
   </xsl:template>
+
+
+
   <!--one page of letter parametrized by language-->
   <xsl:template name="onePageObsoleteContact">
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
-
+    
     <para style="address-name">
       <xsl:value-of select="name"/>
+    </para>
+    <para style="address-name">
+      <xsl:value-of select="organization"/>
     </para>
     <para style="address">
       <xsl:value-of select="street1"/>
@@ -226,15 +242,35 @@
     </xsl:choose>    
 
     <para style="main">
-        <xsl:value-of select="$loc/str[@name='Make the change...']"/>
+        <xsl:value-of select="$loc/str[@name='Make the change...']"/>:
     </para>
 
-     <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
-     </para>
-     <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
-     </para>
+         <!-- TODO remove this
+            :
+              <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
+             </para>
+             <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
+             </para>
 
-     <spacer length="0.6cm"/>
+             <spacer length="0.6cm"/>
+     -->
+
+     <xsl:choose>
+         <!-- <xsl:when test="registrar='CZ.NIC, z.s.p.o.'">.-->
+         <xsl:when test="contains(registrar, 'CZ.NIC')">.
+             <spacer length="0.9cm"/>
+         </xsl:when>
+         <xsl:otherwise>:
+              <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
+             </para>
+             <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
+             </para>
+
+             <spacer length="0.6cm"/>
+         </xsl:otherwise>
+     </xsl:choose>
+
+   
      <para style="main">
          <xsl:value-of select="$loc/str[@name='Details recorded for your contact']"/>
      </para>
@@ -271,10 +307,8 @@
      </td> </tr>
     <tr> <td><xsl:value-of select="$loc/str[@name='telephone']"/> </td> <td> <xsl:value-of select="telephone"/>
      </td> </tr>
-    <tr> <td><xsl:value-of select="$loc/str[@name='fax']"/> </td> <td> <xsl:value-of select="fax"/>
-     </td> </tr>
 
-        <!--
+     <!-- TODO
      <xsl:if test="fax">
      <tr> <td><xsl:value-of select="$loc/str[@name='fax']"/> </td> <td> <xsl:value-of select="fax"/>
      </td> </tr>
@@ -283,10 +317,6 @@
 
      <tr> <td> <xsl:value-of select="$loc/str[@name='Last update']"/> </td> <td> <xsl:value-of select="last_update"/>
      </td> </tr>
-
-    <para style="main">
-      16.11.2009 11:01:18 
-    </para>
 
     </blockTable>
 
