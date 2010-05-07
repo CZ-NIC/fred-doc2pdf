@@ -241,26 +241,19 @@
         </xsl:otherwise>
     </xsl:choose>    
 
-    <para style="main">
-        <xsl:value-of select="$loc/str[@name='Make the change...']"/>:
-    </para>
-
-         <!-- TODO remove this
-            :
-              <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
-             </para>
-             <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
-             </para>
-
-             <spacer length="0.6cm"/>
-     -->
-
      <xsl:choose>
          <!-- <xsl:when test="registrar='CZ.NIC, z.s.p.o.'">.-->
-         <xsl:when test="contains(registrar, 'CZ.NIC')">.
+             <xsl:when test="contains(registrar, 'CZ.NIC')">
+
+                <para style="main">
+                    <xsl:value-of select="$loc/str[@name='Make the change...']"/>.
+                </para>
              <spacer length="0.9cm"/>
          </xsl:when>
-         <xsl:otherwise>:
+         <xsl:otherwise>
+                <para style="main">
+                    <xsl:value-of select="$loc/str[@name='Make the change...']"/>:
+                </para>
               <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
              </para>
              <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
@@ -270,7 +263,6 @@
          </xsl:otherwise>
      </xsl:choose>
 
-   
      <para style="main">
          <xsl:value-of select="$loc/str[@name='Details recorded for your contact']"/>
      </para>
