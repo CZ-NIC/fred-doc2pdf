@@ -108,7 +108,7 @@ See also www.nic.cz for an update list of the companies having a contract with C
 <str name="Obsolete_email_warn_part2"> Since the email is one of the important and mandatory details in the registry, we ask you to  fix this urgently (immediately). Below you will find an extract of the details which are recorded for your contact person; if you notice any other invalid or incorrect details, please correct them too. </str>
 -->
 
-<str name="Make the change..."> Make the change via your registrar: </str>
+<str name="Make the change..."> Make the change via your registrar</str>
 <str name="www">Registrar WWW: </str>
 <str name="Details recorded for your contact"> Details recorded for your contact: </str>
 <str name="organization">Organization: </str>
