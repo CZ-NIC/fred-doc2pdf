@@ -4,46 +4,6 @@
 <!ENTITY AMP "&#38;">
 ]>
 
-<!-- 
- Generate RML document containing letters with warning about domain expiration
- in czech and english version for each domain and final summary table for
- czech post office.
- 
- Input of this XSL stylesheet is XML document with a list of domains and 
- domains details. Sample of input document:
- <messages>
-  <message>
-   <domain><![CDATA[example.cz]]></domain>
-   <registrar><![CDATA[REG-REGISTRAR]]></registrar>
-   <actual_date><![CDATA[2007-10-05]]></actual_date>
-   <termination_date><![CDATA[2007-10-15]]></termination_date>
-   <holder>
-    <handle><![CDATA[HOLDER]]></handle>
-    <name><![CDATA[Fred & sons]]></name>
-    <street><![CDATA[Street 123]]></street>
-    <city><![CDATA[Prague]]></city>
-    <zip><![CDATA[11100]]></zip>
-    <country><![CDATA[CZECH REPUBLIC]]></country>
-   </holder>
-  </message>
-  <message>
-   <domain><![CDATA[test.cz]]></domain>
-   <registrar><![CDATA[REG-REGISTRAR]]></registrar>
-   <actual_date><![CDATA[2007-10-05]]></actual_date>
-   <termination_date><![CDATA[2007-10-15]]></termination_date>
-   <holder>
-    <handle><![CDATA[MY-ID]]></handle>
-    <name><![CDATA[Company l.t.d.]]></name>
-    <street><![CDATA[Street 123]]></street>
-    <city><![CDATA[Berlin]]></city>
-    <zip><![CDATA[11100]]></zip>
-    <country><![CDATA[GERMANY]]></country>
-   </holder>
-  </message>    
- </messages>
- 
- Resulting RML can be processed by doc2pdf to generate PDF version of letter 
- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="xml" encoding="utf-8"/>
   <xsl:include href="shared_templates.xsl"/>
@@ -77,7 +37,9 @@
       <stylesheet>
         <paraStyle name="main" spaceAfter="0.4cm" fontName="Times-Roman"/>
         <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
-        <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
+        <paraStyle name="address-name" parent="address" fontSize="12" fontName="Times-Bold"/>
+
+                        <!-- subject -->
         <paraStyle name="subject" spaceAfter="0.4cm" fontSize="12" fontName="Times-Bold"/>
         <blockTableStyle id="tbl_delivery">
           <blockAlignment value="CENTER" start="0,0" stop="5,2"/>
@@ -155,7 +117,7 @@
       <pageGraphics>
         <setFont name="Times-Roman" size="12"/>
         <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
-        <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="5cm" showBoundary="0"/>
+        <frame id="address" x1="11.5cm" y1="22.2cm" width="8.6cm" height="4.2cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
@@ -195,10 +157,24 @@
 
     
     <para style="address-name">
-      <xsl:value-of select="name"/>
+      <xsl:choose>
+          <xsl:when test="string-length(name)>50">
+              <xsl:value-of select="substring(name, 1, 50)"/>..
+          </xsl:when>
+          <xsl:otherwise> 
+              <xsl:value-of select="name"/>
+          </xsl:otherwise>
+      </xsl:choose>
     </para>
     <para style="address-name">
-      <xsl:value-of select="organization"/>
+      <xsl:choose>
+          <xsl:when test="string-length(organization)>50">
+              <xsl:value-of select="substring(organization, 1, 50)"/>..
+          </xsl:when>
+          <xsl:otherwise> 
+              <xsl:value-of select="organization"/>
+          </xsl:otherwise>
+      </xsl:choose>
     </para>
     <para style="address">
       <xsl:value-of select="street1"/>
@@ -278,9 +254,28 @@
     <blockTable repeatRows="1" style="test01">
 
 
- <tr> <td><xsl:value-of select="$loc/str[@name='organization']"/> </td> <td> <xsl:value-of select="organization"/>
+        <tr> <td>
+
+           <xsl:value-of select="$loc/str[@name='organization']"/> </td> <td> 
+           <xsl:choose>
+              <xsl:when test="string-length(organization)>50">
+                  <xsl:value-of select="substring(organization, 1, 50)"/>... </xsl:when>
+              <xsl:otherwise> 
+                  <xsl:value-of select="organization"/>
+              </xsl:otherwise>
+           </xsl:choose>
+
      </td> </tr>
-     <tr> <td><xsl:value-of select="$loc/str[@name='name']"/> </td> <td> <xsl:value-of select="name"/>
+
+     <tr> <td>
+                <xsl:value-of select="$loc/str[@name='name']"/> </td> <td>  
+           <xsl:choose>
+              <xsl:when test="string-length(name)>50">
+                  <xsl:value-of select="substring(name, 1, 50)"/>... </xsl:when>
+              <xsl:otherwise> 
+                  <xsl:value-of select="name"/>
+              </xsl:otherwise>
+           </xsl:choose>
      </td> </tr>
 
      <tr> <td><xsl:value-of select="$loc/str[@name='address']"/> </td> <td> <xsl:value-of select="street1"/>
