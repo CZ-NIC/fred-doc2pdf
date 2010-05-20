@@ -11,7 +11,6 @@
  domains details. Sample of input document:
  <messages>
   <holder>
-    <handle><![CDATA[CID:T1546080]]></handle>
     <name><![CDATA[Pepa Zdepa]]></name>
     <street><![CDATA[Ulice]]></street>
     <city><![CDATA[Praha]]></city>
@@ -25,7 +24,6 @@
     </expiring_domain>
   </holder>
   <holder>
-    <handle><![CDATA[CID:D1428724]]></handle>
     <name><![CDATA[Pepa Zdepa]]></name>
     <street><![CDATA[Ulice]]></street>
     <city><![CDATA[Praha]]></city>
@@ -53,8 +51,8 @@
   <xsl:include href="shared_templates.xsl"/>
   <xsl:param name="lang" select="'cs'"/>
   <xsl:param name="srcpath" select="'templates/'" />
-  <!-- TODO use it: -->
-  <xsl:param name="listlimit" select="7"/>
+  <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
+  <xsl:param name="listlimit" select="6"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <!-- root template for rml document generation -->
 
