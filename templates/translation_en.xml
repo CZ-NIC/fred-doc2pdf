@@ -77,19 +77,30 @@
 <str name="IC">IC</str>
 <str name="DIC">DIC</str>
 <str name="Prague">Prague</str>
-<str name="Subject: Extension of registration of">Subject: Extension of registration of</str>
+<str name="Subject: Extension of registration of">Subject: Prolonging the registration of .cz domain names</str>
 <str name="domain(subject)">domain</str>
 <str name="Dear holder of">Dear holder of</str>
 <str name="domain name">domain name</str>
 
-<str name="The CZ.NIC z.s.p.o. company, an administrator...">The CZ.NIC z.s.p.o. company, an administrator of the national .cz domain, hereby informs you that so far he has not been instructed to renew the registration of your domain name specified above. This domain is currently out of service and excluded from .cz zone (see the Instructions for registration in .cz domain located at www.nic.cz).</str>
+<str name="The CZ.NIC z.s.p.o. company, an administrator...">The association CZ.NIC, z. s. p. o., administrator of the top level .CZ domain, hereby informs you that your registrar has not yet submitted a request to prolong the validity of domain names listed in the attachment to this letter. These domain names are currently out of operation (please refer to Rules for Registering Domain Names in the ccTLD .cz at www.nic.cz).
+</str>
 
-<str name="Should you be interested in keeping this domain name...">Should you be interested in keeping this domain name for a further period, please promptly contact the appropriate registrar, confer with him over the complaints, if any, and make further arrangements. You are also free to turn to a different designated registrar and entrust him with the registration extension.
-See also www.nic.cz for an update list of the companies having a contract with CZ NIC association that enables them to act as a registrar.</str>
+<str name="Should you be interested in keeping this domain name...">Should you still be interested in these domain names, please contact your assigned registrar urgently and agree on how to proceed. You can also choose another registrar and entrust them with prolonging your registration. An up-to-date list of companies which are accredited registrars can also be found at www.nic.cz.</str>
 
-<str name="hould the registration of the domain name...">Should the registration of the domain name not be extended in time, the registration shall be terminated on the</str>
+<str name="Please notice that unless...">Please notice than unless the registration of the domain names is prolonged by the deadline, they will be cancelled on</str> 
 
-<str name="and the domain name shall be open...">and the domain name shall be open to other interested persons!</str>
+<str name="..and made avail...">and made available for other interested subjects.</str>
+
+<str name="The date of...">The date of registration cancellation cannot be changed.</str>
+
+<str name="Yours sincerely">Yours sincerely</str>
+
+<str name="Attachment">Attachment – list of domain names and their assigned registrars</str> 
+
+
+
+
+
 
 <str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter</str>
 
