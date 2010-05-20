@@ -183,12 +183,30 @@
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='The CZ.NIC z.s.p.o. company, an administrator...']"/>
+      <xsl:value-of select="$loc/str[@name='warning01']"/>
     </para>
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='Should you be interested in keeping this domain name...']"/>
+      <xsl:value-of select="$loc/str[@name='warning02']"/>
+      <b> <xsl:value-of select="$loc/str[@name='warning03']"/> </b>
+      <xsl:value-of select="$loc/str[@name='warning04']"/>
+
     </para>
-    <para style="basic" spaceAfter="0.3cm"><xsl:value-of select="$loc/str[@name='Please notice that unless...']"/>&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="termination_date"/></xsl:call-template>&SPACE;<xsl:value-of select="$loc/str[@name='..and made avail...']"/></para>
+    <!-- Please notice ... -->
+    <para style="basic" spaceAfter="0.3cm">
+
+        <xsl:value-of select="$loc/str[@name='warning05']"/>
+        <b>
+        <xsl:value-of select="$loc/str[@name='warning06']"/>
+        &SPACE;
+        <xsl:call-template name="local_date">
+            <xsl:with-param name="sdt" select="termination_date"/>
+        </xsl:call-template>
+        </b>
+        &SPACE;
+        <b><xsl:value-of select="$loc/str[@name='warning07']"/></b>
+        <xsl:value-of select="$loc/str[@name='warning08']"/>
+    </para>
+
     <para style="main"><xsl:value-of select="$loc/str[@name='The date of...']"/>
     </para>
 

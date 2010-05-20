@@ -98,8 +98,21 @@
 <str name="Attachment">Attachment – list of domain names and their assigned registrars</str> 
 
 
+<str name="warning01">The association CZ.NIC, z. s. p. o., administrator of the top level .CZ domain, hereby informs you that your registrar has not yet submitted a request to prolong the validity of domain names listed in the attachment to this letter. These domain names are currently out of operation (please refer to Rules for Registering Domain Names in the ccTLD .cz at www.nic.cz).</str>
 
+<str name="warning02">Should you still be interested in these domain names, </str>
 
+<str name="warning03">please contact your assigned registrar urgently </str>
+
+<str name="warning04">and agree on how to proceed. You can also choose another registrar and entrust them with prolonging your registration. An up-to-date list of companies which are accredited registrars can also be found at www.nic.cz.</str>
+
+<str name="warning05">Please notice that </str> 
+
+<str name="warning06">unless the registration of the domain names is prolonged by the deadline, they will be cancelled on</str>   
+
+<str name="warning07"></str>
+
+<str name="warning08">and made available for other interested subjects. </str>
 
 
 <str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter</str>

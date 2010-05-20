@@ -92,7 +92,7 @@ platbu a činí v úrovni bez daně</str>
 <str name="Should you be interested in keeping this domain name...">Pokud máte zájem toto doménové jméno vlastnit i nadále, spojte se urychleně s určeným registrátorem, řešte případnou reklamaci a domluvte další postup. Rovněž máte možnost oslovit jiného registrátora a prodloužení registrace domény svěřit jemu.
 Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o statutu registrátora, najdete rovněž na www.nic.cz. </str>
 
-<str name="Please notice that unless...">Vezměte, prosím, na vědomí, že nebude-li registrace doménových jmen včas prodloužena, budou dne.</str>
+<str name="Please notice that unless...">Vezměte, prosím, na vědomí, že nebude-li registrace doménových jmen včas prodloužena, bude dne.</str>
 
 <str name="..and made avail..."> zrušena a uvolněna k registraci případným dalším zájemcům.</str>
 
@@ -103,10 +103,21 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Attachment">Příloha - seznam doménových jmen a jejich určených registrátorů</str> 
 
 
+<str name="warning01">sdružení CZ.NIC, z. s. p. o., správce národní domény .CZ, si Vás dovoluje zdvořile upozornit, že od Vašeho registrátora dosud neobdržel pokyn k prodloužení platnosti doménových jmen uvedených v příloze tohoto dopisu. Tato doménová jména jsou již v současnosti nefunkční (viz Pravidla registrace doménových jmen v ccTLD .cz na www.nic.cz).</str>
 
+<str name="warning02">Máte-li o tato doménová jména nadále zájem, </str>
 
+<str name="warning03">spojte se, prosím, urychleně s Vaším vybraným registrátorem </str>
 
+<str name="warning04">a dohodněte se s ním na dalším postupu. Můžete si rovněž vybrat jiného registrátora a prodloužení registrace svěřit jemu. Aktuální seznam společností, které jsou akreditovanými registrátory, najdete také na www.nic.cz.</str>
 
+<str name="warning05">Vezměte, prosím, na vědomí, že </str>
+
+<str name="warning06">nebude-li registrace doménových jmen včas prodloužena, bude dne </str>
+
+<str name="warning07">zrušena </str>
+
+<str name="warning08">a uvolněna k registraci případným dalším zájemcům. </str>
 
 
 <str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">CZ.NIC, z.s.p.o., evidovalo v centrální databázi ke dni vystavení tohoto dopisu následující údaje</str>

@@ -121,6 +121,8 @@
 
     <xsl:choose>
         <xsl:when test="$lang='cs'">
+
+            <!-- TODO - move the text to translation_* like it is in warning_letters.xsl -->
             <para style="main">
                 sdružení CZ.NIC zaznamenalo v rámci pravidelně probíhajících kontrol údajů v centrálním registru doménových jmen .cz, že v záznamu o Vaší kontaktní osobě je uveden <b>nefunkční či neexistující e-mail</b>
             </para>
@@ -133,6 +135,8 @@
     </xsl:choose>    
     <xsl:choose>
         <xsl:when test="$lang='cs'">
+
+            <!-- TODO - move the text to translation_* like it is in warning_letters.xsl -->
             <para style="main">
                 Vzhledem k tomu, že e-mail je jedním z <b>důležitých a povinných údajů v registru,</b> žádáme Vás o jeho <b>urychlenou (okamžitou) opravu.</b> Níže naleznete výpis údajů, které jsou o Vaší osobě evidovány; zjistíte-li jakékoliv další neplatné či nesprávné údaje, 
                 <b>opravte je, prosím, také.</b>
