@@ -1,30 +1,58 @@
+<?xml version="1.0"?>
 <messages>
- <message>
-  <domain><![CDATA[example.cz]]></domain>
-  <registrar><![CDATA[REG-REGISTRAR]]></registrar>
-  <actual_date><![CDATA[2007-10-05]]></actual_date>
-  <termination_date><![CDATA[2007-10-15]]></termination_date>
   <holder>
-   <handle><![CDATA[HOLDER]]></handle>
-   <name><![CDATA[Fred & sons]]></name>
-   <street><![CDATA[Street 123]]></street>
-   <city><![CDATA[Prague]]></city>
-   <zip><![CDATA[11100]]></zip>
-   <country><![CDATA[CZECH REPUBLIC]]></country>
+    <name><![CDATA[Pepa Zdepa]]></name>
+    <organization><![CDATA[]]></organization>
+    <street><![CDATA[Ulice]]></street>
+    <city><![CDATA[Praha]]></city>
+    <postal_code><![CDATA[12300]]></postal_code>
+    <country><![CDATA[CZECH REPUBLIC]]></country>
+    <actual_date><![CDATA[2010-05-25]]></actual_date>
+    <termination_date><![CDATA[2011-06-11 00:00:00]]></termination_date>
+    <expiring_domain>
+      <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[tmp50900.cz]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[tmp535521.cz]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[tmp548912.cz]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[tmp691334.cz]]></domain>
+      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
+    </expiring_domain>
   </holder>
- </message>
- <message>
-  <domain><![CDATA[test.cz]]></domain>
-  <registrar><![CDATA[REG-REGISTRAR]]></registrar>
-  <actual_date><![CDATA[2007-10-05]]></actual_date>
-  <termination_date><![CDATA[2007-10-15]]></termination_date>
-  <holder>
-   <handle><![CDATA[MY-ID]]></handle>
-   <name><![CDATA[Company l.t.d.]]></name>
-   <street><![CDATA[Street 123]]></street>
-   <city><![CDATA[Berlin]]></city>
-   <zip><![CDATA[11100]]></zip>
-   <country><![CDATA[GERMANY]]></country>
-  </holder>
- </message>    
 </messages>
