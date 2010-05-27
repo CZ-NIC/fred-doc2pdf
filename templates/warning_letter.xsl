@@ -236,7 +236,9 @@
 
     <para style="basic" spaceAfter="0.3cm"><xsl:value-of select="$loc/str[@name='Yours sincerely']"/>
     </para>
-    <para style="basic">Ing. Martin Peterka</para>
+    <para style="basic">
+        <xsl:value-of select="$loc/str[@name='Operations manager name']"/>
+    </para>
     <para style="basic" spaceAfter="0.6cm">
       <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z.s.p.o.']"/>
     </para>
@@ -258,34 +260,22 @@
            <xsl:for-each select="expiring_domain"> 
                 <tr>
                     <td> 
-                        <xsl:choose>
-                            <xsl:when test="string-length(domain)>40">
-                                <xsl:value-of select="substring(domain, 1, 40)"/>..
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="domain"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="trim_with_dots">
+                            <xsl:with-param name="string" select="domain"/>
+                            <xsl:with-param name="max_length" select="38"/>
+                        </xsl:call-template>
                     </td>
                     <td> 
-                        <xsl:choose>
-                            <xsl:when test="string-length(registrar)>24">
-                                <xsl:value-of select="substring(registrar, 1, 24)"/>..
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="registrar"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="trim_with_dots">
+                            <xsl:with-param name="string" select="registrar"/>
+                            <xsl:with-param name="max_length" select="24"/>
+                        </xsl:call-template>
                     </td>
                     <td> 
-                        <xsl:choose>
-                            <xsl:when test="string-length(registrar_web)>40">
-                                <xsl:value-of select="substring(registrar_web, 1, 40)"/>..
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="registrar_web"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="trim_with_dots">
+                            <xsl:with-param name="string" select="registrar_web"/>
+                            <xsl:with-param name="max_length" select="38"/>
+                        </xsl:call-template>
                     </td>
                 </tr>
            </xsl:for-each>

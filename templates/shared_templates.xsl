@@ -17,6 +17,17 @@
     <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.</xsl:if>
 </xsl:template>
 
+<xsl:template name="trim_with_dots">
+    <xsl:param name="string"/>
+    <xsl:param name="max_length" select="25"/>
+    <xsl:choose>
+        <xsl:when test="string-length($string)>$max_length">
+            <xsl:value-of select="substring($string, 1, $max_length)"/>..</xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$string"/></xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
 <!-- for automatic generation of two pageTemplate elements (en,cs) parmetrized by language -->
   <xsl:template name="letterTemplate">
     <xsl:param name="templateName" select="main_cs"/>
@@ -66,24 +77,16 @@
   <!-- default code to fill the address frame, depends on some paraStyle elements defined in document -->
   <xsl:template name="fillAddress">
     <para style="address-name">
-      <xsl:choose>
-          <xsl:when test="string-length(name)>50">
-              <xsl:value-of select="substring(name, 1, 50)"/>..
-          </xsl:when>
-          <xsl:otherwise> 
-              <xsl:value-of select="name"/>
-          </xsl:otherwise>
-      </xsl:choose>
+        <xsl:call-template name="trim_with_dots">
+            <xsl:with-param name="string" select="name"/>
+            <xsl:with-param name="max_length" select="50"/>
+        </xsl:call-template>
     </para>
     <para style="address-name">
-      <xsl:choose>
-          <xsl:when test="string-length(organization)>50">
-              <xsl:value-of select="substring(organization, 1, 50)"/>..
-          </xsl:when>
-          <xsl:otherwise> 
-              <xsl:value-of select="organization"/>
-          </xsl:otherwise>
-      </xsl:choose>
+        <xsl:call-template name="trim_with_dots">
+            <xsl:with-param name="string" select="organization"/>
+            <xsl:with-param name="max_length" select="50"/>
+        </xsl:call-template>
     </para>
     <para style="address">
       <xsl:value-of select="street"/>

@@ -123,6 +123,7 @@
 <str name="Designated registrar">Designated registrar</str>
 <str name="Date of termination of the registration">Date of termination of the registration</str>
 <str name="Operations manager, CZ.NIC, z.s.p.o.">Operations manager, CZ.NIC, z.s.p.o.</str>
+<str name="Operations manager name">Martin Peterka</str>
 
 <!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->
 <str name="Subject: Notice re...">Subject: Notice re non-functional email in the records of the .cz domain name registry</str>
