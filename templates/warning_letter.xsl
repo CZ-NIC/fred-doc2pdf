@@ -49,7 +49,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="xml" encoding="utf-8"/>
   <xsl:include href="shared_templates.xsl"/>
-  <xsl:param name="lang" select="'cs'"/>
+  <xsl:variable name="lang01" select="'cs'"/>
+  <xsl:variable name="lang02" select="'en'"/>
+  <xsl:param name="lang" select="$lang01"/>
   <xsl:param name="srcpath" select="'templates/'" />
   <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
   <xsl:param name="listlimit" select="6"/>
@@ -58,16 +60,19 @@
 
   <xsl:template match="messages">
     <document>
-      <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="Extension of registration" author="CZ.NIC" showBoundary="0">
+      <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="Extension of registration" showBoundary="0">
+        <xsl:attribute name="author">
+              <xsl:value-of select="$loc/str[@name='NIC_author']"/>
+        </xsl:attribute>
 
         <xsl:call-template name="letterTemplate">
-          <xsl:with-param name="lang" select="'cs'"/>
-          <xsl:with-param name="templateName" select="'main_cs'"/>
+          <xsl:with-param name="lang" select="$lang01"/>
+          <xsl:with-param name="templateName" select="concat('main_', $lang01)"/>
         </xsl:call-template>
 
         <xsl:call-template name="letterTemplate">
-          <xsl:with-param name="lang" select="'en'"/>
-          <xsl:with-param name="templateName" select="'main_en'"/>
+          <xsl:with-param name="lang" select="$lang02"/>
+          <xsl:with-param name="templateName" select="concat('main_', $lang02)"/>
         </xsl:call-template>
        
         <pageTemplate id="domainList">
@@ -125,35 +130,56 @@
 
           <xsl:choose>
               <xsl:when test="count(expiring_domain)&lt;=$listlimit">
-                  <setNextTemplate name="main_cs"/>
+                  <setNextTemplate>
+                     <xsl:attribute name="name">
+                         <xsl:value-of select="concat('main_',$lang01)"/>
+                     </xsl:attribute>
+                  </setNextTemplate>
+
                   <xsl:call-template name="onePage">
-                    <xsl:with-param name="lang" select="'cs'"/>
+                    <xsl:with-param name="lang" select="$lang01"/>
                   </xsl:call-template>
                     <xsl:call-template name="domainsTable">
                     </xsl:call-template>
 
-                  <setNextTemplate name="main_en"/>
+                  <setNextTemplate>
+                     <xsl:attribute name="name">
+                         <xsl:value-of select="concat('main_',$lang02)"/>
+                     </xsl:attribute>
+                  </setNextTemplate>
+
                   <nextFrame/>
                   <xsl:call-template name="onePage">
-                    <xsl:with-param name="lang" select="'en'"/>
+                    <xsl:with-param name="lang" select="$lang02"/>
                   </xsl:call-template>
                   <xsl:call-template name="domainsTable">
                   </xsl:call-template>
               </xsl:when>
               <xsl:otherwise> 
 
-                  <setNextTemplate name="main_cs"/>
+                  <setNextTemplate>
+                     <xsl:attribute name="name">
+                         <xsl:value-of select="concat('main_',$lang01)"/>
+                     </xsl:attribute>
+                  </setNextTemplate>
+
                   <xsl:call-template name="onePage">
-                    <xsl:with-param name="lang" select="'cs'"/>
+                    <xsl:with-param name="lang" select="$lang01"/>
                   </xsl:call-template>
 
-                  <setNextTemplate name="main_en"/>
+                  <setNextTemplate>
+                     <xsl:attribute name="name">
+                         <xsl:value-of select="concat('main_',$lang02)"/>
+                     </xsl:attribute>
+                  </setNextTemplate>
+
                   <nextFrame/>
                   <xsl:call-template name="onePage">
-                    <xsl:with-param name="lang" select="'en'"/>
+                    <xsl:with-param name="lang" select="$lang02"/>
                   </xsl:call-template>
 
                   <setNextTemplate name="domainList"/> 
+
                   <nextFrame/>
                     <xsl:call-template name="domainsTable">
                     </xsl:call-template>
@@ -224,16 +250,43 @@
 
         <blockTable style="domainListTable">
            <tr>
-                   <td> FQDN </td> 
+                   <td> Dom. </td> 
                    <td> Reg. </td> 
                    <td> Reg. WWW </td>
            </tr>
 
            <xsl:for-each select="expiring_domain"> 
                 <tr>
-                   <td> <xsl:value-of select="domain"/> </td>
-                   <td> <xsl:value-of select="registrar"/> </td>
-                   <td> <xsl:value-of select="registrar_web"/> </td>
+                    <td> 
+                        <xsl:choose>
+                            <xsl:when test="string-length(domain)>40">
+                                <xsl:value-of select="substring(domain, 1, 40)"/>..
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="domain"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </td>
+                    <td> 
+                        <xsl:choose>
+                            <xsl:when test="string-length(registrar)>24">
+                                <xsl:value-of select="substring(registrar, 1, 24)"/>..
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="registrar"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </td>
+                    <td> 
+                        <xsl:choose>
+                            <xsl:when test="string-length(registrar_web)>40">
+                                <xsl:value-of select="substring(registrar_web, 1, 40)"/>..
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="registrar_web"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </td>
                 </tr>
            </xsl:for-each>
 

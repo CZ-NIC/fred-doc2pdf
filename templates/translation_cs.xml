@@ -2,6 +2,7 @@
 <strings>
 
 <!-- advanced invoice -->
+<str name="NIC_author">CZ.NIC</str>
 <str name="Client">Odběratel</str>
 <str name="Invoice No">Faktura č.</str>
 <str name="Invoice / Vat voucher">Faktura / daňový doklad</str>

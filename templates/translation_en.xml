@@ -2,6 +2,7 @@
 <strings>
 
 <!-- advanced invoice -->
+<str name="NIC_author">CZ.NIC</str>
 <str name="Client">Ship to</str>
 <str name="Invoice No">Invoice No</str>
 <str name="Invoice / Vat voucher">Invoice / Vat voucher</str>
