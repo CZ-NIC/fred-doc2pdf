@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <messages>
   <holder>
-    <name><![CDATA[Pepa Zdepa]]></name>
-    <organization><![CDATA[]]></organization>
-    <street><![CDATA[Ulice]]></street>
+    <name><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), národní registr]]></name>
+    <organization><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), národní registr]]></organization>
+    <street><![CDATA[Ulice 800600]]></street>
     <city><![CDATA[Praha]]></city>
+    <stateorprovince><![CDATA[Praha D.C.]]></stateorprovince>
     <postal_code><![CDATA[12300]]></postal_code>
-    <country><![CDATA[CZECH REPUBLIC]]></country>
+    <country><![CDATA[Severní Korea (Korejská lidově demokratická republika)]]></country>
     <actual_date><![CDATA[2010-05-25]]></actual_date>
     <termination_date><![CDATA[2011-06-11 00:00:00]]></termination_date>
     <expiring_domain>
@@ -21,16 +22,6 @@
     </expiring_domain>
     <expiring_domain>
       <domain><![CDATA[tmp535521.cz]]></domain>
-      <registrar><![CDATA[Company l.t.d.]]></registrar>
-      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
-    </expiring_domain>
-    <expiring_domain>
-      <domain><![CDATA[tmp548912.cz]]></domain>
-      <registrar><![CDATA[Company l.t.d.]]></registrar>
-      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
-    </expiring_domain>
-    <expiring_domain>
-      <domain><![CDATA[tmp691334.cz]]></domain>
       <registrar><![CDATA[Company l.t.d.]]></registrar>
       <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
     </expiring_domain>

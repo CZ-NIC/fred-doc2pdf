@@ -54,7 +54,7 @@
   <xsl:param name="lang" select="$lang01"/>
   <xsl:param name="srcpath" select="'templates/'" />
   <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
-  <xsl:param name="listlimit" select="6"/>
+  <xsl:param name="listlimit" select="3"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <!-- root template for rml document generation -->
 
@@ -113,13 +113,14 @@
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm"/>
         <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
         <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
+        <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="9"/>
 
         <blockTableStyle id="domainListTable">
-            <blockFont name="Times-Roman" start="0,1" stop="-1,-1" size="9"/> 
+            <blockFont name="Courier" start="0,1" stop="-1,-1" size="9"/> 
             <blockFont name="Times-Bold" start="0,0" stop="-1,0" size="10"/>
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
             <lineStyle kind="GRID" start="0,0" stop="-1,-1" colorName="black"/>
-            <blockTopPadding length="0" start="0,0" stop="-1,-1" />
+            <blockTopPadding length="2" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0cm" start="0,0" stop="-1,-1" />
         </blockTableStyle>
@@ -250,7 +251,7 @@
   <!-- a table with list of expired domains -->
     <xsl:template name="domainsTable">
 
-        <blockTable style="domainListTable">
+        <blockTable repeatRows="1" colWidths="8cm,4cm,6.5cm" style="domainListTable">
            <tr>
                    <td> Dom. </td> 
                    <td> Reg. </td> 
@@ -260,22 +261,42 @@
            <xsl:for-each select="expiring_domain"> 
                 <tr>
                     <td> 
+                      <para style="tableItem">
+                        <xsl:choose>
+                            <xsl:when test="string-length(domain)&gt;41">
+                                <xsl:value-of select="substring(domain,1,41)"/>&SPACE;<xsl:value-of select="substring(domain,42)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="domain"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                      </para>
+                        
+
+
+                        <!--
                         <xsl:call-template name="trim_with_dots">
                             <xsl:with-param name="string" select="domain"/>
                             <xsl:with-param name="max_length" select="38"/>
                         </xsl:call-template>
+                        -->
                     </td>
                     <td> 
-                        <xsl:call-template name="trim_with_dots">
-                            <xsl:with-param name="string" select="registrar"/>
-                            <xsl:with-param name="max_length" select="24"/>
-                        </xsl:call-template>
+                        <para style="tableItem">
+                        <xsl:value-of select="registrar"/>
+                        </para>
                     </td>
                     <td> 
-                        <xsl:call-template name="trim_with_dots">
-                            <xsl:with-param name="string" select="registrar_web"/>
-                            <xsl:with-param name="max_length" select="38"/>
-                        </xsl:call-template>
+                      <para style="tableItem">
+                        <xsl:choose>
+                            <xsl:when test="string-length(registrar_web)&gt;33">
+                                <xsl:value-of select="substring(registrar_web,1,33)"/>&SPACE;<xsl:value-of select="substring(registrar_web,34)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="registrar_web"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                      </para>
                     </td>
                 </tr>
            </xsl:for-each>

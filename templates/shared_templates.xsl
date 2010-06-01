@@ -43,7 +43,7 @@
         <!--
         <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="3cm" showBoundary="0"/>
         -->
-        <frame id="address" x1="11.5cm" y1="22.2cm" width="8.6cm" height="4.2cm" showBoundary="0"/>
+        <frame id="address" x1="11.5cm" y1="22.9cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
         <stroke color="#C4C9CD"/>
@@ -91,7 +91,7 @@
     <para style="address">
       <xsl:value-of select="street"/>
     </para>
-    <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/></para>
+    <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="stateorprovince">,&SPACE;<xsl:value-of select="stateorprovince"/></xsl:if> </para>
     <para style="address">
       <xsl:value-of select="country"/>
     </para>
