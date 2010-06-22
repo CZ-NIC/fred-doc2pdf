@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <messages>
   <holder>
-    <name><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), národní registr]]></name>
-    <organization><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), národní registr]]></organization>
-    <street><![CDATA[Ulice 800600]]></street>
+    <name><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), Správce internetové domény CZ ]]></name>
+    <organization><![CDATA[CZ.NIC - zájmové sdružení právnických osob (z.s.p.o.), Správce internetové domény CZ ]]></organization>
+    <street><![CDATA[Americká 23]]></street>
     <city><![CDATA[Praha]]></city>
-    <stateorprovince><![CDATA[Praha D.C.]]></stateorprovince>
-    <postal_code><![CDATA[12300]]></postal_code>
-    <country><![CDATA[Severní Korea (Korejská lidově demokratická republika)]]></country>
+    <stateorprovince><![CDATA[Praha - hlavní město]]></stateorprovince>
+    <postal_code><![CDATA[120 00]]></postal_code>
+    <country><![CDATA[Česká republika]]></country>
     <actual_date><![CDATA[2010-05-25]]></actual_date>
     <termination_date><![CDATA[2011-06-11 00:00:00]]></termination_date>
     <expiring_domain>
