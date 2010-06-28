@@ -1,3 +1,13 @@
+2010-06-28 Juraj Vicenik
+
+    * Trimming of long names in some templates
+    
+    * Added template for notification about defunct contacts
+
+    * More templates moved to file with shared templates
+
+    * Moved registry-specific data from some files to translataion_ files
+
 2010-02-17 Zdenek Bohm,  Jaromir Talir (version 2.0.4)
 
     * Template for accounting software helios updated to support new year
