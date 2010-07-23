@@ -120,9 +120,8 @@
             <blockFont name="Times-Bold" start="0,0" stop="-1,0" size="10"/>
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
             <lineStyle kind="GRID" start="0,0" stop="-1,-1" colorName="black"/>
-            <blockTopPadding length="2" start="0,0" stop="-1,-1" />
-            <blockBottomPadding length="0" start="0,0" stop="-1,-1" />
-            <blockBottomPadding length="0cm" start="0,0" stop="-1,-1" />
+            <blockTopPadding length="1" start="0,0" stop="-1,-1" />
+            <blockBottomPadding length="4" start="0,0" stop="-1,-1" />
         </blockTableStyle>
 
       </stylesheet>
