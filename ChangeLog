@@ -1,3 +1,9 @@
+2010-07-23 Jiri Sadek (version 2.1.1)
+
+    * New cznic logo added
+
+    * Warning letter table format fix (padding)
+
 2010-06-28 Juraj Vicenik (version 2.1.0)
 
     * Trimming of long names in some templates
