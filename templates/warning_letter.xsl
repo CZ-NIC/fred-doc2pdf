@@ -114,14 +114,13 @@
         <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
         <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
         <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="9"/>
+        <paraStyle name="tableHead" leading="10" fontName="Times-Bold" fontSize="10"/>
 
         <blockTableStyle id="domainListTable">
-            <blockFont name="Courier" start="0,1" stop="-1,-1" size="9"/> 
-            <blockFont name="Times-Bold" start="0,0" stop="-1,0" size="10"/>
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
             <lineStyle kind="GRID" start="0,0" stop="-1,-1" colorName="black"/>
-            <blockTopPadding length="1" start="0,0" stop="-1,-1" />
-            <blockBottomPadding length="4" start="0,0" stop="-1,-1" />
+            <blockTopPadding length="2" start="0,0" stop="-1,-1" />
+            <blockBottomPadding length="1" start="0,0" stop="-1,-1" />
         </blockTableStyle>
 
       </stylesheet>
@@ -252,9 +251,9 @@
 
         <blockTable repeatRows="1" colWidths="8cm,4cm,6.5cm" style="domainListTable">
            <tr>
-                   <td> Dom. </td> 
-                   <td> Reg. </td> 
-                   <td> Reg. WWW </td>
+               <td> <para style="tableHead"> Domain / Doména </para> </td> 
+               <td> <para style="tableHead"> Registrar / Registrátor </para></td> 
+               <td> <para style="tableHead"> Registrar web / Web registrátora </para> </td>
            </tr>
 
            <xsl:for-each select="expiring_domain"> 
