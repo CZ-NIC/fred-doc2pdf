@@ -54,7 +54,7 @@
   <xsl:param name="lang" select="$lang01"/>
   <xsl:param name="srcpath" select="'templates/'" />
   <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
-  <xsl:param name="listlimit" select="3"/>
+  <xsl:param name="listlimit" select="2"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <!-- root template for rml document generation -->
 
@@ -119,8 +119,8 @@
         <blockTableStyle id="domainListTable">
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
             <lineStyle kind="GRID" start="0,0" stop="-1,-1" colorName="black"/>
-            <blockTopPadding length="2" start="0,0" stop="-1,-1" />
-            <blockBottomPadding length="1" start="0,0" stop="-1,-1" />
+            <blockTopPadding length="2mm" start="0,0" stop="-1,-1" />
+            <blockBottomPadding length="1mm" start="0,0" stop="-1,-1" />
         </blockTableStyle>
 
       </stylesheet>

@@ -12,17 +12,12 @@
     <termination_date><![CDATA[2011-06-11 00:00:00]]></termination_date>
     <expiring_domain>
       <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
-      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar><![CDATA[Telefónica OO2 Czech Republic, a.s.]]></registrar>
       <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
     </expiring_domain>
     <expiring_domain>
       <domain><![CDATA[tmp50900.cz]]></domain>
-      <registrar><![CDATA[Company l.t.d.]]></registrar>
-      <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
-    </expiring_domain>
-    <expiring_domain>
-      <domain><![CDATA[tmp535521.cz]]></domain>
-      <registrar><![CDATA[Company l.t.d.]]></registrar>
+      <registrar><![CDATA[Telefónica OO2 Czech Republic, a.s.]]></registrar>
       <registrar_web><![CDATA[www.nic.cz]]></registrar_web>
     </expiring_domain>
   </holder>
