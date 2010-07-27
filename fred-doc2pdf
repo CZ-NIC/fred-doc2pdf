@@ -59,7 +59,7 @@ import warnings
 from reportlab import platypus
 
 # (Path and) Name of the configuration file
-CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
+CONFIG_FILENAME = '/home/jvicenik/devel/enum/fred/trunk/scripts/root/etc/fred/fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
 
@@ -268,16 +268,17 @@ class FredTable(platypus.Table):
         "Compatible with Reportlab verion 2.1 and 2.3"
         
         global cache_cells
-        
+ 
+        seq_types = (tuple, list)
         self.ident = ident
         self.hAlign = hAlign or 'CENTER'
         self.vAlign = vAlign or 'MIDDLE'
-        if type(data) not in platypus.tables._SeqTypes:
+        if isinstance(data, seq_types):
             raise ValueError("%s invalid data type" % self.identity())
         self._nrows = nrows = len(data)
         self._cellvalues = []
-        _seqCW = type(colWidths) in platypus.tables._SeqTypes
-        _seqRH = type(rowHeights) in platypus.tables._SeqTypes
+        _seqCW = isinstance(colWidths, seq_types)
+        _seqRH = isinstance(rowHeights, seq_types)
         if nrows: self._ncols = ncols = max(map(platypus.tables._rowLen, data))
         elif colWidths and _seqCW: ncols = len(colWidths)
         else: ncols = 0
