@@ -59,7 +59,7 @@ import warnings
 from reportlab import platypus
 
 # (Path and) Name of the configuration file
-CONFIG_FILENAME = '/home/jvicenik/devel/enum/fred/trunk/scripts/root/etc/fred/fred-doc2pdf.conf'
+CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf '
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
 
@@ -273,7 +273,7 @@ class FredTable(platypus.Table):
         self.ident = ident
         self.hAlign = hAlign or 'CENTER'
         self.vAlign = vAlign or 'MIDDLE'
-        if isinstance(data, seq_types):
+        if not isinstance(data, seq_types):
             raise ValueError("%s invalid data type" % self.identity())
         self._nrows = nrows = len(data)
         self._cellvalues = []
