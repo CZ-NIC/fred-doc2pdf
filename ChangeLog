@@ -1,3 +1,9 @@
+2010-07-30 Jiri Sadek, Juraj Vicenik (2.1.2)
+
+    * Warning letter table fix (heading, padding)
+
+    * Compatibility with reportlab 2.4
+
 2010-07-23 Jiri Sadek (version 2.1.1)
 
     * New cznic logo added
