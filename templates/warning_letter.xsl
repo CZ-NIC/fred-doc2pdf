@@ -249,7 +249,7 @@
   <!-- a table with list of expired domains -->
     <xsl:template name="domainsTable">
 
-        <blockTable repeatRows="1" colWidths="8cm,4cm,6.5cm" style="domainListTable">
+        <blockTable repeatRows="1" colWidths="8cm,4.5cm,6cm" style="domainListTable">
            <tr>
                <td> <para style="tableHead"> Domain / Doména </para> </td> 
                <td> <para style="tableHead"> Registrar / Registrátor </para></td> 
@@ -287,8 +287,8 @@
                     <td> 
                       <para style="tableItem">
                         <xsl:choose>
-                            <xsl:when test="string-length(registrar_web)&gt;33">
-                                <xsl:value-of select="substring(registrar_web,1,33)"/>&SPACE;<xsl:value-of select="substring(registrar_web,34)"/>
+                            <xsl:when test="string-length(registrar_web)&gt;30">
+                                <xsl:value-of select="substring(registrar_web,1,30)"/>&SPACE;<xsl:value-of select="substring(registrar_web,31)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="registrar_web"/>
