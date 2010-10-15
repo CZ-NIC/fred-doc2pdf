@@ -161,14 +161,7 @@
     </tr>
     </blockTable>
 
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Open this page']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>&SPACE;
-    <xsl:value-of select="$mojeid_loc/str[@name='in your web brower, please, and enter PIN1 and PIN2.']"/>
-    </para>
-    
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='We wish you much pleasure when you use the service mojeID.']"/>
-    
-    </para>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='For activate your account click on a link you received by email.']"/></para>
     
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team CZ.NIC.']"/>
     

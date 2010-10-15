@@ -121,10 +121,12 @@
     <para style="title"><xsl:value-of select="$mojeid_loc/str[@name='Authentication new owner of account mojeID']"/></para>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$mojeid_loc/str[@name='Subject: Authentication your identity for activation an access to your personal details in mojeID']"/></b></para>
+    <para style="main"><b><xsl:value-of select="$mojeid_loc/str[@name='Subject: mojeID account full activation']"/></b></para>
     <spacer length="0.5cm"/>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Dear user,']"/></para>
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='We send you PIN3 for edit your personal details at mojeID account:']"/></para>
+
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='For full activation of the following account']"/></para>
+
     
   <blockTable repeatRows="1" colWidths="4cm,8cm" style="authDataTable">
     <tr>
@@ -145,18 +147,15 @@
     </tr>
     </blockTable>
 
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='After login to your account you go to this page']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>&SPACE;
-    <xsl:value-of select="$mojeid_loc/str[@name='where you find the form for enter this given PIN3. You gain full access to your pesonal details after entering PIN3 into form input.']"/>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='you need this PIN3 code:']"/>
+        &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>
     </para>
 
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Here is your PIN3 for activation the access:']"/>
-     &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>
-     </para>
-    
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='We wish you much pleasure when you use the service mojeID.']"/>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
+     &SPACE;<xsl:value-of select="auth/link"/>,&SPACE;
+    <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
     </para>
-    
+
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team CZ.NIC.']"/>
     </para>
     

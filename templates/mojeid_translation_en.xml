@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-  <str name="Authentication new user mojeID">Authentication new user mojeID</str>
-  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Subject: Authentication your identity with codes PIN1 and PIN2</str>
+  <str name="Authentication new user mojeID">Opening an account mojeID</str>
+  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Subject: Opening an account mojeID</str>
   <str name="Dear user,">Dear user,</str>
   <str name="this letter approves the succefful creation of mojeID account with these dates:">this letter approves the succefful creation of mojeID account with these dates:</str>
   <str name="account mojeID:">account mojeID:</str>
   <str name="first name:">first name:</str>
   <str name="last name:">last name:</str>
   <str name="e-mail:">e-mail:</str>
-  <str name="To access into your mojeID account is necessary to verify your identity with a pair of pins PIN1 and PIN2:">To access into your mojeID account is necessary to verify your identity with a pair of pins PIN1 and PIN2:</str>
-  <str name="PIN1 was sent to your email address">PIN1 was sent to your email address</str>
+  <str name="To access into your mojeID account is necessary to verify your identity with a pair of pins PIN1 and PIN2:">To activate your account, you must insert a code PIN1 and PIN2.</str>
+  <str name="PIN1 was sent to your email address">PIN1 was sent via email</str>
   <str name="PIN2 is:">PIN2 is:</str>
-  <str name="Open this page">Open this page</str>
-  <str name="in your web brower, please, and enter PIN1 and PIN2.">in your web brower, please, and enter PIN1 and PIN2.</str>
+  <str name="For activate your account click on a link you received by email.">For activate your account click on a link you received by email.</str>
   <str name="We wish you much pleasure when you use the service mojeID.">We wish you much pleasure when you use the service mojeID.</str>
   <str name="Your team CZ.NIC.">Your team CZ.NIC.</str>
   <str name="Customer Support">Customer Support</str>
 
-  <str name="Authentication new owner of account mojeID">Authentication new owner of account mojeID</str>
-  <str name="Subject: Authentication your identity for activation an access to your personal details in mojeID">Subject: Authentication your identity for activation an access to your personal details in mojeID</str>
-  <str name="We send you PIN3 for edit your personal details at mojeID account:">We send you PIN3 for edit your personal details at mojeID account:</str>
-  
-  <str name="After login to your account you go to this page">After login to your account you go to this page</str>
-  <str name="where you find the form for enter this given PIN3. You gain full access to your pesonal details after entering PIN3 into form input.">where you find the form for enter this given PIN3. You gain full access to your pesonal details after entering PIN3 into form input.</str>
+  <str name="Authentication new owner of account mojeID">mojeID account full activation</str>
+  <str name="Subject: mojeID account full activation">Subject: mojeID account full activation</str>
 
-  <str name="Here is your PIN3 for activation the access:">Here is your PIN3 for activation the access:</str>
+<str name="For full activation of the following account">For full activation of the following account</str>
+<str name="you need this PIN3 code:">you need this PIN3 code:</str>
+
+  <str name="To complete full activation of your account, go to">To complete full activation of your account, go to</str>
+  <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">log into your mojeID profile and enter the code PIN3 at the initial screen.</str>
 
   <str name="Americka 23">Americka 23</str>
   <str name="120 00 Prague 2">120 00 Prague 2</str>
