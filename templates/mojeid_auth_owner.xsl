@@ -152,7 +152,7 @@
     </para>
 
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>,&SPACE;
+     &SPACE;www.<xsl:value-of select="auth/link"/>,&SPACE;
     <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
     </para>
 

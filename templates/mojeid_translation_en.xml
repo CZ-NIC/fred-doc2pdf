@@ -3,16 +3,16 @@
   <str name="Authentication new user mojeID">Opening an account mojeID</str>
   <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Subject: Opening an account mojeID</str>
   <str name="Dear user,">Dear user,</str>
-  <str name="this letter approves the succefful creation of mojeID account with these dates:">this letter approves the succefful creation of mojeID account with these dates:</str>
+  <str name="this letter approves the succefful creation of mojeID account with these dates:">this letter approves the succeful creation of mojeID account with these dates:</str>
   <str name="account mojeID:">account mojeID:</str>
   <str name="first name:">first name:</str>
   <str name="last name:">last name:</str>
   <str name="e-mail:">e-mail:</str>
-  <str name="To access into your mojeID account is necessary to verify your identity with a pair of pins PIN1 and PIN2:">To activate your account, you must insert a code PIN1 and PIN2.</str>
+  <str name="To access into your mojeID account is necessary to verify your identity with a pair of pins PIN1 and PIN2:">To activate your account, you must enter code PIN1 and PIN2.</str>
   <str name="PIN1 was sent to your email address">PIN1 was sent via email</str>
   <str name="PIN2 is:">PIN2 is:</str>
-  <str name="For activate your account click on a link you received by email.">For activate your account click on a link you received by email.</str>
-  <str name="We wish you much pleasure when you use the service mojeID.">We wish you much pleasure when you use the service mojeID.</str>
+  <str name="For activate your account click on a link you received by email.">To activate your account click on the link you received by email.</str>
+  <str name="We wish you much pleasure when you use the service mojeID.">We wish You pleasant use of mojeID service.</str>
   <str name="Your team CZ.NIC.">Your team CZ.NIC.</str>
   <str name="Customer Support">Customer Support</str>
 
