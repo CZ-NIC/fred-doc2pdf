@@ -28,15 +28,17 @@
   <str name="Americka 23">Americká 23</str>
   <str name="120 00 Prague 2">120 00 Praha 2</str>
 
-  <str name="ZadostOValidaciKontaktu"> Žádost o validaci kontaktu mojeID</str>
+  <str name="ZadostOValidaciKontaktu"> Žádost o validaci účtu mojeID</str>
   <str name="ValidaciProvedte">Validaci proveďte jedním z následujících způsobů:</str>
-  <str name="ValidateVerifiedSignature"> - Tuto žádost vytiskněte, opatřete ověřeným podpisem a zašlete poštou na adresu Zákaznická podpora CZ.NIC, z. s. p. o., Americká 23, 120 00 Praha 2</str>
-  <str name="ValidateEmail"> - Přiložte tuto žádost do přílohy emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@nic.cz</str>
-  <str name="ValidateInPerson"> - Tuto žádost vytiskněte, podepiště a dostavte se osobně na adresu sdružení CZ.NIC - Americká 23, Praha 2. Nezapomeňte s sebou vzít také Váš občanský průkaz.
-  </str>
-  <str name="Vec:Zadost"> Věc: Žádost o validaci kontaktu mojeID.</str>
-  <str name="ZadamTimtoO"> Žádám tímto o validování účtu mojeID: </str>
-  <str name="ZadamTimtoO"> Žádám uímto o validování účtu mojeID: </str>
+  <str name="ValidateVerifiedSignature1"> - Tuto žádost vytiskněte, opatřete ji </str> 
+  <str name="ValidateVerifiedSignature2">úředně ověřeným podpisem </str>
+  <str name="ValidateVerifiedSignature3">a odešlete poštou na níže uvedenou adresu </str>
+
+  <str name="ValidateEmail"> - Přiložte tuto žádost jako přílohu emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@nic.cz</str>
+  <str name="ValidateInPerson"> - Tuto žádost vytiskněte, podepište a dostavte se osobně na níže uvedenou adresu sdružení CZ.NIC. Nezapomeňte si s sebou vzít také Váš občanský průkaz. </str> 
+  <str name="ValOfficeHoursNotice"> Pracovní doba validačního pracoviště: </str>
+  <str name="ValOfficeHours">Po - Pá: 8:30 - 12:00, 13:00 - 16:30 </str>
+  <str name="ZadamTimtoO"> Žádám tímto o validaci účtu mojeID: </str>
 
   <str name="01Jmeno"> Jméno : </str>
   <str name="02Org"> Organizace : </str>
@@ -44,7 +46,7 @@
   <str name="04BirthDate"> Datum narození : </str>
   <str name="05Address"> Adresa : </str>
   <str name="IdentifikacniCisloZadosti"> Identifikační číslo žádosti </str>
-  <str name="zazadanoDne">, zažádáno dne </str>
+  <str name="zeDne">, ze dne </str>
   <str name="JmenoApodpis"> Jméno a podpis odpovědné osoby: </str>
 
 </strings>

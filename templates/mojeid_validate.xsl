@@ -65,13 +65,16 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
-        <frame id="body" x1="2.3cm" y1="6cm" width="16.6cm" height="17cm" showBoundary="0" />
+        <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
 
     <!-- Page footer -->
         <stroke color="#c0c0c0"/>
-        <lines>2.5cm 4.6cm 18.5cm 4.6cm</lines>
+        <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
-       
+        <setFont name="Times-Bold" size="12"/>
+        <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
+        <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
+        <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
       
     <!-- Folder marks -->
         <stroke color="black"/>
@@ -94,24 +97,6 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 
 <story>
 
-    <spacer length="0.4cm"/>
-    <para>
-        <xsl:value-of select="$loc/str[@name='ValidaciProvedte']"/>
-    </para>
-    <para>
-        <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature']"/>
-    </para>
-    <para>
-        <xsl:value-of select="$loc/str[@name='ValidateEmail']"/>
-    </para>
-    <para>
-        <xsl:value-of select="$loc/str[@name='ValidateInPerson']"/>
-    </para>
-
-    <spacer length="0.6cm"/>
-<para>
-    <xsl:value-of select="$loc/str[@name='Vec:Zadost']"/>
-</para>
 <spacer length="0.6cm"/>
 <para>
     <xsl:value-of select="$loc/str[@name='ZadamTimtoO']"/>
@@ -160,8 +145,34 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
      <xsl:value-of select="$loc/str[@name='IdentifikacniCisloZadosti']"/> 
     <xsl:value-of select="request_id"/>
 
-     <xsl:value-of select="$loc/str[@name='zazadanoDne']"/>
+     <xsl:value-of select="$loc/str[@name='zeDne']"/>
     <xsl:value-of select="request_date"/>. 
+</para>
+
+<!-- description.... -->
+<spacer length="0.6cm"/>
+<para style="bold">
+    <xsl:value-of select="$loc/str[@name='ValidaciProvedte']"/>
+</para>
+
+<spacer length="0.3cm"/>
+<para>
+    <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature1']"/>
+    <b><xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature2']"/></b>
+    <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature3']"/>
+</para>
+<spacer length="0.3cm"/>
+<para>
+    <xsl:value-of select="$loc/str[@name='ValidateEmail']"/>
+</para>
+<spacer length="0.3cm"/>
+<para>
+    <xsl:value-of select="$loc/str[@name='ValidateInPerson']"/>
+</para>
+<spacer length="0.3cm"/>
+<para>
+    <b><xsl:value-of select="$loc/str[@name='ValOfficeHoursNotice']"/></b>
+    <xsl:value-of select="$loc/str[@name='ValOfficeHours']"/>
 </para>
 
 <spacer length="0.6cm"/>
