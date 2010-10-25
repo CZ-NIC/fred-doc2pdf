@@ -121,7 +121,6 @@
     <para style="title"><xsl:value-of select="$mojeid_loc/str[@name='Authentication new user mojeID']"/></para>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$mojeid_loc/str[@name='Subject: Authentication your identity with codes PIN1 and PIN2']"/></b></para>
     <spacer length="0.5cm"/>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Dear user,']"/></para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='this letter approves the succefful creation of mojeID account with these dates:']"/></para>
