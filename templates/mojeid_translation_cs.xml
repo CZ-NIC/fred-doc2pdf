@@ -40,6 +40,7 @@
   <str name="ValOfficeHours">Po - Pá: 8:30 - 12:00, 13:00 - 16:30 </str>
   <str name="ZadamTimtoO"> Žádám tímto o validaci účtu mojeID: </str>
 
+  <str name="00Handle"> Identifikátor : </str>
   <str name="01Jmeno"> Jméno : </str>
   <str name="02Org"> Organizace : </str>
   <str name="03Ic"> IČ : </str>

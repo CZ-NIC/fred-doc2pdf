@@ -65,6 +65,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
+        <!-- TODO - this can gain more space, increase height of the frame -->
         <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
 
     <!-- Page footer -->
@@ -102,12 +103,23 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
     <xsl:value-of select="$loc/str[@name='ZadamTimtoO']"/>
 </para>
 
-<spacer length="0.6cm"/>
+<spacer length="0.3cm"/>
+
+<para>
+ <xsl:choose>
+     <xsl:when test="string(handle)">
+        <xsl:value-of select="$loc/str[@name='00Handle']"/>
+        &SPACE;<xsl:value-of select="handle"/>
+     </xsl:when>
+     <xsl:otherwise>
+     </xsl:otherwise>
+ </xsl:choose>
+</para>
 
 <para>
     <xsl:value-of select="$loc/str[@name='01Jmeno']"/>
  &SPACE;<xsl:value-of select="name"/>
- </para> 
+</para> 
 
 <para>
  <xsl:choose>
@@ -132,12 +144,24 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 </para>
  
  <para>
-     <xsl:value-of select="$loc/str[@name='04BirthDate']"/>
-     &SPACE;<xsl:value-of select="birth_date"/>
+  <xsl:choose>
+      <xsl:when test="string(birth_date)">
+         <xsl:value-of select="$loc/str[@name='04BirthDate']"/>
+         &SPACE;<xsl:value-of select="birth_date"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+  </xsl:choose>
  </para> 
  <para>
-     <xsl:value-of select="$loc/str[@name='05Address']"/>
-     &SPACE;<xsl:value-of select="address"/>
+  <xsl:choose>
+      <xsl:when test="string(address)">
+         <xsl:value-of select="$loc/str[@name='05Address']"/>
+         &SPACE;<xsl:value-of select="address"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+  </xsl:choose>
  </para>
 
 <spacer length="0.6cm"/>
@@ -150,7 +174,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 </para>
 
 <!-- description.... -->
-<spacer length="0.6cm"/>
+<spacer length="0.3cm"/>
 <para style="bold">
     <xsl:value-of select="$loc/str[@name='ValidaciProvedte']"/>
 </para>
