@@ -92,9 +92,17 @@
       <xsl:value-of select="street"/>
     </para>
     <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="stateorprovince">,&SPACE;<xsl:value-of select="stateorprovince"/></xsl:if> </para>
-    <para style="address">
-      <xsl:value-of select="country"/>
-    </para>
+
+    <xsl:choose>
+        <xsl:when test="country='CZ' or country='CZECH REPUBLIC' or country='Česká republika'">
+        </xsl:when>
+        <xsl:otherwise>
+            <para style="address">
+              <xsl:value-of select="country"/>
+            </para>
+        </xsl:otherwise>
+    </xsl:choose>
+
     <nextFrame/>
   </xsl:template>
 
