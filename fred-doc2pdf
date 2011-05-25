@@ -271,6 +271,7 @@ class FredTable(platypus.Table):
  
         seq_types = (tuple, list)
         self.ident = ident
+        self._longTableOptimize = 1
         self.hAlign = hAlign or 'CENTER'
         self.vAlign = vAlign or 'MIDDLE'
         if not isinstance(data, seq_types):
