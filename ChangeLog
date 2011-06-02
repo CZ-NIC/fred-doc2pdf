@@ -1,9 +1,15 @@
+2011-06-02 Vit Vomacko (2.2.0)
+
+   * removed local freddist
+
 2010-12-13 Juraj Vicenik (2.1.7)
+
    * If country is Czech republic, don't write it to the address
 
    * Changed office hours in mojeID validation document
 
 2010-11-04 Juraj Vicenik (2.1.6)
+
    * Modified documents for MojeID - validation
 
    * Changed XML format for validation - handle is allowed
@@ -19,11 +25,6 @@
 2010-10-18 Zdenek Bohm, Juraj Vicenik (2.1.3)
 
    * New documents for Mojeid (identification and validation letters)
->>>>>>> .r14984
-
-2010-10-18 Zdenek Bohm, Juraj Vicenik (2.1.2)
-
-   * New documents for MojeID (identification and validation letters)
 
 2010-07-30 Jiri Sadek, Juraj Vicenik (2.1.2)
 
