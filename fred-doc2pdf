@@ -264,7 +264,7 @@ class FredTable(platypus.Table):
     
     def __init__(self, data, colWidths=None, rowHeights=None, style=None,
                 repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, 
-                ident=None, hAlign=None,vAlign=None):
+                ident=None, hAlign=None,vAlign=None,normalizedData=0,cellStyles=None):
         "Compatible with Reportlab verion 2.1 and 2.3"
         
         global cache_cells
