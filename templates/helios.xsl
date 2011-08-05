@@ -138,7 +138,8 @@
       <description>
        <xsl:text>internal-format-HELIOS:lcs_cz:PohyboveDoklady</xsl:text>
       </description>
-      <version>010020070611</version>
+      <!-- <version>010020070611</version>  -->
+      <version>020020110105</version>
      </document>
     </manifest>
    </header>
@@ -259,7 +260,92 @@
        <PoziceZaokrDPHHla>1</PoziceZaokrDPHHla>
        <HraniceZaokrDPHHla>2</HraniceZaokrDPHHla>
        <ZaokrNaPadesat>0</ZaokrNaPadesat>
+       <!-- TODO: check this quick fix -->
+       <xsl:if test="count(advance_payment)=0">
+	       <TabOZSumaceCen>
+	        <Poradi>1</Poradi> <!-- unknown value -->
+	        <SazbaDPH>
+	         <xsl:call-template name="pk_sazba_dph">
+	          <xsl:with-param name="sazba"
+	           select="delivery/vat_rates/entry[position()=1]/vatperc" />
+	         </xsl:call-template>
+	        </SazbaDPH>
+	        <CbezDPHOZ>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	        </CbezDPHOZ>
+	        <CsDPHOZ>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	        </CsDPHOZ>
+	        <CbezDPHValOZ>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	        </CbezDPHValOZ>
+	        <CsDPHValOZ>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	        </CsDPHValOZ>
+	       </TabOZSumaceCen>
+       </xsl:if>
       </TabDokladyZbozi>
+      <xsl:if test="count(advance_payment)=0">
+	      <TabOZTxtPol>
+	       <Poradi>1</Poradi>
+	       <MJ>ks</MJ>
+	       <SazbaDPH>
+	         <xsl:call-template name="pk_sazba_dph">
+	          <xsl:with-param name="sazba"
+	           select="delivery/vat_rates/entry[position()=1]/vatperc" />
+	         </xsl:call-template>
+	       </SazbaDPH>
+	       <Mnozstvi>1</Mnozstvi>
+	       <JCbezDaniKC>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </JCbezDaniKC>
+	       <JCsDPHKc>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </JCsDPHKc>
+	       <JCbezDaniKcPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </JCbezDaniKcPoS>
+	       <JCsDPHKcPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </JCsDPHKcPoS>
+	       <JCbezDaniVal>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </JCbezDaniVal>
+	       <JCsDPHVal>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </JCsDPHVal>
+	       <JCbezDaniValPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </JCbezDaniValPoS>
+	       <JCsDPHValPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </JCsDPHValPoS>
+	       <CCbezDaniKC>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </CCbezDaniKC>
+	       <CCsDPHKc>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </CCsDPHKc>
+	       <CCbezDaniKcPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </CCbezDaniKcPoS>
+	       <CCsDPHKcPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </CCsDPHKcPoS>
+	       <CCbezDaniVal>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </CCbezDaniVal>
+	       <CCsDPHVal>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </CCsDPHVal>
+	       <CCbezDaniValPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </CCbezDaniValPoS>
+	       <CCsDPHValPoS>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
+	       </CCsDPHValPoS>
+	      </TabOZTxtPol>
+      </xsl:if>
       <xsl:for-each select='advance_payment/applied_invoices/consumed'>
        <TabDoplnkovePol>
         <Auto>4</Auto>
