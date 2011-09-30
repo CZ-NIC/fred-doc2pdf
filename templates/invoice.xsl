@@ -336,14 +336,14 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     <td><xsl:value-of select="$loc/str[@name='Total']"/>(<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
     <td><xsl:value-of select='format-number(total, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
-    <td><xsl:value-of select='format-number(vat, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(totalvat, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 <tr>
     <td><xsl:value-of select="$loc/str[@name='Paid']"/>(<xsl:value-of select='format-number(vatperc, "#0")'/>%):</td>
-    <td><xsl:value-of select='format-number(- total, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(- paid, "### ##0.00", "CZK")' /></td>
     <td><xsl:value-of select="$loc/str[@name='VAT']"/>&SPACE;<xsl:value-of select='format-number(vatperc, "#0")'/>%</td>
-    <td><xsl:value-of select='format-number(- vat, "### ##0.00", "CZK")' /></td>
+    <td><xsl:value-of select='format-number(- paidvat, "### ##0.00", "CZK")' /></td>
     <td></td>
 </tr>
 
