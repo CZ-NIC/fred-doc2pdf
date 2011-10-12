@@ -292,7 +292,7 @@ Description of decision, what text will be shown:
   </xsl:call-template> &SPACE;
   <xsl:choose>
    <xsl:when test="count(appendix/items/item)">
-    <xsl:value-of select="$loc/str[@name='we-invoiced-you']"/>:
+    <xsl:value-of select="$loc/str[@name='we-invoiced-you']"/>
     <spacer length="0.4cm"/>
    </xsl:when>
    <xsl:otherwise>
