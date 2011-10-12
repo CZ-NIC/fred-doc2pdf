@@ -58,7 +58,7 @@
         <entry>
             <vatperc>19</vatperc>
             <basetax>42017</basetax>
-            <vat>7983</vat>
+            <vat>4000450</vat>
             <total>50000</total>
             <years>
               <entry>
@@ -80,7 +80,7 @@
         <total>111900</total>
         <paid>-111900</paid>
         <paid_vat>-21261</paid_vat>
-        <to_be_paid>0</to_be_paid>
+        <to_be_paid>8888888888</to_be_paid>
         <total_with_vat>133161</total_with_vat>
     </sumarize>
 </delivery>
@@ -186,12 +186,12 @@
         </item>
         <item>
             <subject>abc.cz</subject>
-            <code>RUDR</code>
+            <code>RPOZ</code>
             <timestamp>2007-01-12 09:12:00.469754</timestamp>
             <expiration>2009-01-12</expiration>
-            <count>2</count>
+            <count>300000000</count>
             <price>300</price>
-            <total>600</total>
+            <total>20000000</total>
             <vat_rate>19</vat_rate>
         </item>
         <item>

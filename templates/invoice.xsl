@@ -225,7 +225,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
     </blockTableStyle>
 
     <blockTableStyle id="appendix">
-      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="8"/>
       <blockAlignment value="RIGHT" start="4,0" stop="-1,-1"/>
 
       <!-- line and text bottom -->
@@ -234,7 +234,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
-      <blockTopPadding length="0" start="0,0" stop="-1,-2" />
+      <blockTopPadding length="-2" start="0,0" stop="-1,-2" />
       <blockBottomPadding length="0" start="0,0" stop="-1,-2" />
 
       <!-- padding table header -->
@@ -261,6 +261,21 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <spacer length="0.4cm"/>
 <para>
 <xsl:choose>
+<!--
+Description of decision, what text will be shown:
+
+    if {delivery/sumarize/total} < 0
+        "Tax credit text" {payment/tax_credit_number}
+    else
+        "Period from(date)" {payment/period_from} "to(date)" {payment/period_to}
+        if appendix/items/item > 0
+            "[we-invoiced-you] Vám fakturujeme poskytnuté služby..."
+        else
+            if {YEAR(payment/period_to)} < {YEAR(payment/invoice_date)}
+                "[contractual-fine] Vám fakturujeme smluvní pokutu..."
+            else
+                "[years-fee] Vám fakturujeme roční poplatek..."
+-->
  <xsl:when test="number(delivery/sumarize/total)&lt;0">
   <xsl:value-of select="$loc/str[@name='Tax credit text']"/>
   <xsl:text> </xsl:text>
@@ -315,7 +330,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <xsl:template match="delivery">
 <spacer length="0.4cm"/>
-<blockTable colWidths="5cm,4.2cm,2cm,2cm,4.6cm" style="tbl_delivery" >
+<blockTable colWidths="5cm,4.2cm,2cm,3cm,2.6cm" style="tbl_delivery" >
 <xsl:apply-templates select="vat_rates" />
 <tr>
     <td><xsl:value-of select="$loc/str[@name='To be paid']"/>:</td>
@@ -414,7 +429,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <xsl:template match="appendix">
     <pageBreak/>
-    <blockTable colWidths="1.3cm,2cm,5.6cm,2.1cm,1.4cm,2.2cm,1.2cm,2cm" repeatRows="2" style="appendix">
+    <blockTable colWidths="1.3cm,2cm,5.6cm,2.1cm,1.8cm,1.8cm,1.2cm,2cm" repeatRows="2" style="appendix">
     <tr>
         <td><xsl:value-of select="$loc/str[@name='Change']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Realized']"/></td>
