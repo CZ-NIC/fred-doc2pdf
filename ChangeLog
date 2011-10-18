@@ -1,3 +1,15 @@
+2011-10-18 Zdenek Bohm, Jaromir Talir, Jan Zima (2.3.0)
+
+   * updated FredTable constructor default parameters (to be compatible with
+     tinyerp-server-4.2.3.4-7)
+
+   * helios template update
+
+   * account invoice template update
+         - new template parameters
+         - formatting changes
+         - translations updates
+
 2011-06-02 Vit Vomacko (2.2.0)
 
    * removed local freddist
