@@ -245,6 +245,15 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <blockTopPadding length="0.3cm" start="0,-1" stop="-1,-1" />
     </blockTableStyle>
 
+    <paraStyle name="delivery-info" fontSize="9"/>
+
+    <blockTableStyle id="tbl_service_codes">
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+      <blockLeftPadding length="0" start="0,0" stop="-1,-1" />
+      <blockTopPadding length="0" start="0,1" stop="-1,-1" />
+      <blockBottomPadding length="-1" start="0,0" stop="-1,-1" />
+    </blockTableStyle>
+
 </stylesheet>
 
 <story>
@@ -259,7 +268,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <para><xsl:value-of select="$loc/str[@name='Supply sign']"/>:</para>
 
 <spacer length="0.4cm"/>
-<para>
+<para style="delivery-info">
 <xsl:choose>
 <!--
 Description of decision, what text will be shown:
@@ -310,9 +319,26 @@ Description of decision, what text will be shown:
 </xsl:choose>
 </para>
 <xsl:if test="count(appendix/items/item)">
-<para>
-  <xsl:value-of select="$loc/str[@name='Registration-domain-names']"/>
-</para>
+
+<blockTable colWidths="1.1cm,16.7cm" style="tbl_service_codes">
+  <tr>
+    <td><xsl:value-of select="$loc/str[@name='Service codes']"/>:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>RREG:</td>
+    <td><xsl:value-of select="$loc/str[@name='Domain name registration']"/></td>
+  </tr>
+  <tr>
+    <td>RUDR:</td>
+    <td><xsl:value-of select="$loc/str[@name='Domain name record maintenance']"/></td>
+  </tr>
+  <tr>
+    <td>REPP:</td>
+    <td><xsl:value-of select="$loc/str[@name='Charged queries']"/></td>
+  </tr>
+</blockTable>
+
 </xsl:if>
 
 
@@ -330,7 +356,8 @@ Description of decision, what text will be shown:
 
 <xsl:template match="delivery">
 <spacer length="0.4cm"/>
-<blockTable colWidths="5cm,4.2cm,2cm,3cm,2.6cm" style="tbl_delivery" >
+
+<blockTable colWidths="5cm,4.2cm,2cm,3cm,3.6cm" style="tbl_delivery" >
 <xsl:apply-templates select="vat_rates" />
 <tr>
     <td><xsl:value-of select="$loc/str[@name='To be paid']"/>:</td>
