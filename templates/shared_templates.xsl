@@ -29,6 +29,31 @@
 </xsl:template>
 
 <!-- for automatic generation of two pageTemplate elements (en,cs) parmetrized by language -->
+  <xsl:template name="mojeIDTemplate">
+    <xsl:param name="templateName" select="main_cs"/>
+    <xsl:param name="lang" select="'cs'"/>
+    <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+    <pageTemplate>
+      <xsl:attribute name="id">
+        <xsl:value-of select="$templateName"/>
+      </xsl:attribute>
+      <pageGraphics>
+        <image file="{$srcpath}mojeid_logo.png" x="1.8cm" y="22.3cm" width="6.6cm"/>
+        <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
+        <frame id="main" x1="1.6cm" y1="3.7cm" width="18cm" height="17.2cm" showBoundary="0"/>
+        <stroke color="black"/>
+        <fill color="#000000"/>
+        <setFont name="Times-Roman" size="8"/>
+        <drawString x="1.8cm" y="3.3cm">
+          <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
+        </drawString>
+        <drawString x="1.8cm" y="2.9cm">
+          <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
+        </drawString>
+      </pageGraphics>
+    </pageTemplate>
+  </xsl:template>
+
   <xsl:template name="letterTemplate">
     <xsl:param name="templateName" select="main_cs"/>
     <xsl:param name="lang" select="'cs'"/>
@@ -40,9 +65,6 @@
       <pageGraphics>
         <setFont name="Times-Roman" size="12"/>
         <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
-        <!--
-        <frame id="address" x1="12.5cm" y1="22.6cm" width="7.6cm" height="3cm" showBoundary="0"/>
-        -->
         <frame id="address" x1="11.5cm" y1="22.9cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>

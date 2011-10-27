@@ -72,6 +72,9 @@
 <str name="Municipal Prague cap.city, no ZS/30/3/98">associations of the Municipal Council of Prague</str> 
 <str name="Vat voucher">Tax document</str>
 
+<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
+<str name="at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.">at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.</str>
+
 <!-- extension of registration -->
 <str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>
 <str name="Americka 23, 120 00 Prague 2">Americka 23, 120 00 Prague 2</str>

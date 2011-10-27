@@ -53,31 +53,34 @@
 
   <xsl:template match="mojeid_auth">
     <document>
-      <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="mojeID new user authentication" showBoundary="0" author="CZ.NIC">
+      <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">
         <xsl:attribute name="author">
               <xsl:value-of select="$loc/str[@name='NIC_author']"/>
         </xsl:attribute>
 
-        <xsl:call-template name="letterTemplate">
+        <xsl:call-template name="mojeIDTemplate">
           <xsl:with-param name="lang" select="$lang01"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang01)"/>
         </xsl:call-template>
 
-        <xsl:call-template name="letterTemplate">
+        <xsl:call-template name="mojeIDTemplate">
           <xsl:with-param name="lang" select="$lang02"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang02)"/>
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="basic" fontName="Times-Roman"/>
-          <paraStyle name="main" parent="basic" spaceAfter="0.4cm"/>
-          <paraStyle name="title" fontSize="16" parent="basic" textColor="#a8986d" spaceBefore="0" spaceAfter="1cm" />
-          <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
+          <paraStyle name="basic" fontName="Times-Roman" fontSize="11" />
+          <paraStyle name="main" parent="basic" fontSize="11" />
+          <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
+          <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
           <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
           <paraStyle name="tableHead" fontName="Times-Bold"/>
       
           <blockTableStyle id="authDataTable">
-            <blockBottomPadding length="6mm" start="0,-1" stop="-1,-1"/>
+            <blockFont name="Times-Roman" size="11" start="0,0" stop="-1,-1"/>
+            <blockLeftPadding length="0" start="0,0" stop="0,-1" />
+            <blockTopPadding length="0" start="0,0" stop="-1,-1" />
+            <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
           </blockTableStyle>
         </stylesheet>
 
@@ -121,16 +124,15 @@
     <para style="title"><xsl:value-of select="$mojeid_loc/str[@name='Authentication new owner of account mojeID']"/></para>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <spacer length="0.5cm"/>
+    <spacer length="1.5cm"/>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Dear user,']"/></para>
-
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='For full activation of the following account']"/></para>
 
-    
-  <blockTable repeatRows="1" colWidths="4cm,8cm" style="authDataTable">
+  <spacer length="0.5cm"/>
+  <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
     <tr>
-      <td><para style="tableHead"><xsl:value-of select="$mojeid_loc/str[@name='account mojeID:']"/></para></td>
-      <td><para style="tableHead"><xsl:value-of select="account/username"/></para></td>
+      <td>mojeID:</td>
+      <td><xsl:value-of select="account/username"/></td>
     </tr>
     <tr>
       <td><xsl:value-of select="$mojeid_loc/str[@name='first name:']"/></td>
@@ -144,28 +146,33 @@
       <td><xsl:value-of select="$mojeid_loc/str[@name='e-mail:']"/></td>
       <td><xsl:value-of select="account/email"/></td>
     </tr>
-    </blockTable>
+  </blockTable>
+  <spacer length="0.6cm"/>
 
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='you need this PIN3 code:']"/>
         &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>
     </para>
+  <spacer length="0.6cm"/>
 
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
      &SPACE;www.<xsl:value-of select="auth/link"/>,&SPACE;
     <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
     </para>
+  <spacer length="1cm"/>
 
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team CZ.NIC.']"/>
     </para>
+  <spacer length="0.6cm"/>
     
     <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
     <para style="basic"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
     <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/></para>
+  <spacer length="1cm"/>
     
-    <para style="basic">www.nic.cz</para>
-    <para style="basic"><xsl:value-of select="$loc/str[@name='telephone']"/> +420 222 745 111</para>
-    <para style="basic">podpora@nic.cz</para>
+    <para style="basic">www.mojeid.cz</para>
+    <para style="basic">+420 222 745 111</para>
+    <para style="basic">podpora@mojeid.cz</para>
 
   </xsl:template>
 
