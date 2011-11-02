@@ -1,3 +1,9 @@
+2011-11-02 Zdenek Bohm, Jaromir Talir (2.3.1)
+
+   * fix rpm build
+
+   * account invoice fixes (service codes)
+
 2011-10-18 Zdenek Bohm, Jaromir Talir, Jan Zima (2.3.0)
 
    * updated FredTable constructor default parameters (to be compatible with
