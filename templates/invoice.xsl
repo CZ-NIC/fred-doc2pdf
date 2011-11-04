@@ -461,7 +461,7 @@ Description of decision, what text will be shown:
         <td><xsl:value-of select="$loc/str[@name='Change']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Realized']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Domain']"/></td>
-        <td><xsl:value-of select="$loc/str[@name='Service from']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='Service to']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Number']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Price']"/></td>
         <td><xsl:value-of select="$loc/str[@name='Vat_part1']"/></td>

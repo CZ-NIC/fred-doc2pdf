@@ -46,7 +46,7 @@
 <str name="Change">Change</str>
 <str name="Realized">Effected</str>
 <str name="Domain">Domain Name</str>
-<str name="Service from">Service from</str>
+<str name="Service to">Service to</str>
 <str name="Number">Number</str>
 <str name="Price">Price</str>
 <str name="Invoice no">Invoice no</str>
@@ -57,8 +57,8 @@
 <str name="no VAT">no VAT</str>
 <str name="with VAT">with VAT</str>
 
-<str name="Period from(date)">For the period from (date)</str>
-<str name="to(date)">through (date)</str>
+<str name="Period from(date)">For the period from</str>
+<str name="to(date)">through</str>
 <str name="we-invoiced-you">We have issued an invoice for the services provided according to the Cooperation Contract for Domain Name Registration</str>
 <str name="contractual-fine">We are charging you a contractual fine according to the Article 4.3.1 of the Business Conditions for Registrars included in the Cooperation Contract for Domain Name Registration</str>
 <str name="years-fee">We are charging you an annual fee for the connection to the Central Registry</str>

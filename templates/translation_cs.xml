@@ -50,7 +50,7 @@
 <str name="Change">Změna</str>
 <str name="Realized">Provedena</str>
 <str name="Domain">Doména</str>
-<str name="Service from">Služba do</str>
+<str name="Service to">Služba do</str>
 <str name="Number">Počet</str>
 <str name="Price">Cena</str>
 <str name="Invoice no">č.fa.</str>
