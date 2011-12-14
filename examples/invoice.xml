@@ -60,6 +60,9 @@
             <basetax>42017</basetax>
             <vat>4000450</vat>
             <total>50000</total>
+            <totalvat>50</totalvat>
+            <paid>40000</paid>
+            <paidvat>40</paidvat>
             <years>
               <entry>
                 <year>2007</year>
