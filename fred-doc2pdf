@@ -459,6 +459,7 @@ def _flowable(self, node):
                 * fontSize
                 * fillColor
                 * textColor
+                * showBoundary
             """
             XPOS, YPOS, WIDTH, HEIGHT = range(4)
 
@@ -505,7 +506,7 @@ def _flowable(self, node):
                                            **kwargs)
                 canvas = self.canv
                 bcd.canv = canvas
-                bcd.draw(canvas)
+                bcd.draw(node.getAttribute("showBoundary"))
 
         return BarCode(node, self.styles, self._textual(node))
 
