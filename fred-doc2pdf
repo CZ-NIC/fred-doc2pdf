@@ -57,6 +57,8 @@ import getopt
 import warnings
 
 from reportlab import platypus
+from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
+from reportlab.graphics import renderPDF
 
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
@@ -416,98 +418,100 @@ def fred_table(self, node):
     return table
 
 
+class BarCode(platypus.flowables.Flowable):
+    """
+    Origin (x, y) is the 'left bottom corner' of boundary border at <pageGraphics>.
+
+    Code types:
+        Standard39
+        Extended39
+        EAN13
+        FIM
+        EAN8
+        Extended93
+        USPS_4State
+        Codabar
+        MSI
+        POSTNET
+        Code11
+        Standard93
+        I2of5
+        Code128 (default)
+
+    Attributes:
+        * fontName
+        * strokeWidth
+        * barFillColor
+        * humanReadable
+        * height
+        * debug
+        * lquiet
+        * background
+        * barWidth
+        * strokeColor
+        * barStrokeWidth
+        * barStrokeColor
+        * rquiet
+        * quiet
+        * barHeight
+        * width
+        * fontSize
+        * fillColor
+        * textColor
+        * showBoundary
+    """
+    XPOS, YPOS, WIDTH, HEIGHT = range(4)
+
+    def __init__(self, node, styles, value):
+        platypus.flowables.Flowable.__init__(self)
+
+        self.node = node
+        self.styles = styles
+        self.value = value
+        self.width = utils.unit_get(node.getAttribute('width'))
+        self.height = utils.unit_get(node.getAttribute('height'))
+        self.codeName = node.getAttribute('code')
+        self.codes = getCodes()
+
+        # set defaults
+        if self.codeName == "":
+            self.codeName = "Code128" # default code type
+        if not self.width:
+            self.width = self._getDefaultBounds()[BarCode.WIDTH]
+        if not self.height:
+            self.height = self._getDefaultBounds()[BarCode.HEIGHT]
+
+    def _getDefaultBounds(self):
+        "Get default size of barcode"
+        bcc = self.codes[self.codeName]
+        bc = bcc(value=self.value)
+        return bc.getBounds() # x, y, width, height
+
+    def wrap(self, *args):
+        return (self.width, self.height)
+
+    def draw(self):
+        kwargs = {}
+        for attr in ("barFillColor", "background", "strokeColor", "barStrokeColor", "fillColor", "textColor"):
+            if self.node.hasAttribute(attr):
+                kwargs[attr] = trml2pdf.color.get(self.node.getAttribute(attr))
+        for attr in ("fontName", "humanReadable", "debug", "lquiet", "rquiet", "quiet"):
+            if self.node.hasAttribute(attr):
+                kwargs[attr] = self.node.getAttribute(attr)
+        for attr in ("x", "y", "strokeWidth", "barWidth", "barStrokeWidth", "barHeight", "fontSize", "isoScale"):
+            if self.node.hasAttribute(attr):
+                kwargs[attr] = utils.unit_get(self.node.getAttribute(attr))
+
+        bcd = createBarcodeDrawing(self.codeName, value=self.value,
+                                   width=self.width, height=self.height,
+                                   **kwargs)
+        renderPDF.draw(bcd, self.canv, kwargs.get("x", 0), kwargs.get("y", 0),
+                       showBoundary=self.node.getAttribute("showBoundary"))
+
+
 def _flowable(self, node):
     "Replace orifinal _flowable from trml2pdf.py: _rml_flowable._flowable"
     if node.localName == 'barCode':
-        from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
-
-        class BarCode(platypus.flowables.Flowable):
-            """
-            Code types:
-                Standard39
-                Extended39
-                EAN13
-                FIM
-                EAN8
-                Extended93
-                USPS_4State
-                Codabar
-                MSI
-                POSTNET
-                Code11
-                Standard93
-                I2of5
-                Code128 (default)
-
-            Attributes:
-                * fontName
-                * strokeWidth
-                * barFillColor
-                * humanReadable
-                * height
-                * debug
-                * lquiet
-                * background
-                * barWidth
-                * strokeColor
-                * barStrokeWidth
-                * barStrokeColor
-                * rquiet
-                * quiet
-                * barHeight
-                * width
-                * fontSize
-                * fillColor
-                * textColor
-                * showBoundary
-            """
-            XPOS, YPOS, WIDTH, HEIGHT = range(4)
-
-            def __init__(self, node, styles, value):
-                self.node = node
-                self.styles = styles
-                self.value = value
-                self.width = utils.unit_get(node.getAttribute('width'))
-                self.height = utils.unit_get(node.getAttribute('height'))
-                self.codeName = node.getAttribute('code')
-                self.codes = getCodes()
-
-                # set defaults
-                if self.codeName == "":
-                    self.codeName = "Code128" # default code type
-                if not self.width:
-                    self.width = self._getDefaultBounds()[BarCode.WIDTH]
-                if not self.height:
-                    self.height = self._getDefaultBounds()[BarCode.HEIGHT]
-
-            def _getDefaultBounds(self):
-                "Get default size of barcode"
-                bcc = self.codes[self.codeName]
-                bc = bcc(value=self.value)
-                return bc.getBounds() # x, y, width, height
-
-            def wrap(self, *args):
-                return (self.width, self.height)
-
-            def draw(self):
-                kwargs = {}
-                for attr in ("barFillColor", "background", "strokeColor", "barStrokeColor", "fillColor", "textColor"):
-                    if node.hasAttribute(attr):
-                        kwargs[attr] = trml2pdf.color.get(node.getAttribute(attr))
-                for attr in ("fontName", "humanReadable", "debug", "lquiet", "rquiet", "quiet"):
-                    if node.hasAttribute(attr):
-                        kwargs[attr] = node.getAttribute(attr)
-                for attr in ("strokeWidth", "barWidth", "barStrokeWidth", "barHeight", "fontSize", "isoScale"):
-                    if node.hasAttribute(attr):
-                        kwargs[attr] = utils.unit_get(node.getAttribute(attr))
-
-                bcd = createBarcodeDrawing(self.codeName, value=self.value,
-                                           width=self.width, height=self.height,
-                                           **kwargs)
-                canvas = self.canv
-                bcd.canv = canvas
-                bcd.draw(node.getAttribute("showBoundary"))
-
         return BarCode(node, self.styles, self._textual(node))
 
     return HOOKS.get('original_flowable', fnc)(self, node)
@@ -564,6 +568,44 @@ def fred_textual(self, node):
         elif (n.nodeType == node.TEXT_NODE):
             rc += n.data
     return rc.encode(trml2pdf.encoding)
+
+
+def fred_barcode(self, node):
+    "Barcode in the <pageGraphics>"
+    bc = BarCode(node, self.styles, self._textual(node))
+    bc.canv = self.canvas
+    bc.draw()
+
+
+def fred_canvas_render(self, node):
+    "Hook reportlab _canvas_render()"
+    tags = {
+        'drawCentredString': self._drawCenteredString,
+        'drawRightString': self._drawRightString,
+        'drawString': self._drawString,
+        'rect': self._rect,
+        'ellipse': self._ellipse,
+        'lines': self._lines,
+        'grid': self._grid,
+        'curves': self._curves,
+        'fill': lambda node: self.canvas.setFillColor(trml2pdf.color.get(node.getAttribute('color'))),
+        'stroke': lambda node: self.canvas.setStrokeColor(trml2pdf.color.get(node.getAttribute('color'))),
+        'setFont': lambda node: self.canvas.setFont(node.getAttribute('name'), utils.unit_get(node.getAttribute('size'))),
+        'place': self._place,
+        'circle': self._circle,
+        'lineMode': self._line_mode,
+        'path': self._path,
+        'rotate': lambda node: self.canvas.rotate(float(node.getAttribute('degrees'))),
+        'translate': self._translate,
+        'image': self._image,
+        'barCode': self._barcode,
+        }
+    for nd in node.childNodes:
+        if nd.nodeType==nd.ELEMENT_NODE:
+            for tag in tags:
+                if nd.localName==tag:
+                    tags[tag](nd)
+                    break
 
 
 def save_num_total_pages(self):
@@ -713,7 +755,9 @@ def init_hooks():
     #Add tag of the Total page number.
     #This hook implements new tag pageNumberTotal.
     trml2pdf._rml_canvas._textual = fred_textual
-    
+    trml2pdf._rml_canvas.render = fred_canvas_render
+    trml2pdf._rml_canvas._barcode = fred_barcode
+
     #Save number of the total pages.
     #This hook saves the number of pages for use later in the creating document process.
     reportlab.platypus.BaseDocTemplate._endBuild = save_num_total_pages
