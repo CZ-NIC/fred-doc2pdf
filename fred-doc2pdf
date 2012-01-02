@@ -98,6 +98,9 @@ def fnc(*argvs):
     sys.stderr.write("argvs: %s.\n"%str(argvs))
 
 
+class ParserError(Exception):
+    "Parser error is risen when some node or attribute is not correct."
+
 
 def get_config_from_option(argv):
     params = {}
@@ -468,44 +471,63 @@ class BarCode(platypus.flowables.Flowable):
         self.node = node
         self.styles = styles
         self.value = value
+        self.xpos = utils.unit_get(node.getAttribute('x'))
+        self.ypos = utils.unit_get(node.getAttribute('y'))
         self.width = utils.unit_get(node.getAttribute('width'))
         self.height = utils.unit_get(node.getAttribute('height'))
-        self.codeName = node.getAttribute('code')
+        self.code_name = node.getAttribute('code')
         self.codes = getCodes()
 
-        # set defaults
-        if self.codeName == "":
-            self.codeName = "Code128" # default code type
-        if not self.width:
-            self.width = self._getDefaultBounds()[BarCode.WIDTH]
-        if not self.height:
-            self.height = self._getDefaultBounds()[BarCode.HEIGHT]
+        try:
+            self.codes[self.code_name]
+        except KeyError, msg:
+            raise ParserError("Unknown barcode name '%s'." % self.code_name)
 
-    def _getDefaultBounds(self):
+    def get_default_bounds(self):
         "Get default size of barcode"
-        bcc = self.codes[self.codeName]
-        bc = bcc(value=self.value)
-        return bc.getBounds() # x, y, width, height
+        bcc = self.codes[self.code_name]
+        barcode = bcc(value=self.value)
+        return barcode.getBounds() # x, y, width, height
 
     def wrap(self, *args):
-        return (self.width, self.height)
+        x, y, width, height = self.get_default_bounds()
+        if self.width:
+            width = self.width
+        if self.height:
+            height = self.height
+        return (width, height)
 
     def draw(self):
-        kwargs = {}
-        for attr in ("barFillColor", "background", "strokeColor", "barStrokeColor", "fillColor", "textColor"):
+        kwargs = {"barStrokeWidth": 0.00001}
+
+        units = ("strokeWidth", "barWidth", "barStrokeWidth", "barHeight",
+                 "fontSize", "isoScale")
+        colors = ("barFillColor", "background", "strokeColor", "barStrokeColor",
+                  "fillColor", "textColor")
+        bools = ("humanReadable", "debug", "lquiet", "rquiet", "quiet",
+                 "checksum")
+        names = ("fontName", "routing")
+
+        for attr in colors:
             if self.node.hasAttribute(attr):
                 kwargs[attr] = trml2pdf.color.get(self.node.getAttribute(attr))
-        for attr in ("fontName", "humanReadable", "debug", "lquiet", "rquiet", "quiet"):
+
+        for attr in names:
             if self.node.hasAttribute(attr):
-                kwargs[attr] = self.node.getAttribute(attr)
-        for attr in ("x", "y", "strokeWidth", "barWidth", "barStrokeWidth", "barHeight", "fontSize", "isoScale"):
+                kwargs[attr] = self.node.getAttribute(attr).encode(trml2pdf.encoding)
+
+        for attr in units:
             if self.node.hasAttribute(attr):
                 kwargs[attr] = utils.unit_get(self.node.getAttribute(attr))
 
-        bcd = createBarcodeDrawing(self.codeName, value=self.value,
+        for attr in bools:
+            if self.node.hasAttribute(attr):
+                kwargs[attr] = utils.bool_get(self.node.getAttribute(attr))
+
+        bcd = createBarcodeDrawing(self.code_name, value=self.value,
                                    width=self.width, height=self.height,
                                    **kwargs)
-        renderPDF.draw(bcd, self.canv, kwargs.get("x", 0), kwargs.get("y", 0),
+        renderPDF.draw(bcd, self.canv, self.xpos, self.ypos,
                        showBoundary=self.node.getAttribute("showBoundary"))
 
 
