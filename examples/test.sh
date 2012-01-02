@@ -19,7 +19,7 @@ else
     exit 1
 fi
 
-xsltproc --stringparam srcpath $TEMPLATES $TEMPLATES/mojeid_validate.xsl $INPUT > $OUTPUT.rml
-/home/jvicenik/devel/enum/fred/trunk/scripts/root/bin/fred-doc2pdf $OUTPUT.rml > $OUTPUT.pdf
+xsltproc --stringparam srcpath $TEMPLATES $TEMPLATES/warning_letter.xsl $INPUT > $OUTPUT.rml
+$FRED_ROOT/bin/fred-doc2pdf $OUTPUT.rml > $OUTPUT.pdf
 evince $OUTPUT.pdf
 
