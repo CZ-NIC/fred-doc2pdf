@@ -1,3 +1,9 @@
+2012-03-14 Zdenek Bohm, Juraj Vicenik (2.3.3)
+
+   * mojeid templates changes
+
+   * letter address format fix (stateorprovince)
+
 2011-11-04 Zdenek Bohm (2.3.2)
 
    * account invoice fixes (translations)
