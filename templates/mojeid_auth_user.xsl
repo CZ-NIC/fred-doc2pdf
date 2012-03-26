@@ -161,7 +161,7 @@
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='For activate your account click on a link you received by email.']"/></para>
   <spacer length="0.8cm"/>
     
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team CZ.NIC.']"/></para>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/></para>
   <spacer length="0.6cm"/>
     
     <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>

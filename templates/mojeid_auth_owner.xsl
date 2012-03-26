@@ -160,7 +160,7 @@
     </para>
   <spacer length="1cm"/>
 
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team CZ.NIC.']"/>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/>
     </para>
   <spacer length="0.6cm"/>
     
