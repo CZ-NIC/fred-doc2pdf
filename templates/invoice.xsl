@@ -229,12 +229,9 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <blockAlignment value="RIGHT" start="4,0" stop="-1,-1"/>
 
       <!-- line and text bottom -->
-      <lineStyle kind="LINEBELOW" start="0,-2" stop="-1,-2" thickness="0.5" colorName="black"/>
-      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
-
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
-      <blockTopPadding length="-2" start="0,0" stop="-1,-2" />
+      <blockTopPadding length="-2" start="0,0" stop="-1,-1" />
       <blockBottomPadding length="0" start="0,0" stop="-1,-2" />
 
       <!-- padding table header -->
@@ -242,7 +239,12 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <lineStyle kind="LINEBELOW" start="0,1" stop="-1,1" thickness="0.5" colorName="black"/>
       <blockTopPadding length="0.2cm" start="0,2" stop="-1,2" />
 
-      <blockTopPadding length="0.3cm" start="0,-1" stop="-1,-1" />
+    </blockTableStyle>
+
+    <blockTableStyle id="sumarize_items">
+      <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" thickness="0.5" colorName="black"/>
+      <blockFont name="Times-Bold" start="0,0" stop="-1,1"/>
+      <blockTopPadding length="0.1cm" start="0,-1" stop="-1,-1" />
     </blockTableStyle>
 
     <paraStyle name="delivery-info" fontSize="9"/>
@@ -478,6 +480,8 @@ Description of decision, what text will be shown:
         <td><xsl:value-of select="$loc/str[@name='free of tax']"/></td>
     </tr>
     <xsl:apply-templates select="items" />
+    </blockTable>
+    <blockTable colWidths="1.3cm,2cm,5.6cm,2.1cm,1.8cm,1.8cm,1.2cm,2cm" style="sumarize_items">
     <xsl:apply-templates select="sumarize_items" />
     </blockTable>
 </xsl:template>
