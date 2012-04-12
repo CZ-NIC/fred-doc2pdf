@@ -1,3 +1,7 @@
+2012-04-12 Zdenek Bohm (2.3.5)
+
+   * invoice template fix (summarize item line)
+
 2012-03-26 Zdenek Bohm (2.3.4)
 
    * mojeid templates fixes
