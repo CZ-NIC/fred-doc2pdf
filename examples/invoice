@@ -1,0 +1,25 @@
+#!/bin/bash
+
+STEPS=$1
+if [ -z "$STEPS" ]; then
+    echo "Create invoice.xml with NNN items.
+Usage:
+    invoice 400 > invoice400.xml (add more 400 items into the list of appendix items)
+"
+    exit 1
+fi
+
+head -n 209 examples/invoice.xml
+for INDEX in `seq $STEPS`; do
+    echo "<item>
+            <subject>`base64 /dev/urandom | tr -d '+/\r\n0-9' | head -c 8; echo`.cz</subject>
+            <code>RUDR-$INDEX</code>
+            <timestamp>`date +"%Y-%m-%d %H:%M:%S.%N"`</timestamp>
+            <expiration>`date +"%Y-%m-%d"`</expiration>
+            <count>$((RANDOM%20+1))</count>
+            <price>$((RANDOM%1600+100))</price>
+            <total>$((RANDOM%12000+600))</total>
+            <vat_rate>19</vat_rate>
+        </item>"
+done
+tail -n 9 examples/invoice.xml
