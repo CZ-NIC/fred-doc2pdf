@@ -420,7 +420,7 @@ Description of decision, what text will be shown:
 <para><xsl:value-of select="$loc/str[@name='VAT-settled-deposit']"/>:</para>
 
     <spacer length="0.2cm"/>
-    <blockTable colWidths="3.4cm,3.4cm,1.4cm,2.8cm,3.4cm,3.4cm" repeatRows="1" style="tbl_advance_payment">
+    <blockTable colWidths="3.4cm,3.4cm,1.4cm,2.8cm,3.4cm,3.4cm" repeatRows="2" style="tbl_advance_payment">
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Invoice number']"/></td>
         <td><xsl:value-of select="$loc/str[@name='CZK draw']"/></td>
