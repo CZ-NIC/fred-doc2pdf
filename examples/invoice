@@ -9,10 +9,12 @@ Usage:
     exit 1
 fi
 
-head -n 209 examples/invoice.xml
+EXAMPLES=$(dirname $(readlink -f $0))
+
+head -n 209 $EXAMPLES/invoice.xml
 for INDEX in `seq $STEPS`; do
     echo "<item>
-            <subject>`base64 /dev/urandom | tr -d '+/\r\n0-9' | head -c 8; echo`.cz</subject>
+            <subject>`base64 /dev/urandom | tr -d '+/\r\n0-9' | head -c 8`.cz</subject>
             <code>RUDR-$INDEX</code>
             <timestamp>`date +"%Y-%m-%d %H:%M:%S.%N"`</timestamp>
             <expiration>`date +"%Y-%m-%d"`</expiration>
@@ -22,4 +24,4 @@ for INDEX in `seq $STEPS`; do
             <vat_rate>19</vat_rate>
         </item>"
 done
-tail -n 9 examples/invoice.xml
+tail -n 9 $EXAMPLES/invoice.xml
