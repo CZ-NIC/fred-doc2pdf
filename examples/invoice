@@ -10,10 +10,15 @@ Usage:
 fi
 
 EXAMPLES=$(dirname $(readlink -f $0))
+SOURCE=$EXAMPLES/invoice.xml
 
-head -n 209 $EXAMPLES/invoice.xml
+# Split at tag:  </items>
+LINENUM=`grep -n '</items>' $SOURCE | awk -F: '{print $1}'`
+LINES=`wc -l $SOURCE | awk '{print $1}'`
+
+head -n $((LINENUM-1)) $SOURCE
 for INDEX in `seq $STEPS`; do
-    echo "<item>
+    echo "        <item>
             <subject>`base64 /dev/urandom | tr -d '+/\r\n0-9' | head -c 8`.cz</subject>
             <code>RUDR-$INDEX</code>
             <timestamp>`date +"%Y-%m-%d %H:%M:%S.%N"`</timestamp>
@@ -24,4 +29,4 @@ for INDEX in `seq $STEPS`; do
             <vat_rate>19</vat_rate>
         </item>"
 done
-tail -n 9 $EXAMPLES/invoice.xml
+tail -n $((LINES - LINENUM + 1)) $SOURCE
