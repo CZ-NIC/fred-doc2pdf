@@ -1,3 +1,9 @@
+2012-05-15 Zdenek Bohm (2.4.0)
+
+   * invoice template fix (advance payments - bold text)
+
+   * new invoice examples
+
 2012-04-12 Zdenek Bohm (2.3.5)
 
    * invoice template fix (summarize item line)
