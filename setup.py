@@ -13,6 +13,10 @@ from freddist.command.install_scripts import install_scripts
 from freddist.file_util import *
 from distutils.sysconfig import get_python_lib
 
+PACKAGE_VERSION = '2.4.0'
+PROJECT_NAME = 'fred-doc2pdf'
+PACKAGE_NAME = 'fred-doc2pdf'
+
 CONFIG_FILENAME = 'fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
 CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
@@ -41,7 +45,6 @@ PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono',
 
 # ----------------------------------------
 
-MAIN_SCRIPT_NAME = 'fred-doc2pdf'
 
 def try_import(modulename):
     """Check if exists module named `modulename'"""
@@ -282,8 +285,8 @@ class Install_scripts(install_scripts):
             r"\1'%s'" % os.path.join(self.getDir('sysconfdir'), 'fred', CONFIG_FILENAME)))
 
         self.replace_pattern(
-                os.path.join(self.build_dir, MAIN_SCRIPT_NAME), None, values)
-        print "Script file %s has been updated" % MAIN_SCRIPT_NAME
+                os.path.join(self.build_dir, PACKAGE_NAME), None, values)
+        print "Script file %s has been updated" % PACKAGE_NAME
 
     def run(self):
         self.update_fred_doc2pdf_script()
@@ -291,25 +294,25 @@ class Install_scripts(install_scripts):
 
 def main(directory):
     try:
-        setup(name='fred-doc2pdf',
+        setup(name=PROJECT_NAME,
                 description='PDF creator module',
                 author='Zdenek Bohm, CZ.NIC',
                 author_email='zdenek.bohm@nic.cz',
                 url='http://fred.nic.cz',
-                version='2.4.0',
+                version=PACKAGE_VERSION,
                 license='GNU GPL',
                 long_description='The module of the FRED system',
                 cmdclass={
                     'install':Install,
                     'install_scripts':Install_scripts},
                 scripts=[
-                    MAIN_SCRIPT_NAME],
+                    PACKAGE_NAME],
                 data_files=[
                     ('SYSCONFDIR/fred/', [
                         os.path.join('build', CONFIG_FILENAME)]),
                 ]
                 + all_files_in_4(
-                    os.path.join('DATAROOTDIR', 'fred-doc2pdf', 'templates'),
+                    os.path.join('DATAROOTDIR', PACKAGE_NAME, 'templates'),
                     os.path.join(directory, 'templates'))
                 ,
         )
