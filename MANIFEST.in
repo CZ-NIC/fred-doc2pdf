@@ -11,6 +11,7 @@ include ChangeLog
 include *.ascii
 include *.utf8
 include MANIFEST.in
+include RELEASE-VERSION
 
 include freddist/*.py
 include freddist/README

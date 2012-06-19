@@ -13,7 +13,6 @@ from freddist.command.install_scripts import install_scripts
 from freddist.file_util import *
 from distutils.sysconfig import get_python_lib
 
-PACKAGE_VERSION = '2.4.0'
 PROJECT_NAME = 'fred-doc2pdf'
 PACKAGE_NAME = 'fred-doc2pdf'
 
@@ -299,7 +298,6 @@ def main(directory):
                 author='Zdenek Bohm, CZ.NIC',
                 author_email='zdenek.bohm@nic.cz',
                 url='http://fred.nic.cz',
-                version=PACKAGE_VERSION,
                 license='GNU GPL',
                 long_description='The module of the FRED system',
                 cmdclass={
