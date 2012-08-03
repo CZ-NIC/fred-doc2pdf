@@ -11,7 +11,7 @@
  domains details. Sample of input document:
 
 <?xml version="1.0" encoding="utf-8"?>
-<mojeid_auth>
+<contact_auth>
     <user>
         <actual_date>2010-10-06</actual_date>
 
@@ -37,7 +37,7 @@
             <link>http://demo.mojeid.cz/identity/</link>
         </auth>
     </user>
-</mojeid_auth>
+</contact_auth>
  
  Resulting RML can be processed by doc2pdf to generate PDF version of letter 
  -->
