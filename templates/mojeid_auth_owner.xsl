@@ -51,7 +51,7 @@
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <xsl:variable name="mojeid_loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"></xsl:variable>
 
-  <xsl:template match="mojeid_auth">
+  <xsl:template match="contact_auth">
     <document>
       <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">
         <xsl:attribute name="author">
