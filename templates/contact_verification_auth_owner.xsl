@@ -131,7 +131,7 @@
   <spacer length="0.5cm"/>
   <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
     <tr>
-      <td>contact:</td>
+      <td> </td>
       <td><xsl:value-of select="account/username"/></td>
     </tr>
     <tr>
