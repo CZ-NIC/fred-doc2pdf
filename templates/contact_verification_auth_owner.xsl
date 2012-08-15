@@ -121,7 +121,7 @@
 
     <xsl:call-template name="fillAddress"/>
 
-    <para style="title"><xsl:value-of select="$contact_loc/str[@name='Authentication new owner of account contact']"/></para>
+    <para style="title"><xsl:value-of select="$contact_loc/str[@name='Verification of contact in central registry']"/></para>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
     <spacer length="1.5cm"/>
