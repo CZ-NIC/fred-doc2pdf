@@ -4,7 +4,7 @@
   <str name="first name:">jméno:</str>
   <str name="last name:">příjmení:</str>
   <str name="e-mail:">e-mail:</str>
-  <str name="Your team CZ.NIC.">Váš tým CZ.NIC.</str>
+  <str name="Your team CZ.NIC.">Váš tým CZ.NIC z.s.p.o.</str>
   <str name="Your team mojeID">Váš tým mojeID</str>
   <str name="Customer Support">Zákaznická podpora</str>
 
@@ -15,7 +15,7 @@
 <str name="you need this PIN3 code:">budete potřebovat tento kód PIN3:</str>
   
   <str name="To complete full activation of your account, go to">Navštivte prosím adresu</str>
-  <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">a zadejte PIN3 do příslušného pole.</str>
+  <str name="log into your contact profile and enter the code PIN3 at the initial screen.">a zadejte PIN3 do příslušného pole.</str>
 
   <str name="Americka 23">Americká 23</str>
   <str name="120 00 Prague 2">120 00 Praha 2</str>

@@ -154,7 +154,7 @@
   <spacer length="0.6cm"/>
 
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='To complete full activation of your account, go to']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>,&SPACE;
+     &SPACE;<xsl:value-of select="auth/link"/>&SPACE;
     <xsl:value-of select="$contact_loc/str[@name='log into your contact profile and enter the code PIN3 at the initial screen.']"/>
     </para>
   <spacer length="1cm"/>
