@@ -125,6 +125,7 @@
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
     <spacer length="1.5cm"/>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Dear user,']"/></para>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='For full activation of the following account']"/></para>
 
   <spacer length="0.5cm"/>
