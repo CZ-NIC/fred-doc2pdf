@@ -4,20 +4,19 @@
   <str name="first name:">first name:</str>
   <str name="last name:">last name:</str>
   <str name="e-mail:">e-mail:</str>
-  <str name="Your team CZ.NIC.">Your CZ.NIC team</str>
+  <str name="Your team CZ.NIC.">Your CZ.NIC z.s.p.o. team</str>
+
   <str name="Your team mojeID">Your mojeID team</str>
   <str name="Customer Support">Customer Support</str>
 
-  <str name="Verification of contact in central registry">Verification of contact in central registry</str>
-  <str name="Subject: Verification of contact in central registry">Subject: Verification of contact in central registry</str>
+  <str name="Verification of contact in central registry">Contact verification in the central registry</str>
 
-<str name="For full activation of the following account">For verification of the following contact: </str>
+<str name="For full activation of the following account">To complete the verification process for the following contact details: </str>
 <str name="you need this PIN3 code:">you will need this PIN3 code:</str>
 
-  <str name="To complete full activation of your account, go to">To complete verification of your account, go to</str>
-  <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">and enter the code PIN3 to the corresponding field.</str>
+  <str name="To complete full activation of your account, go to">Please visit the address</str>
+  <str name="log into your contact profile and enter the code PIN3 at the initial screen.">and enter PIN3 into the appropriate field.</str>
 
   <str name="Americka 23">Americka 23</str>
   <str name="120 00 Prague 2">120 00 Prague 2</str>
 </strings>
-
