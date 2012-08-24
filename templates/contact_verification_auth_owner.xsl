@@ -58,12 +58,12 @@
               <xsl:value-of select="$loc/str[@name='NIC_author']"/>
         </xsl:attribute>
 
-        <xsl:call-template name="contactTemplate">
+        <xsl:call-template name="letterTemplate">
           <xsl:with-param name="lang" select="$lang01"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang01)"/>
         </xsl:call-template>
 
-        <xsl:call-template name="contactTemplate">
+        <xsl:call-template name="letterTemplate">
           <xsl:with-param name="lang" select="$lang02"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang02)"/>
         </xsl:call-template>
@@ -78,7 +78,7 @@
       
           <blockTableStyle id="authDataTable">
             <blockFont name="Times-Roman" size="11" start="0,0" stop="-1,-1"/>
-            <blockLeftPadding length="0" start="0,0" stop="0,-1" />
+            <blockLeftPadding length="35" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
           </blockTableStyle>
@@ -129,7 +129,7 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='For full activation of the following account']"/></para>
 
   <spacer length="0.5cm"/>
-  <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
+  <blockTable colWidths="3.5cm,15.2cm" style="authDataTable">
     <tr>
       <td><xsl:value-of select="$contact_loc/str[@name='contact ID:']"/></td>
       <td><xsl:value-of select="account/username"/></td>
