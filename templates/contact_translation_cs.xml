@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <str name="Dear user,">Vážený uživateli,</str>
+  <str name="contact ID:">ID kontaktu:</str>
   <str name="first name:">jméno:</str>
   <str name="last name:">příjmení:</str>
   <str name="e-mail:">e-mail:</str>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <str name="Dear user,">Dear user,</str>
+  <str name="contact ID:">contact ID:</str>
   <str name="first name:">first name:</str>
   <str name="last name:">last name:</str>
   <str name="e-mail:">e-mail:</str>
