@@ -22,7 +22,8 @@
                 <pin2>2222222</pin2>
                 <pin3>3333333</pin3>
             </codes>
-            <link>http://demo.mojeid.cz/identity/</link>
+            <link>http://demo.contact.cz/identity/</link>
         </auth>
     </user>
 </contact_auth>
+

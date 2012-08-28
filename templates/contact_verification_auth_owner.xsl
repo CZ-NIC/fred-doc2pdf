@@ -58,12 +58,12 @@
               <xsl:value-of select="$loc/str[@name='NIC_author']"/>
         </xsl:attribute>
 
-        <xsl:call-template name="contactTemplate">
+        <xsl:call-template name="letterTemplate">
           <xsl:with-param name="lang" select="$lang01"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang01)"/>
         </xsl:call-template>
 
-        <xsl:call-template name="contactTemplate">
+        <xsl:call-template name="letterTemplate">
           <xsl:with-param name="lang" select="$lang02"/>
           <xsl:with-param name="templateName" select="concat('main_', $lang02)"/>
         </xsl:call-template>
@@ -78,7 +78,7 @@
       
           <blockTableStyle id="authDataTable">
             <blockFont name="Times-Roman" size="11" start="0,0" stop="-1,-1"/>
-            <blockLeftPadding length="0" start="0,0" stop="0,-1" />
+            <blockLeftPadding length="35" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
           </blockTableStyle>
@@ -121,7 +121,7 @@
 
     <xsl:call-template name="fillAddress"/>
 
-    <para style="title"><xsl:value-of select="$contact_loc/str[@name='Authentication new owner of account contact']"/></para>
+    <para style="title"><xsl:value-of select="$contact_loc/str[@name='Verification of contact in central registry']"/></para>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
     <spacer length="1.5cm"/>
@@ -129,9 +129,9 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='For full activation of the following account']"/></para>
 
   <spacer length="0.5cm"/>
-  <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
+  <blockTable colWidths="3.5cm,15.2cm" style="authDataTable">
     <tr>
-      <td>contact:</td>
+      <td><xsl:value-of select="$contact_loc/str[@name='contact ID:']"/></td>
       <td><xsl:value-of select="account/username"/></td>
     </tr>
     <tr>
@@ -155,7 +155,7 @@
   <spacer length="0.6cm"/>
 
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='To complete full activation of your account, go to']"/>
-     &SPACE;www.<xsl:value-of select="auth/link"/>,&SPACE;
+     &SPACE;<xsl:value-of select="auth/link"/>&SPACE;
     <xsl:value-of select="$contact_loc/str[@name='log into your contact profile and enter the code PIN3 at the initial screen.']"/>
     </para>
   <spacer length="1cm"/>

@@ -64,7 +64,6 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <image file="{$srcpath}mojeid_logo.png" x="1.8cm" y="22.3cm" width="6.6cm"/>
         <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="1.6cm" y1="3.7cm" width="18cm" height="17.2cm" showBoundary="0"/>
         <stroke color="black"/>
