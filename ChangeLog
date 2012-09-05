@@ -1,3 +1,9 @@
+2012-09-05 Juraj Vicenik, Jan Zima (2.5.0)
+
+   * contact verification letter templates
+
+   * mojeid_auth tag changed to contact_auth in mojeid letter template
+
 2012-05-15 Zdenek Bohm (2.4.0)
 
    * invoice template fix (advance payments - bold text)
