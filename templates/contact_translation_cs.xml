@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <str name="Dear user,">Vážený uživateli,</str>
-  <str name="contact ID:">ID kontaktu:</str>
-  <str name="first name:">jméno:</str>
-  <str name="last name:">příjmení:</str>
+  <str name="contact ID:">Identifikátor:</str>
+  <str name="first name:">Jméno:</str>
+  <str name="last name:">Příjmení:</str>
   <str name="e-mail:">e-mail:</str>
-  <str name="Your team CZ.NIC.">Váš tým CZ.NIC z.s.p.o.</str>
+  <str name="Your team CZ.NIC.">Váš tým CZ.NIC, z.s.p.o.</str>
   <str name="Your team mojeID">Váš tým mojeID</str>
   <str name="Customer Support">Zákaznická podpora</str>
 
-  <str name="Verification of contact in central registry">Verifikace kontaktu v centrálním registru</str>
+  <str name="Contact verification in the Central registry">Verifikace kontaktu v centrálním registru</str>
   <str name="Subject: Verification of contact in central registry">Věc: Verifikce kontaktu v centrálním registru</str>
 
-<str name="For full activation of the following account">pro dokončení procesu verifikace kontaktu s následujícími údaji</str>
-<str name="you need this PIN3 code:">budete potřebovat tento kód PIN3:</str>
+  <str name="For full activation of the following account">děkujeme za Váš zájem o ověření níže uvedeného kontaktu v Centrálním registru. </str>
+  <str name="You have successfully finished...">První část ověření kontaktu je již úspěšně za Vámi, poslední krok spočívá v ověření Vaší poštovní adresy.</str>
+<str name="you need this PIN3 code:">Budete k tomu potřebovat kód PIN3:</str>
   
-  <str name="To complete full activation of your account, go to">Navštivte prosím adresu</str>
-  <str name="log into your contact profile and enter the code PIN3 at the initial screen.">a zadejte PIN3 do příslušného pole.</str>
-
+  <str name="To complete full activation of your account, go to">který zadáte do formuláře na této stránce: </str>
+  <str name="Po uspesnem odeslani">Po úspěšném odeslání formuláře s kódem PIN3 bude ověření kontaktu v Centrálním registru dokončeno.</str>
   <str name="Americka 23">Americká 23</str>
   <str name="120 00 Prague 2">120 00 Praha 2</str>
 
