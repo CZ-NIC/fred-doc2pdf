@@ -31,12 +31,12 @@
 
   <str name="ZadostOValidaciKontaktu"> Žádost o validaci účtu mojeID</str>
   <str name="ValidaciProvedte">Validaci proveďte jedním z následujících způsobů:</str>
-  <str name="ValidateVerifiedSignature1"> - Tuto žádost vytiskněte, opatřete ji </str> 
+  <str name="ValidateVerifiedSignature1"> - tuto žádost vytiskněte, opatřete ji </str>
   <str name="ValidateVerifiedSignature2">úředně ověřeným podpisem </str>
   <str name="ValidateVerifiedSignature3">a odešlete poštou na níže uvedenou adresu </str>
 
-  <str name="ValidateEmail"> - Přiložte tuto žádost jako přílohu emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@nic.cz</str>
-  <str name="ValidateInPerson"> - Tuto žádost vytiskněte, podepište a dostavte se osobně na níže uvedenou adresu sdružení CZ.NIC. Nezapomeňte si s sebou vzít také Váš občanský průkaz. </str> 
+  <str name="ValidateEmail"> - přiložte tuto žádost jako přílohu emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@nic.cz</str>
+  <str name="ValidateInPerson"> - tuto žádost vytiskněte, podepište a dostavte se osobně na níže uvedenou adresu sdružení CZ.NIC. Nezapomeňte si s sebou vzít také Váš občanský průkaz </str>
   <str name="ValOfficeHoursNotice"> Pracovní doba validačního pracoviště: </str>
   <str name="ValOfficeHours">Po - Pá: 8:30 - 12:00, 13:00 - 16:00 </str>
   <str name="ZadamTimtoO"> Žádám tímto o validaci účtu mojeID: </str>
