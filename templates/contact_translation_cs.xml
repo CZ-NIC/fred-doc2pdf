@@ -11,7 +11,7 @@
   <str name="Contact verification in the Central registry">Ověření kontaktu v Centrálním registru</str>
   <str name="thank you for your interest...">děkujeme za Váš zájem o ověření níže uvedeného kontaktu v Centrálním registru. </str>
   <str name="You have successfully finished...">První část ověření kontaktu je již úspěšně za Vámi, poslední krok spočívá v ověření Vaší poštovní adresy.</str>
-<str name="you will need this PIN3 code:">Budete k tomu potřebovat kód PIN3:</str>
+  <str name="you will need this PIN3 code:">Budete k tomu potřebovat kód PIN3:</str>
   <str name="which has to be entered into the form at this site: ">který zadáte do formuláře na této stránce: </str>
   <str name="After successfully submitting the form...">Po úspěšném odeslání formuláře s kódem PIN3 bude ověření kontaktu v Centrálním registru dokončeno.</str>
   <str name="Americka 23">Americká 23</str>
