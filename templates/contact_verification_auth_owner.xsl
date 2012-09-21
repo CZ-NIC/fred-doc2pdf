@@ -140,7 +140,7 @@
       <td><xsl:value-of select="account/first_name"/></td>
     </tr>
     <tr>
-      <td><xsl:value-of select="$contact_loc/str[@name='last name:']"/></td>
+      <td><xsl:value-of select="$contact_loc/str[@name='Last name:']"/></td>
       <td><xsl:value-of select="account/last_name"/></td>
     </tr>
     <tr>
