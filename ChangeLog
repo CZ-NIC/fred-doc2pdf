@@ -4,6 +4,8 @@
 
    * mojeid_auth tag changed to contact_auth in mojeid letter template
 
+   * fix mojeid validation template
+
 2012-05-15 Zdenek Bohm (2.4.0)
 
    * invoice template fix (advance payments - bold text)
