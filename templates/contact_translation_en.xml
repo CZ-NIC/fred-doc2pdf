@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <str name="Dear user,">Dear user,</str>
-  <str name="contact ID:">Identifier:</str>
-  <str name="first name:">First name:</str>
+  <str name="Identifier:">Identifier:</str>
+  <str name="First name:">First name:</str>
   <str name="last name:">Last name:</str>
   <str name="e-mail:">e-mail:</str>
   <str name="Your team CZ.NIC.">Your CZ.NIC z.s.p.o. team</str>
-
-  <str name="Your team mojeID">Your mojeID team</str>
   <str name="Customer Support">Customer Support</str>
 
-  <str name="Contact verification in the Central registry">Contact verification in the central registry</str>
+  <str name="Contact verification in the Central registry">Contact verification in the Central registry</str>
 
-<str name="For full activation of the following account">thank you for your interest in verifying central registry contact with details below:</str>
+
+<str name="thank you for your interest...">thank you for your interest in verifying central registry contact with details below:</str>
 <str name="You have successfully finished...">You have successfully finished the first step of contact verification. Last step is verification of your postal address.</str>
-<str name="you need this PIN3 code:">you will need this PIN3 code:</str>
+<str name="you will need this PIN3 code:">you will need this PIN3 code:</str>
 
-  <str name="To complete full activation of your account, go to">which has to be entered into the form at this site: </str>
-  <str name="Po uspesnem odeslani">After successfully submitting the form with PIN3 code, verification of your contact in the Central registry will be completed.</str>
-  <str name="log into your contact profile and enter the code PIN3 at the initial screen.">and enter PIN3 into the appropriate field.</str>
+
+  <str name="which has to be entered into the form at this site: ">which has to be entered into the form at this site: </str>
+  <str name="After successfully submitting the form...">After successfully submitting the form with PIN3 code, verification of your contact in the Central registry will be completed.</str>
 
   <str name="Americka 23">Americka 23</str>
   <str name="120 00 Prague 2">120 00 Prague 2</str>

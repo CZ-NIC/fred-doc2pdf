@@ -127,16 +127,16 @@
     <spacer length="0.9cm"/>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Dear user,']"/></para>
       <spacer length="0.5cm"/>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='For full activation of the following account']"/></para>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='thank you for your interest...']"/></para>
 
   <spacer length="0.5cm"/>
   <blockTable colWidths="3.5cm,15.2cm" style="authDataTable">
     <tr>
-      <td><xsl:value-of select="$contact_loc/str[@name='contact ID:']"/></td>
+      <td><xsl:value-of select="$contact_loc/str[@name='Identifier:']"/></td>
       <td><xsl:value-of select="account/username"/></td>
     </tr>
     <tr>
-      <td><xsl:value-of select="$contact_loc/str[@name='first name:']"/></td>
+      <td><xsl:value-of select="$contact_loc/str[@name='First name:']"/></td>
       <td><xsl:value-of select="account/first_name"/></td>
     </tr>
     <tr>
@@ -153,15 +153,15 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='You have successfully finished...']"/>
     </para>
 
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='you need this PIN3 code:']"/>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='you will need this PIN3 code:']"/>
         &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>,
     </para>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='To complete full activation of your account, go to']"/>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='which has to be entered into the form at this site: ']"/>
      &SPACE;<xsl:value-of select="auth/link"/>.
     </para>
   <spacer length="0.6cm"/>
 
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Po uspesnem odeslani']"/>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='After successfully submitting the form...']"/>
     </para>
   <spacer length="1cm"/>
 
