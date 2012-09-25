@@ -36,7 +36,7 @@
   <str name="ValidateVerifiedSignature3">a odešlete poštou na níže uvedenou adresu </str>
 
   <str name="ValidateEmail"> - přiložte tuto žádost jako přílohu emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@nic.cz</str>
-  <str name="ValidateInPerson"> - tuto žádost vytiskněte, podepište a dostavte se osobně na níže uvedenou adresu sdružení CZ.NIC. Nezapomeňte si s sebou vzít také Váš občanský průkaz </str>
+  <str name="ValidateInPerson"> - tuto žádost vytiskněte, podepište a dostavte se s ní osobně na níže uvedenou adresu sdružení CZ.NIC; nezapomeňte si s sebou vzít také Váš občanský průkaz </str>
   <str name="ValOfficeHoursNotice"> Pracovní doba validačního pracoviště: </str>
   <str name="ValOfficeHours">Po - Pá: 8:30 - 12:00, 13:00 - 16:00 </str>
   <str name="ZadamTimtoO"> Žádám tímto o validaci účtu mojeID: </str>
