@@ -10,7 +10,7 @@ import sys, os, re
 from freddist.core import setup
 from freddist.command.install import install
 from freddist.command.install_scripts import install_scripts
-from freddist.file_util import *
+from freddist.file_util import all_files_in_4
 from distutils.sysconfig import get_python_lib
 from distutils import errors
 
@@ -49,7 +49,7 @@ PREFERRED_FONT_NAMES = ('FreeSans', 'FreeSerif', 'FreeMono',
 def try_import(modulename):
     """Check if exists module named `modulename'"""
     try:
-        exec('import %s' % modulename)
+        __import__(modulename)
     except ImportError, msg:
         sys.stderr.write('ImportError: %s\n' % msg)
         return False
@@ -63,16 +63,16 @@ def check_reportlab():
         sys.stderr.write('Module `python-reportlab\' not found, you will need to install it.\n')
         return False, MODULE_REPORTLAB
 
-    exec('import %s' % MODULE_REPORTLAB)
+    __import__(MODULE_REPORTLAB)
     try:
         version = eval('%s.Version' % MODULE_REPORTLAB)
-        fVersion = float(version)
+        fversion = float(version)
     except AttributeError, msg:
         sys.stderr.write('AttributeError: %s\n' % msg)
     except ValueError, msg:
         sys.stderr.write('ValueError: %s\n' % msg)
     else:
-        if fVersion < 2.0:
+        if fversion < 2.0:
             sys.stderr.write('Error: Module %s version %s is lower than minimum 2.0.\n' % (MODULE_REPORTLAB, version))
             return False, MODULE_REPORTLAB
         else:
@@ -115,29 +115,31 @@ def get_popen_result(command):
     try:
         pipes = os.popen3(command)
     except IOError, msg:
-        sys.stderr.write('IOError: %s\n'%msg)
+        sys.stderr.write('IOError: %s\n' % msg)
         status = False
     else:
         data = pipes[1].read()
-        errors = pipes[2].read()
-        map(lambda f: f.close(), pipes)
-        if errors:
-            sys.stderr.write('PipeError: %s\n'%errors)
+        errs = pipes[2].read()
+        for handler in pipes:
+            handler.close()
+        if errs:
+            sys.stderr.write('PipeError: %s\n' % errs)
             status = False
     return status, data
 
 def find_font_folders():
     """Returs list of folders"""
 
-    sys.stdout.write("Looking for folders '%s'...\n"%"', '".join(PREFERRED_FONT_FOLDERS))
-    cmd = 'find %s -type d%s'%(FONT_ROOT, ' -or'.join(map(lambda s: ' -iname %s'%s, PREFERRED_FONT_FOLDERS)))
+    sys.stdout.write("Looking for folders '%s'...\n" % "', '".join(PREFERRED_FONT_FOLDERS))
+    cmd = 'find %s -type d%s' % (FONT_ROOT, ' -or'.join([' -iname %s' % name for name in PREFERRED_FONT_FOLDERS]))
+
     # sys.stdout.write('$ %s\n'%cmd) info about shell command
     status, data = get_popen_result(cmd)
     data = data.strip()
 
     # list of path with font folders:
     font_folders = re.split('\s+', data)
-    print 'Found %d folder(s).'%len(font_folders)
+    print 'Found %d folder(s).' % len(font_folders)
     return status, font_folders
 
 def join_font_types(plain, fontnames):
@@ -168,10 +170,10 @@ def find_font_family(font_folders):
     'Returns status,  path to the font,  font family names (4 names)'
     status = False
     font_folder_name, font_family = '', ''
-    font_filenames = map(lambda s: '%s.ttf'%s, PREFERRED_FONT_NAMES)
+    font_filenames = ['%s.ttf' % name for name in PREFERRED_FONT_NAMES]
     
     for folder_name in font_folders:
-        command = "find %s -name '*.ttf'"%folder_name
+        command = "find %s -name '*.ttf'" % folder_name
         stat, data = get_popen_result(command)
         if not stat:
             continue
@@ -179,11 +181,11 @@ def find_font_family(font_folders):
         # keep paths and names of fonts separately:
         font_paths = []
         font_names = []
-        for p in re.split('\s+', data.strip()):
-            font_paths.append(os.path.dirname(p))
-            font_names.append(os.path.basename(p))
+        for path in re.split('\s+', data.strip()):
+            font_paths.append(os.path.dirname(path))
+            font_names.append(os.path.basename(path))
         
-        print "Found %d fonts in folder '%s'."%(len(font_names), folder_name)
+        print "Found %d fonts in folder '%s'." % (len(font_names), folder_name)
         # find font family
         # looking for fonty types (4 types = one family)
         for font_type in font_filenames:
@@ -302,7 +304,9 @@ class Install(install):
         return install.run(self)
 # class Install
 
-class Install_scripts(install_scripts):
+class InstallScripts(install_scripts):
+    "Install scripts replace chosen values in the config file."
+
     def update_fred_doc2pdf_script(self):
         values = []
         values.append((r'(CONFIG_FILENAME = )\'[\w/_ \-\.]*\'',
@@ -326,8 +330,8 @@ def main(directory):
                 license='GNU GPL',
                 long_description='The module of the FRED system',
                 cmdclass={
-                    'install':Install,
-                    'install_scripts':Install_scripts},
+                    'install': Install,
+                    'install_scripts': InstallScripts},
                 scripts=[
                     PACKAGE_NAME],
                 data_files=[
@@ -340,15 +344,15 @@ def main(directory):
                 ,
         )
         return True
-    except Exception, e:
-        sys.stderr.write("Error: %s\n" % e)
+    except Exception, error:
+        print >> sys.stderr, "Error:", error
         return False
 
-if __name__=='__main__':
-    dir = ''
+if __name__ == '__main__':
+    DIRNAME = ''
     if 'bdist' in sys.argv:
-        dir = ''
+        DIRNAME = ''
     else:
-        dir = os.path.dirname(sys.argv[0])
-    if main(dir):
+        DIRNAME = os.path.dirname(sys.argv[0])
+    if main(DIRNAME):
         print "All done!"
