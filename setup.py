@@ -12,6 +12,7 @@ from freddist.command.install import install
 from freddist.command.install_scripts import install_scripts
 from freddist.file_util import *
 from distutils.sysconfig import get_python_lib
+from distutils import errors
 
 PROJECT_NAME = 'fred-doc2pdf'
 PACKAGE_NAME = 'fred-doc2pdf'
@@ -233,33 +234,57 @@ class Install(install):
 # 
     def update_fred2pdf_config(self):
         values = []
-        status = True
 
+        # check trml module
         if self.no_check_deps:
             if not self.trml_name:
                 self.trml_name = 'rml2pdf'
             if not self.trml_path:
                 self.trml_path = '/usr/lib/tinyerp-server/report/render'
-            if not self.font_names:
-                self.font_names = 'FreeSans.ttf FreeSansOblique.ttf FreeSansBold.ttf FreeSansBoldOblique.ttf'
-            if not self.font_path:
-                self.font_path = '/usr/share/fonts/truetype/freefont'
 
             trml_name = self.trml_name
             trml_path = self.trml_path
-            font_path = self.font_path
-            font_family = self.font_names
         else:
             stat1, trml_name, trml_path = check_trml2pdf()
-            stat2, font_path, font_family = find_font_path_and_family()
-            if not stat1 or not stat2:
-                sys.stdout.write('Some problems occured.\nClear them out and try again.\n')
-                return False
+            if not stat1:
+                raise errors.DistutilsFileError('Some problems occured.\nClear them out and try again.\n')
 
         values.append(('TRML_MODULE_NAME', trml_name))
         values.append(('MODULE_PATH', trml_path))
-        values.append(('TRUE_TYPE_PATH', font_path))
-        values.append(('DEFAULT_FONT_TTF', font_family))
+
+        if not (self.font_path or self.font_names):
+            stat2, self.font_path, self.font_names = find_font_path_and_family()
+            if not stat2:
+                raise errors.DistutilsFileError('Some problems occured.\nClear them out and try again.\n')
+        else:
+            # check explicit fonts names
+            font_names = None
+            if self.font_path:
+                if not os.path.isdir(self.font_path):
+                    raise errors.DistutilsFileError("The --font-path value is not a dir.")
+            else:
+                # font path was not set
+                stat2, self.font_path, font_names = find_font_path_and_family()
+                if not stat2:
+                    raise errors.DistutilsFileError('Some problems occured.\nClear them out and try again.\n')
+
+            if self.font_names:
+                # check explicit font names
+                for font_file in re.split("\s+", self.font_names):
+                    path = os.path.join(self.font_path, font_file)
+                    if not os.path.isfile(path):
+                        raise errors.DistutilsFileError("%s is not a file." % path)
+            else:
+                # font names was not set
+                if font_names:
+                    self.font_names = font_names
+                else:
+                    stat2, font_path, self.font_names = find_font_path_and_family()
+                    if not stat2:
+                        raise errors.DistutilsFileError('Some problems occured.\nClear them out and try again.\n')
+
+        values.append(('TRUE_TYPE_PATH', self.font_path))
+        values.append(('DEFAULT_FONT_TTF', self.font_names))
 
         if not os.path.isdir('build'):
             # create `build' directory if needed
@@ -270,7 +295,7 @@ class Install(install):
                 os.path.join('build', CONFIG_FILENAME),
                 values)
         print "Configuration file %s has been updated" % CONFIG_FILENAME
-        return True
+
 
     def run(self):
         self.update_fred2pdf_config()
