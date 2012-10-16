@@ -698,9 +698,9 @@ def import_modules():
     from reportlab.pdfgen import canvas
 
     # Init module path
-    if CONFIG.has_key('module_path'):
-        sys.path.insert(0, CONFIG['module_path'])
-    
+    if CONFIG.get('module_path'):
+        sys.path.insert(0, CONFIG.get('module_path'))
+
     # Import trml2pdf with posibility to definition of the module name.
     try:
         exec 'from %s import trml2pdf as trml, utils as utl'%(len(CONFIG.get('trml_module_name', '')) and CONFIG['trml_module_name'] or 'trml2pdf')

@@ -105,7 +105,7 @@ def check_trml2pdf():
             return True, modulename, path
     sys.path.pop(0)
 
-    sys.stderr.write('Module `TinyERP\' not found, you will need to install it.\n')
+    print >> sys.stderr, "Module 'trml2pdf' missing. It is required. Please, install the package python-trml2pdf."
     return False, '', ''
 
 def get_popen_result(command):
@@ -240,9 +240,10 @@ class Install(install):
         # check trml module
         if self.no_check_deps:
             if not self.trml_name:
-                self.trml_name = 'rml2pdf'
-            if not self.trml_path:
-                self.trml_path = '/usr/lib/tinyerp-server/report/render'
+                self.trml_name = 'trml2pdf'
+            #if not self.trml_path:
+            #    # /usr/lib/pymodules/python2.6 (or python2.7)
+            #    self.trml_path = '/usr/lib/pymodules/%s' % os.path.basename(self.pythondir)
 
             trml_name = self.trml_name
             trml_path = self.trml_path
