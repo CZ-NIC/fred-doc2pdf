@@ -252,9 +252,11 @@ class Install(install):
             if not stat1:
                 raise errors.DistutilsFileError('Some problems occured.\nClear them out and try again.\n')
 
+        if trml_path is None:
+            trml_path = ""
+
         values.append(('TRML_MODULE_NAME', trml_name))
-        if trml_path is not None:
-            values.append(('MODULE_PATH', trml_path))
+        values.append(('MODULE_PATH', trml_path))
 
         if not (self.font_path or self.font_names):
             stat2, self.font_path, self.font_names = find_font_path_and_family()
