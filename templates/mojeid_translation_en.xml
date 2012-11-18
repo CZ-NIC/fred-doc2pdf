@@ -20,11 +20,12 @@
   <str name="Authentication new owner of account mojeID">mojeID account full activation</str>
   <str name="Subject: mojeID account full activation">Subject: mojeID account full activation</str>
 
-<str name="For full activation of the following account">For full activation of the following account: </str>
-<str name="you need this PIN3 code:">you need this PIN3 code:</str>
+  <str name="For full activation of the following account">for full activation of your mojeID account, last step remains – confirmation of your postal address using PIN3 code</str>
+  <str name="you need this PIN3 code:">Your PIN3:</str>
 
-  <str name="To complete full activation of your account, go to">To complete full activation of your account, go to</str>
-  <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">log into your mojeID profile and enter the code PIN3 at the initial screen.</str>
+  <str name="To complete full activation of your account, go to">Confirmation using PIN3 is possible after login to profile editor at adress</str>
+  <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">Field to enter PIN3 is accessible by activating tab "Settings"  in mojeID profile.</str>
+  <str name="Basic info about your account:">Basic information abour your account:</str>
 
   <str name="Americka 23">Americka 23</str>
   <str name="120 00 Prague 2">120 00 Prague 2</str>
