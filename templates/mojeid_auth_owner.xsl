@@ -143,10 +143,8 @@
     </para>
     <para style="main">
       <xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="auth/link"/>
-      <xsl:text>, </xsl:text>
     </para>
+    <para> <xsl:value-of select="auth/link"/><xsl:text>. </xsl:text></para>
     <para style="main">
       <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
     </para>
@@ -159,7 +157,8 @@
     <spacer length="0.3cm"/>
     <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
       <tr>
-        <td>mojeID:</td><td><xsl:value-of select="account/username"/></td>
+	<td><xsl:value-of select="$mojeid_loc/str[@name='account mojeID:']"/></td>
+        <td><xsl:value-of select="account/username"/></td>
       </tr>
       <tr>
         <td><xsl:value-of select="$mojeid_loc/str[@name='first name:']"/></td>
