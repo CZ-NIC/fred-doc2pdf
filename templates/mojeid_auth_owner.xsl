@@ -71,7 +71,7 @@
         <stylesheet>
           <paraStyle name="basic" fontName="Times-Roman" fontSize="11" />
           <paraStyle name="main" parent="basic" fontSize="11" />
-          <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
+          <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="0.5cm" />
           <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
           <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
           <paraStyle name="tableHead" fontName="Times-Bold"/>
@@ -118,62 +118,76 @@
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
     <xsl:variable name="mojeid_loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"></xsl:variable>
-
     <xsl:call-template name="fillAddress"/>
-
     <para style="title"><xsl:value-of select="$mojeid_loc/str[@name='Authentication new owner of account mojeID']"/></para>
-
-    <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <spacer length="1.5cm"/>
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Dear user,']"/></para>
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='For full activation of the following account']"/></para>
-
-  <spacer length="0.5cm"/>
-  <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
-    <tr>
-      <td>mojeID:</td>
-      <td><xsl:value-of select="account/username"/></td>
-    </tr>
-    <tr>
-      <td><xsl:value-of select="$mojeid_loc/str[@name='first name:']"/></td>
-      <td><xsl:value-of select="account/first_name"/></td>
-    </tr>
-    <tr>
-      <td><xsl:value-of select="$mojeid_loc/str[@name='last name:']"/></td>
-      <td><xsl:value-of select="account/last_name"/></td>
-    </tr>
-    <tr>
-      <td><xsl:value-of select="$mojeid_loc/str[@name='e-mail:']"/></td>
-      <td><xsl:value-of select="account/email"/></td>
-    </tr>
-  </blockTable>
-  <spacer length="0.6cm"/>
-
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='you need this PIN3 code:']"/>
-        &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>
+    <para style="main">
+      <xsl:value-of select="$loc/str[@name='Prague']"/>
+      <xsl:text>, </xsl:text>
+      <xsl:call-template name="local_date">
+        <xsl:with-param name="sdt" select="actual_date"/>
+      </xsl:call-template>
     </para>
-  <spacer length="0.6cm"/>
-
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
-     &SPACE;www.<xsl:value-of select="auth/link"/>,&SPACE;
-    <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
+    <spacer length="0.5cm"/>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='Dear user,']"/>
     </para>
-  <spacer length="1cm"/>
-
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/>
+    <spacer length="0.5cm"/>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='For full activation of the following account']"/>
     </para>
-  <spacer length="0.6cm"/>
-    
-    <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
-    <para style="basic"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
-    <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
-    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/></para>
-  <spacer length="1cm"/>
-    
+    <spacer length="0.5cm"/>
+    <para style="title">
+      <xsl:value-of select="$mojeid_loc/str[@name='you need this PIN3 code:']"/>
+      <xsl:text> </xsl:text>
+      <b><xsl:value-of select="auth/codes/pin3"/></b>
+    </para>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
+    </para>
+    <para> <xsl:value-of select="auth/link"/><xsl:text>. </xsl:text></para>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
+    </para>
+    <spacer length="0.3cm"/>
+    <image file="{$srcpath}pin3_setup.png" width="14cm" height="5cm" />
+    <spacer length="0.3cm"/>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='Basic info about your account:']"/>
+    </para>  
+    <spacer length="0.3cm"/>
+    <blockTable colWidths="2.4cm,15.2cm" style="authDataTable">
+      <tr>
+	<td><xsl:value-of select="$mojeid_loc/str[@name='account mojeID:']"/></td>
+        <td><xsl:value-of select="account/username"/></td>
+      </tr>
+      <tr>
+        <td><xsl:value-of select="$mojeid_loc/str[@name='first name:']"/></td>
+        <td><xsl:value-of select="account/first_name"/></td>
+      </tr>
+      <tr>
+        <td><xsl:value-of select="$mojeid_loc/str[@name='last name:']"/></td>
+        <td><xsl:value-of select="account/last_name"/></td>
+      </tr>
+      <tr>
+        <td><xsl:value-of select="$mojeid_loc/str[@name='e-mail:']"/></td>
+        <td><xsl:value-of select="account/email"/></td>
+      </tr>
+    </blockTable>
+    <spacer length="0.3cm"/>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/>
+    </para>
+    <spacer length="0.5cm"/>
+    <para style="basic">
+      <b><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></b>
+    </para>
+    <para style="basic">
+      <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/><xsl:text>, </xsl:text>
+      <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/><xsl:text>, </xsl:text>
+      <xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/>
+    </para>
+    <para style="basic">+420 222 745 111, podpora@mojeid.cz</para>
     <para style="basic">www.mojeid.cz</para>
-    <para style="basic">+420 222 745 111</para>
-    <para style="basic">podpora@mojeid.cz</para>
-
   </xsl:template>
 
 </xsl:stylesheet>
