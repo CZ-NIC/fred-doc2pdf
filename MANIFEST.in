@@ -1,14 +1,6 @@
-include templates/*
 include examples/*
 
-include conf/*.install
-
-include fred-doc2pdf
 include ChangeLog
 include *.ascii
 include *.utf8
 include MANIFEST.in
-
-include freddist/*.py
-include freddist/README
-include freddist/command/*.py
