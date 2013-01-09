@@ -238,7 +238,7 @@ class Install(install):
 
 
 def main():
-    srcdir = os.path.dirname(__file__)
+    srcdir = os.path.dirname(os.path.abspath(__file__))
 
     data_files = [
         ('$sysconf/fred/', [os.path.join('conf', CONFIG_FILENAME)]),
