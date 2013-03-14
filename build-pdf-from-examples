@@ -1,0 +1,43 @@
+#!/bin/bash
+
+DEST=${1:-'/tmp/fred-pdf-examples'}
+
+echo Create folder $DEST
+mkdir $DEST
+
+
+echo create file $DEST/advance_invoice.pdf
+xsltproc templates/advance_invoice.xsl examples/advance_invoice.xml | ./fred-doc2pdf > $DEST/advance_invoice.pdf
+
+echo create file $DEST/auth_info.pdf
+xsltproc templates/auth_info.xsl examples/auth_info.xml | ./fred-doc2pdf > $DEST/auth_info.pdf
+
+echo create file $DEST/contact_verification_auth_owner.pdf
+xsltproc templates/contact_verification_auth_owner.xsl examples/contact_verification_auth_owner.xml | ./fred-doc2pdf > $DEST/contact_verification_auth_owner.pdf
+
+echo create file $DEST/defunct_contacts.txt
+xsltproc templates/defunct_contacts.xsl examples/warning_letter1.xml | sed 1d > $DEST/defunct_contacts.txt
+
+echo create file $DEST/helios.xml
+xsltproc templates/helios.xsl examples/helios.xml | iconv -f cp1250 | sed 's|windows-1250|utf-8|' | xmllint --format - > $DEST/helios.xml
+
+echo create file $DEST/invoice.pdf
+xsltproc templates/invoice.xsl examples/invoice.xml | ./fred-doc2pdf > $DEST/invoice.pdf
+
+echo create file $DEST/mojeid_auth_user.pdf
+xsltproc templates/mojeid_auth_owner.xsl examples/mojeid_auth_user.xml | ./fred-doc2pdf > $DEST/mojeid_auth_user.pdf
+
+echo create file $DEST/mojeid_auth.pdf
+xsltproc templates/mojeid_auth_user.xsl examples/mojeid_auth_user.xml | ./fred-doc2pdf > $DEST/mojeid_auth.pdf
+
+echo create file $DEST/mojeid_validate.pdf
+xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-doc2pdf > $DEST/mojeid_validate.pdf
+
+echo create file $DEST/public_request.pdf
+xsltproc templates/public_request.xsl examples/public_request.xml | ./fred-doc2pdf > $DEST/public_request.pdf
+
+echo create file $DEST/warning_letter1.pdf
+xsltproc templates/warning_letter.xsl examples/warning_letter1.xml | ./fred-doc2pdf > $DEST/warning_letter1.pdf
+
+echo create file $DEST/warning_letter2.pdf
+xsltproc templates/warning_letter.xsl examples/warning_letter2.xml | ./fred-doc2pdf > $DEST/warning_letter2.pdf
