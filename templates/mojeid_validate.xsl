@@ -53,16 +53,16 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
     <pageTemplate id="main">
       <pageGraphics>
     <!-- Page header -->
-        <image file="{$srcpath}CZ.NIC-CLAIM_{$lang}-pozitiv_RGB.png" x="2.5cm" y="27.3cm" width="7cm" />
-        <stroke color="#1c4f9c"/>
+        <image file="{$srcpath}cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
+        <stroke color="#bab198"/>
 
         <lineMode width="0.2cm"/>
         <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
         <lineMode width="1"/>
-        <fill color="#1c4f9c"/>
+        <fill color="#a8986d"/>
         <setFont name="Times-Bold" size="12"/>
 
-        <drawString x="2.5cm" y="23.4cm" color="#1c4f9c"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
+        <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
         <!-- TODO - this can gain more space, increase height of the frame -->
@@ -84,9 +84,6 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 
         <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
         <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
-
-    <!-- Footer -->
-        <image file="{$srcpath}strip-with-dots_RGB.png" x="0.6cm" y="0.6cm" width="19.8cm" />
 
       </pageGraphics>
     </pageTemplate>
