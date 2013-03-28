@@ -212,7 +212,7 @@ class Install(install):
             for font_file in re.split("\s+", self.font_names):
                 path = os.path.join(self.font_path, font_file)
                 if not os.path.isfile(path):
-                    sys.stderr.write("File '%s' not found.\n" % self.font_path)
+                    sys.stderr.write("File '%s' not found.\n" % path)
                     exit(1)
 
     def update_config(self, filename):
