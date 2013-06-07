@@ -1,3 +1,11 @@
+2013-06-07 Zdenek Bohm, Vlastimil Zima (2.5.2)
+
+   * Fix error message when font file was not found
+   
+   * Updating setup.cfg and setup.py according recent fred-distutils changes
+   
+   * New CZ.NIC logos
+
 2012-11-19 Jaromir Talir (2.5.1)
 
    * mojeid pin3 letter template changes
