@@ -68,7 +68,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 
 
     <xsl:template name="authinfo">
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_1</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
@@ -88,13 +88,13 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <b><xsl:value-of select="replymail" /></b>.
         </para>
         <spacer length="0.6cm"/>
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
         </para>
     </xsl:template>
 
     <xsl:template name="unblock">
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_1</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
@@ -112,13 +112,13 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
         </para>
         <spacer length="0.6cm"/>
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
         </para>
     </xsl:template>
 
     <xsl:template name="block">
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_1</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
@@ -144,7 +144,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_8</xsl:with-param></xsl:call-template>
         </para>
         <spacer length="0.6cm"/>
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_9</xsl:with-param></xsl:call-template>
         </para>
     </xsl:template>
@@ -209,11 +209,12 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         </pageTemplate>
     </template>
     <stylesheet>
+        <paraStyle name="main" fontName='Times-Roman'/>
         <paraStyle name="address" fontName="Times-Italic" fontSize="8" leftIndent="1.4cm" />
         <paraStyle name="footer" fontSize="8" />
     </stylesheet>
     <story>
-        <para>
+        <para style="main">
             <xsl:call-template name="getstr"><xsl:with-param name="str">subject</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
@@ -227,7 +228,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <xsl:when test="type = 3 or type = 5"><xsl:call-template name="unblock"/></xsl:when>
         </xsl:choose>
         <spacer length="1.6cm"/>
-        <para>
+        <para style="main">
         ...........................................................................
         </para>
     </story>

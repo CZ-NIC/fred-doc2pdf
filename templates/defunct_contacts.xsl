@@ -162,9 +162,9 @@
                 <para style="main">
                     <xsl:value-of select="$loc/str[@name='Make the change...']"/>:
                 </para>
-              <para><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
+              <para style="main"><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
              </para>
-             <para><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
+             <para style="main"><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
              </para>
 
              <spacer length="0.6cm"/>
@@ -270,8 +270,8 @@
 
 
     <spacer length="0.8cm"/>
-    <para>Ing. Martin Peterka</para>
-    <para>
+    <para style="main">Ing. Martin Peterka</para>
+    <para style="main">
       <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z.s.p.o.']"/>
     </para>
 
