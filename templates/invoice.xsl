@@ -189,9 +189,8 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <stylesheet>
 
-    <paraStyle fontSize="9"/>
-
     <blockTableStyle id="tbl_delivery">
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
       <lineStyle kind="LINEABOVE" start="0,0"  stop="-1,0"  thickness="0.5" colorName="black"/>
       <lineStyle kind="LINEBELOW" start="0,-1" stop="-1,-1" thickness="0.5" colorName="black"/>
       <blockAlignment value="RIGHT" start="1,0" stop="3,-1"/>

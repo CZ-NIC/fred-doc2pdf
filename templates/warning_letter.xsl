@@ -109,11 +109,11 @@
       </template>
 
       <stylesheet>
-        <paraStyle name="basic" fontName="Times-Roman"/>
-        <paraStyle name="main" parent="basic" spaceAfter="0.6cm"/>
+        <paraStyle name="basic" fontName="Times-Roman" fontSize="10"/>
+        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="Times-Roman" fontSize="10"/>
         <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
         <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
-        <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="9"/>
+        <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="7"/>
         <paraStyle name="tableHead" leading="10" fontName="Times-Bold" fontSize="10"/>
 
         <blockTableStyle id="domainListTable">
