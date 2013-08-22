@@ -91,6 +91,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 </template>
 
 <stylesheet>
+    <paraStyle name="main" fontName='Times-Roman'/>
     <paraStyle name="bold" fontName="Times-Bold"/>
     <paraStyle name="address" fontName="Times-Italic" fontSize="8" leftIndent="1.4cm" />
     <paraStyle name="footer" fontSize="8" />
@@ -99,13 +100,13 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 <story>
 
 <spacer length="0.6cm"/>
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='ZadamTimtoO']"/>
 </para>
 
 <spacer length="0.3cm"/>
 
-<para>
+<para style="main">
  <xsl:choose>
      <xsl:when test="string(handle)">
         <xsl:value-of select="$loc/str[@name='00Handle']"/>
@@ -116,12 +117,12 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
  </xsl:choose>
 </para>
 
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='01Jmeno']"/>
  &SPACE;<xsl:value-of select="name"/>
 </para> 
 
-<para>
+<para style="main">
  <xsl:choose>
      <xsl:when test="string(organization)">  
          <xsl:value-of select="$loc/str[@name='02Org']"/>
@@ -132,7 +133,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
  </xsl:choose>
 </para>
 
-<para>
+<para style="main">
  <xsl:choose> 
      <xsl:when test="string(ic)">  
         <xsl:value-of select="$loc/str[@name='03Ic']"/>
@@ -143,7 +144,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
  </xsl:choose>
 </para>
  
- <para>
+ <para style="main">
   <xsl:choose>
       <xsl:when test="string(birth_date)">
          <xsl:value-of select="$loc/str[@name='04BirthDate']"/>
@@ -153,7 +154,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
       </xsl:otherwise>
   </xsl:choose>
  </para> 
- <para>
+ <para style="main">
   <xsl:choose>
       <xsl:when test="string(address)">
          <xsl:value-of select="$loc/str[@name='05Address']"/>
@@ -165,7 +166,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
  </para>
 
 <spacer length="0.6cm"/>
-<para>
+<para style="main">
      <xsl:value-of select="$loc/str[@name='IdentifikacniCisloZadosti']"/> 
     <xsl:value-of select="request_id"/>
 
@@ -180,31 +181,31 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 </para>
 
 <spacer length="0.3cm"/>
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature1']"/>
     <b><xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature2']"/></b>
     <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature3']"/>
 </para>
 <spacer length="0.3cm"/>
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='ValidateEmail']"/>
 </para>
 <spacer length="0.3cm"/>
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='ValidateInPerson']"/>
 </para>
 <spacer length="0.3cm"/>
-<para>
+<para style="main">
     <b><xsl:value-of select="$loc/str[@name='ValOfficeHoursNotice']"/></b>
     <xsl:value-of select="$loc/str[@name='ValOfficeHours']"/>
 </para>
 
 <spacer length="0.6cm"/>
-<para>
+<para style="main">
     <xsl:value-of select="$loc/str[@name='JmenoApodpis']"/>
 </para>
 <spacer length="1.0cm"/>
-<para>
+<para style="main">
 ...........................................................................
 </para>
 

@@ -69,15 +69,14 @@
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="basic" fontName="Times-Roman" fontSize="11" />
-          <paraStyle name="main" parent="basic" fontSize="11" />
+          <paraStyle name="main" fontName="Times-Roman" fontSize="9" />
           <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
           <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
           <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
           <paraStyle name="tableHead" fontName="Times-Bold"/>
       
           <blockTableStyle id="authDataTable">
-            <blockFont name="Times-Roman" size="11" start="0,0" stop="-1,-1"/>
+            <blockFont name="Times-Roman" size="10" start="0,0" stop="-1,-1"/>
             <blockLeftPadding length="35" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
@@ -169,15 +168,15 @@
     </para>
   <spacer length="0.6cm"/>
     
-    <para style="basic"><xsl:value-of select="$contact_loc/str[@name='Customer Support']"/></para>
-    <para style="basic"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
-    <para style="basic"><xsl:value-of select="$contact_loc/str[@name='Americka 23']"/></para>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Customer Support']"/></para>
+    <para style="main"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Americka 23']"/></para>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='120 00 Prague 2']"/></para>
   <spacer length="1cm"/>
     
-    <para style="basic">www.nic.cz</para>
-    <para style="basic">+420 222 745 111</para>
-    <para style="basic">podpora@nic.cz</para>
+    <para style="main">www.nic.cz</para>
+    <para style="main">+420 222 745 111</para>
+    <para style="main">podpora@nic.cz</para>
 
   </xsl:template>
 

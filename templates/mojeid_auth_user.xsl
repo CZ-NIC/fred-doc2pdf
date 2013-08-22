@@ -69,8 +69,7 @@
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="basic" fontName="Times-Roman" fontSize="11" />
-          <paraStyle name="main" parent="basic" fontSize="11" />
+          <paraStyle name="main" fontName="Times-Roman" fontSize="11" />
           <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
           <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
           <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
@@ -164,15 +163,15 @@
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/></para>
   <spacer length="0.6cm"/>
     
-    <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
-    <para style="basic"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
-    <para style="basic"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
+    <para style="main"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
+    <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/></para>
   <spacer length="1cm"/>
 
-    <para style="basic">www.mojeid.cz</para>
-    <para style="basic">+420 222 745 111</para>
-    <para style="basic">podpora@mojeid.cz</para>
+    <para style="main">www.mojeid.cz</para>
+    <para style="main">+420 222 745 111</para>
+    <para style="main">podpora@mojeid.cz</para>
 
   </xsl:template>
 

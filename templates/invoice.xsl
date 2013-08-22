@@ -189,9 +189,8 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <stylesheet>
 
-    <paraStyle fontSize="9"/>
-
     <blockTableStyle id="tbl_delivery">
+      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
       <lineStyle kind="LINEABOVE" start="0,0"  stop="-1,0"  thickness="0.5" colorName="black"/>
       <lineStyle kind="LINEBELOW" start="0,-1" stop="-1,-1" thickness="0.5" colorName="black"/>
       <blockAlignment value="RIGHT" start="1,0" stop="3,-1"/>
@@ -247,7 +246,8 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
       <blockTopPadding length="0.1cm" start="0,-1" stop="-1,-1" />
     </blockTableStyle>
 
-    <paraStyle name="delivery-info" fontSize="9"/>
+    <paraStyle name="main" fontSize='9' fontName='Times-Roman'/>
+    <paraStyle name="delivery-info" fontSize='9' fontName='Times-Roman'/>
 
     <blockTableStyle id="tbl_service_codes">
       <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
@@ -267,7 +267,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <lineMode width="0.1cm"/>
         <lines>-0.67cm -0.24cm -0.17cm -0.24cm</lines>
 </illustration>
-<para><xsl:value-of select="$loc/str[@name='Supply sign']"/>:</para>
+<para style="main"><xsl:value-of select="$loc/str[@name='Supply sign']"/>:</para>
 
 <spacer length="0.4cm"/>
 <para style="delivery-info">
@@ -417,7 +417,7 @@ Description of decision, what text will be shown:
         <lineMode width="0.1cm"/>
         <lines>-0.67cm -0.24cm -0.17cm -0.24cm</lines>
 </illustration>
-<para><xsl:value-of select="$loc/str[@name='VAT-settled-deposit']"/>:</para>
+<para style="main"><xsl:value-of select="$loc/str[@name='VAT-settled-deposit']"/>:</para>
 
     <spacer length="0.2cm"/>
     <blockTable colWidths="3.4cm,3.4cm,1.4cm,2.8cm,3.4cm,3.4cm" repeatRows="2" style="tbl_advance_payment">

@@ -69,8 +69,7 @@
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="basic" fontName="Times-Roman" fontSize="11" />
-          <paraStyle name="main" parent="basic" fontSize="11" />
+          <paraStyle name="main" fontName="Times-Roman" fontSize="11" />
           <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="0.5cm" />
           <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
           <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
@@ -144,7 +143,7 @@
     <para style="main">
       <xsl:value-of select="$mojeid_loc/str[@name='To complete full activation of your account, go to']"/>
     </para>
-    <para> <xsl:value-of select="auth/link"/><xsl:text>. </xsl:text></para>
+    <para style="main"> <xsl:value-of select="auth/link"/><xsl:text>. </xsl:text></para>
     <para style="main">
       <xsl:value-of select="$mojeid_loc/str[@name='log into your mojeID profile and enter the code PIN3 at the initial screen.']"/>
     </para>
@@ -178,16 +177,16 @@
       <xsl:value-of select="$mojeid_loc/str[@name='Your team mojeID']"/>
     </para>
     <spacer length="0.5cm"/>
-    <para style="basic">
+    <para style="main">
       <b><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></b>
     </para>
-    <para style="basic">
+    <para style="main">
       <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/><xsl:text>, </xsl:text>
       <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/><xsl:text>, </xsl:text>
       <xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/>
     </para>
-    <para style="basic">+420 222 745 111, podpora@mojeid.cz</para>
-    <para style="basic">www.mojeid.cz</para>
+    <para style="main">+420 222 745 111, podpora@mojeid.cz</para>
+    <para style="main">www.mojeid.cz</para>
   </xsl:template>
 
 </xsl:stylesheet>
