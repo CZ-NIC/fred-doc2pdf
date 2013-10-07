@@ -88,7 +88,7 @@
             <lines>17.9cm 1.3cm 17.9cm 0.5cm</lines>
             <lineMode width="1"/>
             <fill color="#ACB2B9"/>
-            <setFont name="Times-Roman" size="7"/>
+            <setFont name="FreeSans" size="7"/>
             <drawString x="7.3cm" y="1.1cm">
               <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/>
             </drawString>
@@ -109,12 +109,12 @@
       </template>
 
       <stylesheet>
-        <paraStyle name="basic" fontName="Times-Roman" fontSize="10"/>
-        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="Times-Roman" fontSize="10"/>
-        <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
-        <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
+        <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="address" fontSize="12" fontName="FreeSans"/>
+        <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
         <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="7"/>
-        <paraStyle name="tableHead" leading="10" fontName="Times-Bold" fontSize="10"/>
+        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="10"/>
 
         <blockTableStyle id="domainListTable">
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>

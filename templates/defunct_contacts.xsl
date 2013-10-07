@@ -35,18 +35,18 @@
 
       </template>
       <stylesheet>
-        <paraStyle name="main" spaceAfter="0.4cm" fontName="Times-Roman"/>
-        <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
-        <paraStyle name="address-name" parent="address" fontSize="12" fontName="Times-Bold"/>
+        <paraStyle name="main" spaceAfter="0.4cm" fontName="FreeSans"/>
+        <paraStyle name="address" fontSize="12" fontName="FreeSans"/>
+        <paraStyle name="address-name" parent="address" fontSize="12" fontName="FreeSansBold"/>
 
                         <!-- subject -->
-        <paraStyle name="subject" spaceAfter="0.4cm" fontSize="12" fontName="Times-Bold"/>
+        <paraStyle name="subject" spaceAfter="0.4cm" fontSize="12" fontName="FreeSansBold"/>
         <blockTableStyle id="tbl_delivery">
           <blockAlignment value="CENTER" start="0,0" stop="5,2"/>
           <blockValign value="BOTTOM" start="0,0" stop="4,2"/>
           <blockValign value="MIDDLE" start="5,0" stop="-1,2"/>
           <blockValign value="MIDDLE" start="0,3" stop="-1,-1"/>
-          <blockFont name="Times-Roman" size="8" start="0,0" stop="-1,-1"/>
+          <blockFont name="FreeSans" size="8" start="0,0" stop="-1,-1"/>
           <lineStyle kind="GRID" start="0,3" stop="-1,-1" colorName="black"/>
           <lineStyle kind="BOX" start="0,0" stop="-1,2" colorName="black"/>
           <lineStyle kind="LINEAFTER" start="6,0" stop="6,1" colorName="black"/>
@@ -64,7 +64,7 @@
 
 
         <blockTableStyle id="test01">
-            <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+            <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
             <blockAlignment value="RIGHT" start="1,0" stop="-1,-1"/>
             <!--
             <lineStyle kind="GRID" start="0,0" stop="-1,-1" colorName="black"/>

@@ -69,14 +69,14 @@
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="main" fontName="Times-Roman" fontSize="9" />
-          <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
-          <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
-          <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
-          <paraStyle name="tableHead" fontName="Times-Bold"/>
+          <paraStyle name="main" fontName="FreeSans" fontSize="9" />
+          <paraStyle name="title" fontSize="14" fontName="FreeSansBold" spaceBefore="0" spaceAfter="1.2cm" />
+          <paraStyle name="address" fontSize="11" fontName="FreeSans"/>
+          <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
+          <paraStyle name="tableHead" fontName="FreeSansBold"/>
       
           <blockTableStyle id="authDataTable">
-            <blockFont name="Times-Roman" size="10" start="0,0" stop="-1,-1"/>
+            <blockFont name="FreeSans" size="10" start="0,0" stop="-1,-1"/>
             <blockLeftPadding length="35" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>

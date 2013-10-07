@@ -43,7 +43,7 @@
         <frame id="main" x1="1.6cm" y1="3.7cm" width="18cm" height="18.2cm" showBoundary="0"/>
         <stroke color="black"/>
         <fill color="#000000"/>
-        <setFont name="Times-Roman" size="8"/>
+        <setFont name="FreeSans" size="8"/>
         <drawString x="1.8cm" y="3.3cm">
           <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
         </drawString>
@@ -68,7 +68,7 @@
         <frame id="main" x1="1.6cm" y1="3.7cm" width="18cm" height="17.2cm" showBoundary="0"/>
         <stroke color="black"/>
         <fill color="#000000"/>
-        <setFont name="Times-Roman" size="8"/>
+        <setFont name="FreeSans" size="8"/>
         <drawString x="1.8cm" y="3.3cm">
           <xsl:value-of select="$loc/str[@name='contact verification service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
         </drawString>
@@ -88,7 +88,7 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <setFont name="Times-Roman" size="12"/>
+        <setFont name="FreeSans" size="12"/>
         <image file="{$srcpath}logo-balls.png" x="2.1cm" y="24cm" width="5.6cm"/>
         <frame id="address" x1="11.5cm" y1="22.9cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
@@ -101,7 +101,7 @@
         <lines>17.9cm 1.3cm 17.9cm 0.5cm</lines>
         <lineMode width="1"/>
         <fill color="#ACB2B9"/>
-        <setFont name="Times-Roman" size="7"/>
+        <setFont name="FreeSans" size="7"/>
         <drawString x="7.3cm" y="1.1cm">
           <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/>
         </drawString>

@@ -173,7 +173,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
                 <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
                 <lineMode width="1"/>
                 <fill color="#a8986d"/>
-                <setFont name="Times-Bold" size="12"/>
+                <setFont name="FreeSansBold" size="12"/>
                 <drawString x="2.5cm" y="23.4cm" color="#a8986d">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">head</xsl:with-param></xsl:call-template>
                 </drawString>
@@ -183,7 +183,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
                 <!-- Page footer -->
                 <stroke color="#c0c0c0"/>
                 <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
-                <setFont name="Times-Roman" size="8"/>
+                <setFont name="FreeSans" size="8"/>
                 <drawString x="2.5cm" y="8cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_1</xsl:with-param></xsl:call-template>
                 </drawString>
@@ -193,7 +193,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
                 <drawString x="2.5cm" y="1.8cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
                 </drawString>
-                <setFont name="Times-Bold" size="12"/>
+                <setFont name="FreeSansBold" size="12"/>
                 <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
                 <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
                 <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
@@ -209,8 +209,8 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         </pageTemplate>
     </template>
     <stylesheet>
-        <paraStyle name="main" fontName='Times-Roman'/>
-        <paraStyle name="address" fontName="Times-Italic" fontSize="8" leftIndent="1.4cm" />
+        <paraStyle name="main" fontName='FreeSans'/>
+        <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
         <paraStyle name="footer" fontSize="8" />
     </stylesheet>
     <story>

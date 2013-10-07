@@ -56,7 +56,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
         <lineMode width="1"/>
         <fill color="#a8986d"/>
-        <setFont name="Times-Bold" size="12"/>
+        <setFont name="FreeSansBold" size="12"/>
         <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='Confirmation of Request for password']"/></drawString>
         <fill color="black"/>
 
@@ -66,12 +66,12 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <stroke color="#c0c0c0"/>
         <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
-        <setFont name="Times-Roman" size="8"/>
+        <setFont name="FreeSans" size="8"/>
         <drawString x="2.5cm" y="8cm"><xsl:value-of select="$loc/str[@name='Please print this request sign it (a notarized signature required) and send the signed original to the following address:']"/></drawString>
         <drawString x="2.5cm" y="2.2cm"><xsl:value-of select="$loc/str[@name='Signatories whose name is not listed in the Central registry of domain names must attach']"/></drawString>
         <drawString x="2.5cm" y="1.8cm"><xsl:value-of select="$loc/str[@name='an original or a notarized copy of a document authorizing them to perform the relevant request.']"/></drawString>
 
-        <setFont name="Times-Bold" size="12"/>
+        <setFont name="FreeSansBold" size="12"/>
         <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
         <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
         <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
@@ -90,8 +90,8 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 </template>
 
 <stylesheet>
-    <paraStyle name="main" fontName='Times-Roman' fontSize='9' />
-    <paraStyle name="address" fontName="Times-Italic" fontSize="8" leftIndent="1.4cm" />
+    <paraStyle name="main" fontName='FreeSans' fontSize='9' />
+    <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
     <paraStyle name="footer" parent="main" fontSize="8" />
 </stylesheet>
 

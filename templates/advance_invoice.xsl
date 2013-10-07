@@ -38,7 +38,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <image file="{$srcpath}white-balls.png" x="10cm" y="26.8cm" width="2cm"/>
 
         <fill color="white" />
-        <setFont name="Times-Roman" size="14"/>
+        <setFont name="FreeSans" size="14"/>
         <drawRightString x="19.3cm" y="27.9cm">
             <xsl:choose>
                 <xsl:when test="number(delivery/sumarize/total)&lt;0">
@@ -63,20 +63,20 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <!-- left column -->
 
         <fill color="black" />
-        <setFont name="Times-Roman" size="9" />
+        <setFont name="FreeSans" size="9" />
         <drawString x="1.6cm" y="25.9cm"><xsl:value-of select="$loc/str[@name='Client']"/>:</drawString>
-        <setFont name="Times-Bold" size="11" />
+        <setFont name="FreeSansBold" size="11" />
         <drawString x="1.6cm" y="25.4cm"><xsl:value-of select="client/name"/></drawString>
         <drawString x="1.6cm" y="24.9cm"><xsl:value-of select="client/address/street"/></drawString>
         <drawString x="1.6cm" y="24.4cm"><xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
 
-        <setFont name="Times-Bold" size="9" />
+        <setFont name="FreeSansBold" size="9" />
         <drawString x="1.6cm" y="23.7cm"><xsl:value-of select="$loc/str[@name='ICO']"/>:</drawString>
         <drawRightString x="8.6cm" y="23.7cm"><xsl:value-of select="client/ico"/></drawRightString>
         <drawString x="1.6cm" y="23.3cm"><xsl:value-of select="$loc/str[@name='VAT number']"/>:</drawString>
         <drawRightString x="8.6cm" y="23.3cm"><xsl:value-of select="client/vat_number"/></drawRightString>
 
-        <setFont name="Times-Roman" size="9" />
+        <setFont name="FreeSans" size="9" />
         <drawString x="1.6cm" y="22.5cm"><xsl:value-of select="$loc/str[@name='Customer residence']"/>:</drawString>
         <drawString x="1.6cm" y="22.1cm"><xsl:value-of select="client/address/street"/></drawString>
         <drawString x="1.6cm" y="21.7cm"><xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
@@ -96,13 +96,13 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <drawString x="1.6cm" y="16.5cm"><xsl:value-of select="$loc/str[@name='Municipal Prague cap.city, no ZS/30/3/98']"/></drawString>
 
         <!-- right column -->
-        <setFont name="Times-Bold" size="9" />
+        <setFont name="FreeSansBold" size="9" />
         <drawString x="10.7cm" y="20.8cm"><xsl:value-of select="$loc/str[@name='Vat voucher']"/>&SPACE;<xsl:value-of select="$loc/str[@name='No']"/>.:</drawString>
         <drawRightString x="19.3cm" y="20.8cm"><xsl:value-of select="payment/invoice_number"/></drawRightString>
         <drawString x="10.7cm" y="20.4cm"><xsl:value-of select="$loc/str[@name='Variable symbol']"/>:</drawString>
         <drawRightString x="19.3cm" y="20.4cm"><xsl:value-of select="payment/vs"/></drawRightString>
 
-        <setFont name="Times-Roman" size="9" />
+        <setFont name="FreeSans" size="9" />
         <drawString x="10.7cm" y="19.6cm"><xsl:value-of select="$loc/str[@name='Invoice date']"/>:</drawString>
         <drawRightString x="19.3cm" y="19.6cm"><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="payment/invoice_date" /></xsl:call-template></drawRightString>
         <drawString x="10.7cm" y="19.2cm"><xsl:value-of select="$loc/str[@name='Tax point']"/>:</drawString>
@@ -128,7 +128,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <lines>17.6cm 1.3cm 17.6cm 0.5cm</lines>
         <lineMode width="1"/>
         <fill color="#ACB2B9"/>
-        <setFont name="Times-Roman" size="7"/>
+        <setFont name="FreeSans" size="7"/>
         <drawString x="7.3cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
         <drawString x="7.3cm" y="0.8cm"><xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
         <drawString x="7.3cm" y="0.5cm"><xsl:value-of select="$loc/str[@name='Czech Republic']"/></drawString>
@@ -145,14 +145,14 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 
 <stylesheet>
     <paraStyle fontSize="9"/>
-    <paraStyle name="main" fontSize='9' fontName='Times-Roman'/>
+    <paraStyle name="main" fontSize='9' fontName='FreeSans'/>
     <blockTableStyle id="tbl_delivery">
-      <blockFont name="Times-Roman" start="0,0" stop="-1,-1" size="9"/>
+      <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
       <lineStyle kind="LINEABOVE" start="0,0"  stop="-1,0"  thickness="0.5" colorName="black"/>
       <lineStyle kind="LINEBELOW" start="0,-1" stop="-1,-1" thickness="0.5" colorName="black"/>
       <blockAlignment value="RIGHT" start="1,0" stop="1,-1"/>
-      <blockFont name="Times-Bold" start="0,-1" stop="-1,-1"/>
-      <blockFont name="Times-Bold" start="0,0" stop="-1,0"/>
+      <blockFont name="FreeSansBold" start="0,-1" stop="-1,-1"/>
+      <blockFont name="FreeSansBold" start="0,0" stop="-1,0"/>
       <blockAlignment value="RIGHT" start="1,0" stop="-1,-1"/>
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
