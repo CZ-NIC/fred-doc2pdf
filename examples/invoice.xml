@@ -178,7 +178,7 @@
             <vat_rate>19</vat_rate>
         </item>
         <item>
-            <subject>snih.cz</subject>
+            <subject>snih2.cz</subject>
             <code>RREG</code>
             <timestamp>2007-01-12 10:12:00.469754</timestamp>
             <expiration>2008-01-12</expiration>
@@ -207,6 +207,938 @@
             <total>600</total>
             <vat_rate>19</vat_rate>
         </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
+        <item>
+            <subject>gaad.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>jindrizska.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 11:10:00.469754</timestamp>
+            <price>10800</price>
+            <total>10800</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>snih2.cz</subject>
+            <code>RREG</code>
+            <timestamp>2007-01-12 10:12:00.469754</timestamp>
+            <expiration>2008-01-12</expiration>
+            <count>1</count>
+            <price>100500</price>
+            <total>100500</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>abc.cz</subject>
+            <code>RPOZ</code>
+            <timestamp>2007-01-12 09:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>300000000</count>
+            <price>300</price>
+            <total>20000000</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>1.1.1.7.4.5.2.2.2.0.2.4.e164.arpa</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 08:10:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-07.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-08.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-09.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+        <item>
+            <subject>domena-10.cz</subject>
+            <code>RUDR</code>
+            <timestamp>2007-01-12 11:12:00.469754</timestamp>
+            <expiration>2009-01-12</expiration>
+            <count>2</count>
+            <price>300</price>
+            <total>600</total>
+            <vat_rate>19</vat_rate>
+        </item>
+
     </items>
 
     <sumarize_items>

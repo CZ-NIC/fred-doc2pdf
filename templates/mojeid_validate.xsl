@@ -13,7 +13,7 @@ together with this template. It is neccesity to set up the path properly, if the
 from script folder (fred2pdf/trunk):
 
 (There have to be two hyphens before stringparam.)
-$xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl enum/fred2pdf/trunk/examples/mojeid_validate.xml
+$xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl enum/fred2pdf/trunk/examples/mojeid_validate.xml
 
 <mojeid_valid>
         <request_date>17.1.2010</request_date>
@@ -28,10 +28,10 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 -->
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:import href="cznic_design.xsl"/>
 
 <xsl:output method="xml" encoding="utf-8" />
 
-<xsl:param name="srcpath" select="'templates/'" />
 <xsl:param name="lang" select="'cs'" />
 
 <xsl:variable name="loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"/>
@@ -53,16 +53,14 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
     <pageTemplate id="main">
       <pageGraphics>
     <!-- Page header -->
-        <image file="{$srcpath}cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
-        <stroke color="#bab198"/>
-
-        <lineMode width="0.2cm"/>
-        <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
+        <translate dx="15.5"/>
+        <xsl:call-template name="mojeid_logotype_color"/>
+        <translate dx="-15.5"/>
         <lineMode width="1"/>
-        <fill color="#a8986d"/>
+        <fill color="#003893"/>
         <setFont name="FreeSansBold" size="12"/>
 
-        <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
+        <drawString x="2.4cm" y="23.4cm" color="#003893"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
         <!-- TODO - this can gain more space, increase height of the frame -->
@@ -85,6 +83,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
         <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
 
+        <xsl:call-template name="footer"/>
       </pageGraphics>
     </pageTemplate>
 

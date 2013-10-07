@@ -6,8 +6,11 @@ echo Create folder $DEST
 mkdir $DEST
 
 
-echo create file $DEST/advance_invoice.pdf
-xsltproc templates/advance_invoice.xsl examples/advance_invoice.xml | ./fred-doc2pdf > $DEST/advance_invoice.pdf
+echo create file $DEST/advance_invoice_cs.pdf
+xsltproc --stringparam lang cs templates/advance_invoice.xsl examples/advance_invoice.xml | ./fred-doc2pdf > $DEST/advance_invoice_cs.pdf
+
+echo create file $DEST/advance_invoice_en.pdf
+xsltproc --stringparam lang en templates/advance_invoice.xsl examples/advance_invoice.xml | ./fred-doc2pdf > $DEST/advance_invoice_en.pdf
 
 echo create file $DEST/auth_info.pdf
 xsltproc templates/auth_info.xsl examples/auth_info.xml | ./fred-doc2pdf > $DEST/auth_info.pdf

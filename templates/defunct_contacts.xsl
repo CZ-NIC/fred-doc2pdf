@@ -8,7 +8,6 @@
   <xsl:output method="xml" encoding="utf-8"/>
   <xsl:include href="shared_templates.xsl"/>
   <xsl:param name="lang" select="'cs'"/>
-  <xsl:param name="srcpath" select="'templates/'" />
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <!-- root template for rml document generation -->
   <xsl:template match="contacts">

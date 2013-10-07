@@ -2,15 +2,22 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
-<!-- 
+<!--
 Usage:
-$ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpath/templates/advance_invoice.xsl yourpath/examples/advance_invoice.xml
--->
-<xsl:stylesheet version="1.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+xsltproc [params] template.xsl data.xml > document.rml
+xsltproc [params] template.xsl data.xml | fred-doc2pdf > document.pdf
+
+Example:
+
+xsltproc \
+    -⁣-stringparam lang en \
+        yourpath/templates/advance_invoice.xsl \
+        yourpath/examples/advance_invoice.xml
+-->
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:import href="cznic_design.xsl"/>
 <xsl:output method="xml" encoding="utf-8" />
-<xsl:param name="srcpath" select="'templates/'" />
 <xsl:param name="lang" select="'cs'" />
 <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
@@ -32,12 +39,10 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
   >
     <pageTemplate id="first">
       <pageGraphics>
-        <fill color="#035e79" />
-        <rect x="0" y="26.4cm" width="21cm" height="3.3cm" fill="yes" stroke="no" />
-
-        <image file="{$srcpath}white-balls.png" x="10cm" y="26.8cm" width="2cm"/>
-
-        <fill color="white" />
+        <translate dx="-11"/><!-- Align CZ.NIC logo to the left side same as the main text -->
+        <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+        <translate dx="11"/>
+        <fill color="#003893" />
         <setFont name="FreeSans" size="14"/>
         <drawRightString x="19.3cm" y="27.9cm">
             <xsl:choose>
@@ -51,7 +56,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         </drawRightString>
         <drawRightString x="19.3cm" y="27cm"><xsl:value-of select="$loc/str[@name='No']"/>. <xsl:value-of select="payment/invoice_number"/></drawRightString>
 
-        <stroke color="#035e79"/>
+        <stroke color="#003893"/>
         <lineMode width="0.1cm"/>
         <lines>0.9cm 25.55cm 1.4cm 25.55cm</lines>
         <lines>0.9cm  20.5cm 1.4cm  20.5cm</lines>
@@ -117,27 +122,12 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
         <lineMode width="0.5"/>
         <lines>1.6cm 16.1cm 19.3cm 16.1cm</lines>
         
-        <frame id="delivery" x1="1.36cm" y1="3.6cm" width="18.2cm" height="12.4cm" showBoundary="0" />
+        <frame id="delivery" x1="1.36cm" y1="4.4cm" width="18.2cm" height="11.6cm" showBoundary="0" />
 
-        <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="1.3cm" y="0.8cm" width="4.2cm"/>
-        <stroke color="#C4C9CD"/>
-        <lineMode width="0.01cm"/>
-        <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
-        <lines>11.4cm 1.3cm 11.4cm 0.5cm</lines>
-        <lines>14.6cm 1.3cm 14.6cm 0.5cm</lines>
-        <lines>17.6cm 1.3cm 17.6cm 0.5cm</lines>
-        <lineMode width="1"/>
-        <fill color="#ACB2B9"/>
-        <setFont name="FreeSans" size="7"/>
-        <drawString x="7.3cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
-        <drawString x="7.3cm" y="0.8cm"><xsl:value-of select="supplier/address/street"/>, <xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
-        <drawString x="7.3cm" y="0.5cm"><xsl:value-of select="$loc/str[@name='Czech Republic']"/></drawString>
-        <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/>&SPACE;<xsl:value-of select="supplier/phone"/></drawString>
-        <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/>&SPACE;<xsl:value-of select="supplier/fax"/></drawString>
-        <drawString x="14.8cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='IC']"/>&SPACE;<xsl:value-of select="supplier/ico"/></drawString>
-        <drawString x="14.8cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='DIC']"/>&SPACE;<xsl:value-of select="supplier/vat_number"/></drawString>
-        <drawString x="17.8cm" y="1.1cm"><xsl:value-of select="supplier/email"/></drawString>
-        <drawString x="17.8cm" y="0.8cm"><xsl:value-of select="supplier/url"/></drawString>
+        <translate dx="-11"/><!-- Align footer text to the left side same as the main text -->
+        <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+        <translate dx="11"/>
+        <xsl:call-template name="footer"/>
       </pageGraphics>
     </pageTemplate>
 
@@ -169,7 +159,7 @@ $ xsltproc -stringparam srcpath yourpath/templates/ -stringparam lang en yourpat
 <spacer length="0.4cm"/>
 
 <illustration width="0.5cm" height="1">
-        <stroke color="#035e79"/>
+        <stroke color="#003893"/>
         <lineMode width="0.1cm"/>
         <lines>-0.67cm -0.24cm -0.17cm -0.24cm</lines>
 </illustration>

@@ -47,7 +47,7 @@
   <xsl:variable name="lang01" select="'cs'"/>
   <xsl:variable name="lang02" select="'en'"/>
   <xsl:param name="lang" select="$lang01"/>
-  <xsl:param name="srcpath" select="'templates/'" />
+
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <xsl:variable name="mojeid_loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"></xsl:variable>
 

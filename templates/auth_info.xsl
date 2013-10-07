@@ -13,9 +13,10 @@ together with this template. It is neccesity to set up path properly, if the tem
 from script folder (fred2pdf/trunk):
 
 (There have to be two hyphens before stringparam.)
-$xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
+$xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:import href="cznic_design.xsl"/>
 
 <xsl:output method="xml" encoding="utf-8" />
 
@@ -30,10 +31,8 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
     </xsl:choose>
 </xsl:template>
 
-<xsl:param name="srcpath" select="'templates/'" />
 <xsl:param name="lang" select="'cs'" />
 <xsl:variable name="loc" select="document(concat('auth_info_', $lang, '.xml'))/strings"/>
-
 
 <xsl:template match="/enum_whois/auth_info">
 
@@ -50,26 +49,24 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
     <pageTemplate id="main">
       <pageGraphics>
     <!-- Page header -->
-        <image file="{$srcpath}cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
-        <stroke color="#bab198"/>
-        <lineMode width="0.2cm"/>
-        <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
+        <translate dx="13.6"/><!-- Align CZ.NIC logo to the left side same as the main text -->
+        <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+        <translate dx="-13.6"/>
         <lineMode width="1"/>
-        <fill color="#a8986d"/>
+        <fill color="#003893"/>
         <setFont name="FreeSansBold" size="12"/>
-        <drawString x="2.5cm" y="23.4cm" color="#a8986d"><xsl:value-of select="$loc/str[@name='Confirmation of Request for password']"/></drawString>
+        <drawString x="2.5cm" y="23.4cm" color="#003893"><xsl:value-of select="$loc/str[@name='Confirmation of Request for password']"/></drawString>
         <fill color="black"/>
 
        <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
 
     <!-- Page footer -->
-        <stroke color="#c0c0c0"/>
-        <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
-
+        <stroke color="#003893"/>
         <setFont name="FreeSans" size="8"/>
+        <drawString x="2.5cm" y="9.4cm"><xsl:value-of select="$loc/str[@name='Signatories whose name is not listed in the Central registry of domain names must attach']"/></drawString>
+        <drawString x="2.5cm" y="9cm"><xsl:value-of select="$loc/str[@name='an original or a notarized copy of a document authorizing them to perform the relevant request.']"/></drawString>
+        <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
         <drawString x="2.5cm" y="8cm"><xsl:value-of select="$loc/str[@name='Please print this request sign it (a notarized signature required) and send the signed original to the following address:']"/></drawString>
-        <drawString x="2.5cm" y="2.2cm"><xsl:value-of select="$loc/str[@name='Signatories whose name is not listed in the Central registry of domain names must attach']"/></drawString>
-        <drawString x="2.5cm" y="1.8cm"><xsl:value-of select="$loc/str[@name='an original or a notarized copy of a document authorizing them to perform the relevant request.']"/></drawString>
 
         <setFont name="FreeSansBold" size="12"/>
         <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
@@ -84,6 +81,7 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
         <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
         <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
 
+        <xsl:call-template name="footer"/>
       </pageGraphics>
     </pageTemplate>
 

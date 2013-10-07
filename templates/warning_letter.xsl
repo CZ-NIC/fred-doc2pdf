@@ -52,7 +52,7 @@
   <xsl:variable name="lang01" select="'cs'"/>
   <xsl:variable name="lang02" select="'en'"/>
   <xsl:param name="lang" select="$lang01"/>
-  <xsl:param name="srcpath" select="'templates/'" />
+
   <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
   <xsl:param name="listlimit" select="2"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
@@ -77,33 +77,16 @@
        
         <pageTemplate id="domainList">
            <pageGraphics>
-            <!-- TODO eliminate showBoundary -->
+            <translate dx="-4"/>
+            <xsl:call-template name="small_logotype"/>
+            <translate dx="4"/>
+
             <frame id="main" x1="2.1cm" y1="4.5cm" width="18.0cm" height="21.1cm" showBoundary="0"/>
-            <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
-            <stroke color="#C4C9CD"/>
-            <lineMode width="0.01cm"/>
-            <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
-            <lines>11.4cm 1.3cm 11.4cm 0.5cm</lines>
-            <lines>14.6cm 1.3cm 14.6cm 0.5cm</lines>
-            <lines>17.9cm 1.3cm 17.9cm 0.5cm</lines>
-            <lineMode width="1"/>
-            <fill color="#ACB2B9"/>
-            <setFont name="FreeSans" size="7"/>
-            <drawString x="7.3cm" y="1.1cm">
-              <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/>
-            </drawString>
-            <drawString x="7.3cm" y="0.8cm">
-              <xsl:value-of select="$loc/str[@name='Americka 23, 120 00 Prague 2']"/>
-            </drawString>
-            <drawString x="7.3cm" y="0.5cm">
-              <xsl:value-of select="$loc/str[@name='Czech Republic']"/>
-            </drawString>
-            <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
-            <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/> +420 222 745 112</drawString>
-            <drawString x="14.8cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='IC']"/> 67985726</drawString>
-            <drawString x="14.8cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='DIC']"/> CZ67986726</drawString>
-            <drawString x="18.1cm" y="1.1cm">kontakt@nic.cz</drawString>
-            <drawString x="18.1cm" y="0.8cm">www.nic.cz</drawString>
+
+            <translate dx="-6"/>
+            <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+            <translate dx="6"/>
+            <xsl:call-template name="footer"/>
           </pageGraphics>
         </pageTemplate>
       </template>
