@@ -44,3 +44,9 @@ xsltproc templates/warning_letter.xsl examples/warning_letter1.xml | ./fred-doc2
 
 echo create file $DEST/warning_letter2.pdf
 xsltproc templates/warning_letter.xsl examples/warning_letter2.xml | ./fred-doc2pdf > $DEST/warning_letter2.pdf
+
+echo create file $DEST/notice_to_correct_data.pdf
+xsltproc templates/notice_to_correct_data.xsl examples/notice_to_correct_data.xml | ./fred-doc2pdf > $DEST/notice_to_correct_data.pdf
+
+echo create file $DEST/confirm_correction.pdf
+xsltproc templates/confirm_correction.xsl examples/notice_to_correct_data.xml | ./fred-doc2pdf > $DEST/confirm_correction.pdf

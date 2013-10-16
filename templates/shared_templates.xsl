@@ -96,6 +96,11 @@
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
+
+        <xsl:if test="@id">
+            <barCode x="10.61cm" y="25cm" width="6cm" code="Standard93"><xsl:value-of select="@id"/></barCode>
+        </xsl:if>
+
         <frame id="address" x1="11.5cm" y1="21cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <translate dx="9"/>
@@ -108,6 +113,8 @@
 
   <!-- default code to fill the address frame, depends on some paraStyle elements defined in document -->
   <xsl:template name="fillAddress">
+    <xsl:param name="recomandee" select="'no'"/>
+
     <para style="address-name">
         <xsl:call-template name="trim_with_dots">
             <xsl:with-param name="string" select="name"/>
@@ -134,6 +141,8 @@
             </para>
         </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="$recomandee = 'yes'"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
 
     <nextFrame/>
   </xsl:template>

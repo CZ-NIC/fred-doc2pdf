@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+]>
 <strings>
 
 <!-- advanced invoice -->
@@ -153,5 +156,20 @@
 <str name="telephone">Phone: </str>
 <str name="fax">Fax: </str>
 <str name="Last update">Last update: </str>
+
+<str name="Contact id">Contact id</str>
+<str name="notice to correct data">notice to correct data</str>
+<str name="notice_correct01">The CZ.NIC Association, the manager of the TLD .cz domain, received an notification about incorrect  data in the contact id</str>
+<str name="notice_correct02">.</str>
+<str name="notice_correct03">Because this situation is not consistent to the Rules of Domain Names Registration under ccTLD .cz, we would like to ask for you to either</str>
+<str name="notice_correct04">correct or provide the evidence of the correctness of the above-mentioned data</str>
+<str name="notice_correct05">within 15 days of receiving this notice, but till</str>
+<str name="notice_correct06">&SPACE; at the latest, if the notice send by mail will not be delivered due any reason.</str>
+<str name="notice_correct07">In the event that you do not do this, the CZ.NIC Association may use its rights pursuant to the Article 12.2.1. of the Rule sof Domain Names Registration under ccTLD .cz and</str>
+<str name="notice_correct08">cancel the registration of all domain names, where this contact is used as domain holder.</str>
+
+<str name="data correction">data correction</str>
+<str name="confirm_correction01">We confirm the change in the contact above. Registration of domain names, for which the contact id</str>
+<str name="confirm_correction02">is listed as the holder, remains unchanged.</str>
 
 </strings>
