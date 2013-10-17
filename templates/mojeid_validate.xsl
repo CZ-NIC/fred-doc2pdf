@@ -54,7 +54,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
       <pageGraphics>
     <!-- Page header -->
         <translate dx="15.5"/>
-        <xsl:call-template name="mojeid_logotype_color"/>
+        <xsl:call-template name="mojeid_logotype_gray"/>
         <translate dx="-15.5"/>
         <lineMode width="1"/>
         <fill color="black"/>

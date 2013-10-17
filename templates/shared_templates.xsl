@@ -39,17 +39,17 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <xsl:call-template name="mojeid_logotype_color"/>
+        <xsl:call-template name="mojeid_logotype_gray"/>
         <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="1.6cm" y1="5.7cm" width="18cm" height="18.2cm" showBoundary="0"/>
 
         <stroke color="black"/>
         <fill color="#000000"/>
         <setFont name="FreeSans" size="8"/>
-        <drawString x="1.8cm" y="5.3cm">
+        <drawString x="1.8cm" y="3.3cm">
           <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
         </drawString>
-        <drawString x="1.8cm" y="4.9cm">
+        <drawString x="1.8cm" y="2.9cm">
           <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
         </drawString>
 
