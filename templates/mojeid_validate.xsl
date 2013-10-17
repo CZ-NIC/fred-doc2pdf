@@ -57,7 +57,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <xsl:call-template name="mojeid_logotype_color"/>
         <translate dx="-15.5"/>
         <lineMode width="1"/>
-        <fill color="#003893"/>
+        <fill color="black"/>
         <setFont name="FreeSansBold" size="12"/>
 
         <drawString x="2.4cm" y="23.4cm" color="#003893"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
@@ -83,7 +83,6 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
         <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
 
-        <xsl:call-template name="footer"/>
       </pageGraphics>
     </pageTemplate>
 

@@ -53,10 +53,6 @@
           <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
         </drawString>
 
-        <translate dx="-6"/>
-        <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
-        <translate dx="6"/>
-        <xsl:call-template name="footer"/>
       </pageGraphics>
     </pageTemplate>
   </xsl:template>
