@@ -34,7 +34,8 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 
 <xsl:param name="lang" select="'cs'" />
 
-<xsl:variable name="loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"/>
+<xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
+<xsl:variable name="mojeid_loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"></xsl:variable>
 
 
 <xsl:template match="/mojeid_valid">
@@ -46,7 +47,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 <document>
 
 <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
-    title="{$loc/str[@name='ZadostOValidaciKontaktu']}"
+    title="{$mojeid_loc/str[@name='ZadostOValidaciKontaktu']}"
   author="CZ.NIC"
   >
 
@@ -60,7 +61,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <fill color="black"/>
         <setFont name="FreeSansBold" size="12"/>
 
-        <drawString x="2.4cm" y="23.4cm" color="#003893"><xsl:value-of select="$loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
+        <drawString x="2.4cm" y="23.4cm" color="#003893"><xsl:value-of select="$mojeid_loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
         <!-- TODO - this can gain more space, increase height of the frame -->
@@ -74,7 +75,17 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
         <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
         <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
-      
+
+        <stroke color="black"/>
+        <fill color="#000000"/>
+        <setFont name="FreeSans" size="8"/>
+        <drawString x="1.8cm" y="1.4cm">
+          <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
+        </drawString>
+        <drawString x="1.8cm" y="1cm">
+          <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
+        </drawString>
+
     <!-- Folder marks -->
         <stroke color="black"/>
         <lines>0.5cm 10.2cm 1cm 10.2cm</lines>
@@ -99,7 +110,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 
 <spacer length="0.6cm"/>
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='ZadamTimtoO']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='ZadamTimtoO']"/>
 </para>
 
 <spacer length="0.3cm"/>
@@ -107,7 +118,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 <para style="main">
  <xsl:choose>
      <xsl:when test="string(handle)">
-        <xsl:value-of select="$loc/str[@name='00Handle']"/>
+        <xsl:value-of select="$mojeid_loc/str[@name='00Handle']"/>
         &SPACE;<xsl:value-of select="handle"/>
      </xsl:when>
      <xsl:otherwise>
@@ -116,14 +127,14 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 </para>
 
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='01Jmeno']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='01Jmeno']"/>
  &SPACE;<xsl:value-of select="name"/>
 </para> 
 
 <para style="main">
  <xsl:choose>
      <xsl:when test="string(organization)">  
-         <xsl:value-of select="$loc/str[@name='02Org']"/>
+         <xsl:value-of select="$mojeid_loc/str[@name='02Org']"/>
          &SPACE;<xsl:value-of select="organization"/>
      </xsl:when>
      <xsl:otherwise>
@@ -134,7 +145,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 <para style="main">
  <xsl:choose> 
      <xsl:when test="string(ic)">  
-        <xsl:value-of select="$loc/str[@name='03Ic']"/>
+        <xsl:value-of select="$mojeid_loc/str[@name='03Ic']"/>
         &SPACE;<xsl:value-of select="ic"/>
      </xsl:when>
      <xsl:otherwise>
@@ -145,7 +156,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
  <para style="main">
   <xsl:choose>
       <xsl:when test="string(birth_date)">
-         <xsl:value-of select="$loc/str[@name='04BirthDate']"/>
+         <xsl:value-of select="$mojeid_loc/str[@name='04BirthDate']"/>
          &SPACE;<xsl:value-of select="birth_date"/>
       </xsl:when>
       <xsl:otherwise>
@@ -155,7 +166,7 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
  <para style="main">
   <xsl:choose>
       <xsl:when test="string(address)">
-         <xsl:value-of select="$loc/str[@name='05Address']"/>
+         <xsl:value-of select="$mojeid_loc/str[@name='05Address']"/>
          &SPACE;<xsl:value-of select="address"/>
       </xsl:when>
       <xsl:otherwise>
@@ -165,42 +176,42 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 
 <spacer length="0.6cm"/>
 <para style="main">
-     <xsl:value-of select="$loc/str[@name='IdentifikacniCisloZadosti']"/> 
+     <xsl:value-of select="$mojeid_loc/str[@name='IdentifikacniCisloZadosti']"/>
     <xsl:value-of select="request_id"/>
 
-     <xsl:value-of select="$loc/str[@name='zeDne']"/>
+     <xsl:value-of select="$mojeid_loc/str[@name='zeDne']"/>
     <xsl:value-of select="request_date"/>. 
 </para>
 
 <!-- description.... -->
 <spacer length="0.3cm"/>
 <para style="bold">
-    <xsl:value-of select="$loc/str[@name='ValidaciProvedte']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidaciProvedte']"/>
 </para>
 
 <spacer length="0.3cm"/>
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature1']"/>
-    <b><xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature2']"/></b>
-    <xsl:value-of select="$loc/str[@name='ValidateVerifiedSignature3']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature1']"/>
+    <b><xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature2']"/></b>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature3']"/>
 </para>
 <spacer length="0.3cm"/>
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='ValidateEmail']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidateEmail']"/>
 </para>
 <spacer length="0.3cm"/>
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='ValidateInPerson']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidateInPerson']"/>
 </para>
 <spacer length="0.3cm"/>
 <para style="main">
-    <b><xsl:value-of select="$loc/str[@name='ValOfficeHoursNotice']"/></b>
-    <xsl:value-of select="$loc/str[@name='ValOfficeHours']"/>
+    <b><xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHoursNotice']"/></b>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHours']"/>
 </para>
 
 <spacer length="0.6cm"/>
 <para style="main">
-    <xsl:value-of select="$loc/str[@name='JmenoApodpis']"/>
+    <xsl:value-of select="$mojeid_loc/str[@name='JmenoApodpis']"/>
 </para>
 <spacer length="1.0cm"/>
 <para style="main">
