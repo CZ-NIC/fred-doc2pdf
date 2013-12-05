@@ -175,7 +175,7 @@
     
     <para style="main">www.nic.cz</para>
     <para style="main">+420 222 745 111</para>
-    <para style="main">podpora@nic.cz</para>
+    <para style="main">kontakt@nic.cz</para>
 
   </xsl:template>
 

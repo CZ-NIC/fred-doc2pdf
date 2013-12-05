@@ -925,7 +925,7 @@
     <drawString x="11.3cm" y="4cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
     <drawString x="11.3cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='F']"/> +420 222 745 112</drawString>
 
-    <drawString x="15.3cm" y="4cm">podpora@nic.cz</drawString>
+    <drawString x="15.3cm" y="4cm">kontakt@nic.cz</drawString>
     <drawString x="15.3cm" y="3.6cm">www.nic.cz</drawString>
 
 </xsl:template>
