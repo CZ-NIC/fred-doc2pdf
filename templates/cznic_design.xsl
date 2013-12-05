@@ -910,7 +910,7 @@
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
-    <fill color="#1c4f9c"/>
+    <fill color="#003893"/>
 
     <setFont name="FreeSansBold" size="8"/>
     <drawString x="2cm" y="4cm">CZ.NIC,</drawString>
@@ -1360,220 +1360,220 @@
 
 
 <xsl:template name="footer">
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="19.790833" id="ball-00-00" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="38.319223" id="ball-00-01" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="56.847613" id="ball-00-02" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="75.376003" id="ball-00-03" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="93.904393" id="ball-00-04" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.4333" y="75.626244" x="112.432783" id="ball-00-05" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="130.961172" id="ball-00-06" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="149.489562" id="ball-00-07" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="168.017952" id="ball-00-08" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="186.546342" id="ball-00-09" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="205.074732" id="ball-00-10" fill="yes"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="223.603121" id="ball-00-11" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="242.131511" id="ball-00-12" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="260.659901" id="ball-00-13" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="279.188291" id="ball-00-14" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="297.716681" id="ball-00-15" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="316.245070" id="ball-00-16" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="334.773460" id="ball-00-17" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="353.301850" id="ball-00-18" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="371.830240" id="ball-00-19" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="390.358630" id="ball-00-20" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="408.887020" id="ball-00-21" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="427.415409" id="ball-00-22" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.2833" y="75.626244" x="445.943799" id="ball-00-23" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="464.472189" id="ball-00-24" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="483.000579" id="ball-00-25" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="75.626244" x="501.528969" id="ball-00-26" fill="yes"/>
 <circle stroke="no" radius="1.6667" y="75.626244" x="520.057358" id="ball-00-27" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="538.585748" id="ball-00-28" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="557.114138" id="ball-00-29" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="75.626244" x="575.642528" id="ball-00-30" fill="yes"/>
 <circle stroke="no" radius="2.4333" y="57.097854" x="19.790833" id="ball-01-00" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="38.319223" id="ball-01-01" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="56.847613" id="ball-01-02" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="75.376003" id="ball-01-03" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="57.097854" x="93.904393" id="ball-01-04" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="112.432783" id="ball-01-05" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="130.961172" id="ball-01-06" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="149.489562" id="ball-01-07" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.2833" y="57.097854" x="168.017952" id="ball-01-08" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="186.546342" id="ball-01-09" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="205.074732" id="ball-01-10" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="223.603121" id="ball-01-11" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="57.097854" x="242.131511" id="ball-01-12" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="260.659901" id="ball-01-13" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="279.188291" id="ball-01-14" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="297.716681" id="ball-01-15" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.2833" y="57.097854" x="316.245070" id="ball-01-16" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="334.773460" id="ball-01-17" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="353.301850" id="ball-01-18" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="371.830240" id="ball-01-19" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.4333" y="57.097854" x="390.358630" id="ball-01-20" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="408.887020" id="ball-01-21" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="57.097854" x="427.415409" id="ball-01-22" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="445.943799" id="ball-01-23" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="464.472189" id="ball-01-24" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="483.000579" id="ball-01-25" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="57.097854" x="501.528969" id="ball-01-26" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="520.057358" id="ball-01-27" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="538.585748" id="ball-01-28" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="57.097854" x="557.114138" id="ball-01-29" fill="yes"/>
 <circle stroke="no" radius="1.6667" y="57.097854" x="575.642528" id="ball-01-30" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="19.790833" id="ball-02-00" fill="yes"/>
 <circle stroke="no" radius="2.4333" y="38.569464" x="38.319223" id="ball-02-01" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="56.847613" id="ball-02-02" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="75.376003" id="ball-02-03" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="93.904393" id="ball-02-04" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="112.432783" id="ball-02-05" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="130.961172" id="ball-02-06" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="149.489562" id="ball-02-07" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="168.017952" id="ball-02-08" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="186.546342" id="ball-02-09" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="205.074732" id="ball-02-10" fill="yes"/>
 <circle stroke="no" radius="2.4333" y="38.569464" x="223.603121" id="ball-02-11" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="242.131511" id="ball-02-12" fill="yes"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="260.659901" id="ball-02-13" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="279.188291" id="ball-02-14" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.4333" y="38.569464" x="297.716681" id="ball-02-15" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="316.245070" id="ball-02-16" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="334.773460" id="ball-02-17" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="353.301850" id="ball-02-18" fill="yes"/>
 <circle stroke="no" radius="1.2833" y="38.569464" x="371.830240" id="ball-02-19" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="390.358630" id="ball-02-20" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="408.887020" id="ball-02-21" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="427.415409" id="ball-02-22" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="445.943799" id="ball-02-23" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="464.472189" id="ball-02-24" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="483.000579" id="ball-02-25" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="38.569464" x="501.528969" id="ball-02-26" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="38.569464" x="520.057358" id="ball-02-27" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="538.585748" id="ball-02-28" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.4333" y="38.569464" x="557.114138" id="ball-02-29" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="38.569464" x="575.642528" id="ball-02-30" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="19.790833" id="ball-03-00" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="38.319223" id="ball-03-01" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="20.041074" x="56.847613" id="ball-03-02" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="75.376003" id="ball-03-03" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.4333" y="20.041074" x="93.904393" id="ball-03-04" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="112.432783" id="ball-03-05" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="130.961172" id="ball-03-06" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="149.489562" id="ball-03-07" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="20.041074" x="168.017952" id="ball-03-08" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="186.546342" id="ball-03-09" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="205.074732" id="ball-03-10" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="223.603121" id="ball-03-11" fill="yes"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="242.131511" id="ball-03-12" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="260.659901" id="ball-03-13" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="279.188291" id="ball-03-14" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="297.716681" id="ball-03-15" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="316.245070" id="ball-03-16" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="334.773460" id="ball-03-17" fill="yes"/>
 <circle stroke="no" radius="1.6667" y="20.041074" x="353.301850" id="ball-03-18" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="371.830240" id="ball-03-19" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="1.6667" y="20.041074" x="390.358630" id="ball-03-20" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="408.887020" id="ball-03-21" fill="yes"/>
 <circle stroke="no" radius="1.2833" y="20.041074" x="427.415409" id="ball-03-22" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="445.943799" id="ball-03-23" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="1.2833" y="20.041074" x="464.472189" id="ball-03-24" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="483.000579" id="ball-03-25" fill="yes"/>
 <circle stroke="no" radius="2.4333" y="20.041074" x="501.528969" id="ball-03-26" fill="yes"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="520.057358" id="ball-03-27" fill="yes"/>
-<fill color="#dd1634"/>
+<fill color="#CE1126"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="538.585748" id="ball-03-28" fill="yes"/>
-<fill color="#1c4f9c"/>
+<fill color="#003893"/>
 <circle stroke="no" radius="2.8167" y="20.041074" x="557.114138" id="ball-03-29" fill="yes"/>
-<fill color="#55c5f2"/>
+<fill color="#3DB7E4"/>
 <circle stroke="no" radius="2.0500" y="20.041074" x="575.642528" id="ball-03-30" fill="yes"/>
 </xsl:template>
 
