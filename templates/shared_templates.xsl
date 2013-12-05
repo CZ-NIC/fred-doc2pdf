@@ -92,10 +92,11 @@
       </xsl:attribute>
       <pageGraphics>
         <setFont name="FreeSans" size="12"/>
+
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
-        <frame id="address" x1="11.5cm" y1="22.9cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
+        <frame id="address" x1="11.5cm" y1="21cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <translate dx="9"/>
         <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>

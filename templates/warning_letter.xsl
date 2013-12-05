@@ -77,12 +77,16 @@
        
         <pageTemplate id="domainList">
            <pageGraphics>
-            <xsl:call-template name="cznic_logo_cs_70perc"/>
-            <frame id="main" x1="2.1cm" y1="4.5cm" width="18.0cm" height="21.1cm" showBoundary="0"/>
 
-            <translate dx="-6"/>
+            <translate dx="9.2"/>
+            <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="'cs'"/></xsl:call-template>
+            <translate dx="-9.2"/>
+
+            <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="21.1cm" showBoundary="0"/>
+
+            <translate dx="10"/>
             <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
-            <translate dx="6"/>
+            <translate dx="-10"/>
             <xsl:call-template name="footer"/>
           </pageGraphics>
         </pageTemplate>
@@ -182,7 +186,7 @@
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
     <para style="main"><b><xsl:value-of select="$loc/str[@name='Subject: Extension of registration of']"/></b></para>
-    <spacer length="0.5cm"/>
+    <spacer length="0.2cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>
     <para style="main">
@@ -229,11 +233,11 @@
   <!-- a table with list of expired domains -->
     <xsl:template name="domainsTable">
 
-        <blockTable repeatRows="1" colWidths="8cm,4.5cm,6cm" style="domainListTable">
+        <blockTable repeatRows="1" colWidths="6cm,4.5cm,5.8cm" style="domainListTable">
            <tr>
-               <td> <para style="tableHead"> Domain / Doména </para> </td> 
-               <td> <para style="tableHead"> Registrar / Registrátor </para></td> 
-               <td> <para style="tableHead"> Registrar web / Web registrátora </para> </td>
+               <td><para style="tableHead">Domain / Doména</para></td>
+               <td><para style="tableHead">Registrar / Registrátor</para></td>
+               <td><para style="tableHead">Registrar web / Web registrátora</para></td>
            </tr>
 
            <xsl:for-each select="expiring_domain"> 
@@ -249,15 +253,6 @@
                             </xsl:otherwise>
                         </xsl:choose>
                       </para>
-                        
-
-
-                        <!--
-                        <xsl:call-template name="trim_with_dots">
-                            <xsl:with-param name="string" select="domain"/>
-                            <xsl:with-param name="max_length" select="38"/>
-                        </xsl:call-template>
-                        -->
                     </td>
                     <td> 
                         <para style="tableItem">
