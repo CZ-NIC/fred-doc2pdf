@@ -911,9 +911,12 @@
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
     <fill color="#1c4f9c"/>
-    <setFont name="FreeSans" size="8"/>
 
-    <drawString x="2cm" y="4cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
+    <setFont name="FreeSansBold" size="8"/>
+    <drawString x="2cm" y="4cm">CZ.NIC,</drawString>
+    <setFont name="FreeSans" size="8"/>
+    <drawString x="3.12cm" y="4cm">z. s. p. o.</drawString>
+
     <drawString x="2cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='Americka 23, 120 00 Prague 2']"/></drawString>
 
     <drawString x="7.3cm" y="4cm"><xsl:value-of select="$loc/str[@name='IC']"/> 67985726</drawString>
