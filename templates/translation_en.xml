@@ -72,7 +72,7 @@
 <str name="Municipal Prague cap.city, no ZS/30/3/98">associations of the Municipal Council of Prague</str> 
 <str name="Vat voucher">Tax document</str>
 
-<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
+<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
 <str name="at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.">at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.</str>
 
 <!-- extension of registration -->
@@ -80,8 +80,8 @@
 <str name="Czech Republic">Czech Republic</str>
 <str name="T">T</str>
 <str name="F">F</str>
-<str name="IC">IC</str>
-<str name="DIC">DIC</str>
+<str name="IC">IČ</str>
+<str name="DIC">DIČ</str>
 <str name="Prague">Prague</str>
 <str name="Subject: Extension of registration of">Subject: Prolonging the registration of .cz domain names</str>
 <str name="domain(subject)">domain</str>
