@@ -77,10 +77,7 @@
        
         <pageTemplate id="domainList">
            <pageGraphics>
-            <translate dx="-4"/>
-            <xsl:call-template name="small_logotype"/>
-            <translate dx="4"/>
-
+            <xsl:call-template name="cznic_logo_cs_70perc"/>
             <frame id="main" x1="2.1cm" y1="4.5cm" width="18.0cm" height="21.1cm" showBoundary="0"/>
 
             <translate dx="-6"/>

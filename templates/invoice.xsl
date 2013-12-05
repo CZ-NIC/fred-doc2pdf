@@ -128,6 +128,11 @@ $ xsltproc yourpath/templates/ -stringparam lang en yourpath/templates/invoice.x
 
     <pageTemplate id="appendix">
       <pageGraphics>
+
+        <translate dx="-12" dy="4" />
+        <xsl:call-template name="cznic_logo_cs_70perc"/>
+        <translate dx="12" dy="-4" />
+
         <fill color="#003893" />
         <setFont name="FreeSans" size="9"/>
         <drawString x="1.6cm" y="27cm"><xsl:value-of select="$loc/str[@name='Sheet']"/>: <pageNumber/></drawString>
