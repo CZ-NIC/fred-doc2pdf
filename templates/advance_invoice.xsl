@@ -87,7 +87,7 @@ xsltproc \
         <drawString x="1.6cm" y="21.7cm"><xsl:value-of select="client/address/zip"/>&SPACE;<xsl:value-of select="client/address/city"/></drawString>
 
         <drawString x="1.6cm" y="20.8cm"><xsl:value-of select="$loc/str[@name='Supplier']"/>:</drawString>
-        <drawString x="1.6cm" y="20.4cm"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></drawString>
+        <drawString x="1.6cm" y="20.4cm">CZ.NIC, z. s. p. o.</drawString>
         <drawString x="1.6cm" y="20cm"><xsl:value-of select="supplier/address/street"/></drawString>
         <drawString x="1.6cm" y="19.6cm"><xsl:value-of select="supplier/address/zip"/>&SPACE;<xsl:value-of select="supplier/address/city"/></drawString>
 

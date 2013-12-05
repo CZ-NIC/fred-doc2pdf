@@ -164,7 +164,7 @@
   <spacer length="0.6cm"/>
     
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
+    <para style="main">CZ.NIC, z. s. p. o.</para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/></para>
   <spacer length="1cm"/>

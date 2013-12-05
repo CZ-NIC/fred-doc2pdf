@@ -149,7 +149,6 @@
     </xsl:choose>    
 
      <xsl:choose>
-         <!-- <xsl:when test="registrar='CZ.NIC, z.s.p.o.'">.-->
              <xsl:when test="contains(registrar, 'CZ.NIC')">
 
                 <para style="main">
@@ -247,7 +246,7 @@
     </para>
 
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='The CZ.NIC z.s.p.o. company, an administrator...']"/>
+      <xsl:value-of select="$loc/str[@name='The CZ.NIC z. s. p. o. company, an administrator...']"/>
     </para>
 
     <para style="main">
@@ -271,7 +270,7 @@
     <spacer length="0.8cm"/>
     <para style="main">Ing. Martin Peterka</para>
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z.s.p.o.']"/>
+      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z. s. p. o.']"/>
     </para>
 
   </xsl:template>

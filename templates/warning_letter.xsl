@@ -222,7 +222,7 @@
         <xsl:value-of select="$loc/str[@name='Operations manager name']"/>
     </para>
     <para style="basic" spaceAfter="0.6cm">
-      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z.s.p.o.']"/>
+      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z. s. p. o.']"/>
     </para>
 
     <para style="main"><b><xsl:value-of select="$loc/str[@name='Attachment']"/></b></para>

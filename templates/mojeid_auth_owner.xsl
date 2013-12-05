@@ -181,7 +181,7 @@
       <b><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></b>
     </para>
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/><xsl:text>, </xsl:text>
+      CZ.NIC, z. s. p. o.<xsl:text>, </xsl:text>
       <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/><xsl:text>, </xsl:text>
       <xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/>
     </para>
