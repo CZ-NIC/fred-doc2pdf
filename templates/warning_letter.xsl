@@ -52,7 +52,7 @@
   <xsl:variable name="lang01" select="'cs'"/>
   <xsl:variable name="lang02" select="'en'"/>
   <xsl:param name="lang" select="$lang01"/>
-  <xsl:param name="srcpath" select="'templates/'" />
+
   <!-- this is very fragile and depends on whole formatting of the document - we must be sure that the table fits within the actual page, otherwise it has to be placed on the extra pages -->
   <xsl:param name="listlimit" select="2"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
@@ -77,44 +77,28 @@
        
         <pageTemplate id="domainList">
            <pageGraphics>
-            <!-- TODO eliminate showBoundary -->
-            <frame id="main" x1="2.1cm" y1="4.5cm" width="18.0cm" height="21.1cm" showBoundary="0"/>
-            <image file="{$srcpath}cz_nic_logo_{$lang}.png" x="2.1cm" y="0.8cm" width="4.2cm"/>
-            <stroke color="#C4C9CD"/>
-            <lineMode width="0.01cm"/>
-            <lines>7.1cm  1.3cm  7.1cm 0.5cm</lines>
-            <lines>11.4cm 1.3cm 11.4cm 0.5cm</lines>
-            <lines>14.6cm 1.3cm 14.6cm 0.5cm</lines>
-            <lines>17.9cm 1.3cm 17.9cm 0.5cm</lines>
-            <lineMode width="1"/>
-            <fill color="#ACB2B9"/>
-            <setFont name="Times-Roman" size="7"/>
-            <drawString x="7.3cm" y="1.1cm">
-              <xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/>
-            </drawString>
-            <drawString x="7.3cm" y="0.8cm">
-              <xsl:value-of select="$loc/str[@name='Americka 23, 120 00 Prague 2']"/>
-            </drawString>
-            <drawString x="7.3cm" y="0.5cm">
-              <xsl:value-of select="$loc/str[@name='Czech Republic']"/>
-            </drawString>
-            <drawString x="11.6cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
-            <drawString x="11.6cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='F']"/> +420 222 745 112</drawString>
-            <drawString x="14.8cm" y="1.1cm"><xsl:value-of select="$loc/str[@name='IC']"/> 67985726</drawString>
-            <drawString x="14.8cm" y="0.8cm"><xsl:value-of select="$loc/str[@name='DIC']"/> CZ67986726</drawString>
-            <drawString x="18.1cm" y="1.1cm">kontakt@nic.cz</drawString>
-            <drawString x="18.1cm" y="0.8cm">www.nic.cz</drawString>
+
+            <translate dx="9.2"/>
+            <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="'cs'"/></xsl:call-template>
+            <translate dx="-9.2"/>
+
+            <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="21.1cm" showBoundary="0"/>
+
+            <translate dx="10"/>
+            <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+            <translate dx="-10"/>
+            <xsl:call-template name="footer"/>
           </pageGraphics>
         </pageTemplate>
       </template>
 
       <stylesheet>
-        <paraStyle name="basic" fontName="Times-Roman" fontSize="10"/>
-        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="Times-Roman" fontSize="10"/>
-        <paraStyle name="address" fontSize="12" fontName="Times-Roman"/>
-        <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
+        <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="address" fontSize="12" fontName="FreeSans"/>
+        <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
         <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="7"/>
-        <paraStyle name="tableHead" leading="10" fontName="Times-Bold" fontSize="10"/>
+        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="10"/>
 
         <blockTableStyle id="domainListTable">
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
@@ -202,7 +186,7 @@
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
     <para style="main"><b><xsl:value-of select="$loc/str[@name='Subject: Extension of registration of']"/></b></para>
-    <spacer length="0.5cm"/>
+    <spacer length="0.2cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>
     <para style="main">
@@ -239,7 +223,7 @@
         <xsl:value-of select="$loc/str[@name='Operations manager name']"/>
     </para>
     <para style="basic" spaceAfter="0.6cm">
-      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z.s.p.o.']"/>
+      <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z. s. p. o.']"/>
     </para>
 
     <para style="main"><b><xsl:value-of select="$loc/str[@name='Attachment']"/></b></para>
@@ -249,11 +233,11 @@
   <!-- a table with list of expired domains -->
     <xsl:template name="domainsTable">
 
-        <blockTable repeatRows="1" colWidths="8cm,4.5cm,6cm" style="domainListTable">
+        <blockTable repeatRows="1" colWidths="6cm,4.5cm,5.8cm" style="domainListTable">
            <tr>
-               <td> <para style="tableHead"> Domain / Doména </para> </td> 
-               <td> <para style="tableHead"> Registrar / Registrátor </para></td> 
-               <td> <para style="tableHead"> Registrar web / Web registrátora </para> </td>
+               <td><para style="tableHead">Domain / Doména</para></td>
+               <td><para style="tableHead">Registrar / Registrátor</para></td>
+               <td><para style="tableHead">Registrar web / Web registrátora</para></td>
            </tr>
 
            <xsl:for-each select="expiring_domain"> 
@@ -269,15 +253,6 @@
                             </xsl:otherwise>
                         </xsl:choose>
                       </para>
-                        
-
-
-                        <!--
-                        <xsl:call-template name="trim_with_dots">
-                            <xsl:with-param name="string" select="domain"/>
-                            <xsl:with-param name="max_length" select="38"/>
-                        </xsl:call-template>
-                        -->
                     </td>
                     <td> 
                         <para style="tableItem">

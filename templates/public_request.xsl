@@ -14,13 +14,13 @@ together with this template. It is neccesity to set up path properly, if the tem
 from script folder (fred2pdf/trunk):
 
 (There have to be two hyphens before stringparam.)
-$xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
+$xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trunk/templates/auth_info.xsl enum/fred2pdf/trunk/examples/auth_info.xml
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:import href="cznic_design.xsl"/>
 
     <xsl:output method="xml" encoding="utf-8" />
 
-    <xsl:param name="srcpath" select="'templates/'" />
     <xsl:param name="lang" select="'en'" />
     
     <xsl:template name="getstr">
@@ -167,33 +167,34 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
             <pageGraphics>
 
                 <!-- Page header -->
-                <image file="{$srcpath}cz_nic_logo.jpg" x="2.3cm" y="25cm" width="4.5cm" />
-                <stroke color="#bab198"/>
-                <lineMode width="0.2cm"/>
-                <lines>2.5cm 24.4cm 18.5cm 24.4cm</lines>
+                <translate dx="13.6"/><!-- Align CZ.NIC logo to the left side same as the main text -->
+                <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
+                <translate dx="-13.6"/>
                 <lineMode width="1"/>
-                <fill color="#a8986d"/>
-                <setFont name="Times-Bold" size="12"/>
-                <drawString x="2.5cm" y="23.4cm" color="#a8986d">
+                <fill color="#003893"/>
+                <setFont name="FreeSansBold" size="12"/>
+                <drawString x="2.5cm" y="23.4cm" color="#003893">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">head</xsl:with-param></xsl:call-template>
                 </drawString>
                 <fill color="black"/>
                 <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
 
                 <!-- Page footer -->
-                <stroke color="#c0c0c0"/>
+                <stroke color="#003893"/>
+                <setFont name="FreeSans" size="8"/>
                 <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
-                <setFont name="Times-Roman" size="8"/>
+
+                <setFont name="FreeSans" size="8"/>
                 <drawString x="2.5cm" y="8cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_1</xsl:with-param></xsl:call-template>
                 </drawString>
-                <drawString x="2.5cm" y="2.2cm">
+                <drawString x="2.5cm" y="9.4cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_2</xsl:with-param></xsl:call-template>
                 </drawString>
-                <drawString x="2.5cm" y="1.8cm">
+                <drawString x="2.5cm" y="9cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
                 </drawString>
-                <setFont name="Times-Bold" size="12"/>
+                <setFont name="FreeSansBold" size="12"/>
                 <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
                 <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
                 <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
@@ -205,12 +206,13 @@ $xsltproc -stringparam srcpath enum/fred2pdf/trunk/templates/ -stringparam lang 
 
                 <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
                 <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
+                <xsl:call-template name="footer"/>
             </pageGraphics>
         </pageTemplate>
     </template>
     <stylesheet>
-        <paraStyle name="main" fontName='Times-Roman'/>
-        <paraStyle name="address" fontName="Times-Italic" fontSize="8" leftIndent="1.4cm" />
+        <paraStyle name="main" fontName='FreeSans'/>
+        <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
         <paraStyle name="footer" fontSize="8" />
     </stylesheet>
     <story>

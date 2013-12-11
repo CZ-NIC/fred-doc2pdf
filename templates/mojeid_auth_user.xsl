@@ -47,7 +47,7 @@
   <xsl:variable name="lang01" select="'cs'"/>
   <xsl:variable name="lang02" select="'en'"/>
   <xsl:param name="lang" select="$lang01"/>
-  <xsl:param name="srcpath" select="'templates/'" />
+
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <xsl:variable name="mojeid_loc" select="document(concat('mojeid_translation_', $lang, '.xml'))/strings"></xsl:variable>
 
@@ -69,14 +69,14 @@
         </xsl:call-template>
 
         <stylesheet>
-          <paraStyle name="main" fontName="Times-Roman" fontSize="11" />
-          <paraStyle name="title" fontSize="14" fontName="Times-Bold" spaceBefore="0" spaceAfter="1.2cm" />
-          <paraStyle name="address" fontSize="11" fontName="Times-Roman"/>
-          <paraStyle name="address-name" parent="address" fontName="Times-Bold"/>
-          <paraStyle name="tableHead" fontName="Times-Bold"/>
+          <paraStyle name="main" fontName="FreeSans" fontSize="11" />
+          <paraStyle name="title" fontSize="14" fontName="FreeSansBold" spaceBefore="0" spaceAfter="1.2cm" />
+          <paraStyle name="address" fontSize="11" fontName="FreeSans"/>
+          <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
+          <paraStyle name="tableHead" fontName="FreeSansBold"/>
       
           <blockTableStyle id="authDataTable">
-            <blockFont name="Times-Roman" size="11" start="0,0" stop="-1,-1"/>
+            <blockFont name="FreeSans" size="11" start="0,0" stop="-1,-1"/>
             <blockLeftPadding length="0" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
@@ -164,7 +164,7 @@
   <spacer length="0.6cm"/>
     
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='CZ.NIC, z.s.p.o.']"/></para>
+    <para style="main">CZ.NIC, z. s. p. o.</para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/></para>
     <para style="main"><xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/></para>
   <spacer length="1cm"/>

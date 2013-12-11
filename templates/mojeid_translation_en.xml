@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-  <str name="Authentication new user mojeID">mojeID account created</str>
-  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Subject: mojeID account created</str>
+  <str name="Authentication new user mojeID">MojeID account created</str>
+  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Subject: MojeID account created</str>
   <str name="Dear user,">Dear user,</str>
   <str name="this letter approves the succefful creation of mojeID account with these dates:">this letter approves that mojeID account was successfully created for you with these data: </str>
   <str name="account mojeID:">mojeID:</str>
@@ -17,7 +17,7 @@
   <str name="Your team mojeID">Your mojeID team</str>
   <str name="Customer Support">Customer Support</str>
 
-  <str name="Authentication new owner of account mojeID">mojeID account full activation</str>
+  <str name="Authentication new owner of account mojeID">MojeID account full activation</str>
   <str name="Subject: mojeID account full activation">Subject: mojeID account full activation</str>
 
   <str name="For full activation of the following account">for full activation of your mojeID account, last step remains – confirmation of your postal address using PIN3 code.</str>

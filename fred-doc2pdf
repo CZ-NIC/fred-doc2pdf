@@ -69,10 +69,10 @@ CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'mod
 # Names are separated from file-TTF-names for better names redefine.
 # (This names can be overwrite by template definition.)
 DEFAULT_FONT_FAMILLY = (
-    'Times-Roman',
-    'Times-Italic',
-    'Times-Bold',
-    'Times-BoldItalic',
+    'FreeSans',
+    'FreeSansItalic',
+    'FreeSansBold',
+    'FreeSansBoldItalic',
 )
 
 def get_default_conf():

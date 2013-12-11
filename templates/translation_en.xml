@@ -72,24 +72,23 @@
 <str name="Municipal Prague cap.city, no ZS/30/3/98">associations of the Municipal Council of Prague</str> 
 <str name="Vat voucher">Tax document</str>
 
-<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
+<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
 <str name="at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.">at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.</str>
 
 <!-- extension of registration -->
-<str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>
-<str name="Americka 23, 120 00 Prague 2">Americka 23, 120 00 Prague 2</str>
+<str name="Americka 23, 120 00 Prague 2">Americká 23, 120 00 Prague 2</str>
 <str name="Czech Republic">Czech Republic</str>
 <str name="T">T</str>
 <str name="F">F</str>
-<str name="IC">IC</str>
-<str name="DIC">DIC</str>
+<str name="IC">IČ</str>
+<str name="DIC">DIČ</str>
 <str name="Prague">Prague</str>
 <str name="Subject: Extension of registration of">Subject: Prolonging the registration of .cz domain names</str>
 <str name="domain(subject)">domain</str>
 <str name="Dear holder of">Dear holder of</str>
 <str name="domain name">domain name</str>
 
-<str name="The CZ.NIC z.s.p.o. company, an administrator...">The association CZ.NIC, z. s. p. o., administrator of the top level .CZ domain, hereby informs you that your registrar has not yet submitted a request to prolong the validity of domain names listed in the attachment to this letter. These domain names are currently out of operation (please refer to Rules for Registering Domain Names in the ccTLD .cz at www.nic.cz).
+<str name="The CZ.NIC z. s. p. o. company, an administrator...">The association CZ.NIC, z. s. p. o., administrator of the top level .CZ domain, hereby informs you that your registrar has not yet submitted a request to prolong the validity of domain names listed in the attachment to this letter. These domain names are currently out of operation (please refer to Rules for Registering Domain Names in the ccTLD .cz at www.nic.cz).
 </str>
 
 <str name="Should you be interested in keeping this domain name...">Should you still be interested in these domain names, please contact your assigned registrar urgently and agree on how to proceed. You can also choose another registrar and entrust them with prolonging your registration. An up-to-date list of companies which are accredited registrars can also be found at www.nic.cz.</str>
@@ -128,7 +127,7 @@
 <str name="Holder">Holder</str>
 <str name="Designated registrar">Designated registrar</str>
 <str name="Date of termination of the registration">Date of termination of the registration</str>
-<str name="Operations manager, CZ.NIC, z.s.p.o.">Operations manager, CZ.NIC, z.s.p.o.</str>
+<str name="Operations manager, CZ.NIC, z. s. p. o.">Operations manager, CZ.NIC, z. s. p. o.</str>
 <str name="Operations manager name">Martin Peterka</str>
 
 <!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->

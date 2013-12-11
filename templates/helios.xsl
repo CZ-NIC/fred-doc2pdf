@@ -129,7 +129,7 @@
       <address>C:\</address>
      </to>
      <from>
-      <address>CZ.NIC, z.s.p.o.</address>
+      <address>CZ.NIC, z. s. p. o.</address>
      </from>
     </delivery>
     <manifest>

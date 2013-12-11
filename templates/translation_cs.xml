@@ -77,11 +77,10 @@ platbu a činí v úrovni bez daně</str>
 <str name="Municipal Prague cap.city, no ZS/30/3/98">Magistrát hl. m. Prahy, č. ZS/30/3/98</str>
 <str name="Vat voucher">Daňový doklad</str>
 
-<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">Službu mojeID provozuje sdružení CZ.NIC, zájmové sdrzužení právnických osob zapsáno v registru zájmových sdružení právnických osob</str>
+<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">Službu mojeID provozuje sdružení CZ.NIC, zájmové sdružení právnických osob zapsáno v registru zájmových sdružení právnických osob</str>
 <str name="at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.">u Magistrátu hl. m. Prahy, č. registrace ZS 30/3/98.</str>
 
 <!-- extension of registration -->
-<str name="CZ.NIC, z.s.p.o.">CZ.NIC, z.s.p.o.</str>
 <str name="Americka 23, 120 00 Prague 2">Americká 23, 120 00 Praha 2</str>
 <str name="Czech Republic">Česká republika</str>
 <str name="T">T</str>
@@ -94,7 +93,7 @@ platbu a činí v úrovni bez daně</str>
 <str name="Dear holder of">Vážený držiteli doménového jména</str>
 <str name="domain name"></str>
 
-<str name="The CZ.NIC z.s.p.o. company, an administrator...">CZ.NIC, z.s.p.o., správce národní domény .cz, Vás upozorňuje, že dosud neobdrželo pokyn k obnovení registrace doménového jména, uvedeného výše. Doména je v současné době nefunkční, je vyřazena ze zóny .cz (viz Pravidla registrace v doméně .cz na adrese www.nic.cz).</str>
+<str name="The CZ.NIC z. s. p. o. company, an administrator...">CZ.NIC, z. s. p. o., správce národní domény .cz, Vás upozorňuje, že dosud neobdrželo pokyn k obnovení registrace doménového jména, uvedeného výše. Doména je v současné době nefunkční, je vyřazena ze zóny .cz (viz Pravidla registrace v doméně .cz na adrese www.nic.cz).</str>
 
 <str name="Should you be interested in keeping this domain name...">Pokud máte zájem toto doménové jméno vlastnit i nadále, spojte se urychleně s určeným registrátorem, řešte případnou reklamaci a domluvte další postup. Rovněž máte možnost oslovit jiného registrátora a prodloužení registrace domény svěřit jemu.
 Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o statutu registrátora, najdete rovněž na www.nic.cz. </str>
@@ -127,13 +126,13 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="warning08">a uvolněna k registraci případným dalším zájemcům. </str>
 
 
-<str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">CZ.NIC, z.s.p.o., evidovalo v centrální databázi ke dni vystavení tohoto dopisu následující údaje</str>
+<str name="The following information was recorded on the CZ.NIC Central database as of the date of issuance of this letter">CZ.NIC, z. s. p. o., evidovalo v centrální databázi ke dni vystavení tohoto dopisu následující údaje</str>
 
 <str name="Domain name">Jméno domény</str>
 <str name="Holder">Držitel</str>
 <str name="Designated registrar">Určený registrátor</str>
 <str name="Date of termination of the registration">Datum zrušení registrace</str>
-<str name="Operations manager, CZ.NIC, z.s.p.o.">Provozní ředitel, CZ.NIC, z.s.p.o.</str>
+<str name="Operations manager, CZ.NIC, z. s. p. o.">Provozní ředitel, CZ.NIC, z. s. p. o.</str>
 <str name="Operations manager name">Ing. Martin Peterka</str>
 
 <!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->
