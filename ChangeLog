@@ -1,3 +1,7 @@
+2014-01-07 Zdenek Bohm (2.6.0)
+
+   * New design
+
 2013-08-22 Zdenek Bohm, Jiri Sadek (2.5.3)
 
    * Fix pdf fonts rendering (accented characters), should work with reportlab 2.4, 2.5, 2.6
