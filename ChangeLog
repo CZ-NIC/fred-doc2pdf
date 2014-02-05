@@ -1,3 +1,7 @@
+2014-02-05 Zdenek Bohm (2.6.1)
+
+   * Address position fix (verification, domain expiration)
+
 2014-01-07 Zdenek Bohm (2.6.0)
 
    * New design
