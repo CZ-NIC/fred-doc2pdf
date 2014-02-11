@@ -61,11 +61,11 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <fill color="black"/>
         <setFont name="FreeSansBold" size="12"/>
 
-        <drawString x="2.4cm" y="23.4cm" color="#003893"><xsl:value-of select="$mojeid_loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
+        <drawString x="2.4cm" y="24.9cm" color="#003893"><xsl:value-of select="$mojeid_loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
         <fill color="black"/>
 
         <!-- TODO - this can gain more space, increase height of the frame -->
-        <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
+        <frame id="body" x1="2.3cm" y1="8cm" width="16.6cm" height="16.5cm" showBoundary="0" />
 
     <!-- Page footer -->
         <stroke color="#c0c0c0"/>
@@ -205,8 +205,17 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 </para>
 <spacer length="0.3cm"/>
 <para style="main">
+    <b><xsl:value-of select="$mojeid_loc/str[@name='ValOfficeList1']"/></b>
+    <xsl:value-of select="$mojeid_loc/str[@name='ValOfficeList2']"/>
+</para>
+<spacer length="0.3cm"/>
+<para style="main">
     <b><xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHoursNotice']"/></b>
     <xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHours']"/>
+</para>
+<spacer length="0.3cm"/>
+<para style="main">
+    <xsl:value-of select="$mojeid_loc/str[@name='ValidateInPersonNotice']"/>
 </para>
 
 <spacer length="0.6cm"/>
