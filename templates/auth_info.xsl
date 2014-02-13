@@ -69,9 +69,10 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         <drawString x="2.5cm" y="8cm"><xsl:value-of select="$loc/str[@name='Please print this request sign it (a notarized signature required) and send the signed original to the following address:']"/></drawString>
 
         <setFont name="FreeSansBold" size="12"/>
-        <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
-        <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
-        <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
+        <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
+        <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
+        <drawString x="12.5cm" y="4.3cm">Americká 23</drawString>
+        <drawString x="12.5cm" y="3.7cm">120 00 Praha 2</drawString>
 
     <!-- Folder marks -->
         <stroke color="black"/>
