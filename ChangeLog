@@ -1,3 +1,7 @@
+2014-02-13 Michal Strnad (2.6.2)
+
+   * Fix mojeid validation template (id-card copy statement, add new validation places)
+
 2014-02-05 Zdenek Bohm (2.6.1)
 
    * Address position fix (verification, domain expiration)
