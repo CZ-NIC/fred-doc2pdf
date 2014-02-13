@@ -88,7 +88,7 @@ platbu a činí v úrovni bez daně</str>
 <str name="IC">IČ</str>
 <str name="DIC">DIČ</str>
 <str name="Prague">Praha</str>
-<str name="Subject: Extension of registration of">Věc: prodloužení registrace doménových jmen .cz</str>
+<str name="Subject: Extension of registration of">Prodloužení registrace doménových jmen .cz</str>
 <str name="domain(subject)"></str>
 <str name="Dear holder of">Vážený držiteli doménového jména</str>
 <str name="domain name"></str>
@@ -136,7 +136,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Operations manager name">Ing. Martin Peterka</str>
 
 <!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->
-<str name="Subject: Notice re...">Věc: Upozornění na nefunkční email v evidenci registru doménových jmen .cz</str>
+<str name="Subject: Notice re...">Upozornění na nefunkční email v evidenci registru doménových jmen .cz</str>
 <str name="Dear Sir or Madam">Vážená paní, vážený pane,</str>
 
 <!--

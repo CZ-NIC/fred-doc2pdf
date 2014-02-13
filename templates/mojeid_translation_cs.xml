@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
   <str name="Authentication new user mojeID">Založení účtu mojeID</str>
-  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Věc: Založení účtu mojeID</str>
+  <str name="Subject: Authentication your identity with codes PIN1 and PIN2">Založení účtu mojeID</str>
   <str name="Dear user,">Vážený uživateli,</str>
   <str name="this letter approves the succefful creation of mojeID account with these dates:">tento dopis potvrzuje úspěšné založení mojeID s těmito údaji:</str>
   <str name="account mojeID:">účet mojeID:</str>
@@ -18,7 +18,7 @@
   <str name="Customer Support">Zákaznická podpora</str>
 
   <str name="Authentication new owner of account mojeID">Plná aktivace účtu mojeID</str>
-  <str name="Subject: mojeID account full activation">Věc: Plná aktivace účtu mojeID</str>
+  <str name="Subject: mojeID account full activation">Plná aktivace účtu mojeID</str>
 
   <str name="For full activation of the following account">k plné aktivaci účtu mojeID Vám v tuto chvíli zbývá poslední krok – ověření Vaší korespondenční adresy pomocí kódu PIN3.</str>
   <str name="you need this PIN3 code:">Váš kód PIN3:</str>

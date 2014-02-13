@@ -2,7 +2,7 @@
 <strings>
     <str name="head">Potvrzení žádosti o zrušení blokace</str>
 
-    <str name="subject">Věc: Potvrzení žádosti o zrušení blokace</str>
+    <str name="subject">Potvrzení žádosti o zrušení blokace</str>
 
     <str name="re_contact">kontaktu</str>
     <str name="re_nsset">sady jmenných serverů</str>
