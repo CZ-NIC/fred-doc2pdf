@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <!-- 
 
@@ -195,7 +196,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
                 <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
                 <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
                 <drawString x="12.5cm" y="4.3cm">Americká 23</drawString>
-                <drawString x="12.5cm" y="3.7cm">120 00 Praha 2</drawString>
+                <drawString x="12.5cm" y="3.7cm">120 00&EMSPACE;Praha 2</drawString>
 
                 <!-- Folder marks -->
                 <stroke color="black"/>

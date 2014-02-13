@@ -27,7 +27,7 @@
   <str name="log into your mojeID profile and enter the code PIN3 at the initial screen.">Pole pro zadání PIN3 zobrazíte kliknutím na záložku „Nastavení“ v mojeID profilu.</str>
   <str name="Basic info about your account:">Základní údaje o Vašem účtu:</str>
   <str name="Americka 23">Americká 23</str>
-  <str name="120 00 Prague 2">120 00 Praha 2</str>
+  <str name="Prague 2">Praha 2</str>
 
   <str name="ZadostOValidaciKontaktu"> Žádost o validaci účtu mojeID</str>
   <str name="ValidaciProvedte">Validaci proveďte jedním z následujících způsobů:</str>

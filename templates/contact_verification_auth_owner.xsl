@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <!-- 
  Generate RML document containing letters with warning about domain expiration
@@ -170,7 +171,7 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Customer Support']"/></para>
     <para style="main">CZ.NIC, z. s. p. o.</para>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Americka 23']"/></para>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='120 00 Prague 2']"/></para>
+    <para style="main">120 00&EMSPACE;<xsl:value-of select="$contact_loc/str[@name='Prague 2']"/></para>
   <spacer length="1cm"/>
     
     <para style="main">www.nic.cz</para>
