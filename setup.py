@@ -3,7 +3,7 @@
 Usage:
     python setup.py install
 """
-import imp
+import importlib
 import os
 import re
 import sys
@@ -27,7 +27,8 @@ CONFIG_FILENAME = 'fred-doc2pdf.conf'
 
 # Names of the TRML modules
 MODULES_TINYRML = ('trml2pdf', 'rml2pdf')
-TINYERP_PATH = 'tinyerp-server/report/render'
+# Default for Fedora 20, every other system has trml2pdf in path
+TINYERP_PATH = 'TRML2PDF-1.0-py2.7.egg'
 
 # Folder where setup looks for font
 FONT_ROOT = '/usr/share/fonts'
@@ -176,9 +177,12 @@ class Install(install):
             for trml_name in trml_modules:
                 for trml_path in trml_paths:
                     try:
-                        imp.find_module(trml_name, trml_path)
+                        sys.path.append(trml_path)
+                        importlib.import_module(trml_name)
                     except ImportError:
                         continue
+                    finally:
+                        sys.path.remove(trml_path)
                     found = True
                     break
                 if found:
