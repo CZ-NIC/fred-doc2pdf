@@ -178,7 +178,6 @@ class Install(install):
                 for trml_path in trml_paths:
                     try:
                         sys.path.append(trml_path)
-                        print trml_path
                         importlib.import_module(trml_name)
                     except ImportError:
                         continue
