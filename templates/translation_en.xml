@@ -165,7 +165,7 @@
 <str name="notice_correct04">correct or provide the evidence of the correctness of the above-mentioned data</str>
 <str name="notice_correct05">within 15 days of receiving this notice, but till</str>
 <str name="notice_correct06">&SPACE; at the latest, if the notice send by mail will not be delivered due any reason.</str>
-<str name="notice_correct07">In the event that you do not do this, the CZ.NIC Association may use its rights pursuant to the Article 12.2.1. of the Rule sof Domain Names Registration under ccTLD .cz and</str>
+<str name="notice_correct07">In the event that you do not do this, the CZ.NIC Association may use its rights pursuant to the Article 16.1.2. of the Rule sof Domain Names Registration under ccTLD .cz and</str>
 <str name="notice_correct08">cancel the registration of all domain names, where this contact is used as domain holder.</str>
 
 <str name="data correction">data correction</str>
