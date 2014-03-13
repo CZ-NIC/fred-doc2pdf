@@ -98,7 +98,7 @@
         <paraStyle name="address" fontSize="12" fontName="FreeSans"/>
         <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
         <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="7"/>
-        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="10"/>
+        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="9"/>
 
         <blockTableStyle id="domainListTable">
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
