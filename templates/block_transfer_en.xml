@@ -20,7 +20,7 @@
     <str name="line_9">Name and officially authenticated signature of authorised person:</str>
 
     <str name="footer_1">Please print this request, sign it (a notarized signature required) and send the signed original to the following address:</str>
-    <str name="footer_2">Signatories whose name is not listed in the Central registry of domain names must attach</str>
-    <str name="footer_3">an original or a notarized copy of a document authorizing them to perform the relevant request.</str>
+    <str name="footer_2">Signatories whose name is not listed in the Central registry of domain names must attach an original</str>
+    <str name="footer_3">or a notarized copy of a document authorizing them to perform the relevant request.</str>
 
 </strings>
