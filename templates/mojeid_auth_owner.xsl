@@ -181,8 +181,12 @@
       <b><xsl:value-of select="$mojeid_loc/str[@name='Customer Support']"/></b>
     </para>
     <para style="main">
-      CZ.NIC, z. s. p. o.<xsl:text>, </xsl:text>
-      <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/><xsl:text>, </xsl:text>
+      CZ.NIC, z. s. p. o.
+    </para>
+    <para style="main">
+      <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/>
+    </para>
+    <para style="main">
       <xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/>
     </para>
     <para style="main">+420 222 745 111, podpora@mojeid.cz</para>
