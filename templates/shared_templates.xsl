@@ -112,13 +112,13 @@
     <para style="address-name">
         <xsl:call-template name="trim_with_dots">
             <xsl:with-param name="string" select="name"/>
-            <xsl:with-param name="max_length" select="50"/>
+            <xsl:with-param name="max_length" select="45"/>
         </xsl:call-template>
     </para>
     <para style="address-name">
         <xsl:call-template name="trim_with_dots">
             <xsl:with-param name="string" select="organization"/>
-            <xsl:with-param name="max_length" select="50"/>
+            <xsl:with-param name="max_length" select="45"/>
         </xsl:call-template>
     </para>
     <para style="address">
