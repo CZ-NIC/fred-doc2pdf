@@ -2,6 +2,7 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 <!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY NON-BEAKING-SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <!-- 
 
@@ -81,7 +82,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <b><xsl:value-of select="date" /></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
-            &SPACE;
+            &NON-BEAKING-SPACE;
             <b><xsl:value-of select="id" /></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
             &SPACE;
@@ -106,7 +107,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <b><xsl:value-of select="date"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
-            &SPACE;
+            &NON-BEAKING-SPACE;
             <b><xsl:value-of select="id"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
         </para>
@@ -129,7 +130,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <b><xsl:value-of select="date"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_4</xsl:with-param></xsl:call-template>
-            &SPACE;
+            &NON-BEAKING-SPACE;
             <b><xsl:value-of select="id"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
             &SPACE;
@@ -169,13 +170,8 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
                 <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
                 <translate dx="-13.6"/>
                 <lineMode width="1"/>
-                <fill color="#003893"/>
-                <setFont name="FreeSansBold" size="12"/>
-                <drawString x="2.5cm" y="23.4cm" color="#003893">
-                    <xsl:call-template name="getstr"><xsl:with-param name="str">head</xsl:with-param></xsl:call-template>
-                </drawString>
                 <fill color="black"/>
-                <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
+                <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="14cm" showBoundary="0" />
 
                 <!-- Page footer -->
                 <stroke color="#003893"/>
@@ -213,9 +209,10 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         <paraStyle name="main" fontName='FreeSans'/>
         <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
         <paraStyle name="footer" fontSize="8" />
+        <paraStyle name="title" fontName='FreeSansBold' fontSize='12' textColor="#003893" leading="14" />
     </stylesheet>
     <story>
-        <para style="main">
+        <para style="title">
             <xsl:call-template name="getstr"><xsl:with-param name="str">subject</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>

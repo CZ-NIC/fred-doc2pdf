@@ -7,7 +7,7 @@
     <str name="re_domain">domain name</str>
     <str name="re_keyset">keyset</str>
 
-    <str name="subject">Subject: Confirmation of request for blocking of</str>
+    <str name="subject">Confirmation of request for blocking of</str>
 
     <str name="line_1">I hereby confirm the request for blocking of the change of the sponsoring registrar of the</str>
     <str name="line_2">, submitted through the web form at the association webpages</str>

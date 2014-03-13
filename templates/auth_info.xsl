@@ -2,6 +2,7 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 <!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY NON-BEAKING-SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
 <!-- 
 
@@ -54,12 +55,9 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-13.6"/>
         <lineMode width="1"/>
-        <fill color="#003893"/>
-        <setFont name="FreeSansBold" size="12"/>
-        <drawString x="2.5cm" y="23.4cm" color="#003893"><xsl:value-of select="$loc/str[@name='Confirmation of Request for password']"/></drawString>
         <fill color="black"/>
 
-       <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="13cm" showBoundary="0" />
+       <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="14cm" showBoundary="0" />
 
     <!-- Page footer -->
         <stroke color="#003893"/>
@@ -93,18 +91,19 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
     <paraStyle name="main" fontName='FreeSans' fontSize='9' />
     <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
     <paraStyle name="footer" parent="main" fontSize="8" />
+    <paraStyle name="title" fontName='FreeSansBold' fontSize='12' textColor="#003893" leading="14" />
 </stylesheet>
 
 <story>
-<para style="main">
-<xsl:value-of select="$loc/str[@name='Re: Confirmation of Request for password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
+<para style="title">
+<xsl:value-of select="$loc/str[@name='Confirmation of Request for password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
 </para>
 <spacer length="0.6cm"/>
 <para style="main">
 <xsl:value-of select="$loc/str[@name='I hereby confirm my request to obtain password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<b><xsl:value-of select="handle" /></b>,
 <xsl:value-of select="$loc/str[@name='submitted through a web form at the association webpages']"/>
 &SPACE;<xsl:value-of select="$loc/str[@name='on']"/>&SPACE; <b><xsl:value-of select="transaction_date" /></b>,
-<xsl:value-of select="$loc/str[@name='assigned id number']"/>&SPACE; <b><xsl:value-of select="transaction_id" /></b>&SPACE; 
+<xsl:value-of select="$loc/str[@name='assigned id number']"/>&NON-BEAKING-SPACE;<b><xsl:value-of select="transaction_id" /></b>&SPACE;
 <xsl:value-of select="$loc/str[@name='Please send the password to']"/>&SPACE; <b><xsl:value-of select="replymail" /></b>.
 </para>
 <spacer length="0.6cm"/>
