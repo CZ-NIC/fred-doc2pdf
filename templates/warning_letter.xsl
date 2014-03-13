@@ -185,7 +185,7 @@
     </xsl:call-template>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$loc/str[@name='Subject: Extension of registration of']"/></b></para>
+    <para style="main"><b><xsl:value-of select="$loc/str[@name='Extension of registration of']"/></b></para>
     <spacer length="0.2cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>
