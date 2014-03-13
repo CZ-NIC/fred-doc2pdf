@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-<str name="Confirmation of Request for password">Vyžádání změny v AuthInfo záznamu</str>
+<str name="Confirmation of Request for password">Potvrzení žádosti o zaslání hesla</str>
 
 <str name="contact">ke kontaktu</str>
 <str name="nameserver set">k sadě nameserverů</str>
