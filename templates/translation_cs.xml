@@ -170,7 +170,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="notice_correct02">&SPACE; nejsou správné a pravdivé. Dle veřejně dostupných informací a evidencí jméno a poštovní adresa uvedené v centrálním registru neexistují.</str>
 <str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
 <str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu</str>
-<str name="notice_correct05">a to ve lhůtě 15 dnů od data doručení této výzvy, nejpozději však do</str>
+<str name="notice_correct05">a to ve lhůtě 25 dnů od data doručení této výzvy, nejpozději však do</str>
 <str name="notice_correct06">, nebude-li doručena výzva odeslaná prostřednictvím České pošty.</str>
 <str name="notice_correct07">V případě, že tak neučiníte, sdružení CZ.NIC může využít svého práva dle čl. 16.1.2. Pravidel registrace doménových jmen v ccTLD .cz a</str>
 <str name="notice_correct08">rušit registraci všech doménových jmen, u kterých je kontakt uveden jako držitel.</str>
