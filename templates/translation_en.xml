@@ -67,9 +67,9 @@
 <str name="Domain name record maintenance">Domain name record maintenance</str>
 <str name="Charged queries">Charged requests</str>
 <str name="VAT-settled-deposit">VAT has been settled through deposit tax documents</str> 
-<str name="SpZ">Reg # ZS/30/3/98</str> 
-<str name="department of the civil law agenda">Registered in the registry of legal entity interest</str> 
-<str name="Municipal Prague cap.city, no ZS/30/3/98">associations of the Municipal Council of Prague</str> 
+<str name="SpZ">Reg</str>
+<str name="department of the civil law agenda">Associations register of the Municipal Court in Prague</str>
+<str name="Municipal Prague cap.city, no ZS/30/3/98">File ref.: L 58624</str>
 <str name="Vat voucher">Tax document</str>
 
 <str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities</str>
