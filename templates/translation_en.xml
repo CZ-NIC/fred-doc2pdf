@@ -67,13 +67,13 @@
 <str name="Domain name record maintenance">Domain name record maintenance</str>
 <str name="Charged queries">Charged requests</str>
 <str name="VAT-settled-deposit">VAT has been settled through deposit tax documents</str> 
-<str name="SpZ">Reg</str>
-<str name="department of the civil law agenda">Associations register of the Municipal Court in Prague</str>
-<str name="Municipal Prague cap.city, no ZS/30/3/98">File ref.: L 58624</str>
+<str name="Reg">Reg</str>
+<str name="Associations register of the Municipal Court in Prague">Associations register of the Municipal Court in Prague</str>
+<str name="File ref.: L 58624">File ref.: L 58624</str>
 <str name="Vat voucher">Tax document</str>
 
-<str name="mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities">MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register</str>
-<str name="at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.">maintained by the Municipal Court in Prague, File ref.: L 58624.</str>
+<str name="MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register">MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register</str>
+<str name="maintained by the Municipal Court in Prague, File ref.: L 58624.">maintained by the Municipal Court in Prague, File ref.: L 58624.</str>
 
 <!-- extension of registration -->
 <str name="Americka 23, 120 00 Prague 2">Americká 23, 120 00 Prague 2</str>

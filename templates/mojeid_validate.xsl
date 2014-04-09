@@ -80,10 +80,10 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <fill color="#000000"/>
         <setFont name="FreeSans" size="8"/>
         <drawString x="1.8cm" y="1.4cm">
-          <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
+          <xsl:value-of select="$loc/str[@name='MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register']"/>
         </drawString>
         <drawString x="1.8cm" y="1cm">
-          <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
+          <xsl:value-of select="$loc/str[@name='maintained by the Municipal Court in Prague, File ref.: L 58624.']"/>
         </drawString>
 
     <!-- Folder marks -->
