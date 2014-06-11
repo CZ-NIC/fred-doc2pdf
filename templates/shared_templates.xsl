@@ -108,6 +108,8 @@
 
   <!-- default code to fill the address frame, depends on some paraStyle elements defined in document -->
   <xsl:template name="fillAddress">
+    <xsl:param name="recomandee" select="'no'"/>
+
     <para style="address-name">
         <xsl:call-template name="trim_with_dots">
             <xsl:with-param name="string" select="name"/>
@@ -134,6 +136,8 @@
             </para>
         </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="$recomandee = 'yes'"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
 
     <nextFrame/>
   </xsl:template>

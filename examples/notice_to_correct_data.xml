@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<message id="68486805">
+  <holder>
+    <name>Jozef Kováč</name>
+    <email>jozef.kovac71@gmail.com</email>
+    <organization></organization>
+    <street>Moyzesova ulica 24</street>
+    <city>Košice</city>
+    <postal_code>040 01</postal_code>
+    <country>SK</country>
+    <actual_date>2010-05-25</actual_date>
+    <termination_date>2011-06-11 00:00:00</termination_date>
+    <handle>SB:INTECZ-HK0KPZ-76404</handle>
+    <invalid>
+      <item><lang code="en">name and family name</lang><lang code="cs">jméno a příjmení</lang></item>
+      <item><lang code="en">postal address</lang><lang code="cs">poštovní adresa</lang></item>
+    </invalid>
+  </holder>
+</message>

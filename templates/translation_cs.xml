@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+]>
 <strings>
 
 <!-- advanced invoice -->
@@ -160,5 +163,20 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="telephone">Telefon: </str>
 <str name="fax">Fax: </str>
 <str name="Last update">Poslední aktualizace: </str>
+
+<str name="Contact id">Kontakt id</str>
+<str name="notice to correct data">výzva k opravě údajů</str>
+<str name="notice_correct01">Sdružení CZ.NIC, správce centrálního registru doménových jmen druhé úrovně registrovaných pod národní doménou .CZ, zjistilo, že údaje uvedené u kontaktu id</str>
+<str name="notice_correct02">&SPACE; nejsou správné a pravdivé. Dle veřejně dostupných informací a evidencí jméno a poštovní adresa uvedené v centrálním registru neexistují.</str>
+<str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
+<str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu</str>
+<str name="notice_correct05">a to ve lhůtě 25 dnů od data doručení této výzvy, nejpozději však do</str>
+<str name="notice_correct06">, nebude-li doručena výzva odeslaná prostřednictvím České pošty.</str>
+<str name="notice_correct07">V případě, že tak neučiníte, sdružení CZ.NIC může využít svého práva dle čl. 16.1.2. Pravidel registrace doménových jmen v ccTLD .cz a</str>
+<str name="notice_correct08">rušit registraci všech doménových jmen, u kterých je kontakt uveden jako držitel.</str>
+
+<str name="data correction">oprava údajů</str>
+<str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt id</str>
+<str name="confirm_correction02">uveden jako držitel, tedy zůstává zachována.</str>
 
 </strings>
