@@ -112,6 +112,7 @@
             <balance>0</balance>
             <vat_rate>19</vat_rate>
             <total>200</total>
+            <total_with_vat>0</total_with_vat>
         </consumed>
         <consumed>
             <number>2006111</number>
@@ -122,6 +123,7 @@
             <balance>0</balance>
             <vat_rate>19</vat_rate>
             <total>200</total>
+            <total_with_vat>0</total_with_vat>
         </consumed>
         <consumed>
             <number>2006113</number>
@@ -132,6 +134,7 @@
             <balance>28100</balance>
             <vat_rate>19</vat_rate>
             <total>200</total>
+            <total_with_vat>33439.00</total_with_vat>
         </consumed>
         <consumed>
             <number>2006110</number>
@@ -142,6 +145,7 @@
             <balance>0</balance>
             <vat_rate>19</vat_rate>
             <total>200</total>
+            <total_with_vat>0</total_with_vat>
         </consumed>
     </applied_invoices>
 </advance_payment>

@@ -2,7 +2,7 @@
 <strings>
     <str name="head">Potvrzení žádosti o zrušení blokace</str>
 
-    <str name="subject">Věc: Potvrzení žádosti o zrušení blokace</str>
+    <str name="subject">Potvrzení žádosti o zrušení blokace</str>
 
     <str name="re_contact">kontaktu</str>
     <str name="re_nsset">sady jmenných serverů</str>
@@ -20,7 +20,7 @@
     <str name="line_9"></str>
 
     <str name="footer_1">Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:</str>
-    <str name="footer_2">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit</str>
-    <str name="footer_3">originál nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</str>
+    <str name="footer_2">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit originál</str>
+    <str name="footer_3">nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</str>
 
 </strings>

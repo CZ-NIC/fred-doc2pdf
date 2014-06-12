@@ -98,7 +98,7 @@
         <paraStyle name="address" fontSize="12" fontName="FreeSans"/>
         <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
         <paraStyle name="tableItem" leading="10" fontName="Courier" fontSize="7"/>
-        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="10"/>
+        <paraStyle name="tableHead" leading="10" fontName="FreeSansBold" fontSize="9"/>
 
         <blockTableStyle id="domainListTable">
             <blockAlignment value="CENTER" start="0,0" stop="-1,-1"/>
@@ -185,7 +185,7 @@
     </xsl:call-template>
 
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$loc/str[@name='Subject: Extension of registration of']"/></b></para>
+    <para style="main"><b><xsl:value-of select="$loc/str[@name='Extension of registration of']"/></b></para>
     <spacer length="0.2cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>

@@ -7,7 +7,7 @@
     <str name="re_domain">domény</str>
     <str name="re_keyset">sady klíčů</str>
 
-    <str name="subject">Věc: Potvrzení žádosti o blokaci</str>
+    <str name="subject">Potvrzení žádosti o blokaci</str>
 
     <str name="line_1">Potvrzuji tímto žádost o zablokování změny určeného registrátora</str>
     <str name="line_2">, která byla podána prostřednictvím webového formuláře na stránkách sdružení</str>
@@ -20,6 +20,6 @@
     <str name="line_9">Jméno a úředně ověřený podpis zodpovědné osoby:</str>
 
     <str name="footer_1">Tuto žádost prosím vytiskněte, podepište (je nutný úředně ověřený podpis) a podepsaný originál zašlete na adresu:</str>
-    <str name="footer_2">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit</str>
-    <str name="footer_3">originál nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</str>
+    <str name="footer_2">V případě, že podepisující osoba není uvedena v Centrálním registru doménových jmen, je k této žádosti potřeba přiložit originál</str>
+    <str name="footer_3">nebo úředně ověřenou kopii dokumentu, který zmocňuje tuto osobu k uvedenému požadavku.</str>
 </strings>
