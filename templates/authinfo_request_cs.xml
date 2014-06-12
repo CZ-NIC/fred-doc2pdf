@@ -7,13 +7,13 @@
     <str name="re_domain">k doménovému jménu</str>
     <str name="re_keyset">k sadě klíčů</str>
 
-    <str name="subject">Věc: Potvrzení žádosti o poskytnutí hesla</str>
+    <str name="subject">Věc: Potvrzení žádosti o zaslání hesla</str>
 
-    <str name="line_1">Potvrzuji tímto žádost o poskytnutí hesla</str>
+    <str name="line_1">Potvrzuji tímto žádost o zaslání hesla</str>
     <str name="line_2">podanou prostřednictvím webového formuláře na stránkách sdružení</str>
     <str name="line_3">dne</str>
     <str name="line_4">, které bylo přiděleno identifikační číslo</str>
-    <str name="line_5">. Žádám o poskytnutí příslušného hesla na adresu</str>
+    <str name="line_5">. Žádám o zaslání příslušného hesla na adresu</str>
     <str name="line_6">Jméno a úředně ověřený podpis zodpovědné osoby:</str>
     <str name="line_7"></str>
     <str name="line_8"></str>

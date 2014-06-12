@@ -74,7 +74,6 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
             <b><xsl:value-of select="handle" /></b>
-            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
@@ -100,7 +99,6 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
             <b><xsl:value-of select="handle"/></b>
-            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
@@ -124,7 +122,6 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
             <b><xsl:value-of select="handle"/></b>
-            &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_2</xsl:with-param></xsl:call-template>
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_3</xsl:with-param></xsl:call-template>
@@ -195,9 +192,10 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
                 </drawString>
                 <setFont name="FreeSansBold" size="12"/>
-                <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
-                <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
-                <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
+                <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
+                <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
+                <drawString x="12.5cm" y="4.3cm">Americká 23</drawString>
+                <drawString x="12.5cm" y="3.7cm">120 00 Praha 2</drawString>
 
                 <!-- Folder marks -->
                 <stroke color="black"/>

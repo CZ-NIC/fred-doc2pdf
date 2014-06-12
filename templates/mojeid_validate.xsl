@@ -72,9 +72,10 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
         <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
         <setFont name="FreeSansBold" size="12"/>
-        <drawString x="11.5cm" y="5.5cm">Zákaznická podpora</drawString>
-        <drawString x="11.5cm" y="4.7cm">CZ.NIC, z. s. p. o. Americká 23</drawString>
-        <drawString x="11.5cm" y="3.9cm">120 00 Praha 2</drawString>
+        <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
+        <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
+        <drawString x="12.5cm" y="4.3cm">Americká 23</drawString>
+        <drawString x="12.5cm" y="3.7cm">120 00 Praha 2</drawString>
 
         <stroke color="black"/>
         <fill color="#000000"/>
