@@ -47,10 +47,10 @@
         <fill color="#000000"/>
         <setFont name="FreeSans" size="8"/>
         <drawString x="1.8cm" y="3.3cm">
-          <xsl:value-of select="$loc/str[@name='mojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in Registry of legal entities']"/>
+          <xsl:value-of select="$loc/str[@name='MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register']"/>
         </drawString>
         <drawString x="1.8cm" y="2.9cm">
-          <xsl:value-of select="$loc/str[@name='at the Department of Civil Administration of the Municipal Council of Prague, nr. ZS 30/3/98.']"/>
+          <xsl:value-of select="$loc/str[@name='maintained by the Municipal Court in Prague, File ref.: L 58624.']"/>
         </drawString>
 
       </pageGraphics>

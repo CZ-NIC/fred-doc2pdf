@@ -96,9 +96,9 @@ xsltproc \
         <drawString x="1.6cm" y="18.3cm"><xsl:value-of select="$loc/str[@name='VAT number']"/>:</drawString>
         <drawRightString x="7cm" y="18.3cm"><xsl:value-of select="supplier/vat_number"/></drawRightString>
 
-        <drawString x="1.6cm" y="17.4cm"><xsl:value-of select="$loc/str[@name='SpZ']"/>:</drawString>
-        <drawString x="1.6cm" y="16.9cm"><xsl:value-of select="$loc/str[@name='department of the civil law agenda']"/></drawString>
-        <drawString x="1.6cm" y="16.5cm"><xsl:value-of select="$loc/str[@name='Municipal Prague cap.city, no ZS/30/3/98']"/></drawString>
+        <drawString x="1.6cm" y="17.4cm"><xsl:value-of select="$loc/str[@name='Reg']"/>:</drawString>
+        <drawString x="1.6cm" y="16.9cm"><xsl:value-of select="$loc/str[@name='Associations register of the Municipal Court in Prague']"/></drawString>
+        <drawString x="1.6cm" y="16.5cm"><xsl:value-of select="$loc/str[@name='File ref.: L 58624']"/></drawString>
 
         <!-- right column -->
         <setFont name="FreeSansBold" size="9" />
