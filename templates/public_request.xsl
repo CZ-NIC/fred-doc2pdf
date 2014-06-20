@@ -217,7 +217,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <xsl:call-template name="getstr2"><xsl:with-param name="str">re</xsl:with-param></xsl:call-template>
             &SPACE;
-            <xsl:value-of select="handle" />.
+            <xsl:value-of select="handle" />
         </para>
         <spacer length="0.6cm"/>
         <xsl:choose>

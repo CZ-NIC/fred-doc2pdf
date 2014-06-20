@@ -96,7 +96,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
 
 <story>
 <para style="title">
-<xsl:value-of select="$loc/str[@name='Confirmation of Request for password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />.
+<xsl:value-of select="$loc/str[@name='Confirmation of Request for password for']"/>&SPACE;<xsl:call-template name="handle_type"><xsl:with-param name="type_id" select="handle/@type" /></xsl:call-template>&SPACE;<xsl:value-of select="handle" />
 </para>
 <spacer length="0.6cm"/>
 <para style="main">
