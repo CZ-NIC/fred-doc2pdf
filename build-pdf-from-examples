@@ -39,11 +39,23 @@ xsltproc templates/mojeid_auth_user.xsl examples/mojeid_auth_user.xml | ./fred-d
 echo create file $DEST/mojeid_validate.pdf
 xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-doc2pdf > $DEST/mojeid_validate.pdf
 
-echo create file $DEST/public_request_en.pdf
-xsltproc templates/public_request.xsl examples/public_request.xml | ./fred-doc2pdf > $DEST/public_request_en.pdf
+echo create file $DEST/public_request_block_en.pdf
+xsltproc templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_en.pdf
 
-echo create file $DEST/public_request_cs.pdf
-xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request.xml | ./fred-doc2pdf > $DEST/public_request_cs.pdf
+echo create file $DEST/public_request_block_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_cs.pdf
+
+echo create file $DEST/public_request_unblock_en.pdf
+xsltproc templates/public_request.xsl examples/public_request_unblock.xml | ./fred-doc2pdf > $DEST/public_request_unblock_en.pdf
+
+echo create file $DEST/public_request_unblock_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_unblock.xml | ./fred-doc2pdf > $DEST/public_request_unblock_cs.pdf
+
+echo create file $DEST/public_request_authinfo_en.pdf
+xsltproc templates/public_request.xsl examples/public_request_authinfo.xml | ./fred-doc2pdf > $DEST/public_request_authinfo_en.pdf
+
+echo create file $DEST/public_request_authinfo_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_authinfo.xml | ./fred-doc2pdf > $DEST/public_request_authinfo_cs.pdf
 
 echo create file $DEST/warning_letter1.pdf
 xsltproc templates/warning_letter.xsl examples/warning_letter1.xml | ./fred-doc2pdf > $DEST/warning_letter1.pdf
