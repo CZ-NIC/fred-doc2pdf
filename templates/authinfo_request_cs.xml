@@ -10,7 +10,7 @@
     <str name="subject">Potvrzení žádosti o zaslání hesla</str>
 
     <str name="line_1">Potvrzuji tímto žádost o zaslání hesla</str>
-    <str name="line_2">podanou prostřednictvím webového formuláře na stránkách sdružení</str>
+    <str name="line_2">, podanou prostřednictvím webového formuláře na stránkách sdružení</str>
     <str name="line_3">dne</str>
     <str name="line_4">, které bylo přiděleno identifikační číslo</str>
     <str name="line_5">. Žádám o zaslání příslušného hesla na adresu</str>

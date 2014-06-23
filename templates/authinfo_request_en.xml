@@ -10,7 +10,7 @@
     <str name="subject">Re: Confirmation of Request for password for</str>
 
     <str name="line_1">I hereby confirm my request to obtain password for</str>
-    <str name="line_2">submitted through a web form at the association webpages</str>
+    <str name="line_2"> submitted through a web form at the association webpages</str>
     <str name="line_3">on</str>
     <str name="line_4"> assigned id number</str>
     <str name="line_5">. Please send the password to</str>
