@@ -164,9 +164,9 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="fax">Fax: </str>
 <str name="Last update">Poslední aktualizace: </str>
 
-<str name="Contact id">Kontakt id</str>
+<str name="Contact">Kontakt</str>
 <str name="notice to correct data">výzva k opravě údajů</str>
-<str name="notice_correct01">Sdružení CZ.NIC, správce centrálního registru doménových jmen druhé úrovně registrovaných pod národní doménou .CZ, zjistilo, že údaje uvedené u kontaktu id</str>
+<str name="notice_correct01">Sdružení CZ.NIC, správce centrálního registru doménových jmen druhé úrovně registrovaných pod národní doménou .CZ, zjistilo, že údaje uvedené u kontaktu</str>
 <str name="notice_correct02">&SPACE; nejsou správné a pravdivé. Dle veřejně dostupných informací a evidencí jméno a poštovní adresa uvedené v centrálním registru neexistují.</str>
 <str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
 <str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu</str>
@@ -176,7 +176,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="notice_correct08">rušit registraci všech doménových jmen, u kterých je kontakt uveden jako držitel.</str>
 
 <str name="data correction">oprava údajů</str>
-<str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt id</str>
+<str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt</str>
 <str name="confirm_correction02">uveden jako držitel, tedy zůstává zachována.</str>
 
 </strings>
