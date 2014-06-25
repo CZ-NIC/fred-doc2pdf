@@ -21,7 +21,7 @@
 
     <para style="main"><b>Cc:</b>&SPACE; <xsl:value-of select="email"/></para>
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$loc/str[@name='Contact id']"/></b> &SPACE; <xsl:value-of select="handle"/> &SPACE; <b> – <xsl:value-of select="$loc/str[@name='notice to correct data']"/></b></para>
+    <para style="main"><b><xsl:value-of select="$loc/str[@name='Contact']"/></b> &SPACE; <xsl:value-of select="handle"/> &SPACE; <b> – <xsl:value-of select="$loc/str[@name='notice to correct data']"/></b></para>
     <spacer length="0.5cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
 </para>
