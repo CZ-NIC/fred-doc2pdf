@@ -45,14 +45,7 @@
   <xsl:template name="local_date">
     <xsl:param name="sdt"/>
     <xsl:if test="$sdt">
-      <xsl:choose>
-        <xsl:when test="substring($sdt,9,1)='0'"><xsl:value-of select='substring($sdt,10,1)'/></xsl:when>
-        <xsl:otherwise><xsl:value-of select='substring($sdt,9,2)'/></xsl:otherwise>
-      </xsl:choose>
-      <xsl:choose>
-        <xsl:when test="substring($sdt,6,1)='0'">. <xsl:value-of select='substring($sdt,7,1)'/></xsl:when>
-        <xsl:otherwise>. <xsl:value-of select='substring($sdt,6,2)'/></xsl:otherwise>
-      </xsl:choose>. <xsl:value-of select='substring($sdt,1,4)'/>
+      <xsl:value-of select='substring($sdt,9,2)'/>.<xsl:value-of select='substring($sdt,6,2)'/>.<xsl:value-of select='substring($sdt,1,4)'/>
     </xsl:if>
   </xsl:template>
 
