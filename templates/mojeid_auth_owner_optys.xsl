@@ -51,19 +51,34 @@
 
   <xsl:template match="contact_auth/user">
     <document>&LF;
+      <docinit>&LF;
+        <registerFont 
+          fontName="Arial" fontFile="../msttcorefonts/Arial.ttf" 
+          fontNameBold="ArialBold" fontFileBold="../msttcorefonts/Arial_Bold.ttf" 
+          fontNameItalic="ArialItalic" fontFileItalic="../msttcorefonts/Arial_Italic.ttf" 
+          fontNameBoldItalic="ArialBoldItalic" fontFileBoldItalic="../msttcorefonts/Arial_Bold_Italic.ttf" 
+        />&LF;
+      </docinit>&LF;
       <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">&LF;
         <pageTemplate id="main_cs">&LF;
           <pageGraphics>&LF;
             <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>&LF;
             <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>&LF;
+            <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>&LF;
             <!-- <barCode x="152mm" y="57mm" code="QR" barWidth="23mm" barHeight="23mm" value=""/>&LF;-->
             <stroke color="black"/>&LF;
             <fill color="#000000"/>&LF;
-            <setFont name="FreeSans" size="9.5"/>&LF;
+            <setFont name="Arial" size="9.5"/>&LF;
             <drawString x="150mm" y="194mm">Praha&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></drawString>&LF;
-            <setFont name="FreeSansBold" size="17"/>&LF;
+            <setFont name="ArialBold" size="17"/>&LF;
             <drawString x="72mm" y="141.5mm">Váš kód PIN3: <xsl:value-of select="auth/codes/pin3"/></drawString>&LF;
-            <setFont name="FreeSansBold" size="9.5"/>&LF;
+            <xsl:choose>
+              <xsl:when test="string-length(account/username)&lt;13">
+                <setFont name="ArialBold" size="9.5"/></xsl:when>
+              <xsl:otherwise>
+                <setFont name="Arial" size="5.5"/>
+              </xsl:otherwise>
+            </xsl:choose>
             <drawString x="102mm" y="60.5mm"><xsl:value-of select="account/username"/></drawString>&LF;
             <drawString x="102mm" y="50.5mm"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></drawString>&LF;
             <drawString x="102mm" y="41mm"><xsl:value-of select="account/email"/></drawString>&LF;
@@ -71,12 +86,12 @@
         </pageTemplate>&LF;
 
         <stylesheet>&LF;
-          <paraStyle name="main" fontName="FreeSans" fontSize="9.5"/>&LF;
-          <paraStyle name="main-bold" parent="main" fontName="FreeSansBold"/>&LF;
+          <paraStyle name="main" fontName="Arial" fontSize="9.5"/>&LF;
+          <paraStyle name="main-bold" parent="main" fontName="ArialBold"/>&LF;
           <paraStyle name="main-title" parent="main-bold" fontSize="12"/>&LF;
-          <paraStyle name="title" fontSize="23" fontName="FreeSansBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>&LF;
-          <paraStyle name="address" fontSize="11" fontName="FreeSans"/>&LF;
-          <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>&LF;
+          <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>&LF;
+          <paraStyle name="address" fontSize="11" fontName="Arial"/>&LF;
+          <paraStyle name="address-name" parent="address" fontName="ArialBold"/>&LF;
         </stylesheet>&LF;
 
         <story>&LF;
@@ -117,10 +132,11 @@ PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
           <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>&LF;
           <spacer length="22mm"/>&LF;
           <para style="main-bold">Základní údaje o Vašem účtu:</para>&LF;
-          <spacer length="8mm"/>&LF;
-          <para style="main-bold"><xsl:value-of select="account/username"/>.mojeid.cz</para>&LF;
-          <para style="main-bold"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>&LF;
-          <para style="main-bold"><xsl:value-of select="account/email"/></para>&LF;
+          <nextFrame/>&LF;
+          <para style="main-bold">
+<xsl:value-of select="account/username"/>.mojeid.cz&LF;
+<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>&LF;
+<xsl:value-of select="account/email"/></para>&LF;
         </story>&LF;
       </template>&LF;
     </document>&LF;
