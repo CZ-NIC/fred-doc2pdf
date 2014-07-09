@@ -28,6 +28,7 @@
       <last_name>Příjmenovič</last_name>
       <sex>male</sex>
       <email>jmenic-prijmenovic@mailovi.cz</email>
+      <mobile>+420 602 11 22 33</mobile>
     </account>
     <auth>
       <codes>
@@ -65,7 +66,14 @@
             <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>&LF;
             <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>&LF;
             <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>&LF;
-            <!-- <barCode x="152mm" y="57mm" code="QR" barWidth="23mm" barHeight="23mm" value=""/>&LF;-->
+            <barCode x="152.5mm" y="58.5mm" barWidth="21mm" barHeight="21mm" code="QR">BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=utf-8:<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>
+N;CHARSET=utf-8:<xsl:value-of select="account/last_name"/>;<xsl:value-of select="account/first_name"/>;;;
+URL;TYPE=pref:http://<xsl:value-of select="account/username"/>.mojeid.cz
+TEL;TYPE=CELL:<xsl:value-of select="account/mobile"/>
+EMAIL;TYPE=PREF:<xsl:value-of select="account/email"/>
+END:VCARD</barCode>&LF;
             <stroke color="black"/>&LF;
             <fill color="#000000"/>&LF;
             <setFont name="Arial" size="9.5"/>&LF;
@@ -73,7 +81,7 @@
             <setFont name="ArialBold" size="17"/>&LF;
             <drawString x="72mm" y="141.5mm">Váš kód PIN3: <xsl:value-of select="auth/codes/pin3"/></drawString>&LF;
             <xsl:choose>
-              <xsl:when test="string-length(account/username)&lt;13">
+              <xsl:when test="string-length(account/username)&lt;18">
                 <setFont name="ArialBold" size="9.5"/></xsl:when>
               <xsl:otherwise>
                 <setFont name="Arial" size="5.5"/>
@@ -133,10 +141,18 @@ PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
           <spacer length="22mm"/>&LF;
           <para style="main-bold">Základní údaje o Vašem účtu:</para>&LF;
           <nextFrame/>&LF;
-          <para style="main-bold">
-<xsl:value-of select="account/username"/>.mojeid.cz&LF;
-<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>&LF;
-<xsl:value-of select="account/email"/></para>&LF;
+          <xsl:choose>
+            <xsl:when test="string-length(account/username)&lt;18">
+<para style="main-bold"><xsl:value-of select="account/username"/>.mojeid.cz</para>&LF;
+<para style="main-bold"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>&LF;
+<para style="main-bold"><xsl:value-of select="account/email"/></para>&LF;
+            </xsl:when>
+            <xsl:otherwise>
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/username"/>.mojeid.cz</para>&LF;
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>&LF;
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/email"/></para>&LF;
+            </xsl:otherwise>
+          </xsl:choose>
         </story>&LF;
       </template>&LF;
     </document>&LF;
