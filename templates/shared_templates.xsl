@@ -41,7 +41,7 @@
       </xsl:attribute>
       <pageGraphics>
         <xsl:call-template name="mojeid_logotype_gray"/>
-        <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
+        <frame id="address" x1="11.2cm" y1="22cm" width="8.6cm" height="5.0cm" showBoundary="0"/>
         <frame id="main" x1="1.6cm" y1="3.9cm" width="18cm" height="20cm" showBoundary="0"/>
 
         <stroke color="black"/>
@@ -68,7 +68,7 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
+        <frame id="address" x1="11.2cm" y1="22cm" width="8.6cm" height="5.0cm" showBoundary="0"/>
         <frame id="main" x1="1.6cm" y1="3.7cm" width="18cm" height="17.2cm" showBoundary="0"/>
         <stroke color="black"/>
         <fill color="#000000"/>
@@ -97,7 +97,7 @@
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
-        <frame id="address" x1="11.2cm" y1="23cm" width="8.6cm" height="4.0cm" showBoundary="0"/>
+        <frame id="address" x1="11.2cm" y1="22cm" width="8.6cm" height="5.0cm" showBoundary="0"/>
         <frame id="main" x1="2.1cm" y1="4.5cm" width="16.7cm" height="17.7cm" showBoundary="0"/>
         <translate dx="9"/>
         <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
