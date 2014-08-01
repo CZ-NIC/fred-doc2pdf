@@ -68,3 +68,9 @@ xsltproc templates/notice_to_correct_data.xsl examples/notice_to_correct_data.xm
 
 echo create file $DEST/confirm_correction.pdf
 xsltproc templates/confirm_correction.xsl examples/notice_to_correct_data.xml | ./fred-doc2pdf > $DEST/confirm_correction.pdf
+
+echo create file $DEST/notice_to_correct_data_long_address.pdf
+xsltproc templates/notice_to_correct_data.xsl examples/notice_to_correct_data_long_address.xml | ./fred-doc2pdf > $DEST/notice_to_correct_data_long_address.pdf
+
+echo create file $DEST/confirm_correction_long_address.pdf
+xsltproc templates/confirm_correction.xsl examples/notice_to_correct_data_long_address.xml | ./fred-doc2pdf > $DEST/confirm_correction_long_address.pdf

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<message id="68486805">
+  <holder>
+    <name>Michelle Rehouskova Spechtova</name>
+    <email>cr94f2ke3qb@networksolutionsprivateregistration.com</email>
+    <organization>Mozaika Cesko Anglicka Skolka</organization>
+    <street>12808 Gran Bay Parkway West care of Network Solutions PO Box 459</street>
+    <city>Jacksonville</city>
+    <postal_code>32258</postal_code>
+    <country>US</country>
+    <actual_date>2014-07-28</actual_date>
+    <termination_date>2014-08-22 00:00:00</termination_date>
+    <handle>MTR1891684192</handle>
+    <invalid>
+      <item><lang code="en">name and family name</lang><lang code="cs">jméno a příjmení</lang></item>
+      <item><lang code="en">postal address</lang><lang code="cs">poštovní adresa</lang></item>
+    </invalid>
+  </holder>
+</message>
