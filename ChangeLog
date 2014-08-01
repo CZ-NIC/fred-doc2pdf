@@ -1,3 +1,9 @@
+2014-08-01 Michal Strnad, Zdenek Bohm (2.8.0)
+
+   * new template for new mojeid pin3 letter
+
+   * fix admin. contact verification letter long address bug
+
 2014-06-12 Zdenek Bohm (2.7.0)
 
    * new templates for admin. contact verification letters
