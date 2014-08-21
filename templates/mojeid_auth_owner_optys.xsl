@@ -95,11 +95,11 @@ END:VCARD</barCode>&LF;
 
         <stylesheet>&LF;
           <paraStyle name="main" fontName="Arial" fontSize="9.5"/>&LF;
-          <paraStyle name="main-bold" parent="main" fontName="ArialBold"/>&LF;
-          <paraStyle name="main-title" parent="main-bold" fontSize="12"/>&LF;
+          <paraStyle name="main-bold" fontName="ArialBold" fontSize="9.5"/>&LF;
+          <paraStyle name="main-title" fontName="ArialBold" fontSize="12"/>&LF;
           <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>&LF;
           <paraStyle name="address" fontSize="11" fontName="Arial"/>&LF;
-          <paraStyle name="address-name" parent="address" fontName="ArialBold"/>&LF;
+          <paraStyle name="address-name" fontSize="11" fontName="ArialBold"/>&LF;
         </stylesheet>&LF;
 
         <story>&LF;
