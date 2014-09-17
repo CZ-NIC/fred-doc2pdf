@@ -36,6 +36,7 @@
  <xsl:variable name="pk_dph_19" select="1" />
  <xsl:variable name="pk_dph_20" select="$pk_dph_19 + 1" />
  <xsl:variable name="pk_dph_0" select="$pk_dph_20 + 1" />
+ <xsl:variable name="pk_dph_21" select="$pk_dph_0 + 1" />
  <xsl:variable name="pk_payment_type" select="$pk_dph_0 + 1" />
  <xsl:variable name="pk_stred" select="$pk_payment_type + 1" />
  <xsl:variable name="pk_bank_spoj" select="$pk_stred + 1" />
@@ -64,6 +65,10 @@
    <xsl:when test="$sazba=20">
     <xsl:text>FK_</xsl:text>
     <xsl:value-of select="$pk_dph_20" />
+   </xsl:when>
+   <xsl:when test="$sazba=21">
+    <xsl:text>FK_</xsl:text>
+    <xsl:value-of select="$pk_dph_21" />
    </xsl:when>
    <xsl:otherwise>
     <xsl:message terminate = "yes">MISSING VAT RATE</xsl:message>
@@ -532,6 +537,14 @@
        </Klic>
        <Sazba>20</Sazba>
        <Nazev>Nová zákl. sazba EU</Nazev>
+      </Polozka>
+      <Polozka>
+       <Klic>
+        <xsl:text>FK_</xsl:text>
+        <xsl:value-of select="$pk_dph_21" />
+       </Klic>
+       <Sazba>21</Sazba>
+       <Nazev>Nejnovejsi zákl. sazba EU</Nazev>
       </Polozka>
      </TabDPH>
      <TabFormaUhrady>
