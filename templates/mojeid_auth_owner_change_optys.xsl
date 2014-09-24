@@ -66,7 +66,7 @@
             <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>&LF;
             <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>&LF;
             <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>&LF;
-            <barCode x="152.5mm" y="58.5mm" barWidth="21mm" barHeight="21mm" code="QR">BEGIN:VCARD
+            <barCode x="153mm" y="58.5mm" barWidth="19mm" barHeight="19mm" code="QR">BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=utf-8:<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>
 N;CHARSET=utf-8:<xsl:value-of select="account/last_name"/>;<xsl:value-of select="account/first_name"/>;;;
@@ -95,22 +95,24 @@ END:VCARD</barCode>&LF;
 
         <stylesheet>&LF;
           <paraStyle name="main" fontName="Arial" fontSize="9.5"/>&LF;
-          <paraStyle name="main-bold" parent="main" fontName="ArialBold"/>&LF;
-          <paraStyle name="main-title" parent="main-bold" fontSize="12"/>&LF;
+          <paraStyle name="main-bold" fontName="ArialBold" fontSize="9.5"/>&LF;
+          <paraStyle name="main-title" fontName="ArialBold" fontSize="12"/>&LF;
           <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>&LF;
           <paraStyle name="address" fontSize="11" fontName="Arial"/>&LF;
-          <paraStyle name="address-name" parent="address" fontName="ArialBold"/>&LF;
+          <paraStyle name="address-name" fontSize="11" fontName="ArialBold"/>&LF;
         </stylesheet>&LF;
 
         <story>&LF;
           <setNextTemplate name="main_cs"/>&LF;
           <para style="address-name"><xsl:value-of select="name"/></para>&LF;
-          <xsl:if test="organization"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>&LF;
+          <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>&LF;
           <para style="address"><xsl:value-of select="street"/></para>&LF;
-          <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="stateorprovince">, <xsl:value-of select="stateorprovince"/></xsl:if></para>&LF;
+          <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>&LF;
+          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="address"><xsl:value-of select="country"/></para></xsl:if>&LF;
           <nextFrame/>&LF;
-          <para style="title">Opakované ověření korespondenční adresy</para>&LF;
-          <spacer length="17mm"/>&LF;
+          <para style="title">Opakované ověření</para>&LF;
+          <para style="title">korespondenční adresy</para>&LF;
+          <spacer length="8mm"/>&LF;
           <para style="main-bold">
             <xsl:choose>
               <xsl:when test="account/sex='female'">Vážená uživatelko,</xsl:when>
@@ -136,8 +138,10 @@ PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
           <para style="main-bold">Zákaznická podpora</para>&LF;
           <para style="main-bold">CZ.NIC, z. s. p. o.</para>&LF;
           <para style="main-bold">Americká 23, 120 00 Praha 2</para>&LF;
+          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="main-bold">Czech Republic</para>&LF;</xsl:if>
           <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>&LF;
-          <spacer length="22mm"/>&LF;
+          <xsl:if test="country='CZ' or country='CZECH REPUBLIC' or country='Česká republika'"><spacer length="4mm"/></xsl:if>
+          <spacer length="18mm"/>&LF;
           <para style="main-bold">Základní údaje o Vašem účtu:</para>&LF;
           <nextFrame/>&LF;
           <xsl:choose>
