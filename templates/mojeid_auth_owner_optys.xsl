@@ -66,7 +66,7 @@
             <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>&LF;
             <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>&LF;
             <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>&LF;
-            <barCode x="153mm" y="58.5mm" barWidth="19mm" barHeight="19mm" code="QR">BEGIN:VCARD
+            <barCode x="153.5mm" y="59mm" barWidth="18mm" barHeight="18mm" code="QR">BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=utf-8:<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>
 N;CHARSET=utf-8:<xsl:value-of select="account/last_name"/>;<xsl:value-of select="account/first_name"/>;;;
