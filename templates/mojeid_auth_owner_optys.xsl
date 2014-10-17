@@ -110,7 +110,7 @@ END:VCARD</barCode>&LF;
           <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>&LF;
           <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="address"><xsl:value-of select="country"/></para></xsl:if>&LF;
           <nextFrame/>&LF;
-          <para style="title">Plná aktivace účtu mojeID</para>&LF;
+          <para style="title">Dokončení identifikace účtu mojeID</para>&LF;
           <spacer length="17mm"/>&LF;
           <para style="main-bold">
             <xsl:choose>
