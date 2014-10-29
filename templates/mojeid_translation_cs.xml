@@ -49,7 +49,7 @@
   <str name="02Org"> Organizace : </str>
   <str name="03Ic"> IČ : </str>
   <str name="04BirthDate"> Datum narození : </str>
-  <str name="05Address"> Adresa : </str>
+  <str name="05Address"> Adresa trvalého bydliště / sídlo firmy : </str>
   <str name="IdentifikacniCisloZadosti"> Identifikační číslo žádosti </str>
   <str name="zeDne">, ze dne </str>
   <str name="JmenoApodpis"> Jméno a podpis odpovědné osoby: </str>
