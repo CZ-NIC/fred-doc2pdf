@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<messages id="1234567890">
+  <holder>
+    <name><![CDATA[J. R. Otoman]]></name>
+    <organization><![CDATA[J. R. Otoman]]></organization>
+    <company_name><![CDATA[Otomanovo s.r.o.]]></company_name>
+    <street><![CDATA[Otomanova 7]]></street>
+    <city><![CDATA[Otomin, Kolbudy]]></city>
+    <stateorprovince><![CDATA[Powiat Gdański]]></stateorprovince>
+    <postal_code><![CDATA[83 050]]></postal_code>
+    <country><![CDATA[Poland]]></country>
+    <actual_date><![CDATA[2014-11-25]]></actual_date>
+    <termination_date><![CDATA[2015-01-22 00:00:00]]></termination_date>
+    <expiring_domain>
+      <domain><![CDATA[otomanovo.cz]]></domain>
+      <registrar><![CDATA[WEDOS Internet, a.s.]]></registrar>
+      <registrar_web><![CDATA[wedos.com]]></registrar_web>
+    </expiring_domain>
+    <expiring_domain>
+      <domain><![CDATA[rotomanovo.cz]]></domain>
+      <registrar><![CDATA[Příliš žluťoučký kůň úpěl ďábelské ódy]]></registrar>
+      <registrar_web><![CDATA[hnusna-zluta-vrestici-kobyla.cz]]></registrar_web>
+    </expiring_domain>
+  </holder>
+</messages>
