@@ -12,9 +12,10 @@
  <messages>
   <holder>
     <name><![CDATA[Pepa Zdepa]]></name>
+    <organization><![CDATA[Pepa Zdepa]]></organization>
     <street><![CDATA[Ulice]]></street>
     <city><![CDATA[Praha]]></city>
-    <zip><![CDATA[12300]]></zip>
+    <postal_code><![CDATA[12300]]></postal_code>
     <country><![CDATA[CZECH REPUBLIC]]></country>
     <expiring_domain>
       <domain><![CDATA[5.7.2.2.0.2.4.e164.arpa]]></domain>
@@ -25,9 +26,11 @@
   </holder>
   <holder>
     <name><![CDATA[Pepa Zdepa]]></name>
+    <organization><![CDATA[Depa a tunely]]></organization>
+    <company_name><![CDATA[1. tunelářská]]></company_name>
     <street><![CDATA[Ulice]]></street>
     <city><![CDATA[Praha]]></city>
-    <zip><![CDATA[12300]]></zip>
+    <postal_code><![CDATA[12300]]></postal_code>
     <country><![CDATA[CZECH REPUBLIC]]></country>
     <expiring_domain>
       <domain><![CDATA[tmp535521.cz]]></domain>
