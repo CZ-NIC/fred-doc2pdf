@@ -70,8 +70,8 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         <setFont name="FreeSansBold" size="12"/>
         <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
         <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
-        <drawString x="12.5cm" y="4.3cm">Americká 23</drawString>
-        <drawString x="12.5cm" y="3.7cm">120 00&EMSPACE;Praha 2</drawString>
+        <drawString x="12.5cm" y="4.3cm">Milešovská 1136/5</drawString>
+        <drawString x="12.5cm" y="3.7cm">130 00&EMSPACE;Praha 3</drawString>
 
     <!-- Folder marks -->
         <stroke color="black"/>

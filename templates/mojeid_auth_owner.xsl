@@ -184,10 +184,10 @@
       CZ.NIC, z. s. p. o.
     </para>
     <para style="main">
-      <xsl:value-of select="$mojeid_loc/str[@name='Americka 23']"/>
+      <xsl:value-of select="$mojeid_loc/str[@name='Milesovska 1136/5']"/>
     </para>
     <para style="main">
-      <xsl:value-of select="$mojeid_loc/str[@name='120 00 Prague 2']"/>
+      <xsl:value-of select="$mojeid_loc/str[@name='130 00 Prague 3']"/>
     </para>
     <para style="main">+420 222 745 111, podpora@mojeid.cz</para>
     <para style="main">www.mojeid.cz</para>
