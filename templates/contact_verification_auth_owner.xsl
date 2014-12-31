@@ -170,8 +170,8 @@
     
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Customer Support']"/></para>
     <para style="main">CZ.NIC, z. s. p. o.</para>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Americka 23']"/></para>
-    <para style="main">120 00&EMSPACE;<xsl:value-of select="$contact_loc/str[@name='Prague 2']"/></para>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Milesovska 1136/5']"/></para>
+    <para style="main">130 00&EMSPACE;<xsl:value-of select="$contact_loc/str[@name='Prague 3']"/></para>
   <spacer length="1cm"/>
     
     <para style="main">www.nic.cz</para>

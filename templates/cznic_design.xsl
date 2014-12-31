@@ -1349,7 +1349,7 @@
     <setFont name="FreeSans" size="8"/>
     <drawString x="3.12cm" y="4cm">z. s. p. o.</drawString>
 
-    <drawString x="2cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='Americka 23, 120 00 Prague 2']"/></drawString>
+    <drawString x="2cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='Milesovska 1136/5, 130 00 Prague 3']"/></drawString>
 
     <drawString x="7.3cm" y="4cm"><xsl:value-of select="$loc/str[@name='IC']"/> 67985726</drawString>
     <drawString x="7.3cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='DIC']"/> CZ67985726</drawString>

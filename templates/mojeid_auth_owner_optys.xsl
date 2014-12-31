@@ -137,7 +137,7 @@ PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
           <spacer length="3mm"/>&LF;
           <para style="main-bold">Zákaznická podpora</para>&LF;
           <para style="main-bold">CZ.NIC, z. s. p. o.</para>&LF;
-          <para style="main-bold">Americká 23, 120 00 Praha 2</para>&LF;
+          <para style="main-bold">Milešovská 1136/5, 130 00 Praha 3</para>&LF;
           <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="main-bold">Czech Republic</para>&LF;</xsl:if>
           <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>&LF;
           <xsl:if test="country='CZ' or country='CZECH REPUBLIC' or country='Česká republika'"><spacer length="4mm"/></xsl:if>
