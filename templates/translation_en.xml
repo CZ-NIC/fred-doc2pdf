@@ -165,7 +165,7 @@
 <str name="notice to correct data">notice to correct data</str>
 <str name="notice_correct01">The CZ.NIC Association, the manager of the TLD .cz domain found out that the data in the contact</str>
 <str name="notice_correct02">might not be correct or up-to-date.</str>
-<str name="notice_correct03">Due to the fact that this condition is contrary to the Rules of Domain Names Registration under ccTLD. cz, we would like to ask you</str>
+<str name="notice_correct03">Due to the fact that this condition is contrary to the Rules of Domain Names Registration under ccTLD .cz, we would like to ask you</str>
 <str name="notice_correct04">to correct or provide evidence of data accuracy of the above mentioned contact within a period of 15 days of receiving this notice, no later than</str>
 <str name="notice_correct05">In case you do not follow this rule, the CZ.NIC Association may use its right according to the Article 16.1.2 of the Rules of Domain Names Registration under ccTLD .cz and</str>
 <str name="notice_correct06">cancel the registration of those domain names where the contact</str>
