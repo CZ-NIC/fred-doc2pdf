@@ -148,7 +148,7 @@
         </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:if test="$recomandee = 'yes'"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
+    <xsl:if test="$recomandee='yes' and (country='CZ' or country='CZECH REPUBLIC' or country='Česká republika')"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
 
     <nextFrame/>
   </xsl:template>
