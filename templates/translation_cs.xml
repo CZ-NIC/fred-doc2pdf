@@ -137,6 +137,10 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Date of termination of the registration">Datum zrušení registrace</str>
 <str name="Operations manager, CZ.NIC, z. s. p. o.">provozní ředitel, CZ.NIC, z. s. p. o.</str>
 <str name="Operations manager name">Ing. Martin Peterka</str>
+<str name="Handled by">Vyřizuje</str>
+<str name="Customer Support Supervisor">Supervizor zákaznické podpory</str>
+<str name="Customer Support Supervisor name">Zuzana Pejšová</str>
+<str name="Customer Support Supervisor email">zuzana.pejsova@nic.cz</str>
 
 <!-- obsolete email notificatino (some strings from other section are reused, in transformation, so they're not redefined here) -->
 <str name="Subject: Notice re...">Upozornění na nefunkční email v evidenci registru doménových jmen .cz</str>
@@ -167,13 +171,12 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Contact">Kontakt</str>
 <str name="notice to correct data">výzva k opravě údajů</str>
 <str name="notice_correct01">Sdružení CZ.NIC, správce centrálního registru doménových jmen druhé úrovně registrovaných pod národní doménou .CZ, zjistilo, že údaje uvedené u kontaktu</str>
-<str name="notice_correct02">&SPACE; nejsou správné a pravdivé. Dle veřejně dostupných informací a evidencí jméno a poštovní adresa uvedené v centrálním registru neexistují.</str>
-<str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
-<str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu</str>
-<str name="notice_correct05">a to ve lhůtě 25 dnů od data doručení této výzvy, nejpozději však do</str>
-<str name="notice_correct06">, nebude-li doručena výzva odeslaná prostřednictvím České pošty.</str>
-<str name="notice_correct07">V případě, že tak neučiníte, sdružení CZ.NIC může využít svého práva dle čl. 16.1.2. Pravidel registrace doménových jmen v ccTLD .cz a</str>
-<str name="notice_correct08">rušit registraci všech doménových jmen, u kterých je kontakt uveden jako držitel.</str>
+<str name="notice_correct02">zřejmě nejsou správné či aktuální.</str>
+<str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
+<str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu a to ve lhůtě 15 dnů od data doručení této výzvy, nejpozději však do</str>
+<str name="notice_correct05">V případě, že tak neučiníte, sdružení CZ.NIC může využít svého práva dle čl. 16.1.2. Pravidel registrace doménových jmen v ccTLD .cz a</str>
+<str name="notice_correct06">zrušit registraci všech doménových jmen, u kterých je tento kontakt</str>
+<str name="notice_correct07">uveden jako držitel.</str>
 
 <str name="data correction">oprava údajů</str>
 <str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt</str>

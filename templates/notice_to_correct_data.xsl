@@ -19,33 +19,29 @@
       <xsl:with-param name="recomandee" select="'yes'"/>
     </xsl:call-template>
 
-    <para style="main"><b>Cc:</b>&SPACE; <xsl:value-of select="email"/></para>
+    <para style="main"><b>Cc:</b>&SPACE;<xsl:value-of select="email"/></para>
     <para style="main"><xsl:value-of select="$loc/str[@name='Prague']"/>, <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
-    <para style="main"><b><xsl:value-of select="$loc/str[@name='Contact']"/></b> &SPACE; <xsl:value-of select="handle"/> &SPACE; <b> – <xsl:value-of select="$loc/str[@name='notice to correct data']"/></b></para>
+    <para style="main"><b><xsl:value-of select="$loc/str[@name='Contact']"/></b>&SPACE;<xsl:value-of select="handle"/>&SPACE;<b>– <xsl:value-of select="$loc/str[@name='notice to correct data']"/></b></para>
     <spacer length="0.5cm"/>
     <para style="main"><xsl:value-of select="$loc/str[@name='Dear Sir or Madam']"/>
-</para>
+    </para>
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='notice_correct01']"/> &SPACE; <xsl:value-of select="handle"/> &SPACE;
-      (<xsl:call-template name="invalidItems"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>)<xsl:value-of select="$loc/str[@name='notice_correct02']"/>
+      <xsl:value-of select="$loc/str[@name='notice_correct01']"/>&SPACE;<xsl:value-of select="handle"/>&SPACE;<xsl:value-of select="$loc/str[@name='notice_correct02']"/>
     </para>
 
     <para style="main">
       <xsl:value-of select="$loc/str[@name='notice_correct03']"/>
-      <b> &SPACE;<xsl:value-of select="$loc/str[@name='notice_correct04']"/>&SPACE; </b>
-      (<xsl:call-template name="invalidItems"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>), &SPACE;
-      <b> <xsl:value-of select="$loc/str[@name='notice_correct05']"/>
-        &SPACE;
+      <b>&SPACE;<xsl:value-of select="$loc/str[@name='notice_correct04']"/>&SPACE;
         <xsl:call-template name="local_date">
-            <xsl:with-param name="sdt" select="termination_date"/>
+          <xsl:with-param name="sdt" select="termination_date"/>
         </xsl:call-template>
-        <xsl:value-of select="$loc/str[@name='notice_correct06']"/>
-      </b>
+      </b>.
     </para>
 
     <para style="main">
-      <xsl:value-of select="$loc/str[@name='notice_correct07']"/> &SPACE;
-      <b> <xsl:value-of select="$loc/str[@name='notice_correct08']"/> </b>
+      <xsl:value-of select="$loc/str[@name='notice_correct05']"/>&SPACE;
+      <b><xsl:value-of select="$loc/str[@name='notice_correct06']"/>&SPACE;</b><xsl:value-of select="handle"/>&SPACE;
+      <b><xsl:value-of select="$loc/str[@name='notice_correct07']"/></b>
     </para>
 
     <para style="basic" spaceAfter="0.3cm"><xsl:value-of select="$loc/str[@name='Yours sincerely']"/>
@@ -55,6 +51,15 @@
     </para>
     <para style="basic" spaceAfter="0.6cm">
       <xsl:value-of select="$loc/str[@name='Operations manager, CZ.NIC, z. s. p. o.']"/>
+    </para>
+    <para style="basic">
+      <xsl:value-of select="$loc/str[@name='Handled by']"/>&SPACE;<xsl:value-of select="$loc/str[@name='Customer Support Supervisor name']"/>
+    </para>
+    <para style="basic">
+      <xsl:value-of select="$loc/str[@name='Customer Support Supervisor']"/>
+    </para>
+    <para style="basic" spaceAfter="0.6cm">
+      <xsl:value-of select="$loc/str[@name='email']"/><xsl:value-of select="$loc/str[@name='Customer Support Supervisor email']"/>
     </para>
 
   </xsl:template>
