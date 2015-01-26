@@ -125,14 +125,6 @@
             </xsl:call-template>
         </para>
     </xsl:if>
-    <xsl:if test="string-length(company_name)!=0">
-        <para style="address-name">
-            <xsl:call-template name="trim_with_dots">
-                <xsl:with-param name="string" select="company_name"/>
-                <xsl:with-param name="max_length" select="45"/>
-            </xsl:call-template>
-        </para>
-    </xsl:if>
     <para style="address">
       <xsl:value-of select="street"/>
     </para>

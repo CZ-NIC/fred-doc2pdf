@@ -27,7 +27,6 @@
   <holder>
     <name><![CDATA[Pepa Zdepa]]></name>
     <organization><![CDATA[Depa a tunely]]></organization>
-    <company_name><![CDATA[1. tunelářská]]></company_name>
     <street><![CDATA[Ulice]]></street>
     <city><![CDATA[Praha]]></city>
     <postal_code><![CDATA[12300]]></postal_code>
