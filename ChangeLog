@@ -1,3 +1,11 @@
+2015-01-27 Michal Strnad, Jan Korous (2.10.0)
+
+   * new (improved) content of admin. verification letter
+
+   * fix invoice typo
+
+   * removed company_name field from shared address template
+
 2014-12-31 Jan Zima (2.9.1)
 
    * company address change
