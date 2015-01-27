@@ -108,7 +108,7 @@ END:VCARD</barCode>&LF;
           <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>&LF;
           <para style="address"><xsl:value-of select="street"/></para>&LF;
           <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>&LF;
-          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="address"><xsl:value-of select="country"/></para></xsl:if>&LF;
+          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Czech Republic' and country!='Česká republika'"><para style="address"><xsl:value-of select="country"/></para></xsl:if>&LF;
           <nextFrame/>&LF;
           <para style="title">Dokončení identifikace účtu mojeID</para>&LF;
           <spacer length="17mm"/>&LF;
@@ -138,9 +138,9 @@ PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
           <para style="main-bold">Zákaznická podpora</para>&LF;
           <para style="main-bold">CZ.NIC, z. s. p. o.</para>&LF;
           <para style="main-bold">Milešovská 1136/5, 130 00 Praha 3</para>&LF;
-          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Česká republika'"><para style="main-bold">Czech Republic</para>&LF;</xsl:if>
+          <xsl:if test="country!='CZ' and country!='CZECH REPUBLIC' and country!='Czech Republic' and country!='Česká republika'"><para style="main-bold">Czech Republic</para>&LF;</xsl:if>
           <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>&LF;
-          <xsl:if test="country='CZ' or country='CZECH REPUBLIC' or country='Česká republika'"><spacer length="4mm"/></xsl:if>
+          <xsl:if test="country='CZ' or country='CZECH REPUBLIC' or country='Czech Republic' or country='Česká republika'"><spacer length="4mm"/></xsl:if>
           <spacer length="18mm"/>&LF;
           <para style="main-bold">Základní údaje o Vašem účtu:</para>&LF;
           <nextFrame/>&LF;

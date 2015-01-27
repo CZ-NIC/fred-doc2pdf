@@ -131,7 +131,7 @@
     <para style="address"><xsl:value-of select="postal_code"/>&EMSPACE;<xsl:value-of select="city"/><xsl:if test="string-length(normalize-space(stateorprovince))&gt;0">,&SPACE;<xsl:value-of select="stateorprovince"/></xsl:if> </para>
 
     <xsl:choose>
-        <xsl:when test="country='CZ' or country='CZECH REPUBLIC' or country='Česká republika'">
+        <xsl:when test="country='CZ' or country='CZECH REPUBLIC' or country='Czech Republic' or country='Česká republika'">
         </xsl:when>
         <xsl:otherwise>
             <para style="address">
@@ -140,7 +140,7 @@
         </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:if test="$recomandee='yes' and (country='CZ' or country='CZECH REPUBLIC' or country='Česká republika')"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
+    <xsl:if test="$recomandee='yes' and (country='CZ' or country='CZECH REPUBLIC' or country='Czech Republic' or country='Česká republika')"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
 
     <nextFrame/>
   </xsl:template>
