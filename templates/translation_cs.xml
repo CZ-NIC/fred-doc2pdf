@@ -173,7 +173,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="notice_correct01">Sdružení CZ.NIC, správce centrálního registru doménových jmen druhé úrovně registrovaných pod národní doménou .CZ, zjistilo, že údaje uvedené u kontaktu</str>
 <str name="notice_correct02">zřejmě nejsou správné či aktuální.</str>
 <str name="notice_correct03">Vzhledem k tomu, že tento stav je v rozporu s Pravidly registrace doménových jmen v ccTLD .cz, dovolujeme si Vás tímto zdvořile</str>
-<str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu a to ve lhůtě 15 dnů od data doručení této výzvy, nejpozději však do</str>
+<str name="notice_correct04">požádat o opravu či doložení správnosti údajů, které jsou uvedeny u shora uvedeného kontaktu, a to ve lhůtě 15 dnů od data doručení této výzvy, nejpozději však do</str>
 <str name="notice_correct05">V případě, že tak neučiníte, sdružení CZ.NIC může využít svého práva dle čl. 16.1.2. Pravidel registrace doménových jmen v ccTLD .cz a</str>
 <str name="notice_correct06">zrušit registraci všech doménových jmen, u kterých je tento kontakt</str>
 <str name="notice_correct07">uveden jako držitel.</str>
