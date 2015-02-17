@@ -192,21 +192,20 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     &CIRCLE;&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete <b>uznávaným elektronickým podpisem</b>
     a&NBSP;odešlete na adresu <u><font color="blue">podpora@mojeid.cz</font></u>.
 </para>
+<para style="list">
+    &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
+    Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
+    <u><font color="blue">mojeid.cz/validace</font></u>.
+</para>
+<para style="clist">
+    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti obsahující adresu
+    trvalého pobytu (např. občanský průkaz). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
+</para>
 <xsl:choose>
     <xsl:when test="string(organization)">  
-        <para style="list">
-            &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
-            Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
-            <u><font color="blue">mojeid.cz/validace</font></u>. <b>Validaci podnikajících fyzických osob
-            a&NBSP;právnických osob provádí jen některá validační místa!</b>
-        </para>
-        <para style="clist">
-            Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti obsahující adresu
-            trvalého pobytu (např. občanský průkaz). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
-        </para>
         <para style="clist">
             Při validaci účtu právnických osob vezměte s&NBSP;sebou kopii výpisu z&NBSP;obchodního rejstříku,
-            validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
+            žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
             kopii výpisu z&NBSP;živnostenského rejstříku.
         </para>
         <spacer length="22mm"/>
@@ -215,15 +214,6 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         </para>
     </xsl:when>
     <xsl:otherwise>
-        <para style="list">
-            &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;dostavte se s&NBSP;ní <b>osobně na některé z&NBSP;validačních míst</b>.
-            Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
-            <u><font color="blue">mojeid.cz/validace</font></u>.
-        </para>
-        <para style="clist">
-            Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti
-            (občanský průkaz/cestovní pas). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
-        </para>
         <spacer length="22mm"/>
         <para style="main">
             Jméno a&NBSP;podpis: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
