@@ -29,30 +29,5 @@
   <str name="Milesovska 1136/5">Milešovská 1136/5</str>
   <str name="Prague 3">Praha 3</str>
 
-  <str name="ZadostOValidaciKontaktu"> Žádost o validaci účtu mojeID</str>
-  <str name="ValidaciProvedte">Validaci proveďte jedním z následujících způsobů:</str>
-  <str name="ValidateVerifiedSignature1"> - tuto žádost vytiskněte, opatřete ji </str>
-  <str name="ValidateVerifiedSignature2">úředně ověřeným podpisem </str>
-  <str name="ValidateVerifiedSignature3">a odešlete poštou na níže uvedenou adresu </str>
-
-  <str name="ValidateEmail"> - přiložte tuto žádost jako přílohu emailu, podepište jej svým elektronickým podpisem a zašlete jej na adresu podpora@mojeid.cz</str>
-  <str name="ValidateInPerson"> - tuto žádost vytiskněte, podepište a dostavte se s ní osobně buďto na níže uvedenou adresu sdružení CZ.NIC, nebo na některé z dalších validačních pracovišť.</str>
-  <str name="ValOfficeList1">Seznam validačních míst</str>
-  <str name="ValOfficeList2">, včetně pracovní doby, najdete na http://www.mojeid.cz/validace.</str>
-  <str name="ValOfficeHoursNotice"> Pracovní doba validačního pracoviště CZ.NIC: </str>
-  <str name="ValOfficeHours">Po - Pá: 8:30 - 12:00, 13:00 - 16:00 </str>
-  <str name="ValidateInPersonNotice">V případě, že zvolíte osobní ověření (v CZ.NIC nebo na jiném validačním místě), nezapomeňte svůj občanský průkaz. Upozorňujeme, že při tomto způsobu ověření z něj pořizujeme částečnou kopii.</str>
-  <str name="ZadamTimtoO"> Žádám tímto o validaci účtu mojeID: </str>
-
-  <str name="00Handle"> Identifikátor : </str>
-  <str name="01Jmeno"> Jméno : </str>
-  <str name="02Org"> Organizace : </str>
-  <str name="03Ic"> IČ : </str>
-  <str name="04BirthDate"> Datum narození : </str>
-  <str name="05Address"> Adresa trvalého bydliště / sídla firmy : </str>
-  <str name="IdentifikacniCisloZadosti"> Identifikační číslo žádosti </str>
-  <str name="zeDne">, ze dne </str>
-  <str name="JmenoApodpis"> Jméno a podpis odpovědné osoby: </str>
-
 </strings>
 
