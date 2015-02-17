@@ -6,6 +6,7 @@
 <!ENTITY EMSP "&#8195;">
 <!ENTITY THINSP "&#8201;">
 <!ENTITY BULL "&#8226;">
+<!ENTITY CIRCLE "&#9679;">
 <!ENTITY HELLIP "&#8230;">
 ]>
 <!-- 
@@ -109,8 +110,10 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
                 <drawString x="64mm" y="198mm"><xsl:value-of select="address"/></drawString>
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
-                <frame id="body" x1="23mm" y1="80mm" width="166mm" height="108mm" showBoundary="0" />
-                <lines>23mm 192mm 189mm 192mm</lines>
+                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="110mm" showBoundary="0" />
+                <stroke color="gray"/>
+                <fill color="gray"/>
+                <lines>23mm 188mm 189mm 188mm</lines>
             </xsl:when>
             <xsl:otherwise>
                 <setFont name="FreeSansBold" size="10"/>
@@ -126,13 +129,17 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
                 <drawString x="64mm" y="206mm"><xsl:value-of select="address"/></drawString>
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
-                <frame id="body" x1="23mm" y1="80mm" width="166mm" height="116mm" showBoundary="0" />
-                <lines>23mm 200mm 189mm 200mm</lines>
+                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="118mm" showBoundary="0" />
+                <stroke color="gray"/>
+                <fill color="gray"/>
+                <lines>23mm 196mm 189mm 196mm</lines>
             </xsl:otherwise>
         </xsl:choose>
 
     <!-- Page footer -->
 
+        <stroke color="black"/>
+        <fill color="black"/>
         <setFont name="FreeSansBold" size="10"/>
         <drawString x="125mm" y="52mm">Zákaznická podpora</drawString>
         <setFont name="FreeSans" size="10"/>
@@ -150,11 +157,16 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         </drawString>
 
     <!-- Folder marks -->
+        <stroke color="gray"/>
+        <fill color="gray"/>
         <lines>5mm 99mm 10mm 99mm</lines>
         <lines>200mm 99mm 205mm 99mm</lines>
 
         <lines>5mm 198mm 10mm 198mm</lines>
         <lines>200mm 198mm 205mm 198mm</lines>
+
+        <stroke color="black"/>
+        <fill color="black"/>
       </pageGraphics>
     </pageTemplate>
 
@@ -162,34 +174,35 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
 <stylesheet>
     <paraStyle name="main" fontName='FreeSans'/>
-    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-2.5mm" leftIndent="10mm" spaceBefore="5mm" alignment="JUSTIFY"/>
-    <paraStyle name="clist" fontName='FreeSans' leftIndent="10mm" spaceBefore="2.5mm" alignment="JUSTIFY"/>
+    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-5mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
+    <paraStyle name="clist" fontName='FreeSans' leftIndent="10mm" spaceBefore="2.5mm" alignment="LEFT"/>
 </stylesheet>
 
 <story>
 
 <para style="main">
-    Validaci proveďte <b>jedním z&NBSP;</b>následujících způsobů:
+    <b>Žádost o validaci podejte jedním z&NBSP;následujících způsobů:</b>
 </para>
 
 <para style="list">
-    &BULL; Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na níže uvedenou adresu.
+    &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+    níže uvedenou adresu.
 </para>
 <para style="list">
-    &BULL; Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete <b>uznávaným elektronickým podpisem</b>
+    &CIRCLE;&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete <b>uznávaným elektronickým podpisem</b>
     a&NBSP;odešlete na adresu <u><font color="blue">podpora@mojeid.cz</font></u>.
 </para>
 <xsl:choose>
     <xsl:when test="string(organization)">  
         <para style="list">
-            &BULL; Žádost vytiskněte a&NBSP;dostavte se s&NBSP;ní <b>osobně na některé z&NBSP;validačních míst</b>.
+            &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
             Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
-            <u><font color="blue">mojeid.cz/validace</font></u>. Validaci podnikajících fyzických osob
-            a&NBSP;právnických osob provádí <b>jen některá</b> validační místa!
+            <u><font color="blue">mojeid.cz/validace</font></u>. <b>Validaci podnikajících fyzických osob
+            a&NBSP;právnických osob provádí jen některá validační místa!</b>
         </para>
         <para style="clist">
-            Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti
-            (občanský průkaz/cestovní pas). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
+            Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti obsahující adresu
+            trvalého pobytu (např. občanský průkaz). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
         </para>
         <para style="clist">
             Při validaci účtu právnických osob vezměte s&NBSP;sebou kopii výpisu z&NBSP;obchodního rejstříku,
@@ -203,7 +216,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     </xsl:when>
     <xsl:otherwise>
         <para style="list">
-            &BULL; Žádost vytiskněte a&NBSP;dostavte se s&NBSP;ní <b>osobně na některé z&NBSP;validačních míst</b>.
+            &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;dostavte se s&NBSP;ní <b>osobně na některé z&NBSP;validačních míst</b>.
             Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
             <u><font color="blue">mojeid.cz/validace</font></u>.
         </para>
