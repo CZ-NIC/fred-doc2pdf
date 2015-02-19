@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
-<!ENTITY LF "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>&#xA;</xsl:text>">
 ]>
-<!-- 
+<!--
  Generate RML document containing letters with mojeID PIN3.
  
- Input of this XSL stylesheet is XML document with a list of domains and 
+ Input of this XSL stylesheet is XML document with a list of domains and
  domains details. Sample of input document:
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -38,7 +37,7 @@
   </user>
 </contact_auth>
  
- Resulting RML can be processed by doc2pdf to generate PDF version of letter 
+ Resulting RML can be processed by doc2pdf to generate PDF version of letter
  -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns:func="http://exslt.org/functions" extension-element-prefixes="func"
@@ -55,21 +54,21 @@
   </xsl:template>
 
   <xsl:template match="contact_auth/user">
-    <document>&LF;
-      <docinit>&LF;
-        <registerFont 
-          fontName="Arial" fontFile="../msttcorefonts/Arial.ttf" 
-          fontNameBold="ArialBold" fontFileBold="../msttcorefonts/Arial_Bold.ttf" 
-          fontNameItalic="ArialItalic" fontFileItalic="../msttcorefonts/Arial_Italic.ttf" 
-          fontNameBoldItalic="ArialBoldItalic" fontFileBoldItalic="../msttcorefonts/Arial_Bold_Italic.ttf" 
-        />&LF;
-      </docinit>&LF;
-      <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">&LF;
-        <pageTemplate id="main_cs">&LF;
-          <pageGraphics>&LF;
-            <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>&LF;
-            <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>&LF;
-            <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>&LF;
+    <document>
+      <docinit>
+        <registerFont
+          fontName="Arial" fontFile="../msttcorefonts/Arial.ttf"
+          fontNameBold="ArialBold" fontFileBold="../msttcorefonts/Arial_Bold.ttf"
+          fontNameItalic="ArialItalic" fontFileItalic="../msttcorefonts/Arial_Italic.ttf"
+          fontNameBoldItalic="ArialBoldItalic" fontFileBoldItalic="../msttcorefonts/Arial_Bold_Italic.ttf"
+        />
+      </docinit>
+      <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">
+        <pageTemplate id="main_cs">
+          <pageGraphics>
+            <frame id="address" x1="110mm" y1="227mm" width="85mm" height="35mm" showBoundary="0"/>
+            <frame id="main" x1="28mm" y1="39mm" width="154mm" height="185mm" showBoundary="0"/>
+            <frame id="account" x1="28mm" y1="24mm" width="57mm" height="45mm" showBoundary="0"/>
             <barCode x="153mm" y="58.5mm" barWidth="19mm" barHeight="19mm" code="QR">BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=utf-8:<xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/>
@@ -77,13 +76,13 @@ N;CHARSET=utf-8:<xsl:value-of select="account/last_name"/>;<xsl:value-of select=
 URL;TYPE=pref:http://<xsl:value-of select="account/username"/>.mojeid.cz
 TEL;TYPE=CELL:<xsl:value-of select="account/mobile"/>
 EMAIL;TYPE=PREF:<xsl:value-of select="account/email"/>
-END:VCARD</barCode>&LF;
-            <stroke color="black"/>&LF;
-            <fill color="#000000"/>&LF;
-            <setFont name="Arial" size="9.5"/>&LF;
-            <drawString x="150mm" y="194mm">Praha&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></drawString>&LF;
-            <setFont name="ArialBold" size="17"/>&LF;
-            <drawString x="72mm" y="141.5mm">Váš kód PIN3: <xsl:value-of select="auth/codes/pin3"/></drawString>&LF;
+END:VCARD</barCode>
+            <stroke color="black"/>
+            <fill color="#000000"/>
+            <setFont name="Arial" size="9.5"/>
+            <drawString x="150mm" y="194mm">Praha&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></drawString>
+            <setFont name="ArialBold" size="17"/>
+            <drawString x="72mm" y="141.5mm">Váš kód PIN3: <xsl:value-of select="auth/codes/pin3"/></drawString>
             <xsl:choose>
               <xsl:when test="string-length(account/username)&lt;18">
                 <setFont name="ArialBold" size="9.5"/></xsl:when>
@@ -91,78 +90,78 @@ END:VCARD</barCode>&LF;
                 <setFont name="Arial" size="5.5"/>
               </xsl:otherwise>
             </xsl:choose>
-            <drawString x="102mm" y="60.5mm"><xsl:value-of select="account/username"/></drawString>&LF;
-            <drawString x="102mm" y="50.5mm"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></drawString>&LF;
-            <drawString x="102mm" y="41mm"><xsl:value-of select="account/email"/></drawString>&LF;
-          </pageGraphics>&LF;
-        </pageTemplate>&LF;
+            <drawString x="102mm" y="60.5mm"><xsl:value-of select="account/username"/></drawString>
+            <drawString x="102mm" y="50.5mm"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></drawString>
+            <drawString x="102mm" y="41mm"><xsl:value-of select="account/email"/></drawString>
+          </pageGraphics>
+        </pageTemplate>
 
-        <stylesheet>&LF;
-          <paraStyle name="main" fontName="Arial" fontSize="9.5"/>&LF;
-          <paraStyle name="main-bold" fontName="ArialBold" fontSize="9.5"/>&LF;
-          <paraStyle name="main-title" fontName="ArialBold" fontSize="12"/>&LF;
-          <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>&LF;
-          <paraStyle name="address" fontSize="11" fontName="Arial"/>&LF;
-          <paraStyle name="address-name" fontSize="11" fontName="ArialBold"/>&LF;
-        </stylesheet>&LF;
+        <stylesheet>
+          <paraStyle name="main" fontName="Arial" fontSize="9.5"/>
+          <paraStyle name="main-bold" fontName="ArialBold" fontSize="9.5"/>
+          <paraStyle name="main-title" fontName="ArialBold" fontSize="12"/>
+          <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>
+          <paraStyle name="address" fontSize="11" fontName="Arial"/>
+          <paraStyle name="address-name" fontSize="11" fontName="ArialBold"/>
+        </stylesheet>
 
-        <story>&LF;
-          <setNextTemplate name="main_cs"/>&LF;
-          <para style="address-name"><xsl:value-of select="name"/></para>&LF;
-          <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>&LF;
-          <para style="address"><xsl:value-of select="street"/></para>&LF;
-          <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>&LF;
-          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country"/></para></xsl:if>&LF;
-          <nextFrame/>&LF;
-          <para style="title">Opakované ověření</para>&LF;
-          <para style="title">korespondenční adresy</para>&LF;
-          <spacer length="8mm"/>&LF;
+        <story>
+          <setNextTemplate name="main_cs"/>
+          <para style="address-name"><xsl:value-of select="name"/></para>
+          <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>
+          <para style="address"><xsl:value-of select="street"/></para>
+          <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>
+          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country"/></para></xsl:if>
+          <nextFrame/>
+          <para style="title">Opakované ověření</para>
+          <para style="title">korespondenční adresy</para>
+          <spacer length="8mm"/>
           <para style="main-bold">
             <xsl:choose>
               <xsl:when test="account/sex='female'">Vážená uživatelko,</xsl:when>
               <xsl:otherwise>Vážený uživateli,</xsl:otherwise>
             </xsl:choose>
-          </para>&LF;
-          <spacer length="5mm"/>&LF;
+          </para>
+          <spacer length="5mm"/>
           <para style="main">v nedávné době došlo k aktualizaci korespondenční adresy ve Vašem účtu mojeID. Na základě této změny
-Vám byl vygenerován nový kód PIN3, který slouží k opakované identifikaci účtu.</para>&LF;
-          <spacer length="3mm"/>&LF;
-          <para style="main-title">Proč je dobré dokončit identifikaci účtu mojeID?</para>&LF;
-          <spacer length="4mm"/>&LF;
+Vám byl vygenerován nový kód PIN3, který slouží k opakované identifikaci účtu.</para>
+          <spacer length="3mm"/>
+          <para style="main-title">Proč je dobré dokončit identifikaci účtu mojeID?</para>
+          <spacer length="4mm"/>
           <para style="main">Ověření pomocí kódu PIN3 zaručuje, že je Vaše korespondenční
 adresa autentická. To zvyšuje Vaši důvěryhodnost u služeb využívajících mojeID, jako jsou
-například elektronické obchody, diskusní fóra nebo internetové seznamky.</para>&LF;
-          <spacer length="21mm"/>&LF;
+například elektronické obchody, diskusní fóra nebo internetové seznamky.</para>
+          <spacer length="21mm"/>
           <para style="main">Zadat kód PIN3 je možné po přihlášení do profilu mojeID na
 <b>www.mojeid.cz</b>. Podrobný návod, jak dokončit identifikaci účtu mojeID pomocí kódu
-PIN3, naleznete na zadní straně tohoto dopisu.</para>&LF;
-          <spacer length="3mm"/>&LF;
-          <para style="main">Váš tým mojeID</para>&LF;
-          <spacer length="3mm"/>&LF;
-          <para style="main-bold">Zákaznická podpora</para>&LF;
-          <para style="main-bold">CZ.NIC, z. s. p. o.</para>&LF;
-          <para style="main-bold">Milešovská 1136/5, 130 00 Praha 3</para>&LF;
-          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="main-bold">Czech Republic</para>&LF;</xsl:if>
-          <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>&LF;
+PIN3, naleznete na zadní straně tohoto dopisu.</para>
+          <spacer length="3mm"/>
+          <para style="main">Váš tým mojeID</para>
+          <spacer length="3mm"/>
+          <para style="main-bold">Zákaznická podpora</para>
+          <para style="main-bold">CZ.NIC, z. s. p. o.</para>
+          <para style="main-bold">Milešovská 1136/5, 130 00 Praha 3</para>
+          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="main-bold">Czech Republic</para></xsl:if>
+          <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>
           <xsl:if test="cznic:country_is_czech_republic(country)"><spacer length="4mm"/></xsl:if>
-          <spacer length="18mm"/>&LF;
-          <para style="main-bold">Základní údaje o Vašem účtu:</para>&LF;
-          <nextFrame/>&LF;
+          <spacer length="18mm"/>
+          <para style="main-bold">Základní údaje o Vašem účtu:</para>
+          <nextFrame/>
           <xsl:choose>
             <xsl:when test="string-length(account/username)&lt;18">
-<para style="main-bold"><xsl:value-of select="account/username"/>.mojeid.cz</para>&LF;
-<para style="main-bold"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>&LF;
-<para style="main-bold"><xsl:value-of select="account/email"/></para>&LF;
+<para style="main-bold"><xsl:value-of select="account/username"/>.mojeid.cz</para>
+<para style="main-bold"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>
+<para style="main-bold"><xsl:value-of select="account/email"/></para>
             </xsl:when>
             <xsl:otherwise>
-<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/username"/>.mojeid.cz</para>&LF;
-<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>&LF;
-<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/email"/></para>&LF;
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/username"/>.mojeid.cz</para>
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/first_name"/>&SPACE;<xsl:value-of select="account/last_name"/></para>
+<para style="main-bold" fontSize="5.5"><xsl:value-of select="account/email"/></para>
             </xsl:otherwise>
           </xsl:choose>
-        </story>&LF;
-      </template>&LF;
-    </document>&LF;
+        </story>
+      </template>
+    </document>
   </xsl:template>
 
 </xsl:stylesheet>
