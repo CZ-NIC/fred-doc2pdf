@@ -3,8 +3,12 @@
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 <!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 ]>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+  xmlns:func="http://exslt.org/functions" extension-element-prefixes="func"
+  xmlns:cznic="http://nic.cz/xslt/functions">
+
 <xsl:import href="cznic_design.xsl"/>
+<xsl:include href="utilities.xsl"/>
 
 <xsl:template name="local_date">
     <xsl:param name="sdt"/>
@@ -131,7 +135,7 @@
     <para style="address"><xsl:value-of select="postal_code"/>&EMSPACE;<xsl:value-of select="city"/><xsl:if test="string-length(normalize-space(stateorprovince))&gt;0">,&SPACE;<xsl:value-of select="stateorprovince"/></xsl:if> </para>
 
     <xsl:choose>
-        <xsl:when test="country='CZ' or country='CZECH REPUBLIC' or country='Czech Republic' or country='Česká republika'">
+        <xsl:when test="cznic:country_is_czech_republic(country)">
         </xsl:when>
         <xsl:otherwise>
             <para style="address">
@@ -140,7 +144,7 @@
         </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:if test="$recomandee='yes' and (country='CZ' or country='CZECH REPUBLIC' or country='Czech Republic' or country='Česká republika')"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
+    <xsl:if test="$recomandee='yes' and cznic:country_is_czech_republic(country)"><para style="address" spaceBefore="0.3cm"><b>DOPORUČENĚ S DODEJKOU DO VLASTNÍCH RUKOU ADRESÁTA</b></para></xsl:if>
 
     <nextFrame/>
   </xsl:template>

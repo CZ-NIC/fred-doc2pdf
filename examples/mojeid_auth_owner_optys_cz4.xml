@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact_auth>
+  <user>
+    <actual_date>2014-06-30</actual_date>
+
+    <name>Jmenič Příjmenovič</name>
+    <organization>První českobudějovická &amp; synové, s. r. o.</organization>
+    <street>Nějaká děsně hrozně moc dlouze pojmenovaná ulice 12/3456</street>
+    <city>Strašná Díra</city>
+    <stateorprovince>okres Česká Lípa</stateorprovince>
+    <postal_code>720 00</postal_code>
+    <country>Czech Republic</country>
+
+    <account>
+      <username>jmenic-prijmenovic</username>
+      <first_name>Jmenič</first_name>
+      <last_name>Příjmenovič</last_name>
+      <sex>male</sex>
+      <email>jmenic-prijmenovic@mailovi.cz</email>
+      <mobile>+420 602 11 22 33</mobile>
+    </account>
+    <auth>
+      <codes>
+        <pin3>12333321</pin3>
+      </codes>
+    </auth>
+  </user>
+</contact_auth>
