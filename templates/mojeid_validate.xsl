@@ -198,8 +198,9 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     <u><font color="blue">mojeid.cz/validace</font></u>.
 </para>
 <para style="clist">
-    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti obsahující adresu
-    trvalého pobytu (např. občanský průkaz). Při tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
+    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s uvedenou adresou
+    trvalého pobytu (občanský průkaz, pas + dokument dokládající adresu trvalého pobytu, apod.). Při
+    tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
 </para>
 <xsl:choose>
     <xsl:when test="string(organization)">  
