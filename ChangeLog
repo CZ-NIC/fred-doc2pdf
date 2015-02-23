@@ -6,6 +6,8 @@
 
    * removed company_name field from shared address template
 
+   * fix condition for domestic letters (country=czech republic)
+
 2014-12-31 Jan Zima (2.9.1)
 
    * company address change
