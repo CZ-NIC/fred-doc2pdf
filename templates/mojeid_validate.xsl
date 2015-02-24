@@ -60,7 +60,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         <translate dx="15.5"/>
         <xsl:call-template name="mojeid_logotype_color"/>
         <translate dx="-15.5"/>
-        <lineMode width="1"/>
+        <lineMode width="0.2"/>
         <stroke color="black"/>
         <fill color="black"/>
 
@@ -94,32 +94,45 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
                 <drawString x="78mm" y="222mm">(podnikající fyzická osoba/právnická osoba):</drawString>
 
-                <setFont name="FreeSansBold" size="10"/>
-                <drawString x="24mm" y="206mm">IČ:</drawString>
-                <setFont name="FreeSans" size="10"/>
-                <drawString x="64mm" y="206mm"><xsl:value-of select="ic"/></drawString>
+                <xsl:choose>
+                    <xsl:when test="string(ic)">
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="206mm">IČ:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="206mm"><xsl:value-of select="ic"/></drawString>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="206mm">Datum narození:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="206mm"><xsl:value-of select="birth_date"/></drawString>
+                    </xsl:otherwise>
+                </xsl:choose>
 
                 <setFont name="FreeSansBold" size="10"/>
-                <drawString x="24mm" y="202mm">Datum narození:</drawString>
+                <drawString x="24mm" y="202mm">Sídlo firmy:</drawString>
                 <setFont name="FreeSans" size="10"/>
-                <drawString x="64mm" y="202mm"><xsl:value-of select="birth_date"/></drawString>
-
-                <setFont name="FreeSansBold" size="10"/>
-                <drawString x="24mm" y="198mm">Sídlo firmy:</drawString>
-                <setFont name="FreeSans" size="10"/>
-                <drawString x="64mm" y="198mm"><xsl:value-of select="address"/></drawString>
+                <drawString x="64mm" y="202mm"><xsl:value-of select="address"/></drawString>
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
-                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="110mm" showBoundary="0" />
-                <stroke color="gray"/>
-                <fill color="gray"/>
-                <lines>23mm 188mm 189mm 188mm</lines>
+                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="114mm" showBoundary="0" />
+                <lines>23mm 192mm 189mm 192mm</lines>
             </xsl:when>
             <xsl:otherwise>
-                <setFont name="FreeSansBold" size="10"/>
-                <drawString x="24mm" y="210mm">Datum narození:</drawString>
-                <setFont name="FreeSans" size="10"/>
-                <drawString x="64mm" y="210mm"><xsl:value-of select="birth_date"/></drawString>
+                <xsl:choose>
+                    <xsl:when test="string(birth_date)">
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="210mm">Datum narození:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="210mm"><xsl:value-of select="birth_date"/></drawString>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="210mm">IČ:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="210mm"><xsl:value-of select="ic"/></drawString>
+                    </xsl:otherwise>
+                </xsl:choose>
 
                 <drawString x="78mm" y="222mm">(fyzická osoba):</drawString>
 
@@ -130,22 +143,18 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
                 <frame id="body" x1="23mm" y1="70mm" width="166mm" height="118mm" showBoundary="0" />
-                <stroke color="gray"/>
-                <fill color="gray"/>
                 <lines>23mm 196mm 189mm 196mm</lines>
             </xsl:otherwise>
         </xsl:choose>
 
     <!-- Page footer -->
 
-        <stroke color="black"/>
-        <fill color="black"/>
         <setFont name="FreeSansBold" size="10"/>
-        <drawString x="125mm" y="52mm">Zákaznická podpora</drawString>
+        <drawString x="130mm" y="44mm">Zákaznická podpora</drawString>
         <setFont name="FreeSans" size="10"/>
-        <drawString x="125mm" y="48mm">CZ.NIC, z.&THINSP;s.&THINSP;p.&THINSP;o.</drawString>
-        <drawString x="125mm" y="44mm">Milešovská 1136/5</drawString>
-        <drawString x="125mm" y="40mm">130&THINSP;00&EMSP;Praha&NBSP;3</drawString>
+        <drawString x="130mm" y="40mm">CZ.NIC, z.&THINSP;s.&THINSP;p.&THINSP;o.</drawString>
+        <drawString x="130mm" y="36mm">Milešovská 1136/5</drawString>
+        <drawString x="130mm" y="32mm">130&THINSP;00&EMSP;Praha&NBSP;3</drawString>
 
         <setFont name="FreeSans" size="8"/>
         <drawString x="18mm" y="19mm">The English version is available at mojeid.cz/application.</drawString>
@@ -157,16 +166,11 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         </drawString>
 
     <!-- Folder marks -->
-        <stroke color="gray"/>
-        <fill color="gray"/>
         <lines>5mm 99mm 10mm 99mm</lines>
         <lines>200mm 99mm 205mm 99mm</lines>
 
         <lines>5mm 198mm 10mm 198mm</lines>
         <lines>200mm 198mm 205mm 198mm</lines>
-
-        <stroke color="black"/>
-        <fill color="black"/>
       </pageGraphics>
     </pageTemplate>
 
@@ -174,7 +178,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
 <stylesheet>
     <paraStyle name="main" fontName='FreeSans'/>
-    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-5mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
+    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-4mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
     <paraStyle name="clist" fontName='FreeSans' leftIndent="10mm" spaceBefore="2.5mm" alignment="LEFT"/>
 </stylesheet>
 
@@ -185,15 +189,16 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 </para>
 
 <para style="list">
-    &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
     níže uvedenou adresu.
 </para>
 <para style="list">
-    &CIRCLE;&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete <b>uznávaným elektronickým podpisem</b>
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete platným zaručeným <b>elektronickým podpisem</b>
+    založeným na kvalifikovaném certifikátu vydaném <b>akreditovaným</b> poskytovatelem certifikačních služeb v&NBSP;České republice
     a&NBSP;odešlete na adresu <u><font color="blue">podpora@mojeid.cz</font></u>.
 </para>
 <para style="list">
-    &CIRCLE;&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
     Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
     <u><font color="blue">mojeid.cz/validace</font></u>.
 </para>
@@ -215,7 +220,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         </para>
     </xsl:when>
     <xsl:otherwise>
-        <spacer length="22mm"/>
+        <spacer length="41mm"/>
         <para style="main">
             Jméno a&NBSP;podpis: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
         </para>
