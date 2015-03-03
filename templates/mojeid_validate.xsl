@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY SPACE " ">
 <!ENTITY NBSP "&#160;">
-<!ENTITY ENSP "&#8194;">
 <!ENTITY EMSP "&#8195;">
 <!ENTITY THINSP "&#8201;">
 <!ENTITY BULL "&#8226;">
@@ -185,7 +183,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 <story>
 
 <para style="main">
-    <b>Žádost o validaci podejte jedním z&NBSP;následujících způsobů:</b>
+    <b>Žádost o&NBSP;validaci podejte jedním z&NBSP;následujících způsobů:</b>
 </para>
 
 <para style="list">
@@ -203,7 +201,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     <u><font color="blue">mojeid.cz/validace</font></u>.
 </para>
 <para style="clist">
-    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s uvedenou adresou
+    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s&NBSP;uvedenou adresou
     trvalého pobytu (občanský průkaz, pas + dokument dokládající adresu trvalého pobytu, apod.). Při
     tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
 </para>
