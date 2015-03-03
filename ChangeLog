@@ -2,6 +2,8 @@
 
    * new (improved) content of admin. verification letter
 
+   * new design of mojeid validation pdf
+
    * fix invoice typo
 
    * removed company_name field from shared address template
