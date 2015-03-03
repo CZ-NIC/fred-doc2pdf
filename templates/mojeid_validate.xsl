@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
-<!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY NBSP "&#160;">
+<!ENTITY EMSP "&#8195;">
+<!ENTITY THINSP "&#8201;">
+<!ENTITY BULL "&#8226;">
+<!ENTITY CIRCLE "&#9679;">
+<!ENTITY HELLIP "&#8230;">
 ]>
 <!-- 
 
 This template creates a RML document used to validate mojeID account.
-Created: Juraj Vicenik <juraj.vicenik@nic.cz>; 15.10.2010
-        based on auth_info.xsl template
-
-A logo is used (file cz_nic_logo.jpg), which is saved in a folder templates/
-together with this template. It is neccesity to set up the path properly, if the template isn't called
-from script folder (fred2pdf/trunk):
+Created: Michal Strnad <michal.strnad@nic.cz>; 2015-02-17
+         based on cznic_design.xsl template
 
 (There have to be two hyphens before stringparam.)
-$xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl enum/fred2pdf/trunk/examples/mojeid_validate.xml
+$xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-doc2pdf > mojeid_validate.pdf
 
 <mojeid_valid>
         <request_date>17.1.2010</request_date>
         <request_id>123123</request_id>
-        <name>Ilya Muromec Křižík </name>
-        <organization>Organization s.r.o </organization>
+        <name>Ilya Muromec Křižík</name>
+        <organization>Organization s.r.o</organization>
         <ic>IC-2342</ic>
-        <birth_date>1.1.1901 </birth_date>
-        <address>U můstku 2342/344 Kroměříž </address>
+        <birth_date>1.1.1901</birth_date>
+        <address>U můstku 2342/344 Kroměříž</address>
 </mojeid_valid>
 
 -->
@@ -41,61 +41,134 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 
 <xsl:template match="/mojeid_valid">
 
-<xsl:if test="not($lang='cs' or $lang='en')">
-    <xsl:message terminate="yes">Parameter 'lang' is invalid. Available values are: cs, en</xsl:message>
+<xsl:if test="not($lang='cs')">
+    <xsl:message terminate="yes">Parameter 'lang' is invalid. Available value is: cs</xsl:message>
 </xsl:if>
 
 <document>
 
-<template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
-    title="{$mojeid_loc/str[@name='ZadostOValidaciKontaktu']}"
-  author="CZ.NIC"
+<template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" 
+    title="Žádost o validaci účtu mojeID"
+    author="CZ.NIC"
   >
 
     <pageTemplate id="main">
       <pageGraphics>
     <!-- Page header -->
         <translate dx="15.5"/>
-        <xsl:call-template name="mojeid_logotype_gray"/>
+        <xsl:call-template name="mojeid_logotype_color"/>
         <translate dx="-15.5"/>
-        <lineMode width="1"/>
-        <fill color="black"/>
-        <setFont name="FreeSansBold" size="12"/>
-
-        <drawString x="2.4cm" y="24.9cm" color="#003893"><xsl:value-of select="$mojeid_loc/str[@name='ZadostOValidaciKontaktu']"/></drawString>
+        <lineMode width="0.2"/>
+        <stroke color="black"/>
         <fill color="black"/>
 
-        <!-- TODO - this can gain more space, increase height of the frame -->
-        <frame id="body" x1="2.3cm" y1="8cm" width="16.6cm" height="16.5cm" showBoundary="0" />
+        <setFont name="FreeSansBold" size="18"/>
+        <drawString x="24mm" y="249mm">Žádost o validaci účtu mojeID</drawString>
+
+        <setFont name="FreeSansBold" size="10"/>
+        <drawString x="24mm" y="234mm">Číslo žádosti:</drawString>
+        <setFont name="FreeSans" size="10"/>
+        <drawString x="64mm" y="234mm"><xsl:value-of select="request_id"/></drawString>
+
+        <setFont name="FreeSansBold" size="10"/>
+        <drawString x="24mm" y="230mm">Identifikátor:</drawString>
+        <setFont name="FreeSans" size="10"/>
+        <drawString x="64mm" y="230mm"><xsl:value-of select="handle"/></drawString>
+
+        <setFont name="FreeSansBold" size="10"/>
+        <drawString x="24mm" y="222mm">Validované údaje z účtu mojeID</drawString>
+
+        <setFont name="FreeSansBold" size="10"/>
+        <drawString x="24mm" y="214mm">Jméno:</drawString>
+        <setFont name="FreeSans" size="10"/>
+        <drawString x="64mm" y="214mm"><xsl:value-of select="name"/></drawString>
+
+        <xsl:choose>
+            <xsl:when test="string(organization)">  
+                <setFont name="FreeSansBold" size="10"/>
+                <drawString x="24mm" y="210mm">Organizace:</drawString>
+                <setFont name="FreeSans" size="10"/>
+                <drawString x="64mm" y="210mm"><xsl:value-of select="organization"/></drawString>
+
+                <drawString x="78mm" y="222mm">(podnikající fyzická osoba/právnická osoba):</drawString>
+
+                <xsl:choose>
+                    <xsl:when test="string(ic)">
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="206mm">IČ:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="206mm"><xsl:value-of select="ic"/></drawString>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="206mm">Datum narození:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="206mm"><xsl:value-of select="birth_date"/></drawString>
+                    </xsl:otherwise>
+                </xsl:choose>
+
+                <setFont name="FreeSansBold" size="10"/>
+                <drawString x="24mm" y="202mm">Sídlo firmy:</drawString>
+                <setFont name="FreeSans" size="10"/>
+                <drawString x="64mm" y="202mm"><xsl:value-of select="address"/></drawString>
+
+                <!-- TODO - this can gain more space, increase height of the frame -->
+                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="114mm" showBoundary="0" />
+                <lines>23mm 192mm 189mm 192mm</lines>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="string(birth_date)">
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="210mm">Datum narození:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="210mm"><xsl:value-of select="birth_date"/></drawString>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <setFont name="FreeSansBold" size="10"/>
+                        <drawString x="24mm" y="210mm">IČ:</drawString>
+                        <setFont name="FreeSans" size="10"/>
+                        <drawString x="64mm" y="210mm"><xsl:value-of select="ic"/></drawString>
+                    </xsl:otherwise>
+                </xsl:choose>
+
+                <drawString x="78mm" y="222mm">(fyzická osoba):</drawString>
+
+                <setFont name="FreeSansBold" size="10"/>
+                <drawString x="24mm" y="206mm">Trvalé bydliště:</drawString>
+                <setFont name="FreeSans" size="10"/>
+                <drawString x="64mm" y="206mm"><xsl:value-of select="address"/></drawString>
+
+                <!-- TODO - this can gain more space, increase height of the frame -->
+                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="118mm" showBoundary="0" />
+                <lines>23mm 196mm 189mm 196mm</lines>
+            </xsl:otherwise>
+        </xsl:choose>
 
     <!-- Page footer -->
-        <stroke color="#c0c0c0"/>
-        <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
-        <setFont name="FreeSansBold" size="12"/>
-        <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
-        <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
-        <drawString x="12.5cm" y="4.3cm">Milešovská 1136/5</drawString>
-        <drawString x="12.5cm" y="3.7cm">130 00&EMSPACE;Praha 3</drawString>
+        <setFont name="FreeSansBold" size="10"/>
+        <drawString x="130mm" y="44mm">Zákaznická podpora</drawString>
+        <setFont name="FreeSans" size="10"/>
+        <drawString x="130mm" y="40mm">CZ.NIC, z.&THINSP;s.&THINSP;p.&THINSP;o.</drawString>
+        <drawString x="130mm" y="36mm">Milešovská 1136/5</drawString>
+        <drawString x="130mm" y="32mm">130&THINSP;00&EMSP;Praha&NBSP;3</drawString>
 
-        <stroke color="black"/>
-        <fill color="#000000"/>
         <setFont name="FreeSans" size="8"/>
-        <drawString x="1.8cm" y="1.4cm">
+        <drawString x="18mm" y="19mm">The English version is available at mojeid.cz/application.</drawString>
+        <drawString x="18mm" y="13mm">
           <xsl:value-of select="$loc/str[@name='MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register']"/>
         </drawString>
-        <drawString x="1.8cm" y="1cm">
+        <drawString x="18mm" y="10mm">
           <xsl:value-of select="$loc/str[@name='maintained by the Municipal Court in Prague, File ref.: L 58624.']"/>
         </drawString>
 
     <!-- Folder marks -->
-        <stroke color="black"/>
-        <lines>0.5cm 10.2cm 1cm 10.2cm</lines>
-        <lines>20cm 10.2cm 20.5cm 10.2cm</lines>
+        <lines>5mm 99mm 10mm 99mm</lines>
+        <lines>200mm 99mm 205mm 99mm</lines>
 
-        <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
-        <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
-
+        <lines>5mm 198mm 10mm 198mm</lines>
+        <lines>200mm 198mm 205mm 198mm</lines>
       </pageGraphics>
     </pageTemplate>
 
@@ -103,131 +176,54 @@ $xsltproc -stringparam lang en enum/fred2pdf/trunk/templates/mojeid_validate.xsl
 
 <stylesheet>
     <paraStyle name="main" fontName='FreeSans'/>
-    <paraStyle name="bold" fontName="FreeSansBold"/>
-    <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
-    <paraStyle name="footer" fontSize="8" />
+    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-4mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
+    <paraStyle name="clist" fontName='FreeSans' leftIndent="10mm" spaceBefore="2.5mm" alignment="LEFT"/>
 </stylesheet>
 
 <story>
 
-<spacer length="0.6cm"/>
 <para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='ZadamTimtoO']"/>
+    <b>Žádost o&NBSP;validaci podejte jedním z&NBSP;následujících způsobů:</b>
 </para>
 
-<spacer length="0.3cm"/>
-
-<para style="main">
- <xsl:choose>
-     <xsl:when test="string(handle)">
-        <xsl:value-of select="$mojeid_loc/str[@name='00Handle']"/>
-        &SPACE;<xsl:value-of select="handle"/>
-     </xsl:when>
-     <xsl:otherwise>
-     </xsl:otherwise>
- </xsl:choose>
+<para style="list">
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+    níže uvedenou adresu.
 </para>
-
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='01Jmeno']"/>
- &SPACE;<xsl:value-of select="name"/>
-</para> 
-
-<para style="main">
- <xsl:choose>
-     <xsl:when test="string(organization)">  
-         <xsl:value-of select="$mojeid_loc/str[@name='02Org']"/>
-         &SPACE;<xsl:value-of select="organization"/>
-     </xsl:when>
-     <xsl:otherwise>
-     </xsl:otherwise>
- </xsl:choose>
+<para style="list">
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete platným zaručeným <b>elektronickým podpisem</b>
+    založeným na kvalifikovaném certifikátu vydaném <b>akreditovaným</b> poskytovatelem certifikačních služeb v&NBSP;České republice
+    a&NBSP;odešlete na adresu <u><font color="blue">podpora@mojeid.cz</font></u>.
 </para>
-
-<para style="main">
- <xsl:choose> 
-     <xsl:when test="string(ic)">  
-        <xsl:value-of select="$mojeid_loc/str[@name='03Ic']"/>
-        &SPACE;<xsl:value-of select="ic"/>
-     </xsl:when>
-     <xsl:otherwise>
-     </xsl:otherwise>
- </xsl:choose>
+<para style="list">
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
+    Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
+    <u><font color="blue">mojeid.cz/validace</font></u>.
 </para>
- 
- <para style="main">
-  <xsl:choose>
-      <xsl:when test="string(birth_date)">
-         <xsl:value-of select="$mojeid_loc/str[@name='04BirthDate']"/>
-         &SPACE;<xsl:value-of select="birth_date"/>
-      </xsl:when>
-      <xsl:otherwise>
-      </xsl:otherwise>
-  </xsl:choose>
- </para> 
- <para style="main">
-  <xsl:choose>
-      <xsl:when test="string(address)">
-         <xsl:value-of select="$mojeid_loc/str[@name='05Address']"/>
-         &SPACE;<xsl:value-of select="address"/>
-      </xsl:when>
-      <xsl:otherwise>
-      </xsl:otherwise>
-  </xsl:choose>
- </para>
-
-<spacer length="0.6cm"/>
-<para style="main">
-     <xsl:value-of select="$mojeid_loc/str[@name='IdentifikacniCisloZadosti']"/>
-    <xsl:value-of select="request_id"/>
-
-     <xsl:value-of select="$mojeid_loc/str[@name='zeDne']"/>
-    <xsl:value-of select="request_date"/>. 
+<para style="clist">
+    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s&NBSP;uvedenou adresou
+    trvalého pobytu (občanský průkaz, pas + dokument dokládající adresu trvalého pobytu, apod.). Při
+    tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
 </para>
-
-<!-- description.... -->
-<spacer length="0.3cm"/>
-<para style="bold">
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidaciProvedte']"/>
-</para>
-
-<spacer length="0.3cm"/>
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature1']"/>
-    <b><xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature2']"/></b>
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidateVerifiedSignature3']"/>
-</para>
-<spacer length="0.3cm"/>
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidateEmail']"/>
-</para>
-<spacer length="0.3cm"/>
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidateInPerson']"/>
-</para>
-<spacer length="0.3cm"/>
-<para style="main">
-    <b><xsl:value-of select="$mojeid_loc/str[@name='ValOfficeList1']"/></b>
-    <xsl:value-of select="$mojeid_loc/str[@name='ValOfficeList2']"/>
-</para>
-<spacer length="0.3cm"/>
-<para style="main">
-    <b><xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHoursNotice']"/></b>
-    <xsl:value-of select="$mojeid_loc/str[@name='ValOfficeHours']"/>
-</para>
-<spacer length="0.3cm"/>
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='ValidateInPersonNotice']"/>
-</para>
-
-<spacer length="0.6cm"/>
-<para style="main">
-    <xsl:value-of select="$mojeid_loc/str[@name='JmenoApodpis']"/>
-</para>
-<spacer length="1.0cm"/>
-<para style="main">
-...........................................................................
-</para>
+<xsl:choose>
+    <xsl:when test="string(organization)">  
+        <para style="clist">
+            Při validaci účtu právnických osob vezměte s&NBSP;sebou kopii výpisu z&NBSP;obchodního rejstříku,
+            žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
+            kopii výpisu z&NBSP;živnostenského rejstříku.
+        </para>
+        <spacer length="22mm"/>
+        <para style="main">
+            Jméno a&NBSP;podpis odpovědné osoby: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
+        </para>
+    </xsl:when>
+    <xsl:otherwise>
+        <spacer length="41mm"/>
+        <para style="main">
+            Jméno a&NBSP;podpis: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
+        </para>
+    </xsl:otherwise>
+</xsl:choose>
 
 </story>
 

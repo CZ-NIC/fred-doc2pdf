@@ -76,8 +76,11 @@ xsltproc templates/mojeid_auth_owner_change_optys.xsl examples/mojeid_auth_owner
 echo create file $DEST/mojeid_auth.pdf
 xsltproc templates/mojeid_auth_user.xsl examples/mojeid_auth_user.xml | ./fred-doc2pdf > $DEST/mojeid_auth.pdf
 
-echo create file $DEST/mojeid_validate.pdf
-xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-doc2pdf > $DEST/mojeid_validate.pdf
+echo create file $DEST/mojeid_validate_fyz.pdf
+xsltproc templates/mojeid_validate.xsl examples/mojeid_validate_fyz.xml | ./fred-doc2pdf > $DEST/mojeid_validate_fyz.pdf
+
+echo create file $DEST/mojeid_validate_prav.pdf
+xsltproc templates/mojeid_validate.xsl examples/mojeid_validate_prav.xml | ./fred-doc2pdf > $DEST/mojeid_validate_prav.pdf
 
 echo create file $DEST/public_request_block_en.pdf
 xsltproc templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_en.pdf
