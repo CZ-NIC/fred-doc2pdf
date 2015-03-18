@@ -155,7 +155,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
         <drawString x="130mm" y="32mm">130&THINSP;00&EMSP;Praha&NBSP;3</drawString>
 
         <setFont name="FreeSans" size="8"/>
-        <drawString x="18mm" y="19mm">The English version is available at mojeid.cz/application.</drawString>
+        <drawString x="18mm" y="19mm">The English version is available at www.mojeid.cz/application.</drawString>
         <drawString x="18mm" y="13mm">
           <xsl:value-of select="$loc/str[@name='MojeID service is operated by the CZ.NIC Association, an interest association of legal entities, registered in the Associations register']"/>
         </drawString>
