@@ -82,6 +82,28 @@ xsltproc templates/mojeid_validate.xsl examples/mojeid_validate_fyz.xml | ./fred
 echo create file $DEST/mojeid_validate_prav.pdf
 xsltproc templates/mojeid_validate.xsl examples/mojeid_validate_prav.xml | ./fred-doc2pdf > $DEST/mojeid_validate_prav.pdf
 
+# test sex:     male
+# test state:   validated
+# test country: CZ
+echo create file $DEST/mojeid_card_optys_m_v_cz.pdf
+xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_m_v_cz.xml | ./fred-doc2pdf > $DEST/mojeid_card_optys_m_v_cz.pdf
+
+# test sex:     male
+# test country: CZ
+echo create file $DEST/mojeid_card_optys_m_cz.pdf
+xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_m_cz.xml | ./fred-doc2pdf > $DEST/mojeid_card_optys_m_cz.pdf
+
+# test sex:     female
+# test state:   validated
+# test country: SK
+echo create file $DEST/mojeid_card_optys_f_v_sk.pdf
+xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_f_v_sk.xml | ./fred-doc2pdf > $DEST/mojeid_card_optys_f_v_sk.pdf
+
+# test sex:     female
+# test country: SK
+echo create file $DEST/mojeid_card_optys_f_sk.pdf
+xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_f_sk.xml | ./fred-doc2pdf > $DEST/mojeid_card_optys_f_sk.pdf
+
 echo create file $DEST/public_request_block_en.pdf
 xsltproc templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_en.pdf
 
