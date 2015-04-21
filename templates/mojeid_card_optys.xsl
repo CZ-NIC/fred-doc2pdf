@@ -107,10 +107,10 @@ END:VCARD</barCode>
           <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>
           <para style="address"><xsl:value-of select="street"/></para>
           <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>
-          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country"/></para></xsl:if>
+          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country_name"/></para></xsl:if>
           <nextFrame/>
           <para style="title">Zaslání mojeID/emergency card</para>
-          <spacer length="17mm"/>
+          <spacer length="14mm"/>
           <para style="main-bold">
             <xsl:choose>
               <xsl:when test="account/sex='female'">Vážená uživatelko,</xsl:when>
@@ -130,8 +130,11 @@ END:VCARD</barCode>
           <para style="main-bold">+420 222 745 111 | podpora@mojeid.cz | www.mojeid.cz</para>
           <xsl:if test="cznic:country_is_czech_republic(country)"><spacer length="4mm"/></xsl:if>
           <xsl:choose>
-            <xsl:when test="account/state!='validated'">
-              <spacer length="13mm"/>
+            <xsl:when test="account/state='validated'">
+              <spacer length="71mm"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <spacer length="16mm"/>
               <para style="main-italic">
                 Víte o tom, že svůj účet můžete i <i>validovat</i>? Tím se myslí ověřit údaje z účtu
                 mojeID oproti dokladu totožnosti, případně elektronickým podpisem. K ověřovaným
@@ -147,9 +150,6 @@ END:VCARD</barCode>
                 Neváhejte tedy a navštivte nejbližší validační místo.
               </para>
               <spacer length="18mm"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <spacer length="68mm"/>
             </xsl:otherwise>
           </xsl:choose>
           <para style="main-bold">Základní údaje o Vašem účtu:</para>
