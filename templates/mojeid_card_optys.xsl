@@ -118,7 +118,7 @@ END:VCARD</barCode>
             </xsl:choose>
           </para>
           <spacer length="3mm"/>
-          <para style="main">jsme rádi, že máte zájem o službu <i>mojeID</i>. Na základě obdržené žádosti
+          <para style="main">jsme rádi, že máte zájem o službu mojeID. Na základě obdržené žádosti
                              Vám zasíláme mojeID/emergency card.</para>
           <spacer length="3mm"/>
           <para style="main">Váš tým mojeID</para>
