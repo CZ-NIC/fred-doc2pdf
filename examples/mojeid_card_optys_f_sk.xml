@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact_auth>
+  <user>
+    <actual_date>2015-04-21</actual_date>
+
+    <name>Jana Krátká</name>
+    <street>Stručná 1</street>
+    <city>Košice</city>
+    <postal_code>720 00</postal_code>
+    <country>SK</country>
+    <country_name>Slovakia</country_name>
+
+    <account>
+      <username>jk</username>
+      <first_name>Jana</first_name>
+      <last_name>Krátká</last_name>
+      <sex>female</sex>
+      <email>jk@z-kosic.sk</email>
+      <mobile>+421 602 11 22 33</mobile>
+    </account>
+  </user>
+</contact_auth>
