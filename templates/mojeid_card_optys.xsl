@@ -107,7 +107,7 @@ END:VCARD</barCode>
           <xsl:if test="normalize-space(organization)!=''"><para style="address-name"><xsl:value-of select="organization"/></para></xsl:if>
           <para style="address"><xsl:value-of select="street"/></para>
           <para style="address"><xsl:value-of select="postal_code"/>&SPACE;<xsl:value-of select="city"/><xsl:if test="normalize-space(stateorprovince)!=''">, <xsl:value-of select="stateorprovince"/></xsl:if></para>
-          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country_name"/></para></xsl:if>
+          <xsl:if test="not(cznic:country_is_czech_republic(country))"><para style="address"><xsl:value-of select="country"/></para></xsl:if>
           <nextFrame/>
           <para style="title">Zaslání mojeID/emergency card</para>
           <spacer length="14mm"/>
