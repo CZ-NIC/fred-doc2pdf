@@ -207,17 +207,17 @@ class Install(install):
                 else:
                     dummy, self.font_names = find_font_path_and_family()
 
-            # Check font path
-            if not os.path.isdir(self.font_path):
-                sys.stderr.write("Directory '%s' not found.\n" % self.font_path)
-                exit(1)
-
-            # check explicit font names
-            for font_file in re.split("\s+", self.font_names):
-                path = os.path.join(self.font_path, font_file)
-                if not os.path.isfile(path):
-                    sys.stderr.write("File '%s' not found.\n" % path)
+            if self.no_check_deps is None:
+                # Check font path
+                if os.path.isdir(self.font_path):
+                    sys.stderr.write("Directory '%s' not found.\n" % self.font_path)
                     exit(1)
+                # check explicit font names
+                for font_file in re.split("\s+", self.font_names):
+                    path = os.path.join(self.font_path, font_file)
+                    if not os.path.isfile(path):
+                        sys.stderr.write("File '%s' not found.\n" % path)
+                        exit(1)
 
     def update_config(self, filename):
         content = open(filename).read()
