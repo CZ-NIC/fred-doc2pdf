@@ -1,3 +1,9 @@
+2016-03-22 Michal Strnad, Jaromir Talir (2.11.1)
+
+   * Fix rpm build
+
+   * Fix example data
+
 2015-05-19 Michal Strnad (2.11.0)
 
    * new mojeid card letter template
