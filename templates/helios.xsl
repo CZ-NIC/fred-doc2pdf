@@ -37,7 +37,7 @@
  <xsl:variable name="pk_dph_20" select="$pk_dph_19 + 1" />
  <xsl:variable name="pk_dph_0" select="$pk_dph_20 + 1" />
  <xsl:variable name="pk_dph_21" select="$pk_dph_0 + 1" />
- <xsl:variable name="pk_payment_type" select="$pk_dph_0 + 1" />
+ <xsl:variable name="pk_payment_type" select="$pk_dph_21 + 1" />
  <xsl:variable name="pk_stred" select="$pk_payment_type + 1" />
  <xsl:variable name="pk_bank_spoj" select="$pk_stred + 1" />
  <xsl:variable name="pk_skup" select="$pk_bank_spoj + 1" />
@@ -159,6 +159,7 @@
        <PopisDodavky>
         <xsl:text>vyuctovani domeny</xsl:text>
        </PopisDodavky>
+       <VstupniCena>3</VstupniCena>
        <ZaokrouhleniFak>0</ZaokrouhleniFak>
        <ZaokrouhleniFakVal>0</ZaokrouhleniFakVal>
        <SazbaDPH>
@@ -293,7 +294,11 @@
       <xsl:if test="count(advance_payment)=0">
 	      <TabOZTxtPol>
 	       <Poradi>1</Poradi>
-	       <MJ>ks</MJ>
+               <DruhPohybuZbo>13</DruhPohybuZbo>
+	       <MJ>
+	         <xsl:text>FK_</xsl:text>
+                 <xsl:value-of select="$pk_maj" />
+	       </MJ>
 	       <SazbaDPH>
 	         <xsl:call-template name="pk_sazba_dph">
 	          <xsl:with-param name="sazba"
@@ -349,6 +354,18 @@
 	       <CCsDPHValPoS>
 	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/total" />
 	       </CCsDPHValPoS>
+	       <SamoVyDPHZaklad>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </SamoVyDPHZaklad>
+	       <SamoVyDPHCastka>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/totalvat" />
+	       </SamoVyDPHCastka>
+	       <SamoVyDPHZakladHM>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/basetax" />
+	       </SamoVyDPHZakladHM>
+	       <SamoVyDPHCastkaHM>
+	         <xsl:value-of select="delivery/vat_rates/entry[position()=1]/totalvat" />
+	       </SamoVyDPHCastkaHM>
 	      </TabOZTxtPol>
       </xsl:if>
       <xsl:for-each select='advance_payment/applied_invoices/consumed'>
@@ -508,6 +525,18 @@
          <xsl:value-of select='$pk_cz_currency' />
         </Mena>
         <PrepocetMJSD>1</PrepocetMJSD>
+        <SamoVyDPHZaklad>
+         <xsl:value-of select="price" />
+        </SamoVyDPHZaklad>
+        <SamoVyDPHCastka>
+         <xsl:value-of select="vat" />
+        </SamoVyDPHCastka>
+        <SamoVyDPHZakladHM>
+         <xsl:value-of select="price" />
+        </SamoVyDPHZakladHM>
+        <SamoVyDPHCastkaHM>
+         <xsl:value-of select="vat" />
+        </SamoVyDPHCastkaHM>
        </TabPohybyZbozi>
       </xsl:for-each>
      </PohyboveDoklady>
@@ -591,8 +620,7 @@
         <xsl:value-of select="$pk_bank" />
        </IDUstavu>
        <CilovaZeme>
-        <xsl:text>FK_</xsl:text>
-        <xsl:value-of select="$pk_zeme" />
+        <xsl:text>FK_ZEME_CZ</xsl:text>
        </CilovaZeme>
       </Polozka>
      </TabBankSpojeni>
@@ -738,16 +766,90 @@
       </TabObdobiStavu>
      </xsl:if>
      <TabZeme>
-      <Polozka>
-       <Klic>
-        <xsl:text>FK_</xsl:text>
-        <xsl:value-of select="$pk_zeme" />
-       </Klic>
-       <ISOKod>CZ</ISOKod>
-       <Nazev>Česká republika</Nazev>
-       <CelniKod>CZ</CelniKod>
-       <EU>1</EU>
-      </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_AU</Klic>
+	 <ISOKod>AU</ISOKod>
+	 <Nazev>Austrálie</Nazev>
+	 <CelniKod>AU</CelniKod>
+	 <EU>0</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_CH</Klic>
+	 <ISOKod>CH</ISOKod>
+	 <Nazev>Švýcarsko</Nazev>
+	 <CelniKod>CH</CelniKod>
+	 <EU>0</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_CZ</Klic>
+	 <ISOKod>CZ</ISOKod>
+	 <Nazev>Česká republika</Nazev>
+	 <CelniKod>CZ</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_DE</Klic>
+	 <ISOKod>DE</ISOKod>
+	 <Nazev>Německo</Nazev>
+	 <CelniKod>DE</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_DK</Klic>
+	 <ISOKod>DK</ISOKod>
+	 <Nazev>Dánsko</Nazev>
+	 <CelniKod>DK</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_FR</Klic>
+	 <ISOKod>FR</ISOKod>
+	 <Nazev>Francie</Nazev>
+	 <CelniKod>FR</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_GB</Klic>
+	 <ISOKod>GB</ISOKod>
+	 <Nazev>Spojené království</Nazev>
+	 <CelniKod>GB</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_LU</Klic>
+	 <ISOKod>LU</ISOKod>
+	 <Nazev>Lucembursko</Nazev>
+	 <CelniKod>LU</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_NL</Klic>
+	 <ISOKod>NL</ISOKod>
+	 <Nazev>Nizozemsko</Nazev>
+	 <CelniKod>NL</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_SG</Klic>
+	 <ISOKod>SG</ISOKod>
+	 <Nazev>Singapur</Nazev>
+	 <CelniKod>SG</CelniKod>
+	 <EU>0</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_SK</Klic>
+	 <ISOKod>SK</ISOKod>
+	 <Nazev>Slovensko</Nazev>
+	 <CelniKod>SK</CelniKod>
+	 <EU>1</EU>
+       </Polozka>
+       <Polozka>
+	 <Klic>FK_ZEME_US</Klic>
+	 <ISOKod>US</ISOKod>
+	 <Nazev>Spojené státy</Nazev>
+	 <CelniKod>US</CelniKod>
+	 <EU>0</EU>
+       </Polozka>
      </TabZeme>
      <TabCisOrg>
       <xsl:for-each
@@ -820,9 +922,10 @@
          <xsl:value-of select="client/id" />
         </CisloOrg>
         <ISOZeme>
-         <xsl:text>FK_</xsl:text>
-         <xsl:value-of select="$pk_zeme" />
+         <xsl:text>FK_ZEME_</xsl:text>
+         <xsl:value-of select="client/address/country" />
         </ISOZeme>
+        <AktualniDIC>1</AktualniDIC>
        </Polozka>
       </xsl:for-each>
      </TabDICOrg>
@@ -940,6 +1043,7 @@
          <DatPorizeni>
           <xsl:value-of select="../../../payment/tax_point" />
          </DatPorizeni>
+         <VstupniCena>3</VstupniCena>
         </Polozka>
        </xsl:for-each>
       </TabDokladyZbozi>
