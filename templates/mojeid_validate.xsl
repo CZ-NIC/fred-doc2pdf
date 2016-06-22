@@ -113,7 +113,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
                 <drawString x="64mm" y="202mm"><xsl:value-of select="address"/></drawString>
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
-                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="114mm" showBoundary="0" />
+                <frame id="body" x1="23mm" y1="65mm" width="166mm" height="124mm" showBoundary="0" />
                 <lines>23mm 192mm 189mm 192mm</lines>
             </xsl:when>
             <xsl:otherwise>
@@ -140,7 +140,7 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
                 <drawString x="64mm" y="206mm"><xsl:value-of select="address"/></drawString>
 
                 <!-- TODO - this can gain more space, increase height of the frame -->
-                <frame id="body" x1="23mm" y1="70mm" width="166mm" height="118mm" showBoundary="0" />
+                <frame id="body" x1="23mm" y1="65mm" width="166mm" height="128mm" showBoundary="0" />
                 <lines>23mm 196mm 189mm 196mm</lines>
             </xsl:otherwise>
         </xsl:choose>
@@ -216,13 +216,13 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
             žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
             kopii výpisu z&NBSP;živnostenského rejstříku.
         </para>
-        <spacer length="22mm"/>
+        <spacer length="12mm"/>
         <para style="main">
             Jméno a&NBSP;podpis odpovědné osoby: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
         </para>
     </xsl:when>
     <xsl:otherwise>
-        <spacer length="41mm"/>
+        <spacer length="29mm"/>
         <para style="main">
             Jméno a&NBSP;podpis: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
         </para>
