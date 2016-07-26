@@ -50,7 +50,6 @@ Examples:
 #    python -m profile fred-doc2pdf -o no test_invoice.rml > profile.log
 
 import os, sys
-import StringIO
 import re
 import ConfigParser
 import getopt
@@ -266,15 +265,17 @@ def fred_docinit(self, els):
 """    
 class FredTable(platypus.Table):
     'Optimized for very long tables'
-    
+
     def __init__(self, data, colWidths=None, rowHeights=None, style=None,
-                repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, 
-                ident=None, hAlign=None,vAlign=None,normalizedData=0,cellStyles=None):
-        "Compatible with Reportlab verion 2.1 and 2.3"
-        
+                 repeatRows=0, repeatCols=0, splitByRow=1, emptyTableAction=None, ident=None,
+                 hAlign=None, vAlign=None, normalizedData=0, cellStyles=None, rowSplitRange=None,
+                 spaceBefore=None, spaceAfter=None):
+        "Compatible with Reportlab verion 2.1 and 2.3 and 3.3.0"
+
         global cache_cells
- 
+
         seq_types = (tuple, list)
+
         self.ident = ident
         self._longTableOptimize = 1
         self.hAlign = hAlign or 'CENTER'
@@ -285,7 +286,7 @@ class FredTable(platypus.Table):
         self._cellvalues = []
         _seqCW = isinstance(colWidths, seq_types)
         _seqRH = isinstance(rowHeights, seq_types)
-        if nrows: self._ncols = ncols = max(map(platypus.tables._rowLen, data))
+        if nrows: self._ncols = ncols = max(list(map(platypus.tables._rowLen,data)))
         elif colWidths and _seqCW: ncols = len(colWidths)
         else: ncols = 0
         if not emptyTableAction: emptyTableAction = platypus.tables.rl_config.emptyTableAction
@@ -295,7 +296,7 @@ class FredTable(platypus.Table):
             elif emptyTableAction=='indicate':
                 self.__class__ = platypus.tables.Preformatted
                 global _emptyTableStyle
-                if '_emptyTableStyle' not in globals().keys():
+                if '_emptyTableStyle' not in list(globals().keys()):
                     _emptyTableStyle = platypus.tables.ParagraphStyle('_emptyTableStyle')
                     _emptyTableStyle.textColor = platypus.tables.colors.red
                     _emptyTableStyle.backColor = platypus.tables.colors.yellow
@@ -308,7 +309,10 @@ class FredTable(platypus.Table):
             return
 
         # we need a cleanup pass to ensure data is strings - non-unicode and non-null
-        self._cellvalues = self.normalizeData(data)
+        if normalizedData:
+            self._cellvalues = data
+        else:
+            self._cellvalues = data = self.normalizeData(data)
         if not _seqCW: colWidths = ncols*[colWidths]
         elif len(colWidths)!=ncols:
             if platypus.tables.rl_config.allowShortTableRows and isinstance(colWidths,list):
@@ -331,14 +335,16 @@ class FredTable(platypus.Table):
                     raise ValueError("%s expected %d not %d columns in row %d!" % (self.identity(),ncols,n,i))
         self._rowHeights = self._argH = rowHeights
         self._colWidths = self._argW = colWidths
-        cellrows = []
 
-        # speed optimalization:
-        self._cellStyles = None
-        if cache_cells.has_key(ncols):
-            if nrows <= cache_cells[ncols][0]:
-                # use cached objects
-                self._cellStyles = cache_cells[ncols][1]
+        if cellStyles is not None:
+            self._cellStyles = cellStyles
+        else:
+            # speed optimalization:
+            self._cellStyles = None
+            if cache_cells.has_key(ncols):
+                if nrows <= cache_cells[ncols][0]:
+                    # use cached objects
+                    self._cellStyles = cache_cells[ncols][1]
 
         if self._cellStyles is None:
             cellrows = []
@@ -350,11 +356,13 @@ class FredTable(platypus.Table):
             self._cellStyles = cellrows
             # save into cache:
             cache_cells[ncols] = (nrows, cellrows)
-        
+
         self._bkgrndcmds = []
         self._linecmds = []
         self._spanCmds = []
         self._nosplitCmds = []
+        # NB repeatRows can be a list or tuple eg (1,) reapesat only the second row of a table
+        # or an integer eg 2 to repeat both rows 0 & 1
         self.repeatRows = repeatRows
         self.repeatCols = repeatCols
         self.splitByRow = splitByRow
@@ -362,6 +370,11 @@ class FredTable(platypus.Table):
         if style:
             self.setStyle(style)
 
+        self._rowSplitRange = rowSplitRange
+        if spaceBefore is not None:
+            self.spaceBefore = spaceBefore
+        if spaceAfter is not None:
+            self.spaceAfter = spaceAfter
 
     def _calc_height(self, availHeight, availWidth, H=None, W=None):
         'replace original at reportlab.platypus.tables._calc_height'
@@ -756,9 +769,11 @@ def init_hooks():
     
     # fix problem with unicode
     utils.attr_get = attr_get
-    
-    #Hook table cache for speed optimalisation
+
+    # Hook table cache for speed optimalisation
     trml2pdf._rml_flowable._table = fred_table
+
+    # Hook flowable for barcode.
     trml2pdf._rml_flowable._flowable = _flowable
 
     # ---------------------------------------------
