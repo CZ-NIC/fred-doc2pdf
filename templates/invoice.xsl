@@ -212,7 +212,7 @@ $ xsltproc yourpath/templates/ -stringparam lang en yourpath/templates/invoice.x
 
     <blockTableStyle id="sumarize_items">
       <lineStyle kind="LINEABOVE" start="0,0" stop="-1,0" thickness="0.5" colorName="black"/>
-      <blockFont name="FreeSansBold" start="0,0" stop="-1,1"/>
+      <blockFont name="FreeSansBold" start="0,0" stop="-1,-1"/>
       <blockTopPadding length="0.1cm" start="0,-1" stop="-1,-1" />
     </blockTableStyle>
 
