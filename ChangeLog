@@ -1,3 +1,9 @@
+2016-09-07 Zdenek Bohm, Zuzana Ansorgova (2.12.0)
+
+   * configuration file documentation
+
+   * compatibility with reportlab 3.3.0
+
 2016-06-13 Jiri Sadek (2.11.3)
 
    * mojeid validation pdf (datova schranka)
