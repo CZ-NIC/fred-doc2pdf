@@ -130,7 +130,7 @@ Tím je instalace dokončena.
 je připravena RML šablona test_czech_encoding.rml. Vytvořte z ní PDF příkazem:
 
     $ cd
-    $ doc2pdf exampes/test_czech_encoding.rml > test1.pdf
+    $ doc2pdf examples/test_czech_encoding.rml > test1.pdf
 
 jestli je vše na svém místě, vytvoří se PDF dokument test_cs.pdf.
 

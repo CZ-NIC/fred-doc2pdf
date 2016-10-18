@@ -50,7 +50,6 @@ cat <<MSG
     <url>www.nic.cz</url>
     <email>podpora@nic.cz</email>
     <phone>+420 222 745 111</phone>
-    <fax>+420 222 745 112</fax>
 </supplier>
 
 <payment>
