@@ -1355,6 +1355,7 @@
     <drawString x="7.3cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='DIC']"/> CZ67985726</drawString>
 
     <drawString x="11.3cm" y="4cm"><xsl:value-of select="$loc/str[@name='T']"/> +420 222 745 111</drawString>
+    <drawString x="11.3cm" y="3.6cm"><xsl:value-of select="$loc/str[@name='M']"/> +420 731 657 660</drawString>
 
     <drawString x="15.3cm" y="4cm">kontakt@nic.cz</drawString>
     <drawString x="15.3cm" y="3.6cm">www.nic.cz</drawString>
