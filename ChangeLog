@@ -1,3 +1,11 @@
+2016-11-29 Ales Friedl, Jiri Sadek (2.13.0)
+
+   * Remove fax in cz.nic design template, use mobile phone instead
+
+   * Fix examples
+
+   * Remove generated files
+
 2016-09-07 Zdenek Bohm, Zuzana Ansorgova (2.12.0)
 
    * configuration file documentation
