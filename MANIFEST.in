@@ -1,5 +1,5 @@
 include examples/*
-
+include fred-doc2pdf.spec
 include ChangeLog
 include *.ascii
 include *.utf8
