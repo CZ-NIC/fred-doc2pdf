@@ -200,10 +200,6 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
     <u><font color="blue">mojeid.cz/validace</font></u>.
 </para>
-<para style="list">
-    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete z&NBSP;Vaší <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
-    Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem s&NBSP;identifikací odesílatele.
-</para>
 <para style="clist">
     Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s&NBSP;uvedenou adresou
     trvalého pobytu (občanský průkaz, pas + dokument dokládající adresu trvalého pobytu, apod.). Při
@@ -216,6 +212,16 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
             žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
             kopii výpisu z&NBSP;živnostenského rejstříku.
         </para>
+    </xsl:when>
+</xsl:choose>
+<para style="list">
+    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete ze své <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
+    Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem.
+    Při odeslání musí být povolena volba "Přidat identifikaci odesílatele"!
+</para>
+
+<xsl:choose>
+    <xsl:when test="string(organization)">
         <spacer length="12mm"/>
         <para style="main">
             Jméno a&NBSP;podpis odpovědné osoby: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
