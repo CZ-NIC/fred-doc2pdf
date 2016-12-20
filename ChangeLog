@@ -1,3 +1,7 @@
+2016-12-20 (2.13.1)
+
+   * Fix text of mojeid validation pdf
+
 2016-11-29 Ales Friedl, Jiri Sadek (2.13.0)
 
    * Remove fax in cz.nic design template, use mobile phone instead
