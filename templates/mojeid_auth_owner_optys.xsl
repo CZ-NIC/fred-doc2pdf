@@ -55,14 +55,6 @@
 
   <xsl:template match="contact_auth/user">
     <document>
-      <docinit>
-        <registerFont
-          fontName="Arial" fontFile="../msttcorefonts/Arial.ttf"
-          fontNameBold="ArialBold" fontFileBold="../msttcorefonts/Arial_Bold.ttf"
-          fontNameItalic="ArialItalic" fontFileItalic="../msttcorefonts/Arial_Italic.ttf"
-          fontNameBoldItalic="ArialBoldItalic" fontFileBoldItalic="../msttcorefonts/Arial_Bold_Italic.ttf"
-        />
-      </docinit>
       <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">
         <pageTemplate id="main_cs">
           <pageGraphics>
@@ -79,15 +71,15 @@ EMAIL;TYPE=PREF:<xsl:value-of select="account/email"/>
 END:VCARD</barCode>
             <stroke color="black"/>
             <fill color="#000000"/>
-            <setFont name="Arial" size="9.5"/>
+            <setFont name="FreeSans" size="9.5"/>
             <drawString x="150mm" y="194mm">Praha&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></drawString>
-            <setFont name="ArialBold" size="17"/>
+            <setFont name="FreeSansBold" size="17"/>
             <drawString x="72mm" y="141.5mm">Váš kód PIN3: <xsl:value-of select="auth/codes/pin3"/></drawString>
             <xsl:choose>
               <xsl:when test="string-length(account/username)&lt;18">
-                <setFont name="ArialBold" size="9.5"/></xsl:when>
+                <setFont name="FreeSansBold" size="9.5"/></xsl:when>
               <xsl:otherwise>
-                <setFont name="Arial" size="5.5"/>
+                <setFont name="FreeSans" size="5.5"/>
               </xsl:otherwise>
             </xsl:choose>
             <drawString x="102mm" y="60.5mm"><xsl:value-of select="account/username"/></drawString>
@@ -97,12 +89,12 @@ END:VCARD</barCode>
         </pageTemplate>
 
         <stylesheet>
-          <paraStyle name="main" fontName="Arial" fontSize="9.5"/>
-          <paraStyle name="main-bold" fontName="ArialBold" fontSize="9.5"/>
-          <paraStyle name="main-title" fontName="ArialBold" fontSize="12"/>
-          <paraStyle name="title" fontSize="23" fontName="ArialBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>
-          <paraStyle name="address" fontSize="11" fontName="Arial"/>
-          <paraStyle name="address-name" fontSize="11" fontName="ArialBold"/>
+          <paraStyle name="main" fontName="FreeSans" fontSize="9.5"/>
+          <paraStyle name="main-bold" fontName="FreeSansBold" fontSize="9.5"/>
+          <paraStyle name="main-title" fontName="FreeSansBold" fontSize="12"/>
+          <paraStyle name="title" fontSize="23" fontName="FreeSansBold" spaceBefore="0" spaceAfter="5mm" textColor="#666666"/>
+          <paraStyle name="address" fontSize="11" fontName="FreeSans"/>
+          <paraStyle name="address-name" fontSize="11" fontName="FreeSansBold"/>
         </stylesheet>
 
         <story>
