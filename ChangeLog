@@ -1,3 +1,9 @@
+2017-03-02 (2.14.0)
+
+   * Remove Arial font dependency
+
+   * Fix fedora packaging
+
 2016-12-20 (2.13.1)
 
    * Fix text of mojeid validation pdf
