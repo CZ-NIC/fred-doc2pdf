@@ -2,7 +2,9 @@
 
    * Remove Arial font dependency
 
-   * Fix fedora packaging
+2017-03-09 (2.13.2)
+
+   * Fedora packaging
 
 2016-12-20 (2.13.1)
 
