@@ -188,5 +188,11 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 
 <str name="The Record statement from the Domain registry .cz">Výpis z registru doménových jmen .cz</str>
 <str name="These data are valid for">Zde uvedené údaje jsou platné k</str>
-<str name="Keyset">Sada klíčů</str>
+<str name="Key set">Sada klíčů</str>
+<str name="DNS Key">Klíč DNS</str>
+<str name="Flags">Příznaky</str>
+<str name="Protocol">Protokol</str>
+<str name="Algorithm">Algoritmus</str>
+<str name="Key">Klíč</str>
+
 </strings>

@@ -33,6 +33,21 @@
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
+        <paraStyle name="largeStringMono" fontName="Courier" parent="basic" fontSize="8"/>
+
+        <blockTableStyle id="registry_data">
+          <lineStyle kind="GRID" start="0,0" stop="-1,-1" thickness="0.5" colorName="black"/>
+          <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
+          <blockLeftPadding length="0" start="1,1" stop="1,-1" />
+          <blockTopPadding length="0" start="1,1" stop="1,-1" />
+          <blockBottomPadding length="0" start="1,1" stop="1,-1" />
+        </blockTableStyle>
+
+        <blockTableStyle id="registry_data_insider">
+          <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9" />
+          <blockLeftPadding length="1" start="1,1" stop="-1,-1" />
+        </blockTableStyle>
+
       </stylesheet>
 
       <story>

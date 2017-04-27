@@ -181,6 +181,11 @@
 
 <str name="The Record statement from the Domain registry .cz">The Record statement from the Domain registry .cz</str>
 <str name="These data are valid for">These data are valid for</str>
-<str name="Keyset">Keyset</str>
+<str name="Key set">Key set</str>
+<str name="DNS Key">DNS Key</str>
+<str name="Flags">Flags</str>
+<str name="Protocol">Protocol</str>
+<str name="Algorithm">Algorithm</str>
+<str name="Key">Key</str>
 
 </strings>

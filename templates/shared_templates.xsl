@@ -41,6 +41,19 @@
     </xsl:if>
 </xsl:template>
 
+<xsl:template match="text()" name="split_large_string_into_pre">
+  <xsl:param name="largeString"/>
+  <xsl:param name="numOfLetters" select="56"/>
+   <xsl:if test="string-length($largeString) > 0">
+        <pre style="largeStringMono">
+            <xsl:value-of select="substring($largeString, 0, $numOfLetters)"/>
+        </pre>
+    <xsl:call-template name="split_large_string_into_pre">
+     <xsl:with-param name="largeString" select="substring($largeString, $numOfLetters)"/>
+    </xsl:call-template>
+   </xsl:if>
+ </xsl:template>
+
 <xsl:template name="trim_with_dots">
     <xsl:param name="string"/>
     <xsl:param name="max_length" select="25"/>

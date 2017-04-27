@@ -15,8 +15,56 @@
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
-    <para style="main"><xsl:value-of select="$loc/str[@name='Keyset']"/></para>
+    <para style="main"><xsl:value-of select="$loc/str[@name='Key set']"/></para>
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <tr>
+        <td><xsl:value-of select="$loc/str[@name='Identifier']"/></td>
+        <td><xsl:value-of select="handle"/></td>
+      </tr>
+      <xsl:apply-templates select="dns_key_list" />
+      <xsl:for-each select="dns_key_list">
+        <xsl:call-template name="dnsKeyListTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
 
+    </blockTable>
+
+  </xsl:template>
+
+  <xsl:template name="dnsKeyListTemplate">
+      <xsl:param name="lang" select="'cs'"/>
+      <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+      <tr>
+        <td vAlign="top"><xsl:value-of select="$loc/str[@name='DNS Key']"/></td>
+        <td>
+          <blockTable colWidths="2.2cm,8cm" style="registry_data_insider">
+            <tr>
+              <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
+              <td><xsl:value-of select="dns_key/flags"/></td>
+            </tr>
+            <tr>
+              <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
+              <td><xsl:value-of select="dns_key/protocol"/></td>
+            </tr>
+            <tr>
+              <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
+              <td><xsl:value-of select="dns_key/algorithm"/></td>
+            </tr>
+            <tr>
+              <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
+            </tr>
+            <tr>
+              <td>
+                  <xsl:call-template name="split_large_string_into_pre">
+                      <xsl:with-param name="largeString" select="dns_key/key"/>
+                  </xsl:call-template>
+              </td>
+            </tr>
+          </blockTable>
+
+        </td>
+      </tr>
   </xsl:template>
 
 </xsl:stylesheet>
