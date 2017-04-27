@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<record_statement>
+
+    <current_datetime>2017-04-18T16:12:00+02:00</current_datetime>
+
+    <nsset>
+
+        <handle>NSS1</handle>
+
+        <nameserver_list>
+
+            <nameserver>
+                <fqdn>a.ns.foo.cz</fqdn>
+                <ip_list>
+                    <ip>127.0.1.1</ip>
+                    <ip>127.0.1.2</ip>
+                    <ip>127.0.1.3</ip>
+                </ip_list>
+            </nameserver>
+
+            <nameserver>
+                <fqdn>b.ns.foo.cz</fqdn>
+                <ip_list>
+                    <ip>127.0.2.1</ip>
+                    <ip>127.0.2.2</ip>
+                    <ip>127.0.2.3</ip>
+                </ip_list>
+            </nameserver>
+
+            <nameserver>
+                <fqdn>c.ns.foo.cz</fqdn>
+                <ip_list>
+                    <ip>127.0.3.1</ip>
+                    <ip>127.0.3.2</ip>
+                    <ip>127.0.3.3</ip>
+                </ip_list>
+            </nameserver>
+
+        </nameserver_list>
+
+        <tech_contact_list>
+
+            <tech_contact>
+                <handle>AADMINOVIC1</handle>
+                <name>Adam Adminovič</name>
+                <organization>International Trade Ltd.</organization>
+            </tech_contact>
+
+            <tech_contact>
+                <handle>AADMINOVIC2</handle>
+                <name>Adam Adminovič</name>
+                <organization>International Trade Ltd.</organization>
+            </tech_contact>
+
+            <tech_contact>
+                <handle>AADMINOVIC3</handle>
+                <name>Adam Adminovič</name>
+                <organization>International Trade Ltd.</organization>
+            </tech_contact>
+
+        </tech_contact_list>
+
+        <sponsoring_registrar>
+            <handle>REG-FRED_A</handle>
+            <name>Test A. Registrar</name>
+            <organization>International Trade Ltd.</organization>
+        </sponsoring_registrar>
+    </nsset>
+
+</record_statement>

@@ -176,4 +176,8 @@
 <str name="confirm_correction01">We confirm the change in the contact above. Registration of domain names, for which the contact</str>
 <str name="confirm_correction02">is listed as the holder, remains unchanged.</str>
 
+<str name="The Record statement from the Domain registry .cz">The Record statement from the Domain registry .cz</str>
+<str name="These data are valid for">These data are valid for</str>
+<str name="Keyset">Keyset</str>
+
 </strings>
