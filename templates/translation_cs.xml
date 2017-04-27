@@ -183,6 +183,8 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt</str>
 <str name="confirm_correction02">uveden jako držitel, tedy zůstává zachována.</str>
 
+<str name="CET">SEČ</str>
+<str name="CEST">SELČ</str>
 
 <str name="The Record statement from the Domain registry .cz">Výpis z registru doménových jmen .cz</str>
 <str name="These data are valid for">Zde uvedené údaje jsou platné k</str>

@@ -88,7 +88,10 @@
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
     <para style="page-header"><xsl:value-of select="$loc/str[@name='The Record statement from the Domain registry .cz']"/></para>
-    <para style="main"><xsl:value-of select="$loc/str[@name='These data are valid for']"/> &SPACE; <xsl:value-of select="current_datetime"/></para>
+    <para style="main"><xsl:value-of select="$loc/str[@name='These data are valid for']"/>
+      &SPACE;
+      <xsl:call-template name="localized_datetime"><xsl:with-param name="lang" select="$lang"/><xsl:with-param name="sdt" select="current_datetime" /></xsl:call-template>
+    </para>
 
     <xsl:for-each select="keyset">
       <xsl:call-template name="pageDetailKeyset">

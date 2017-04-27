@@ -11,16 +11,34 @@
 <xsl:include href="utilities.xsl"/>
 
 <xsl:template name="local_date">
+    <!--
+        sdt: "2017-04-18T16:12:00+02:00"
+    -->
     <xsl:param name="sdt"/>
     <xsl:if test="$sdt">
     <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
     </xsl:if>
 </xsl:template>
 
-<xsl:template name="short_date">
+<xsl:template name="localized_datetime">
+    <xsl:param name="lang" select="'cs'"/>
     <xsl:param name="sdt"/>
+    <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
     <xsl:if test="$sdt">
-    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.</xsl:if>
+        <xsl:if test="$lang='en'">
+            <xsl:value-of select='substring($sdt, 9, 2)' />/<xsl:value-of select='substring($sdt, 6, 2)' />/<xsl:value-of select='substring($sdt, 1, 4)' />
+        </xsl:if>
+        <xsl:if test="$lang='cs'">
+            <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+        </xsl:if>
+        &SPACE; <xsl:value-of select='substring($sdt, 12, 8)' /> &SPACE;
+        <xsl:if test="substring($sdt, 20, 6)='+01:00'">
+            <xsl:value-of select="$loc/str[@name='CET']"/>
+        </xsl:if>
+        <xsl:if test="substring($sdt, 20, 6)='+02:00'">
+            <xsl:value-of select="$loc/str[@name='CEST']"/>
+        </xsl:if>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template name="trim_with_dots">
