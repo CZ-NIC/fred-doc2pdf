@@ -148,19 +148,19 @@
 -->
 
 <str name="Make the change..."> Make the change via your registrar</str>
-<str name="www">Registrar WWW: </str>
-<str name="Details recorded for your contact"> Details recorded for your contact: </str>
-<str name="organization">Organization: </str>
-<str name="name">Name: </str>
-<str name="address">Address: </str>
-<str name="Identifier">Identifier: </str>
-<str name="Identification type">Identification type: </str>
-<str name="ID">Identification details: </str>
-<str name="email">Email: </str>
-<str name="notify_email">Email for notifications: </str>
-<str name="telephone">Phone: </str>
-<str name="fax">Fax: </str>
-<str name="Last update">Last update: </str>
+<str name="Registrar WWW">Registrar WWW</str>
+<str name="Details recorded for your contact">Details recorded for your contact</str>
+<str name="Organization">Organization</str>
+<str name="Name">Name</str>
+<str name="Address">Address</str>
+<str name="Identifier">Identifier</str>
+<str name="Identification type">Identification type</str>
+<str name="ID">Identification details</str>
+<str name="Email">Email</str>
+<str name="Email for notifications">Email for notifications</str>
+<str name="Phone">Phone</str>
+<str name="Fax">Fax</str>
+<str name="Last update">Last update</str>
 
 <str name="Contact">Contact</str>
 <str name="notice to correct data">notice to correct data</str>
