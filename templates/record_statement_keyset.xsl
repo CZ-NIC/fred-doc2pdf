@@ -68,7 +68,12 @@
       <blockTable colWidths="6cm,10.2cm" style="registry_data">
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
-            <td><xsl:value-of select="flags"/></td>
+            <td>
+              <xsl:value-of select="flags"/>
+              <xsl:call-template name="dnsKeyFlagDescriptionTemplate">
+                <xsl:with-param name="flags" select="flags" />
+              </xsl:call-template>
+            </td>
           </tr>
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
@@ -134,7 +139,18 @@
               <xsl:value-of select="$loc/str[@name=concat('dns_alg_', $alg)]"/>
           </xsl:otherwise>
       </xsl:choose>
+  </xsl:template>
 
+  <xsl:template name="dnsKeyFlagDescriptionTemplate">
+      <!--
+        https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml
+      -->
+      <xsl:param name="lang" select="'cs'"/>
+      <xsl:param name="flags"/>
+      <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/><xsl:if
+        test="($flags mod 512) - ($flags mod 256)">, ZONE</xsl:if><xsl:if
+        test="($flags mod 256) - ($flags mod 128)">, REVOKE</xsl:if><xsl:if
+        test="$flags mod 2">, Secure Entry Point (SEP)</xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
