@@ -197,5 +197,35 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Technical contacts">Technické kontakty</str>
 <str name="Handle, Name, Organization">Identifikátor, Jméno, Organizace</str>
 <str name="Sponsoring registrar">Určený registrátor</str>
+<str name="Status">Stav</str>
+
+<str name="serverDeleteProhibited">Není povoleno smazání</str>
+<str name="serverRenewProhibited">Není povoleno prodloužení registrace objektu</str>
+<str name="serverTransferProhibited">Není povolena změna určeného registrátora</str>
+<str name="serverUpdateProhibited">Není povolena změna údajů</str>
+<str name="serverOutzoneManual">Doména je administrativně vyřazena ze zóny</str>
+<str name="serverInzoneManual">Doména je administrativně zařazena do zóny</str>
+<str name="serverBlocked">Doména je blokována</str>
+<str name="expirationWarning">Doména expiruje do 30 dní</str>
+<str name="expired">Doména je po expiraci</str>
+<str name="unguarded">Doména je 30 dnů po expiraci</str>
+<str name="validationWarning1">Validace domény skončí za 30 dní</str>
+<str name="validationWarning2">Validace domény skončí za 15 dní</str>
+<str name="notValidated">Doména není validována</str>
+<str name="nssetMissing">Doména nemá přiřazen nsset</str>
+<str name="outzone">Doména není generována do zóny</str>
+<str name="linked">Je navázán na další záznam v registru</str>
+<str name="deleteCandidate">Určeno ke zrušení</str>
+<str name="serverRegistrantChangeProhibited">Není povolena změna držitele</str>
+<str name="deleteWarning">Registrace domény bude zrušena za 11 dní</str>
+<str name="outzoneUnguarded">Doména vyřazena ze zóny po 30 dnech od expirace</str>
+<str name="conditionallyIdentifiedContact">Kontakt je částečně identifikován</str>
+<str name="identifiedContact">Kontakt je identifikován</str>
+<str name="validatedContact">Kontakt je validován</str>
+<str name="mojeidContact">MojeID kontakt</str>
+<str name="contactPassedManualVerification">Kontakt byl ověřen zákaznickou podporou CZ.NIC</str>
+<str name="contactInManualVerification">Kontakt je ověřován zákaznickou podporou CZ.NIC</str>
+<str name="contactFailedManualVerification">Ověření kontaktu zákaznickou podporou bylo neúspěšné</str>
+<str name="outzoneUnguardedWarning">Doména bude brzy vyřazena ze zóny</str>
 
 </strings>

@@ -190,5 +190,35 @@
 <str name="Technical contacts">Technical contacts</str>
 <str name="Handle, Name, Organization">Handle, Name, Organization</str>
 <str name="Sponsoring registrar">Sponsoring registrar</str>
+<str name="Status">Status</str>
+
+<str name="serverDeleteProhibited">Deletion forbidden</str>
+<str name="serverRenewProhibited">Registration renewal forbidden</str>
+<str name="serverTransferProhibited">Sponsoring registrar change forbidden</str>
+<str name="serverUpdateProhibited">Update forbidden</str>
+<str name="serverOutzoneManual">The domain is administratively kept out of zone</str>
+<str name="serverInzoneManual">The domain is administratively kept in zone</str>
+<str name="serverBlocked">Domain blocked</str>
+<str name="expirationWarning">The domain expires in 30 days</str>
+<str name="expired">Expired</str>
+<str name="unguarded">The domain is 30 days after expiration</str>
+<str name="validationWarning1">The domain validation expires in 30 days</str>
+<str name="validationWarning2">The domain validation expires in 15 days</str>
+<str name="notValidated">Domain not validated</str>
+<str name="nssetMissing">The domain doesn't have associated nsset</str>
+<str name="outzone">The domain isn't generated in the zone</str>
+<str name="linked">Has relation to other records in the registry</str>
+<str name="deleteCandidate">To be deleted</str>
+<str name="serverRegistrantChangeProhibited">Registrant change forbidden</str>
+<str name="deleteWarning">The domain will be deleted in 11 days</str>
+<str name="outzoneUnguarded">The domain is out of zone after 30 days in expiration state</str>
+<str name="conditionallyIdentifiedContact">Contact is conditionally identified</str>
+<str name="identifiedContact">Contact is identified</str>
+<str name="validatedContact">Contact is validated</str>
+<str name="mojeidContact">MojeID contact</str>
+<str name="contactPassedManualVerification">Contact has been verified by CZ.NIC customer support</str>
+<str name="contactInManualVerification">Contact is being verified by CZ.NIC customer support</str>
+<str name="contactFailedManualVerification">Contact has failed the verification by CZ.NIC customer support</str>
+<str name="outzoneUnguardedWarning">The domain is to be out of zone soon</str>
 
 </strings>

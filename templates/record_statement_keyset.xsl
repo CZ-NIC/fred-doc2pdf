@@ -47,6 +47,18 @@
       </xsl:for-each>
     </blockTable>
 
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <tr>
+        <td><xsl:value-of select="$loc/str[@name='Status']"/></td>
+        <td>
+          <xsl:for-each select="external_states_list/state">
+            <xsl:variable name="stateCode" select="text()"/>
+            <para style="basic"><xsl:value-of select="$loc/str[@name=$stateCode]"/></para>
+          </xsl:for-each>
+        </td>
+      </tr>
+    </blockTable>
+
   </xsl:template>
 
   <xsl:template name="dnsKeyListTemplate">
