@@ -15,18 +15,38 @@
     <xsl:param name="lang" select="'cs'"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
 
-    <para style="main"><xsl:value-of select="$loc/str[@name='Key set']"/></para>
+    <para style="header"><xsl:value-of select="$loc/str[@name='Key set']"/></para>
     <blockTable colWidths="6cm,10.2cm" style="registry_data">
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Identifier']"/></td>
-        <td><xsl:value-of select="handle"/></td>
+        <td><para style="bold"><xsl:value-of select="handle"/></para></td>
       </tr>
     </blockTable>
+
     <xsl:for-each select="dns_key_list/dns_key">
       <xsl:call-template name="dnsKeyListTemplate">
         <xsl:with-param name="lang" select="$lang"/>
       </xsl:call-template>
     </xsl:for-each>
+
+    <para style="small-header"><xsl:value-of select="$loc/str[@name='Technical contacts']"/></para>
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <xsl:for-each select="tech_contact_list/tech_contact">
+        <xsl:call-template name="contactTableRowTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </blockTable>
+
+    <para style="small-header"><xsl:value-of select="$loc/str[@name='Sponsoring registrar']"/></para>
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <xsl:for-each select="sponsoring_registrar">
+        <xsl:call-template name="contactTableRowTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </blockTable>
+
   </xsl:template>
 
   <xsl:template name="dnsKeyListTemplate">

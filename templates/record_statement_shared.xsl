@@ -32,7 +32,9 @@
       <stylesheet>
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="bold" parent="main" fontName="FreeSansBold"/>
         <paraStyle name="small-header" fontSize="9" fontName="FreeSansBold"/>
+        <paraStyle name="header" fontSize="12" spaceAfter="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
         <paraStyle name="largeStringMono" fontName="Courier" parent="basic" fontSize="8"/>
 
@@ -112,6 +114,19 @@
       </xsl:call-template>
     </xsl:for-each>
 
+  </xsl:template>
+
+  <xsl:template name="contactTableRowTemplate">
+      <xsl:param name="lang" select="'cs'"/>
+      <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+          <tr>
+            <td><xsl:value-of select="$loc/str[@name='Handle, Name, Organization']"/>:</td>
+            <td>
+                <xsl:value-of select="handle"/>
+                <xsl:if test="name">, <xsl:value-of select="name"/></xsl:if>
+                <xsl:if test="organization">, <xsl:value-of select="organization"/></xsl:if>
+            </td>
+          </tr>
   </xsl:template>
 
 </xsl:stylesheet>

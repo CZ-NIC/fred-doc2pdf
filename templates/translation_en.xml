@@ -187,5 +187,8 @@
 <str name="Protocol">Protocol</str>
 <str name="Algorithm">Algorithm</str>
 <str name="Key">Key</str>
+<str name="Technical contacts">Technical contacts</str>
+<str name="Handle, Name, Organization">Handle, Name, Organization</str>
+<str name="Sponsoring registrar">Sponsoring registrar</str>
 
 </strings>

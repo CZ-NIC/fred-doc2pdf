@@ -194,5 +194,8 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Protocol">Protokol</str>
 <str name="Algorithm">Algoritmus</str>
 <str name="Key">Klíč</str>
+<str name="Technical contacts">Technické kontakty</str>
+<str name="Handle, Name, Organization">Identifikátor, Jméno, Organizace</str>
+<str name="Sponsoring registrar">Určený registrátor</str>
 
 </strings>
