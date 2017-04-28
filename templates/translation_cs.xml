@@ -228,4 +228,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="contactFailedManualVerification">Ověření kontaktu zákaznickou podporou bylo neúspěšné</str>
 <str name="outzoneUnguardedWarning">Doména bude brzy vyřazena ze zóny</str>
 
+<str name="Reserved">Rezervováno</str>
+<str name="Unassigned">Nepřiřazeno</str>
+
 </strings>

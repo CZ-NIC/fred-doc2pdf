@@ -72,7 +72,12 @@
           </tr>
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
-            <td><xsl:value-of select="protocol"/></td>
+            <td>
+              <xsl:value-of select="protocol"/>
+              <xsl:call-template name="dnsKeyProtocolDescriptionTemplate">
+                <xsl:with-param name="protocol" select="protocol" />
+              </xsl:call-template>
+            </td>
           </tr>
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
@@ -87,6 +92,24 @@
             </td>
           </tr>
       </blockTable>
+  </xsl:template>
+
+  <xsl:template name="dnsKeyProtocolDescriptionTemplate">
+      <!--
+        https://www.iana.org/assignments/dns-key-rr/dns-key-rr.xhtml
+             1  Reserved
+             2  Reserved
+             3  DNSSEC
+             4  Reserved
+         5-254  Unassigned
+           255  Reserved
+      -->
+      <xsl:param name="lang" select="'cs'"/>
+      <xsl:param name="protocol"/>
+      <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>, <xsl:if
+        test="$protocol = 1 or $protocol = 2 or $protocol = 4 or $protocol = 255"><xsl:value-of select="$loc/str[@name='Reserved']"/></xsl:if><xsl:if
+        test="$protocol = 3">DNSSEC</xsl:if><xsl:if
+        test="$protocol &gt;= 5 and $protocol &lt;= 254"><xsl:value-of select="$loc/str[@name='Unassigned']"/></xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

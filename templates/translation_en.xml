@@ -221,4 +221,7 @@
 <str name="contactFailedManualVerification">Contact has failed the verification by CZ.NIC customer support</str>
 <str name="outzoneUnguardedWarning">The domain is to be out of zone soon</str>
 
+<str name="Reserved">Reserved</str>
+<str name="Unassigned">Unassigned</str>
+
 </strings>
