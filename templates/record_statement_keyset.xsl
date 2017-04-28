@@ -81,7 +81,12 @@
           </tr>
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
-            <td><xsl:value-of select="algorithm"/></td>
+            <td>
+              <xsl:value-of select="algorithm"/>
+              <xsl:call-template name="dnsKeyAlgDescriptionTemplate">
+                <xsl:with-param name="alg" select="algorithm" />
+              </xsl:call-template>
+            </td>
           </tr>
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
@@ -110,6 +115,26 @@
         test="$protocol = 1 or $protocol = 2 or $protocol = 4 or $protocol = 255"><xsl:value-of select="$loc/str[@name='Reserved']"/></xsl:if><xsl:if
         test="$protocol = 3">DNSSEC</xsl:if><xsl:if
         test="$protocol &gt;= 5 and $protocol &lt;= 254"><xsl:value-of select="$loc/str[@name='Unassigned']"/></xsl:if>
+  </xsl:template>
+
+  <xsl:template name="dnsKeyAlgDescriptionTemplate">
+      <!--
+        https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml
+      -->
+      <xsl:param name="lang" select="'cs'"/>
+      <xsl:param name="alg"/>
+      <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>, <xsl:choose>
+          <xsl:when test="$alg &gt;= 17 and $alg &lt;= 122">
+              <xsl:value-of select="$loc/str[@name='Unassigned']"/>
+          </xsl:when>
+          <xsl:when test="$alg &gt;= 123 and $alg &lt;= 251">
+              <xsl:value-of select="$loc/str[@name='Reserved']"/>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:value-of select="$loc/str[@name=concat('dns_alg_', $alg)]"/>
+          </xsl:otherwise>
+      </xsl:choose>
+
   </xsl:template>
 
 </xsl:stylesheet>

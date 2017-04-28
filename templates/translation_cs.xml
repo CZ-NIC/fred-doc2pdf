@@ -231,4 +231,26 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Reserved">Rezervováno</str>
 <str name="Unassigned">Nepřiřazeno</str>
 
+<str name="dns_alg_0">Delete DS</str>
+<str name="dns_alg_1">RSA/MD5 (zastaralý, viz 5)</str>
+<str name="dns_alg_2">Diffie-Helman</str>
+<str name="dns_alg_3">DSA/SHA1</str>
+<str name="dns_alg_4">Rezervováno</str>
+<str name="dns_alg_5">RSA/SHA-1</str>
+<str name="dns_alg_6">DSA-NSEC3-SHA1</str>
+<str name="dns_alg_7">RSASHA1-NSEC3-SHA1</str>
+<str name="dns_alg_8">RSA/SHA-256</str>
+<str name="dns_alg_9">Rezervováno</str>
+<str name="dns_alg_10">RSA/SHA-512</str>
+<str name="dns_alg_11">Rezervováno</str>
+<str name="dns_alg_12">GOST R 34.10-2001</str>
+<str name="dns_alg_13">ECDSA Křivka P-256 s SHA-256</str>
+<str name="dns_alg_14">ECDSA Křivka P-384 s SHA-384</str>
+<str name="dns_alg_15">Ed25519</str>
+<str name="dns_alg_16">Ed448</str>
+<str name="dns_alg_252">Rezervováno pro Indirect Keys</str>
+<str name="dns_alg_253">Soukromý algoritmus</str>
+<str name="dns_alg_254">Soukromý algoritmus OID</str>
+<str name="dns_alg_255">Rezervováno</str>
+
 </strings>
