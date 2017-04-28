@@ -32,6 +32,7 @@
       <stylesheet>
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="small-header" fontSize="9" fontName="FreeSansBold"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
         <paraStyle name="largeStringMono" fontName="Courier" parent="basic" fontSize="8"/>
 

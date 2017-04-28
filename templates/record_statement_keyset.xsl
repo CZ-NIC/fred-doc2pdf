@@ -21,49 +21,40 @@
         <td><xsl:value-of select="$loc/str[@name='Identifier']"/></td>
         <td><xsl:value-of select="handle"/></td>
       </tr>
-      <xsl:for-each select="dns_key_list/dns_key">
-        <xsl:call-template name="dnsKeyListTemplate">
-          <xsl:with-param name="lang" select="$lang"/>
-        </xsl:call-template>
-      </xsl:for-each>
-
     </blockTable>
-
+    <xsl:for-each select="dns_key_list/dns_key">
+      <xsl:call-template name="dnsKeyListTemplate">
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template name="dnsKeyListTemplate">
       <xsl:param name="lang" select="'cs'"/>
       <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
-      <tr>
-        <td><xsl:value-of select="$loc/str[@name='DNS Key']"/></td>
-        <td>
-          <blockTable colWidths="2.2cm,8cm">
-            <tr>
-              <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
-              <td><xsl:value-of select="flags"/></td>
-            </tr>
-            <tr>
-              <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
-              <td><xsl:value-of select="protocol"/></td>
-            </tr>
-            <tr>
-              <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
-              <td><xsl:value-of select="algorithm"/></td>
-            </tr>
-            <tr>
-              <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
-            </tr>
-            <tr>
-              <td>
-                  <xsl:call-template name="split_large_string_into_pre">
-                      <xsl:with-param name="largeString" select="key"/>
-                  </xsl:call-template>
-              </td>
-            </tr>
-          </blockTable>
-
-        </td>
-      </tr>
+      <para style="small-header"><xsl:value-of select="$loc/str[@name='DNS Key']"/></para>
+      <blockTable colWidths="6cm,10.2cm" style="registry_data">
+          <tr>
+            <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
+            <td><xsl:value-of select="flags"/></td>
+          </tr>
+          <tr>
+            <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
+            <td><xsl:value-of select="protocol"/></td>
+          </tr>
+          <tr>
+            <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
+            <td><xsl:value-of select="algorithm"/></td>
+          </tr>
+          <tr>
+            <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
+            <td>
+                <xsl:call-template name="split_large_string_into_pre">
+                    <xsl:with-param name="largeString" select="key"/>
+                </xsl:call-template>
+            </td>
+          </tr>
+      </blockTable>
   </xsl:template>
 
 </xsl:stylesheet>
