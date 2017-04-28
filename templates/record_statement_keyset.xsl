@@ -21,8 +21,7 @@
         <td><xsl:value-of select="$loc/str[@name='Identifier']"/></td>
         <td><xsl:value-of select="handle"/></td>
       </tr>
-      <xsl:apply-templates select="dns_key_list" />
-      <xsl:for-each select="dns_key_list">
+      <xsl:for-each select="dns_key_list/dns_key">
         <xsl:call-template name="dnsKeyListTemplate">
           <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
@@ -41,15 +40,15 @@
           <blockTable colWidths="2.2cm,8cm" style="registry_data_insider">
             <tr>
               <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
-              <td><xsl:value-of select="dns_key/flags"/></td>
+              <td><xsl:value-of select="flags"/></td>
             </tr>
             <tr>
               <td><xsl:value-of select="$loc/str[@name='Protocol']"/>:</td>
-              <td><xsl:value-of select="dns_key/protocol"/></td>
+              <td><xsl:value-of select="protocol"/></td>
             </tr>
             <tr>
               <td><xsl:value-of select="$loc/str[@name='Algorithm']"/>:</td>
-              <td><xsl:value-of select="dns_key/algorithm"/></td>
+              <td><xsl:value-of select="algorithm"/></td>
             </tr>
             <tr>
               <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
@@ -57,7 +56,7 @@
             <tr>
               <td>
                   <xsl:call-template name="split_large_string_into_pre">
-                      <xsl:with-param name="largeString" select="dns_key/key"/>
+                      <xsl:with-param name="largeString" select="key"/>
                   </xsl:call-template>
               </td>
             </tr>
