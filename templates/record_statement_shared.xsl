@@ -38,14 +38,11 @@
         <blockTableStyle id="registry_data">
           <lineStyle kind="GRID" start="0,0" stop="-1,-1" thickness="0.5" colorName="black"/>
           <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
-          <blockLeftPadding length="0" start="1,1" stop="1,-1" />
-          <blockTopPadding length="0" start="1,1" stop="1,-1" />
-          <blockBottomPadding length="0" start="1,1" stop="1,-1" />
-        </blockTableStyle>
+          <blockLeftPadding length="0.1cm" start="0,0" stop="-1,-1" />
+          <blockTopPadding length="0.1cm" start="0,0" stop="-1,-1" />
+          <blockBottomPadding length="0" start="0,0" stop="-1,-1" />
 
-        <blockTableStyle id="registry_data_insider">
-          <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9" />
-          <blockLeftPadding length="1" start="1,1" stop="-1,-1" />
+          <blockValign value="TOP" start="0,0" stop="0,-1" />
         </blockTableStyle>
 
       </stylesheet>

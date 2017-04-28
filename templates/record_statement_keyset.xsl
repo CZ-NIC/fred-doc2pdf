@@ -35,9 +35,9 @@
       <xsl:param name="lang" select="'cs'"/>
       <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
       <tr>
-        <td vAlign="top"><xsl:value-of select="$loc/str[@name='DNS Key']"/></td>
+        <td><xsl:value-of select="$loc/str[@name='DNS Key']"/></td>
         <td>
-          <blockTable colWidths="2.2cm,8cm" style="registry_data_insider">
+          <blockTable colWidths="2.2cm,8cm">
             <tr>
               <td><xsl:value-of select="$loc/str[@name='Flags']"/>:</td>
               <td><xsl:value-of select="flags"/></td>
