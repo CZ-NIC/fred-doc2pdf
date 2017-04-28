@@ -59,6 +59,13 @@
             <name>Test A. Registrar</name>
             <organization>International Trade Ltd.</organization>
         </sponsoring_registrar>
+
+        <external_states_list>
+            <state>linked</state>
+            <state>serverUpdateProhibited</state>
+            <state>serverTransferProhibited</state>
+        </external_states_list>
+
     </keyset>
 
 </record_statement>

@@ -113,6 +113,12 @@
                 <name>Test A. Registrar</name>
                 <organization>International Trade Ltd.</organization>
             </sponsoring_registrar>
+
+            <external_states_list>
+                <state>linked</state>
+                <state>serverTransferProhibited</state>
+            </external_states_list>
+
         </nsset>
 
         <keyset>
@@ -170,7 +176,19 @@
                 <name>Test A. Registrar</name>
                 <organization>International Trade Ltd.</organization>
             </sponsoring_registrar>
+
+            <external_states_list>
+                <state>linked</state>
+                <state>deleteWarning</state>
+            </external_states_list>
+
         </keyset>
+
+    <external_states_list>
+        <state>linked</state>
+        <state>serverUpdateProhibited</state>
+        <state>serverTransferProhibited</state>
+    </external_states_list>
 
     </domain>
 </record_statement>

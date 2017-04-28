@@ -49,6 +49,12 @@
             notifyemail='false'
         ></disclose>
 
+        <external_states_list>
+            <state>linked</state>
+            <state>serverUpdateProhibited</state>
+            <state>serverTransferProhibited</state>
+        </external_states_list>
+
     </contact>
 
 </record_statement>
