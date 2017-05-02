@@ -33,8 +33,8 @@
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="bold" parent="main" fontName="FreeSansBold"/>
-        <paraStyle name="small-header" fontSize="9" fontName="FreeSansBold"/>
-        <paraStyle name="header" fontSize="12" spaceAfter="0.2cm" fontName="FreeSansBold"/>
+        <paraStyle name="small-header" fontSize="9" spaceBefore="0.2cm" fontName="FreeSansBold"/>
+        <paraStyle name="header" fontSize="12" spaceBefore="0.4cm" spaceAfter="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
         <paraStyle name="largeStringMono" fontName="Courier" parent="basic" fontSize="8"/>
 
@@ -97,7 +97,7 @@
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
-        <frame id="main" x1="2.1cm" y1="5.6cm" width="16.7cm" height="21.6cm" showBoundary="0"/>
+        <frame id="main" x1="2.1cm" y1="6cm" width="16.7cm" height="21.2cm" showBoundary="0"/>
         <translate dx="9"/>
         <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9"/>
