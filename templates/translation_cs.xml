@@ -259,4 +259,13 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Nameserver set">Sada jmenných serverů</str>
 <str name="Name server">Jmenný server</str>
 
+<str name="Registered since">Registrace od</str>
+<str name="Last update date">Poslední aktualizace</str>
+<str name="Expiration date">Datum expirace</str>
+<str name="Administrative contacts">Administrativní kontakty</str>
+<str name="Handle">Identifikátor</str>
+<str name="Name">Jméno</str>
+<str name="Organization">Organizace</str>
+<str name="Address">Adresa</str>
+
 </strings>

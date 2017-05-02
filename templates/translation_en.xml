@@ -252,4 +252,13 @@
 <str name="Nameserver set">Nameserver set</str>
 <str name="Name server">Name server</str>
 
+<str name="Registered since">Registered since</str>
+<str name="Last update date">Last update date</str>
+<str name="Expiration date">Expiration date</str>
+<str name="Administrative contacts">Administrative contacts</str>
+<str name="Handle">Handle</str>
+<str name="Name">Name</str>
+<str name="Organization">Organization</str>
+<str name="Address">Address</str>
+
 </strings>

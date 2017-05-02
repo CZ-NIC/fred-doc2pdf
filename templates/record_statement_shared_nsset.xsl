@@ -21,6 +21,36 @@
       </xsl:for-each>
     </blockTable>
 
+    <para style="small-header"><xsl:value-of select="$loc/str[@name='Technical contacts']"/></para>
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <xsl:for-each select="tech_contact_list/tech_contact">
+        <xsl:call-template name="contactTableRowTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </blockTable>
+
+    <para style="small-header"><xsl:value-of select="$loc/str[@name='Sponsoring registrar']"/></para>
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <xsl:for-each select="sponsoring_registrar">
+        <xsl:call-template name="contactTableRowTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </blockTable>
+
+    <blockTable colWidths="6cm,10.2cm" style="registry_data">
+      <tr>
+        <td><xsl:value-of select="$loc/str[@name='Status']"/></td>
+        <td>
+          <xsl:for-each select="external_states_list/state">
+            <xsl:variable name="stateCode" select="text()"/>
+            <para style="basic"><xsl:value-of select="$loc/str[@name=$stateCode]"/></para>
+          </xsl:for-each>
+        </td>
+      </tr>
+    </blockTable>
+
   </xsl:template>
 
   <xsl:template name="nameserverListTemplate">
