@@ -6,6 +6,8 @@
   <xsl:param name="lang" select="'cs'"/>
   <xsl:param name="title" select="'The Record statement from the Domain registry .cz'"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
+  <xsl:variable name="lang01" select="'cs'"/>
+  <xsl:variable name="lang02" select="'en'"/>
 
   <xsl:template match="record_statement">
     <document>
@@ -116,14 +118,20 @@
       <xsl:call-template name="localized_datetime"><xsl:with-param name="lang" select="$lang"/><xsl:with-param name="sdt" select="current_datetime" /></xsl:call-template>
     </para>
 
-    <xsl:for-each select="domain">
-      <xsl:call-template name="pageDetailDomain">
+    <xsl:for-each select="nsset">
+      <xsl:call-template name="pageDetailNsset">
         <xsl:with-param name="lang" select="$lang"/>
       </xsl:call-template>
     </xsl:for-each>
 
     <xsl:for-each select="keyset">
       <xsl:call-template name="pageDetailKeyset">
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
+    </xsl:for-each>
+
+    <xsl:for-each select="domain">
+      <xsl:call-template name="pageDetailDomain">
         <xsl:with-param name="lang" select="$lang"/>
       </xsl:call-template>
     </xsl:for-each>
