@@ -116,6 +116,12 @@
       <xsl:call-template name="localized_datetime"><xsl:with-param name="lang" select="$lang"/><xsl:with-param name="sdt" select="current_datetime" /></xsl:call-template>
     </para>
 
+    <xsl:for-each select="domain">
+      <xsl:call-template name="pageDetailDomain">
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
+    </xsl:for-each>
+
     <xsl:for-each select="keyset">
       <xsl:call-template name="pageDetailKeyset">
         <xsl:with-param name="lang" select="$lang"/>
