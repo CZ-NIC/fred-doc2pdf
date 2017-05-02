@@ -14,8 +14,25 @@
         <td><xsl:value-of select="$loc/str[@name='Identifier']"/></td>
         <td><para style="bold"><xsl:value-of select="handle"/></para></td>
       </tr>
+      <xsl:for-each select="nameserver_list/nameserver">
+        <xsl:call-template name="nameserverListTemplate">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:for-each>
     </blockTable>
 
+  </xsl:template>
+
+  <xsl:template name="nameserverListTemplate">
+    <xsl:param name="lang" select="'cs'"/>
+    <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+    <tr>
+      <td><xsl:value-of select="$loc/str[@name='Name server']"/></td>
+      <td>
+        <xsl:value-of select="fqdn"/> &SPACE; <xsl:for-each
+          select="ip_list/ip"><xsl:value-of select="."/><xsl:if test="position() != last()">, </xsl:if></xsl:for-each>
+      </td>
+    </tr>
   </xsl:template>
 
 </xsl:stylesheet>
