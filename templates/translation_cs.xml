@@ -253,4 +253,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="dns_alg_254">Soukromý algoritmus OID</str>
 <str name="dns_alg_255">Rezervováno</str>
 
+<str name="The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.">Registr doménových jmen spravuje sdružení CZ.NIC, z.s.p.o., IČ: 67985726.</str>
+<str name="The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.">Sdružení je zapsáno ve spolkovém rejstříku vedeném u Městského soudu v Praze, spisová značka L 58624.</str>
+
 </strings>

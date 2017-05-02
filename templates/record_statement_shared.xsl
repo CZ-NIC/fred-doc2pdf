@@ -84,12 +84,20 @@
         <xsl:value-of select="$templateName"/>
       </xsl:attribute>
       <pageGraphics>
-        <setFont name="FreeSans" size="12"/>
 
+        <setFont name="FreeSans" size="8"/>
+
+        <drawString x="2.32cm" y="5.6cm"><xsl:value-of select="$loc/str[@name='The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.']"/></drawString>
+        <drawString x="2.32cm" y="5.2cm"><xsl:value-of select="$loc/str[@name='The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.']"/></drawString>
+        <xsl:if test="$mock = 'signature'">
+          <drawString x="2.32cm" y="4.8cm">This statement was electronically signed by the association CZ.NIC, z.s.p.o. in DD.MM.YYYY HH:MM:SS.</drawString>
+        </xsl:if>
+
+        <setFont name="FreeSans" size="12"/>
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
-        <frame id="main" x1="2.1cm" y1="5.2cm" width="16.7cm" height="22cm" showBoundary="0"/>
+        <frame id="main" x1="2.1cm" y1="5.6cm" width="16.7cm" height="21.6cm" showBoundary="0"/>
         <translate dx="9"/>
         <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9"/>
