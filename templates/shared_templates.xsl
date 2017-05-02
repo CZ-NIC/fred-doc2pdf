@@ -2,6 +2,8 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 <!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY ENTER "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+</xsl:text>">
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns:func="http://exslt.org/functions" extension-element-prefixes="func"
@@ -41,16 +43,14 @@
     </xsl:if>
 </xsl:template>
 
-<xsl:template match="text()" name="split_large_string_into_pre">
+<xsl:template match="text()" name="split_large_string">
   <xsl:param name="largeString"/>
   <xsl:param name="numOfLetters" select="56"/>
-   <xsl:if test="string-length($largeString) > 0">
-        <pre style="largeStringMono">
-            <xsl:value-of select="substring($largeString, 0, $numOfLetters)"/>
-        </pre>
-    <xsl:call-template name="split_large_string_into_pre">
-     <xsl:with-param name="largeString" select="substring($largeString, $numOfLetters)"/>
-    </xsl:call-template>
+    <xsl:if test="string-length($largeString) > 0">
+      <xsl:value-of select="substring($largeString, 0, $numOfLetters)"/>&ENTER;
+      <xsl:call-template name="split_large_string">
+        <xsl:with-param name="largeString" select="substring($largeString, $numOfLetters)"/>
+      </xsl:call-template>
    </xsl:if>
  </xsl:template>
 

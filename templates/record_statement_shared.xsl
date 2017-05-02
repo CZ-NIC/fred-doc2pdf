@@ -34,19 +34,17 @@
       <stylesheet>
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
-        <paraStyle name="bold" parent="main" fontName="FreeSansBold"/>
+        <paraStyle name="bold" parent="basic" fontName="FreeSansBold" fontSize="9"  />
         <paraStyle name="small-header" fontSize="9" spaceBefore="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="header" fontSize="12" spaceBefore="0.4cm" spaceAfter="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
-        <paraStyle name="largeStringMono" fontName="Courier" parent="basic" fontSize="8"/>
+        <paraStyle name="largeStringMono" fontName="Courier" fontSize="8" leading="8" />
 
         <blockTableStyle id="registry_data">
           <lineStyle kind="GRID" start="0,0" stop="-1,-1" thickness="0.5" colorName="black"/>
           <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
           <blockLeftPadding length="0.1cm" start="0,0" stop="-1,-1" />
           <blockTopPadding length="0.1cm" start="0,0" stop="-1,-1" />
-          <blockBottomPadding length="0" start="0,0" stop="-1,-1" />
-
           <blockValign value="TOP" start="0,0" stop="0,-1" />
         </blockTableStyle>
 

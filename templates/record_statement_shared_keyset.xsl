@@ -86,9 +86,11 @@
           <tr>
             <td><xsl:value-of select="$loc/str[@name='Key']"/>:</td>
             <td>
-                <xsl:call-template name="split_large_string_into_pre">
-                    <xsl:with-param name="largeString" select="key"/>
-                </xsl:call-template>
+                <pre style="largeStringMono">
+                    <xsl:call-template name="split_large_string">
+                        <xsl:with-param name="largeString" select="key"/>
+                    </xsl:call-template>
+                </pre>
             </td>
           </tr>
       </blockTable>
