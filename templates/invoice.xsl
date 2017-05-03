@@ -201,7 +201,7 @@ $ xsltproc yourpath/templates/ -stringparam lang en yourpath/templates/invoice.x
       <blockLeftPadding length="0" start="0,0" stop="0,-1" />
       <blockRightPadding length="0" start="-1,0" stop="-1,-1" />
       <blockTopPadding length="-2" start="0,0" stop="-1,-1" />
-      <blockBottomPadding length="0" start="0,0" stop="-1,-2" />
+      <blockBottomPadding length="0.01cm" start="0,0" stop="-1,-2" />
 
       <!-- padding table header -->
       <blockBottomPadding length="0.1cm" start="0,1" stop="-1,1" />
