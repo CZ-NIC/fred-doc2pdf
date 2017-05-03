@@ -134,16 +134,16 @@
                 </dns_key>
 
                 <dns_key>
-                    <flags>257</flags>
-                    <protocol>3</protocol>
-                    <algorithm>5</algorithm>
+                    <flags>128</flags>
+                    <protocol>4</protocol>
+                    <algorithm>6</algorithm>
                     <key>AwEAAaZg1mHVo0d/qlbyQBGqnRGJGRbL/51OuJ/QmAwc5VACOeIbRjAOfZ5RDinjc9IekSVgXiSjDuOogSm63bvFHTinLKUnJD03TmB12oOctDB0pMs0eQT+2HoKkkgmqipzqYssVZOdcb/t/NP3fq3xLdYlJgTBmx1769NsyF602her5PSojVcxRjUlqqA4zNmN9K2r6+vrbhSHf0+dGC2u8O4bW1qGEoeo2M+xr7oUiUL8yH5n0DbhxcribLcuGro1LTn4s3P9xTYGSRb0Pd9rK0s7csb7FxyGdwsOqmZr47t3UQn2pp8q4gbca2ef/hjevkq+wVZv/eUHhu6FzMCYTqc=</key>
                 </dns_key>
 
                 <dns_key>
-                    <flags>257</flags>
-                    <protocol>3</protocol>
-                    <algorithm>5</algorithm>
+                    <flags>1</flags>
+                    <protocol>5</protocol>
+                    <algorithm>13</algorithm>
                     <key>AwEAAaZg1mHVo0d/qlbyQBGqnRGJGRbL/51OuJ/QmAwc5VACOeIbRjAOfZ5RDinjc9IekSVgXiSjDuOogSm63bvFHTinLKUnJD03TmB12oOctDB0pMs0eQT+2HoKkkgmqipzqYssVZOdcb/t/NP3fq3xLdYlJgTBmx1769NsyF602her5PSojVcxRjUlqqA4zNmN9K2r6+vrbhSHf0+dGC2u8O4bW1qGEoeo2M+xr7oUiUL8yH5n0DbhxcribLcuGro1LTn4s3P9xTYGSRb0Pd9rK0s7csb7FxyGdwsOqmZr47t3UQn2pp8q4gbca2ef/hjevkq+wVZv/eUHhu6FzMCYTqc=</key>
                 </dns_key>
 
