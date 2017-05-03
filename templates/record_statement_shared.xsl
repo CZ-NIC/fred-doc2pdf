@@ -35,6 +35,7 @@
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="bold" parent="basic" fontName="FreeSansBold" fontSize="9"  />
+        <paraStyle name="italic" parent="basic" fontName="FreeSansItalic" fontSize="9"  />
         <paraStyle name="small-header" fontSize="9" spaceBefore="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="header" fontSize="12" spaceBefore="0.4cm" spaceAfter="0.2cm" fontName="FreeSansBold"/>
         <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>

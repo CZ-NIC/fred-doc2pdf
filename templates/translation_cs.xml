@@ -287,5 +287,6 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Contact information">Kontaktní údaje</str>
 <str name="Data in the registry">Údaje registru</str>
 <str name="Last transfer date">Poslední změna registrátora</str>
+<str name="Not disclosed">Neveřejný údaj</str>
 
 </strings>
