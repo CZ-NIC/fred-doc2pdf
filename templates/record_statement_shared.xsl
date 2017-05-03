@@ -89,11 +89,11 @@
 
         <setFont name="FreeSans" size="8"/>
 
-        <drawString x="2.32cm" y="5.6cm"><xsl:value-of select="$loc/str[@name='The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.']"/></drawString>
+        <drawString x="2.32cm" y="5.6cm"><xsl:value-of select="$loc/str[@name='The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.']"/></drawString>
         <drawString x="2.32cm" y="5.2cm"><xsl:value-of select="$loc/str[@name='The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.']"/></drawString>
         <xsl:if test="$testsignature = 'yes'">
           <fill color="#ce1126"/>
-          <drawString x="2.32cm" y="4.8cm">This statement was electronically signed by the association CZ.NIC, z.s.p.o. in DD.MM.YYYY HH:MM:SS.</drawString>
+          <drawString x="2.32cm" y="4.8cm">This statement was electronically signed by the association CZ.NIC, z. s. p. o. in DD.MM.YYYY HH:MM:SS.</drawString>
           <fill color="black"/>
         </xsl:if>
 

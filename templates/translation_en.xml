@@ -246,7 +246,7 @@
 <str name="dns_alg_254">Private algorithm OID</str>
 <str name="dns_alg_255">Reserved</str>
 
-<str name="The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.">The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.</str>
+<str name="The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.">The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.</str>
 <str name="The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.">The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.</str>
 
 <str name="Nameserver set">Nameserver set</str>
