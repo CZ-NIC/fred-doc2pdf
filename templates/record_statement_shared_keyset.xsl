@@ -89,6 +89,7 @@
                 <pre style="largeStringMono">
                     <xsl:call-template name="split_large_string">
                         <xsl:with-param name="largeString" select="key"/>
+                        <xsl:with-param name="numOfLetters" select="59"/>
                     </xsl:call-template>
                 </pre>
             </td>

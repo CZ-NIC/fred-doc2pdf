@@ -50,6 +50,7 @@
       <xsl:value-of select="substring($largeString, 0, $numOfLetters)"/>&ENTER;
       <xsl:call-template name="split_large_string">
         <xsl:with-param name="largeString" select="substring($largeString, $numOfLetters)"/>
+        <xsl:with-param name="numOfLetters" select="$numOfLetters"/>
       </xsl:call-template>
    </xsl:if>
  </xsl:template>
