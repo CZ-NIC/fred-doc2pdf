@@ -5,6 +5,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:param name="lang" select="'cs'"/>
   <xsl:param name="title" select="'The Record statement from the Domain registry .cz'"/>
+  <xsl:param name="testsignature" select="''"/>
   <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"></xsl:variable>
   <xsl:variable name="lang01" select="'cs'"/>
   <xsl:variable name="lang02" select="'en'"/>
@@ -90,8 +91,10 @@
 
         <drawString x="2.32cm" y="5.6cm"><xsl:value-of select="$loc/str[@name='The domain name register is managed by the association CZ.NIC, z.s.p.o., Nr: 67985726.']"/></drawString>
         <drawString x="2.32cm" y="5.2cm"><xsl:value-of select="$loc/str[@name='The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.']"/></drawString>
-        <xsl:if test="$mock = 'signature'">
+        <xsl:if test="$testsignature = 'yes'">
+          <fill color="#ce1126"/>
           <drawString x="2.32cm" y="4.8cm">This statement was electronically signed by the association CZ.NIC, z.s.p.o. in DD.MM.YYYY HH:MM:SS.</drawString>
+          <fill color="black"/>
         </xsl:if>
 
         <setFont name="FreeSans" size="12"/>
