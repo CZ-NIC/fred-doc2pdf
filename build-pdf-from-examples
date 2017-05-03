@@ -142,3 +142,21 @@ xsltproc templates/notice_to_correct_data.xsl examples/notice_to_correct_data_lo
 
 echo create file $DEST/confirm_correction_long_address.pdf
 xsltproc templates/confirm_correction.xsl examples/notice_to_correct_data_long_address.xml | ./fred-doc2pdf > $DEST/confirm_correction_long_address.pdf
+
+echo create file $DEST/record_statement_keyset.pdf
+xsltproc --stringparam mock signature templates/record_statement_keyset.xsl examples/record_statement_keyset.xml | ./fred-doc2pdf > $DEST/record_statement_keyset.pdf
+
+echo create file $DEST/record_statement_nsset.pdf
+xsltproc --stringparam mock signature templates/record_statement_nsset.xsl examples/record_statement_nsset.xml | ./fred-doc2pdf > $DEST/record_statement_nsset.pdf
+
+echo create file $DEST/record_statement_domain.pdf
+xsltproc --stringparam mock signature templates/record_statement_domain.xsl examples/record_statement_domain.xml | ./fred-doc2pdf > $DEST/record_statement_domain.pdf
+
+echo create file $DEST/record_statement_contact.pdf
+xsltproc --stringparam mock signature templates/record_statement_contact.xsl examples/record_statement_contact.xml | ./fred-doc2pdf > $DEST/record_statement_contact.pdf
+
+echo create file $DEST/record_statement_contact_partially_closed.pdf
+xsltproc --stringparam mock signature templates/record_statement_contact.xsl examples/record_statement_contact_partially_closed.xml | ./fred-doc2pdf > $DEST/record_statement_contact_partially_closed.pdf
+
+echo create file $DEST/record_statement_contact_not_linked.pdf
+xsltproc --stringparam mock signature templates/record_statement_contact.xsl examples/record_statement_contact_not_linked.xml | ./fred-doc2pdf > $DEST/record_statement_contact_not_linked.pdf

@@ -41,12 +41,12 @@
             name='true'
             organization='true'
             address='true'
-            telephone='true'
-            fax='true'
-            email='true'
-            vat='true'
-            ident='true'
-            notifyemail='true'
+            telephone='false'
+            fax='false'
+            email='false'
+            vat='false'
+            ident='false'
+            notifyemail='false'
         ></disclose>
 
         <external_states_list>
