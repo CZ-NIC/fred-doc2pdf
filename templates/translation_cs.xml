@@ -268,4 +268,24 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Organization">Organizace</str>
 <str name="Address">Adresa</str>
 
+<str name="Contact from the Domain registry">Kontakt vedený v registru doménových jmen</str>
+<str name="TID">DIČ</str>
+<str name="Identification type">Typ identifikace</str>
+<str name="Identification data">Identifikační údaj</str>
+
+<str name="RC">Rodné číslo</str>
+<str name="OP">Číslo OP</str>
+<str name="PASS">Číslo pasu</str>
+<str name="ICO">IČO</str>
+<str name="MPSV">Identifikátor MPSV</str>
+<str name="BIRTHDAY">Datum narození</str>
+
+<str name="Email">E-mail</str>
+<str name="Notify email">E-mail pro oznámení</str>
+<str name="Phone">Telefon</str>
+<str name="Fax">Fax</str>
+<str name="Contact information">Kontaktní údaje</str>
+<str name="Data in the registry">Údaje registru</str>
+<str name="Last transfer date">Poslední změna registrátora</str>
+
 </strings>

@@ -9,8 +9,8 @@
         <name>Adam Adminovič</name>
         <organization>International Trade Ltd.</organization>
         <taxpayer_id_number>ABC123456789</taxpayer_id_number>
-        <id_type>birthdate</id_type>
-        <id_type>1985-10-19</id_type>
+        <id_type>BIRTHDAY</id_type>
+        <id_value>1985-10-19</id_value>
         <email>name@foo.cz</email>
         <notification_email>notif-name@foo.cz</notification_email>
         <phone>+420.123456789</phone>

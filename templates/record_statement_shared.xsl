@@ -134,6 +134,12 @@
       </xsl:call-template>
     </xsl:for-each>
 
+    <xsl:for-each select="contact">
+      <xsl:call-template name="pageDetailContact">
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
+    </xsl:for-each>
+
   </xsl:template>
 
   <xsl:template name="contactTableRowTemplate">

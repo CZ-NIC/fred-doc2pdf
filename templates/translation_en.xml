@@ -261,4 +261,24 @@
 <str name="Organization">Organization</str>
 <str name="Address">Address</str>
 
+<str name="Contact from the Domain registry">Contact from the Domain registry</str>
+<str name="TID">TID</str>
+<str name="Identification type">Identification type</str>
+<str name="Identification data">Identification data</str>
+
+<str name="RC">Birth date</str>
+<str name="OP">Personal ID</str>
+<str name="PASS">Passport number</str>
+<str name="ICO">VAT ID number</str>
+<str name="MPSV">MPSV ID</str>
+<str name="BIRTHDAY">Birth day</str>
+
+<str name="Email">Email</str>
+<str name="Notify email">Notify email</str>
+<str name="Phone">Phone</str>
+<str name="Fax">Fax</str>
+<str name="Contact information">Contact information</str>
+<str name="Data in the registry">Data in the registry</str>
+<str name="Last transfer date">Last transfer date</str>
+
 </strings>

@@ -23,12 +23,10 @@
         <td><xsl:value-of select="$loc/str[@name='Registered since']"/></td>
         <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="creation_date" /></xsl:call-template></td>
       </tr>
-
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Last update date']"/></td>
         <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="last_update_date" /></xsl:call-template></td>
       </tr>
-
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Expiration date']"/></td>
         <td><xsl:call-template name="local_date"><xsl:with-param name="sdt" select="expiration_date" /></xsl:call-template></td>

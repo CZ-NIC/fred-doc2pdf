@@ -17,8 +17,8 @@
         sdt: "2017-04-18T16:12:00+02:00"
     -->
     <xsl:param name="sdt"/>
-    <xsl:if test="$sdt">
-    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+    <xsl:if test="string-length($sdt)>0">
+        <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
     </xsl:if>
 </xsl:template>
 
@@ -26,7 +26,7 @@
     <xsl:param name="lang" select="'cs'"/>
     <xsl:param name="sdt"/>
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
-    <xsl:if test="$sdt">
+    <xsl:if test="string-length($sdt)>0">
         <xsl:if test="$lang='en'">
             <xsl:value-of select='substring($sdt, 9, 2)' />/<xsl:value-of select='substring($sdt, 6, 2)' />/<xsl:value-of select='substring($sdt, 1, 4)' />
         </xsl:if>
