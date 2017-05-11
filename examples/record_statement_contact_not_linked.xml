@@ -3,7 +3,7 @@
 
     <current_datetime>2017-04-18T16:12:00+02:00</current_datetime>
 
-    <contact>
+    <contact is_private_printout="false">
 
         <handle>KS1</handle>
         <name>Adam Adminovič</name>

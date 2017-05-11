@@ -13,7 +13,7 @@
     <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
     <para style="header"><xsl:value-of select="$loc/str[@name='Contact from the Domain registry']"/></para>
     <xsl:choose>
-      <xsl:when test="external_states_list/state/text()='linked'">
+      <xsl:when test="external_states_list/state/text()='linked' or @is_private_printout='true'">
         <!-- Linked contact -->
         <blockTable colWidths="6cm,10.2cm" style="registry_data">
           <tr>
@@ -24,8 +24,11 @@
               <td><xsl:value-of select="$loc/str[@name='Organization']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@organization='true'">
-                    <xsl:value-of select="organization"/>
+                  <xsl:when test="disclose/@organization='true' or @is_private_printout='true'">
+                    <para style="basic"><xsl:value-of select="organization"/></para>
+                    <xsl:if test="disclose/@organization!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -37,8 +40,11 @@
               <td><xsl:value-of select="$loc/str[@name='Name']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@name='true'">
-                    <xsl:value-of select="name"/>
+                  <xsl:when test="disclose/@name='true' or @is_private_printout='true'">
+                    <para style="basic"><xsl:value-of select="name"/></para>
+                    <xsl:if test="disclose/@name!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -50,8 +56,11 @@
               <td><xsl:value-of select="$loc/str[@name='TID']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@vat='true'">
-                    <xsl:value-of select="taxpayer_id_number"/>
+                  <xsl:when test="disclose/@vat='true' or @is_private_printout='true'">
+                    <para style="basic"><xsl:value-of select="taxpayer_id_number"/></para>
+                    <xsl:if test="disclose/@vat!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -63,9 +72,14 @@
               <td><xsl:value-of select="$loc/str[@name='Identification type']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@ident='true'">
-                    <xsl:variable name="idTypeText" select="id_type/text()"/>
-                    <xsl:value-of select="$loc/str[@name=$idTypeText]"/>
+                  <xsl:when test="disclose/@ident='true' or @is_private_printout='true'">
+                    <para style="basic">
+                      <xsl:variable name="idTypeText" select="id_type/text()"/>
+                      <xsl:value-of select="$loc/str[@name=$idTypeText]"/>
+                    </para>
+                    <xsl:if test="disclose/@ident!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -77,15 +91,20 @@
               <td><xsl:value-of select="$loc/str[@name='Identification data']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@ident='true'">
-                    <xsl:choose>
-                        <xsl:when test="id_type = 'BIRTHDAY'">
-                            <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="id_value" /></xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="id_value"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                  <xsl:when test="disclose/@ident='true' or @is_private_printout='true'">
+                    <para style="basic">
+                      <xsl:choose>
+                          <xsl:when test="id_type = 'BIRTHDAY'">
+                              <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="id_value" /></xsl:call-template>
+                          </xsl:when>
+                          <xsl:otherwise>
+                              <xsl:value-of select="id_value"/>
+                          </xsl:otherwise>
+                      </xsl:choose>
+                    </para>
+                    <xsl:if test="disclose/@ident!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -101,8 +120,11 @@
             <td><xsl:value-of select="$loc/str[@name='Email']"/></td>
             <td>
               <xsl:choose>
-                <xsl:when test="disclose/@email='true'">
-                  <xsl:value-of select="email"/>
+                <xsl:when test="disclose/@email='true' or @is_private_printout='true'">
+                  <para style="basic"><xsl:value-of select="email"/></para>
+                  <xsl:if test="disclose/@email!='true'">
+                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                  </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                   <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -114,8 +136,11 @@
             <td><xsl:value-of select="$loc/str[@name='Notify email']"/></td>
             <td>
               <xsl:choose>
-                <xsl:when test="disclose/@notifyemail='true'">
-                  <xsl:value-of select="notification_email"/>
+                <xsl:when test="disclose/@notifyemail='true' or @is_private_printout='true'">
+                  <para style="basic"><xsl:value-of select="notification_email"/></para>
+                  <xsl:if test="disclose/@notifyemail!='true'">
+                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                  </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                   <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -127,8 +152,11 @@
             <td><xsl:value-of select="$loc/str[@name='Phone']"/></td>
             <td>
               <xsl:choose>
-                <xsl:when test="disclose/@telephone='true'">
-                  <xsl:value-of select="phone"/>
+                <xsl:when test="disclose/@telephone='true' or @is_private_printout='true'">
+                  <para style="basic"><xsl:value-of select="phone"/></para>
+                  <xsl:if test="disclose/@telephone!='true'">
+                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                  </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                   <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -140,8 +168,11 @@
             <td><xsl:value-of select="$loc/str[@name='Fax']"/></td>
             <td>
               <xsl:choose>
-                <xsl:when test="disclose/@fax='true'">
-                  <xsl:value-of select="fax"/>
+                <xsl:when test="disclose/@fax='true' or @is_private_printout='true'">
+                  <para style="basic"><xsl:value-of select="fax"/></para>
+                  <xsl:if test="disclose/@fax!='true'">
+                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                  </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                   <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
@@ -153,13 +184,18 @@
               <td><xsl:value-of select="$loc/str[@name='Address']"/></td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="disclose/@address='true'">
-                    <xsl:value-of select="address/street1"/>, <xsl:if
-                        test="address/street2/text()"><xsl:value-of select="address/street2"/>, </xsl:if><xsl:if
-                        test="address/street3/text()"><xsl:value-of select="address/street3"/>, </xsl:if><xsl:value-of
-                        select="address/postal_code"/> &SPACE; <xsl:value-of select="address/city"/>, <xsl:if
-                        test="address/stateorprovince"><xsl:value-of select="address/stateorprovince"/>, </xsl:if><xsl:value-of
-                        select="address/country"/>
+                  <xsl:when test="disclose/@address='true' or @is_private_printout='true'">
+                    <para style="basic">
+                      <xsl:value-of select="address/street1"/>, <xsl:if
+                          test="address/street2/text()"><xsl:value-of select="address/street2"/>, </xsl:if><xsl:if
+                          test="address/street3/text()"><xsl:value-of select="address/street3"/>, </xsl:if><xsl:value-of
+                          select="address/postal_code"/> &SPACE; <xsl:value-of select="address/city"/>, <xsl:if
+                          test="address/stateorprovince"><xsl:value-of select="address/stateorprovince"/>, </xsl:if><xsl:value-of
+                          select="address/country"/>
+                    </para>
+                    <xsl:if test="disclose/@address!='true'">
+                      <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+                    </xsl:if>
                   </xsl:when>
                   <xsl:otherwise>
                     <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>

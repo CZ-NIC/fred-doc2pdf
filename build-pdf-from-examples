@@ -160,3 +160,12 @@ xsltproc --stringparam testsignature yes templates/record_statement_contact.xsl 
 
 echo create file $DEST/record_statement_contact_not_linked.pdf
 xsltproc --stringparam testsignature yes templates/record_statement_contact.xsl examples/record_statement_contact_not_linked.xml | ./fred-doc2pdf > $DEST/record_statement_contact_not_linked.pdf
+
+echo create file $DEST/record_statement_contact_private.pdf
+sed 's/is_private_printout="false"/is_private_printout="true"/1' examples/record_statement_contact.xml | xsltproc --stringparam testsignature yes templates/record_statement_contact.xsl - | ./fred-doc2pdf > $DEST/record_statement_contact_private.pdf
+
+echo create file $DEST/record_statement_contact_partially_closed_private.pdf
+sed 's/is_private_printout="false"/is_private_printout="true"/1' examples/record_statement_contact_partially_closed.xml | xsltproc --stringparam testsignature yes templates/record_statement_contact.xsl - | ./fred-doc2pdf > $DEST/record_statement_contact_partially_closed_private.pdf
+
+echo create file $DEST/record_statement_contact_not_linked_private.pdf
+sed 's/is_private_printout="false"/is_private_printout="true"/1' examples/record_statement_contact_not_linked.xml | xsltproc --stringparam testsignature yes templates/record_statement_contact.xsl - | ./fred-doc2pdf > $DEST/record_statement_contact_not_linked_private.pdf
