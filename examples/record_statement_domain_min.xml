@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<record_statement>
+
+    <current_datetime>2017-04-18T16:12:00+02:00</current_datetime>
+
+    <domain>
+
+        <fqdn>minimal.cz</fqdn>
+        <creation_date>2010-04-18</creation_date>
+        <last_update_date/>
+        <expiration_date>2018-04-18</expiration_date>
+
+        <holder is_private_printout="false">
+            <handle>MILOUSMALY</handle>
+            <name>Milouš Malý</name>
+            <organization/>
+            <id_number/>
+            <street1>Nábřežní 14/456</street1>
+            <street2/>
+            <street3/>
+            <city>Praha</city>
+            <stateorprovince/>
+            <postal_code>120 00</postal_code>
+            <country>Česká republika</country>
+            <disclose name='true' organization='true' address='true' ident='true' />
+        </holder>
+
+        <admin_contact_list/>
+
+        <sponsoring_registrar>
+            <handle>REG-FRED_A</handle>
+            <name>Test A. Registrar</name>
+            <organization>International Trade Ltd.</organization>
+        </sponsoring_registrar>
+
+        <nsset/>
+        <keyset/>
+
+    <external_states_list/>
+
+    </domain>
+</record_statement>

@@ -13,11 +13,20 @@
       </tr>
     </blockTable>
 
-    <xsl:for-each select="dns_key_list/dns_key">
-      <xsl:call-template name="dnsKeyListTemplate">
-        <xsl:with-param name="lang" select="$lang"/>
-      </xsl:call-template>
-    </xsl:for-each>
+    <xsl:choose>
+        <xsl:when test="dns_key_list/dns_key">
+          <xsl:for-each select="dns_key_list/dns_key">
+            <xsl:call-template name="dnsKeyListTemplate">
+              <xsl:with-param name="lang" select="$lang"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <para style="small-header"><xsl:value-of select="$loc/str[@name='DNS Key']"/></para>
+          <para style="italic"><xsl:value-of select="$loc/str[@name='Unassigned']"/></para>
+        </xsl:otherwise>
+    </xsl:choose>
+
 
     <para style="small-header"><xsl:value-of select="$loc/str[@name='Technical contacts']"/></para>
     <blockTable colWidths="6cm,10.2cm" style="registry_data">

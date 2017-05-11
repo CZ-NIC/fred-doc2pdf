@@ -113,13 +113,20 @@
     </blockTable>
 
     <para style="small-header"><xsl:value-of select="$loc/str[@name='Administrative contacts']"/></para>
-    <blockTable colWidths="6cm,10.2cm" style="registry_data">
-      <xsl:for-each select="admin_contact_list/admin_contact">
-        <xsl:call-template name="contactTableRowTemplate">
-          <xsl:with-param name="lang" select="$lang"/>
-        </xsl:call-template>
-      </xsl:for-each>
-    </blockTable>
+    <xsl:choose>
+      <xsl:when test="admin_contact_list/admin_contact">
+        <blockTable colWidths="6cm,10.2cm" style="registry_data">
+          <xsl:for-each select="admin_contact_list/admin_contact">
+            <xsl:call-template name="contactTableRowTemplate">
+              <xsl:with-param name="lang" select="$lang"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </blockTable>
+      </xsl:when>
+      <xsl:otherwise>
+        <para style="italic"><xsl:value-of select="$loc/str[@name='Unassigned']"/></para>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <para style="small-header"><xsl:value-of select="$loc/str[@name='Sponsoring registrar']"/></para>
     <blockTable colWidths="6cm,10.2cm" style="registry_data">
@@ -143,17 +150,33 @@
       </tr>
     </blockTable>
 
-    <xsl:for-each select="nsset">
-      <xsl:call-template name="pageDetailNsset">
-        <xsl:with-param name="lang" select="$lang"/>
-      </xsl:call-template>
-    </xsl:for-each>
+    <xsl:choose>
+        <xsl:when test="nsset/handle">
+          <xsl:for-each select="nsset">
+            <xsl:call-template name="pageDetailNsset">
+              <xsl:with-param name="lang" select="$lang"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <para style="header"><xsl:value-of select="$loc/str[@name='Nameserver set']"/></para>
+          <para style="italic"><xsl:value-of select="$loc/str[@name='Unassigned']"/></para>
+        </xsl:otherwise>
+    </xsl:choose>
 
-    <xsl:for-each select="keyset">
-      <xsl:call-template name="pageDetailKeyset">
-        <xsl:with-param name="lang" select="$lang"/>
-      </xsl:call-template>
-    </xsl:for-each>
+    <xsl:choose>
+        <xsl:when test="keyset/handle">
+          <xsl:for-each select="keyset">
+            <xsl:call-template name="pageDetailKeyset">
+              <xsl:with-param name="lang" select="$lang"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <para style="header"><xsl:value-of select="$loc/str[@name='Key set']"/></para>
+          <para style="italic"><xsl:value-of select="$loc/str[@name='Unassigned']"/></para>
+        </xsl:otherwise>
+    </xsl:choose>
 
   </xsl:template>
 
