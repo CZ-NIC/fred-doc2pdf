@@ -22,17 +22,7 @@
             <stateorprovince>Praha - hl. město</stateorprovince>
             <postal_code>120 00</postal_code>
             <country>Česká republika</country>
-            <disclose
-                name='true'
-                organization='true'
-                address='true'
-                telephone='false'
-                fax='false'
-                email='false'
-                vat='false'
-                ident='false'
-                notifyemail='false'
-            ></disclose>
+            <disclose name='true' organization='true' address='false' ident='false' />
         </holder>
 
         <admin_contact_list>
