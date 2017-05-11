@@ -285,5 +285,7 @@
 <str name="Keyset object states">Keyset object states</str>
 <str name="Nameserver set object states">Nameserver set object states</str>
 <str name="Domain object states">Domain object states</str>
+<str name="The contact has not currently a relation to other records in the registry, so its other data are not public.">The contact has not currently a relation to other records in the registry, so its other data are not public.</str>
+<str name="The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.">The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.</str>
 
 </strings>

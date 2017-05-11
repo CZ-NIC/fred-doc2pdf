@@ -292,5 +292,7 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Keyset object states">Stavy objektu sady klíčů</str>
 <str name="Nameserver set object states">Stavy objektu sady jmenných serverů</str>
 <str name="Domain object states">Stavy objektu domény</str>
+<str name="The contact has not currently a relation to other records in the registry, so its other data are not public.">Kontakt není aktuálně navázán na další záznamy v registru, jeho další údaje jsou tudíž neveřejné.</str>
+<str name="The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.">Kontakt není aktuálně navázán na další záznamy v registru, zveřejněny jsou tak pouze Identifikátor kontaktu a Určený registrátor.</str>
 
 </strings>

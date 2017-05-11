@@ -237,6 +237,7 @@
             </td>
           </tr>
         </blockTable>
+        <para style="small-header"><xsl:value-of select="$loc/str[@name='The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.']"/></para>
       </xsl:when>
       <xsl:otherwise>
         <!-- Not linked contact -->
@@ -254,6 +255,7 @@
             </td>
           </tr>
         </blockTable>
+        <para style="small-header"><xsl:value-of select="$loc/str[@name='The contact has not currently a relation to other records in the registry, so its other data are not public.']"/></para>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
