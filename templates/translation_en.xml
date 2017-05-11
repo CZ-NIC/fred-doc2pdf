@@ -281,5 +281,9 @@
 <str name="Data in the registry">Data in the registry</str>
 <str name="Last transfer date">Last transfer date</str>
 <str name="Not disclosed">Not disclosed</str>
+<str name="Object states">Object states</str>
+<str name="Keyset object states">Keyset object states</str>
+<str name="Nameserver set object states">Nameserver set object states</str>
+<str name="Domain object states">Domain object states</str>
 
 </strings>

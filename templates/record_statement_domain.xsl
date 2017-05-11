@@ -130,6 +130,7 @@
       </xsl:for-each>
     </blockTable>
 
+    <para style="small-header"><xsl:value-of select="$loc/str[@name='Domain object states']"/></para>
     <blockTable colWidths="6cm,10.2cm" style="registry_data">
       <tr>
         <td><xsl:value-of select="$loc/str[@name='Status']"/></td>

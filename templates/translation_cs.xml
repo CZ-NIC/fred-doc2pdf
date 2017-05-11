@@ -288,5 +288,9 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="Data in the registry">Údaje registru</str>
 <str name="Last transfer date">Poslední změna registrátora</str>
 <str name="Not disclosed">Neveřejný údaj</str>
+<str name="Object states">Stavy objektu</str>
+<str name="Keyset object states">Stavy objektu sady klíčů</str>
+<str name="Nameserver set object states">Stavy objektu sady jmenných serverů</str>
+<str name="Domain object states">Stavy objektu domény</str>
 
 </strings>
