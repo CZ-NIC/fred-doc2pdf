@@ -13,16 +13,16 @@
 
             <tech_contact>
                 <handle>AADMINOVIC1</handle>
-                <name>Adam Adminovič</name>
-                <organization>International Trade Ltd.</organization>
+                <name/>
+                <organization/>
             </tech_contact>
 
         </tech_contact_list>
 
         <sponsoring_registrar>
             <handle>REG-FRED_A</handle>
-            <name>Test A. Registrar</name>
-            <organization>International Trade Ltd.</organization>
+            <name/>
+            <organization/>
         </sponsoring_registrar>
 
         <external_states_list/>

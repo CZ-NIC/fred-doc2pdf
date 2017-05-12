@@ -32,8 +32,8 @@
 
         <sponsoring_registrar>
             <handle>REG-FRED_A</handle>
-            <name>Test A. Registrar</name>
-            <organization>International Trade Ltd.</organization>
+            <name/>
+            <organization/>
         </sponsoring_registrar>
 
         <!-- optional disclose flags  -->
