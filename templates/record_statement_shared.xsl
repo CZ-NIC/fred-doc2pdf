@@ -153,8 +153,8 @@
             <td><xsl:value-of select="$loc/str[@name='Handle, Name, Organization']"/>:</td>
             <td>
                 <xsl:value-of select="handle"/>
-                <xsl:if test="name">, <xsl:value-of select="name"/></xsl:if>
-                <xsl:if test="organization">, <xsl:value-of select="organization"/></xsl:if>
+                <xsl:if test="name/text()">, <xsl:value-of select="name"/></xsl:if>
+                <xsl:if test="organization/text()">, <xsl:value-of select="organization"/></xsl:if>
             </td>
           </tr>
   </xsl:template>

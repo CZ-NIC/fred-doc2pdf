@@ -188,7 +188,7 @@
                           test="address/street2/text()"><xsl:value-of select="address/street2"/>, </xsl:if><xsl:if
                           test="address/street3/text()"><xsl:value-of select="address/street3"/>, </xsl:if><xsl:value-of
                           select="address/postal_code"/> &SPACE; <xsl:value-of select="address/city"/>, <xsl:if
-                          test="address/stateorprovince"><xsl:value-of select="address/stateorprovince"/>, </xsl:if><xsl:value-of
+                          test="address/stateorprovince/text()"><xsl:value-of select="address/stateorprovince"/>, </xsl:if><xsl:value-of
                           select="address/country"/>
                     </para>
                     <xsl:if test="disclose/@address!='true'">
@@ -221,8 +221,8 @@
             <td><xsl:value-of select="$loc/str[@name='Sponsoring registrar']"/></td>
             <td>
                 <xsl:value-of select="sponsoring_registrar/handle"/>
-                <xsl:if test="sponsoring_registrar/name">, <xsl:value-of select="sponsoring_registrar/name"/></xsl:if>
-                <xsl:if test="sponsoring_registrar/organization">, <xsl:value-of select="sponsoring_registrar/organization"/></xsl:if>
+                <xsl:if test="sponsoring_registrar/name/text()">, <xsl:value-of select="sponsoring_registrar/name"/></xsl:if>
+                <xsl:if test="sponsoring_registrar/organization/text()">, <xsl:value-of select="sponsoring_registrar/organization"/></xsl:if>
             </td>
           </tr>
           <tr>
@@ -254,8 +254,8 @@
             <td><xsl:value-of select="$loc/str[@name='Sponsoring registrar']"/></td>
             <td>
                 <xsl:value-of select="sponsoring_registrar/handle"/>
-                <xsl:if test="sponsoring_registrar/name">, <xsl:value-of select="sponsoring_registrar/name"/></xsl:if>
-                <xsl:if test="sponsoring_registrar/organization">, <xsl:value-of select="sponsoring_registrar/organization"/></xsl:if>
+                <xsl:if test="sponsoring_registrar/name/text()">, <xsl:value-of select="sponsoring_registrar/name"/></xsl:if>
+                <xsl:if test="sponsoring_registrar/organization/text()">, <xsl:value-of select="sponsoring_registrar/organization"/></xsl:if>
             </td>
           </tr>
         </blockTable>

@@ -97,7 +97,7 @@
                         test="holder/street2/text()"><xsl:value-of select="holder/street2"/>, </xsl:if><xsl:if
                         test="holder/street3/text()"><xsl:value-of select="holder/street3"/>, </xsl:if><xsl:value-of
                         select="holder/postal_code"/> &SPACE; <xsl:value-of select="holder/city"/>, <xsl:if
-                        test="holder/stateorprovince"><xsl:value-of select="holder/stateorprovince"/>, </xsl:if><xsl:value-of
+                        test="holder/stateorprovince/text()"><xsl:value-of select="holder/stateorprovince"/>, </xsl:if><xsl:value-of
                         select="holder/country"/>
                   </para>
                   <xsl:if test="holder/disclose/@address!='true'">
