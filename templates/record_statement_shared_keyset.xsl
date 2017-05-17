@@ -80,6 +80,7 @@
             <td>
               <xsl:value-of select="protocol"/>
               <xsl:call-template name="dnsKeyProtocolDescriptionTemplate">
+                <xsl:with-param name="lang" select="$lang" />
                 <xsl:with-param name="protocol" select="protocol" />
               </xsl:call-template>
             </td>
@@ -89,6 +90,7 @@
             <td>
               <xsl:value-of select="algorithm"/>
               <xsl:call-template name="dnsKeyAlgDescriptionTemplate">
+                <xsl:with-param name="lang" select="$lang" />
                 <xsl:with-param name="alg" select="algorithm" />
               </xsl:call-template>
             </td>
@@ -117,8 +119,8 @@
          5-254  Unassigned
            255  Reserved
       -->
-      <xsl:param name="lang" select="'cs'"/>
       <xsl:param name="protocol"/>
+      <xsl:param name="lang" select="'cs'"/>
       <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>, <xsl:if
         test="$protocol = 1 or $protocol = 2 or $protocol = 4 or $protocol = 255"><xsl:value-of select="$loc/str[@name='Reserved']"/></xsl:if><xsl:if
         test="$protocol = 3">DNSSEC</xsl:if><xsl:if
@@ -129,8 +131,8 @@
       <!--
         https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml
       -->
-      <xsl:param name="lang" select="'cs'"/>
       <xsl:param name="alg"/>
+      <xsl:param name="lang" select="'cs'"/>
       <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>, <xsl:choose>
           <xsl:when test="$alg &gt;= 17 and $alg &lt;= 122">
               <xsl:value-of select="$loc/str[@name='Unassigned']"/>
