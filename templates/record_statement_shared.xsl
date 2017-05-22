@@ -34,16 +34,16 @@
 
       <stylesheet>
         <paraStyle name="basic" fontName="FreeSans" fontSize="10"/>
-        <paraStyle name="main" parent="basic" spaceAfter="0.6cm" fontName="FreeSans" fontSize="10"/>
+        <paraStyle name="main" parent="basic" spaceAfter="0.2cm" fontName="FreeSans" fontSize="10"/>
         <paraStyle name="bold" parent="basic" fontName="FreeSansBold" fontSize="9"  />
         <paraStyle name="italic" parent="basic" fontName="FreeSansItalic" fontSize="9"  />
-        <paraStyle name="small-header" fontSize="9" spaceBefore="0.2cm" fontName="FreeSansBold"/>
-        <paraStyle name="header" fontSize="12" spaceBefore="0.4cm" spaceAfter="0.2cm" fontName="FreeSansBold"/>
-        <paraStyle name="page-header" parent="main" fontSize="16" spaceAfter="0.6cm" fontName="FreeSansBold"/>
+        <paraStyle name="small-header" fontSize="13" spaceBefore="0.4cm" spaceAfter="0.4cm" fontName="FreeSansBoldItalic" textColor="#003893"/>
+        <paraStyle name="header" fontSize="15" spaceBefore="0.4cm" spaceAfter="0.45cm" fontName="FreeSansBold" textColor="#003893"/>
+        <paraStyle name="page-header" parent="main" fontSize="18" spaceAfter="0.5cm" fontName="FreeSansBold" textColor="#003893" />
         <paraStyle name="largeStringMono" fontName="Courier" fontSize="8" leading="8" />
 
         <blockTableStyle id="registry_data">
-          <lineStyle kind="GRID" start="0,0" stop="-1,-1" thickness="0.5" colorName="black"/>
+          <lineStyle kind="GRID" start="0,0" stop="-1,-1" thickness="0.1" colorName="black"/>
           <blockFont name="FreeSans" start="0,0" stop="-1,-1" size="9"/>
           <blockLeftPadding length="0.1cm" start="0,0" stop="-1,-1" />
           <blockTopPadding length="0.1cm" start="0,0" stop="-1,-1" />
@@ -101,7 +101,7 @@
         <translate dx="9.2"/>
         <xsl:call-template name="cznic_logo"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9.2"/>
-        <frame id="main" x1="2.1cm" y1="6cm" width="16.7cm" height="21.2cm" showBoundary="0"/>
+        <frame id="main" x1="2.1cm" y1="6cm" width="16.7cm" height="20.2cm" showBoundary="0"/>
         <translate dx="9"/>
         <xsl:call-template name="footer_text"><xsl:with-param name="lang" select="$lang"/></xsl:call-template>
         <translate dx="-9"/>
