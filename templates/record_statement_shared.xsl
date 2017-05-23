@@ -159,4 +159,32 @@
           </tr>
   </xsl:template>
 
+  <xsl:template name="discloseValueOrNotSet">
+  <xsl:param name="value" select="."/>
+  <xsl:param name="disclose" select="false()"/>
+  <xsl:param name="disclose_or_private" select="false()"/>
+  <xsl:param name="lang" select="'cs'"/>
+  <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+    <xsl:choose>
+      <xsl:when test="$disclose_or_private">
+        <xsl:choose>
+          <xsl:when test="string-length($value) > 0">
+            <para style="basic"><xsl:value-of select="$value"/></para>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:if test="$disclose">
+              <para style="italic">(<xsl:value-of select="$loc/str[@name='Not set']"/>)</para>
+            </xsl:if>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:if test="$disclose">
+          <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

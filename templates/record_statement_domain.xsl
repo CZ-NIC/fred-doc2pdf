@@ -42,49 +42,34 @@
         <tr>
             <td><xsl:value-of select="$loc/str[@name='Organization']"/></td>
             <td>
-              <xsl:choose>
-                <xsl:when test="holder/disclose/@organization='true' or holder/@is_private_printout='true'">
-                  <para style="basic"><xsl:value-of select="holder/organization"/></para>
-                  <xsl:if test="holder/disclose/@organization!='true'">
-                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
-                  </xsl:if>
-                </xsl:when>
-                <xsl:otherwise>
-                  <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:call-template name="discloseValueOrNotSet">
+                <xsl:with-param name="value" select="holder/organization" />
+                <xsl:with-param name="disclose" select="holder/disclose/@organization!='true'" />
+                <xsl:with-param name="disclose_or_private" select="holder/disclose/@organization='true' or holder/@is_private_printout='true'" />
+                <xsl:with-param name="lang" select="$lang"/>
+              </xsl:call-template>
             </td>
         </tr>
         <tr>
             <td><xsl:value-of select="$loc/str[@name='Name']"/></td>
             <td>
-              <xsl:choose>
-                <xsl:when test="holder/disclose/@name='true' or holder/@is_private_printout='true'">
-                  <para style="basic"><xsl:value-of select="holder/name"/></para>
-                  <xsl:if test="holder/disclose/@name!='true'">
-                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
-                  </xsl:if>
-                </xsl:when>
-                <xsl:otherwise>
-                  <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:call-template name="discloseValueOrNotSet">
+                <xsl:with-param name="value" select="holder/name" />
+                <xsl:with-param name="disclose" select="holder/disclose/@name!='true'" />
+                <xsl:with-param name="disclose_or_private" select="holder/disclose/@name='true' or holder/@is_private_printout='true'" />
+                <xsl:with-param name="lang" select="$lang"/>
+              </xsl:call-template>
             </td>
         </tr>
         <tr>
             <td><xsl:value-of select="$loc/str[@name='ICO']"/></td>
             <td>
-              <xsl:choose>
-                <xsl:when test="holder/disclose/@ident='true' or holder/@is_private_printout='true'">
-                  <para style="basic"><xsl:value-of select="holder/id_number"/></para>
-                  <xsl:if test="holder/disclose/@ident!='true'">
-                    <para style="italic">(<xsl:value-of select="$loc/str[@name='Not disclosed']"/>)</para>
-                  </xsl:if>
-                </xsl:when>
-                <xsl:otherwise>
-                  <para style="italic"><xsl:value-of select="$loc/str[@name='Not disclosed']"/></para>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:call-template name="discloseValueOrNotSet">
+                <xsl:with-param name="value" select="holder/id_number" />
+                <xsl:with-param name="disclose" select="holder/disclose/@ident!='true'" />
+                <xsl:with-param name="disclose_or_private" select="holder/disclose/@ident='true' or holder/@is_private_printout='true'" />
+                <xsl:with-param name="lang" select="$lang"/>
+              </xsl:call-template>
             </td>
         </tr>
         <tr>
