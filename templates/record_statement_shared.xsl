@@ -38,7 +38,7 @@
         <paraStyle name="bold" parent="basic" fontName="FreeSansBold" fontSize="9"  />
         <paraStyle name="italic" parent="basic" fontName="FreeSansItalic" fontSize="9"  />
         <paraStyle name="small-header" fontSize="13" spaceBefore="0.4cm" spaceAfter="0.4cm" fontName="FreeSansBoldItalic" textColor="#003893"/>
-        <paraStyle name="header" fontSize="15" spaceBefore="0.4cm" spaceAfter="0.45cm" fontName="FreeSansBold" textColor="#003893"/>
+        <paraStyle name="header" fontSize="15" spaceBefore="0.8cm" spaceAfter="0.45cm" fontName="FreeSansBold" textColor="#003893"/>
         <paraStyle name="page-header" parent="main" fontSize="18" spaceAfter="0.5cm" fontName="FreeSansBold" textColor="#003893" />
         <paraStyle name="largeStringMono" fontName="Courier" fontSize="8" leading="8" />
 
