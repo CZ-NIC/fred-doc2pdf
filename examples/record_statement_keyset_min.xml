@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<record_statement>
+
+    <current_datetime>2017-04-18T16:12:00+02:00</current_datetime>
+
+    <keyset>
+
+        <handle>KS1-MINIMAL</handle>
+
+        <dns_key_list/>
+
+        <tech_contact_list>
+
+            <tech_contact>
+                <handle>AADMINOVIC1</handle>
+                <name/>
+                <organization/>
+            </tech_contact>
+
+        </tech_contact_list>
+
+        <sponsoring_registrar>
+            <handle>REG-FRED_A</handle>
+            <name/>
+            <organization/>
+        </sponsoring_registrar>
+
+        <external_states_list/>
+
+    </keyset>
+
+</record_statement>

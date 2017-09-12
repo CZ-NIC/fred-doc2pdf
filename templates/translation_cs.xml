@@ -183,4 +183,118 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="confirm_correction01">Potvrzujeme provedení změn ve shora uvedeném kontaktu. Registrace doménových jmen, u kterých je kontakt</str>
 <str name="confirm_correction02">uveden jako držitel, tedy zůstává zachována.</str>
 
+<str name="CET">SEČ</str>
+<str name="CEST">SELČ</str>
+
+<str name="The Record statement from the Domain registry .cz">Výpis z registru doménových jmen .cz</str>
+<str name="These data are valid for">Zde uvedené údaje jsou platné k</str>
+<str name="Key set">Sada klíčů</str>
+<str name="DNS Key">Klíč DNS</str>
+<str name="Flags">Příznaky</str>
+<str name="Protocol">Protokol</str>
+<str name="Algorithm">Algoritmus</str>
+<str name="Key">Klíč</str>
+<str name="Technical contacts">Technické kontakty</str>
+<str name="Handle, Name, Organization">Identifikátor, Jméno, Organizace</str>
+<str name="Sponsoring registrar">Určený registrátor</str>
+<str name="Status">Stav</str>
+
+<str name="serverDeleteProhibited">Není povoleno smazání</str>
+<str name="serverRenewProhibited">Není povoleno prodloužení registrace objektu</str>
+<str name="serverTransferProhibited">Není povolena změna určeného registrátora</str>
+<str name="serverUpdateProhibited">Není povolena změna údajů</str>
+<str name="serverOutzoneManual">Doména je administrativně vyřazena ze zóny</str>
+<str name="serverInzoneManual">Doména je administrativně zařazena do zóny</str>
+<str name="serverBlocked">Doména je blokována</str>
+<str name="expirationWarning">Doména expiruje do 30 dní</str>
+<str name="expired">Doména je po expiraci</str>
+<str name="unguarded">Doména je 30 dnů po expiraci</str>
+<str name="validationWarning1">Validace domény skončí za 30 dní</str>
+<str name="validationWarning2">Validace domény skončí za 15 dní</str>
+<str name="notValidated">Doména není validována</str>
+<str name="nssetMissing">Doména nemá přiřazen nsset</str>
+<str name="outzone">Doména není generována do zóny</str>
+<str name="linked">Je navázán na další záznam v registru</str>
+<str name="deleteCandidate">Určeno ke zrušení</str>
+<str name="serverRegistrantChangeProhibited">Není povolena změna držitele</str>
+<str name="deleteWarning">Registrace domény bude zrušena za 11 dní</str>
+<str name="outzoneUnguarded">Doména vyřazena ze zóny po 30 dnech od expirace</str>
+<str name="conditionallyIdentifiedContact">Kontakt je částečně identifikován</str>
+<str name="identifiedContact">Kontakt je identifikován</str>
+<str name="validatedContact">Kontakt je validován</str>
+<str name="mojeidContact">MojeID kontakt</str>
+<str name="contactPassedManualVerification">Kontakt byl ověřen zákaznickou podporou CZ.NIC</str>
+<str name="contactInManualVerification">Kontakt je ověřován zákaznickou podporou CZ.NIC</str>
+<str name="contactFailedManualVerification">Ověření kontaktu zákaznickou podporou bylo neúspěšné</str>
+<str name="outzoneUnguardedWarning">Doména bude brzy vyřazena ze zóny</str>
+
+<str name="Reserved">Rezervováno</str>
+<str name="Unassigned">Nepřiřazeno</str>
+
+<str name="dns_alg_0">Delete DS</str>
+<str name="dns_alg_1">RSA/MD5 (zastaralý, viz 5)</str>
+<str name="dns_alg_2">Diffie-Helman</str>
+<str name="dns_alg_3">DSA/SHA1</str>
+<str name="dns_alg_4">Rezervováno</str>
+<str name="dns_alg_5">RSA/SHA-1</str>
+<str name="dns_alg_6">DSA-NSEC3-SHA1</str>
+<str name="dns_alg_7">RSASHA1-NSEC3-SHA1</str>
+<str name="dns_alg_8">RSA/SHA-256</str>
+<str name="dns_alg_9">Rezervováno</str>
+<str name="dns_alg_10">RSA/SHA-512</str>
+<str name="dns_alg_11">Rezervováno</str>
+<str name="dns_alg_12">GOST R 34.10-2001</str>
+<str name="dns_alg_13">ECDSA Křivka P-256 s SHA-256</str>
+<str name="dns_alg_14">ECDSA Křivka P-384 s SHA-384</str>
+<str name="dns_alg_15">Ed25519</str>
+<str name="dns_alg_16">Ed448</str>
+<str name="dns_alg_252">Rezervováno pro Indirect Keys</str>
+<str name="dns_alg_253">Soukromý algoritmus</str>
+<str name="dns_alg_254">Soukromý algoritmus OID</str>
+<str name="dns_alg_255">Rezervováno</str>
+
+<str name="The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.">Registr doménových jmen spravuje sdružení CZ.NIC, z. s. p. o., IČ: 67985726.</str>
+<str name="The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.">Sdružení je zapsáno ve spolkovém rejstříku vedeném u Městského soudu v Praze, spisová značka L 58624.</str>
+
+<str name="Nameserver set">Sada jmenných serverů</str>
+<str name="Name server">Jmenný server</str>
+
+<str name="Registered since">Registrace od</str>
+<str name="Last update date">Poslední aktualizace</str>
+<str name="Expiration date">Datum expirace</str>
+<str name="Administrative contacts">Administrativní kontakty</str>
+<str name="Handle">Identifikátor</str>
+<str name="Name">Jméno</str>
+<str name="Organization">Organizace</str>
+<str name="Address">Adresa</str>
+
+<str name="Contact from the Domain registry">Kontakt vedený v registru doménových jmen</str>
+<str name="TID">DIČ</str>
+<str name="Identification type">Typ identifikace</str>
+<str name="Identification data">Identifikační údaj</str>
+
+<str name="RC">Rodné číslo</str>
+<str name="OP">Číslo OP</str>
+<str name="PASS">Číslo pasu</str>
+<str name="ICO">IČO</str>
+<str name="MPSV">Identifikátor MPSV</str>
+<str name="BIRTHDAY">Datum narození</str>
+
+<str name="Email">E-mail</str>
+<str name="Notify email">E-mail pro oznámení</str>
+<str name="Phone">Telefon</str>
+<str name="Fax">Fax</str>
+<str name="Contact information">Kontaktní údaje</str>
+<str name="Data in the registry">Údaje registru</str>
+<str name="Last transfer date">Poslední změna registrátora</str>
+<str name="Not disclosed">Neveřejný údaj</str>
+<str name="Object states">Stavy objektu</str>
+<str name="Keyset object states">Stavy objektu sady klíčů</str>
+<str name="Nameserver set object states">Stavy objektu sady jmenných serverů</str>
+<str name="Domain object states">Stavy objektu domény</str>
+<str name="The contact has not currently a relation to other records in the registry, so its other data are not public.">Kontakt není aktuálně navázán na další záznamy v registru, jeho další údaje jsou tudíž neveřejné.</str>
+<str name="The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.">Kontakt není aktuálně navázán na další záznamy v registru, zveřejněny jsou tak pouze Identifikátor kontaktu a Určený registrátor.</str>
+<str name="Identification detail">Identifikační údaj</str>
+<str name="Not set">Nenastaveno</str>
+
 </strings>

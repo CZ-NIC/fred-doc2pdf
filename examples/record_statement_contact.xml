@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<record_statement>
+
+    <current_datetime>2017-04-18T16:12:00+02:00</current_datetime>
+
+    <contact is_private_printout="false">
+
+        <handle>KS1</handle>
+        <name>Adam Adminovič</name>
+        <organization>International Trade Ltd.</organization>
+        <taxpayer_id_number>ABC123456789</taxpayer_id_number>
+        <id_type>BIRTHDAY</id_type>
+        <id_value>1985-10-19</id_value>
+        <email>name@foo.cz</email>
+        <notification_email>notif-name@foo.cz</notification_email>
+        <phone>+420.123456789</phone>
+        <fax>+420.123456788</fax>
+
+        <creation_date>2010-04-18</creation_date>
+        <last_update_date>2010-04-19</last_update_date>
+        <last_transfer_date/>
+
+        <address>
+            <street1>Nábřežní 14/456</street1>
+            <street2/>
+            <street3/>
+            <city>Praha</city>
+            <stateorprovince>Praha - hl. město</stateorprovince>
+            <postal_code>120 00</postal_code>
+            <country>Česká republika</country>
+        </address>
+
+        <sponsoring_registrar>
+            <handle>REG-FRED_A</handle>
+            <name>Test A. Registrar</name>
+            <organization>International Trade Ltd.</organization>
+        </sponsoring_registrar>
+
+        <!-- optional disclose flags  -->
+        <disclose
+            name='true'
+            organization='true'
+            address='true'
+            telephone='true'
+            fax='true'
+            email='true'
+            vat='true'
+            ident='true'
+            notifyemail='true'
+        ></disclose>
+
+        <external_states_list>
+            <state>linked</state>
+            <state>serverUpdateProhibited</state>
+            <state>serverTransferProhibited</state>
+        </external_states_list>
+
+    </contact>
+
+</record_statement>

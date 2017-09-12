@@ -176,4 +176,118 @@
 <str name="confirm_correction01">We confirm the change in the contact above. Registration of domain names, for which the contact</str>
 <str name="confirm_correction02">is listed as the holder, remains unchanged.</str>
 
+<str name="CET">CET</str>
+<str name="CEST">CEST</str>
+
+<str name="The Record statement from the Domain registry .cz">The Record statement from the Domain registry .cz</str>
+<str name="These data are valid for">These data are valid for</str>
+<str name="Key set">Key set</str>
+<str name="DNS Key">DNS Key</str>
+<str name="Flags">Flags</str>
+<str name="Protocol">Protocol</str>
+<str name="Algorithm">Algorithm</str>
+<str name="Key">Key</str>
+<str name="Technical contacts">Technical contacts</str>
+<str name="Handle, Name, Organization">Handle, Name, Organization</str>
+<str name="Sponsoring registrar">Sponsoring registrar</str>
+<str name="Status">Status</str>
+
+<str name="serverDeleteProhibited">Deletion forbidden</str>
+<str name="serverRenewProhibited">Registration renewal forbidden</str>
+<str name="serverTransferProhibited">Sponsoring registrar change forbidden</str>
+<str name="serverUpdateProhibited">Update forbidden</str>
+<str name="serverOutzoneManual">The domain is administratively kept out of zone</str>
+<str name="serverInzoneManual">The domain is administratively kept in zone</str>
+<str name="serverBlocked">Domain blocked</str>
+<str name="expirationWarning">The domain expires in 30 days</str>
+<str name="expired">Expired</str>
+<str name="unguarded">The domain is 30 days after expiration</str>
+<str name="validationWarning1">The domain validation expires in 30 days</str>
+<str name="validationWarning2">The domain validation expires in 15 days</str>
+<str name="notValidated">Domain not validated</str>
+<str name="nssetMissing">The domain doesn't have associated nsset</str>
+<str name="outzone">The domain isn't generated in the zone</str>
+<str name="linked">Has relation to other records in the registry</str>
+<str name="deleteCandidate">To be deleted</str>
+<str name="serverRegistrantChangeProhibited">Registrant change forbidden</str>
+<str name="deleteWarning">The domain will be deleted in 11 days</str>
+<str name="outzoneUnguarded">The domain is out of zone after 30 days in expiration state</str>
+<str name="conditionallyIdentifiedContact">Contact is conditionally identified</str>
+<str name="identifiedContact">Contact is identified</str>
+<str name="validatedContact">Contact is validated</str>
+<str name="mojeidContact">MojeID contact</str>
+<str name="contactPassedManualVerification">Contact has been verified by CZ.NIC customer support</str>
+<str name="contactInManualVerification">Contact is being verified by CZ.NIC customer support</str>
+<str name="contactFailedManualVerification">Contact has failed the verification by CZ.NIC customer support</str>
+<str name="outzoneUnguardedWarning">The domain is to be out of zone soon</str>
+
+<str name="Reserved">Reserved</str>
+<str name="Unassigned">Unassigned</str>
+
+<str name="dns_alg_0">Delete DS</str>
+<str name="dns_alg_1">RSA/MD5 (deprecated, see 5)</str>
+<str name="dns_alg_2">Diffie-Helman</str>
+<str name="dns_alg_3">DSA/SHA1</str>
+<str name="dns_alg_4">Reserved</str>
+<str name="dns_alg_5">RSA/SHA-1</str>
+<str name="dns_alg_6">DSA-NSEC3-SHA1</str>
+<str name="dns_alg_7">RSASHA1-NSEC3-SHA1</str>
+<str name="dns_alg_8">RSA/SHA-256</str>
+<str name="dns_alg_9">Reserved</str>
+<str name="dns_alg_10">RSA/SHA-512</str>
+<str name="dns_alg_11">Reserved</str>
+<str name="dns_alg_12">GOST R 34.10-2001</str>
+<str name="dns_alg_13">ECDSA Curve P-256 with SHA-256</str>
+<str name="dns_alg_14">ECDSA Curve P-384 with SHA-384</str>
+<str name="dns_alg_15">Ed25519</str>
+<str name="dns_alg_16">Ed448</str>
+<str name="dns_alg_252">Reserved for Indirect Keys</str>
+<str name="dns_alg_253">Private algorithm</str>
+<str name="dns_alg_254">Private algorithm OID</str>
+<str name="dns_alg_255">Reserved</str>
+
+<str name="The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.">The domain name register is managed by the association CZ.NIC, z. s. p. o., Nr: 67985726.</str>
+<str name="The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.">The Association is recorded in the Associations register maintained by the Municipal Court in Prague, File ref.: L 58624.</str>
+
+<str name="Nameserver set">Nameserver set</str>
+<str name="Name server">Name server</str>
+
+<str name="Registered since">Registered since</str>
+<str name="Last update date">Last update date</str>
+<str name="Expiration date">Expiration date</str>
+<str name="Administrative contacts">Administrative contacts</str>
+<str name="Handle">Handle</str>
+<str name="Name">Name</str>
+<str name="Organization">Organization</str>
+<str name="Address">Address</str>
+
+<str name="Contact from the Domain registry">Contact from the Domain registry</str>
+<str name="TID">TID</str>
+<str name="Identification type">Identification type</str>
+<str name="Identification data">Identification data</str>
+
+<str name="RC">Birth date</str>
+<str name="OP">Personal ID</str>
+<str name="PASS">Passport number</str>
+<str name="ICO">VAT ID number</str>
+<str name="MPSV">MPSV ID</str>
+<str name="BIRTHDAY">Birth day</str>
+
+<str name="Email">Email</str>
+<str name="Notify email">Notify email</str>
+<str name="Phone">Phone</str>
+<str name="Fax">Fax</str>
+<str name="Contact information">Contact information</str>
+<str name="Data in the registry">Data in the registry</str>
+<str name="Last transfer date">Last transfer date</str>
+<str name="Not disclosed">Not disclosed</str>
+<str name="Object states">Object states</str>
+<str name="Keyset object states">Keyset object states</str>
+<str name="Nameserver set object states">Nameserver set object states</str>
+<str name="Domain object states">Domain object states</str>
+<str name="The contact has not currently a relation to other records in the registry, so its other data are not public.">The contact has not currently a relation to other records in the registry, so its other data are not public.</str>
+<str name="The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.">The contact has not currently a relation to other records in the registry, so only the Contact Identifier and the Designated Registrar are disclosed.</str>
+<str name="Identification detail">Identification detail</str>
+<str name="Not set">Not set</str>
+
 </strings>

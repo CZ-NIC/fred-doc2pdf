@@ -2,6 +2,8 @@
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY SPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
 <!ENTITY EMSPACE "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'> </xsl:text>">
+<!ENTITY ENTER "<xsl:text xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+</xsl:text>">
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns:func="http://exslt.org/functions" extension-element-prefixes="func"
@@ -11,17 +13,47 @@
 <xsl:include href="utilities.xsl"/>
 
 <xsl:template name="local_date">
+    <!--
+        sdt: "2017-04-18T16:12:00+02:00"
+    -->
     <xsl:param name="sdt"/>
-    <xsl:if test="$sdt">
-    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+    <xsl:if test="string-length($sdt)>0">
+        <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
     </xsl:if>
 </xsl:template>
 
-<xsl:template name="short_date">
+<xsl:template name="localized_datetime">
+    <xsl:param name="lang" select="'cs'"/>
     <xsl:param name="sdt"/>
-    <xsl:if test="$sdt">
-    <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.</xsl:if>
+    <xsl:variable name="loc" select="document(concat('translation_', $lang, '.xml'))/strings"/>
+    <xsl:if test="string-length($sdt)>0">
+        <xsl:if test="$lang='en'">
+            <xsl:value-of select='substring($sdt, 9, 2)' />/<xsl:value-of select='substring($sdt, 6, 2)' />/<xsl:value-of select='substring($sdt, 1, 4)' />
+        </xsl:if>
+        <xsl:if test="$lang='cs'">
+            <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+        </xsl:if>
+        &SPACE; <xsl:value-of select='substring($sdt, 12, 8)' /> &SPACE;
+        <xsl:if test="substring($sdt, 20, 6)='+01:00'">
+            <xsl:value-of select="$loc/str[@name='CET']"/>
+        </xsl:if>
+        <xsl:if test="substring($sdt, 20, 6)='+02:00'">
+            <xsl:value-of select="$loc/str[@name='CEST']"/>
+        </xsl:if>
+    </xsl:if>
 </xsl:template>
+
+<xsl:template match="text()" name="split_large_string">
+  <xsl:param name="largeString"/>
+  <xsl:param name="numOfLetters" select="56"/>
+    <xsl:if test="string-length($largeString) > 0">
+      <xsl:value-of select="substring($largeString, 0, $numOfLetters)"/>&ENTER;
+      <xsl:call-template name="split_large_string">
+        <xsl:with-param name="largeString" select="substring($largeString, $numOfLetters)"/>
+        <xsl:with-param name="numOfLetters" select="$numOfLetters"/>
+      </xsl:call-template>
+   </xsl:if>
+ </xsl:template>
 
 <xsl:template name="trim_with_dots">
     <xsl:param name="string"/>
