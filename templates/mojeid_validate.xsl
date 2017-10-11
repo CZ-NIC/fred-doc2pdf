@@ -191,14 +191,9 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
     níže uvedenou adresu.
 </para>
 <para style="list">
-    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost připojte jako přílohu k&NBSP;e-mailu, ten opatřete platným zaručeným <b>elektronickým podpisem</b>
-    založeným na kvalifikovaném certifikátu vydaném <b>akreditovaným</b> poskytovatelem certifikačních služeb v&NBSP;České republice
-    a&NBSP;odešlete na adresu <u><font color="blue">podpora@mojeid.cz</font></u>.
-</para>
-<para style="list">
     <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
     Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
-    <u><font color="blue">mojeid.cz/validace</font></u>.
+    <a color="blue" href="https://mojeid.cz/validace/"><u>mojeid.cz/validace</u></a>.
 </para>
 <para style="clist">
     Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s&NBSP;uvedenou adresou
@@ -212,23 +207,23 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
             žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
             kopii výpisu z&NBSP;živnostenského rejstříku.
         </para>
+        <para style="list">
+            <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete ze své <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
+            Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem.
+            Při odeslání musí být povolena volba "Přidat identifikaci odesílatele"!
+        </para>
     </xsl:when>
 </xsl:choose>
-<para style="list">
-    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete ze své <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
-    Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem.
-    Při odeslání musí být povolena volba "Přidat identifikaci odesílatele"!
-</para>
+
+<spacer length="29mm"/>
 
 <xsl:choose>
     <xsl:when test="string(organization)">
-        <spacer length="12mm"/>
         <para style="main">
             Jméno a&NBSP;podpis odpovědné osoby: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
         </para>
     </xsl:when>
     <xsl:otherwise>
-        <spacer length="29mm"/>
         <para style="main">
             Jméno a&NBSP;podpis: &HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;&HELLIP;
         </para>
