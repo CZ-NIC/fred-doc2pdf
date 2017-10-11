@@ -1,3 +1,10 @@
+2017-10-11 (2.14.1)
+
+    * Update text of mojeid validation pdf
+        - Remove second paragraph about validation by certificate
+        - Show paragraph with "Datova schranka" only to organisations
+        - Fix link to the site mojeid/validation
+
 2017-03-02 (2.14.0)
 
    * Remove Arial font dependency
