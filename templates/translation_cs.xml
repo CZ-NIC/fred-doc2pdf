@@ -155,19 +155,19 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 -->
 
 <str name="Make the change..."> Změnu proveďte prostřednictvím svého registrátora</str>
-<str name="www">WWW registrátora: </str>
-<str name="Details recorded for your contact"> Evidované údaje o Vašem kontaktu:</str>
-<str name="organization">Organizace: </str>
-<str name="name">Jméno: </str>
-<str name="address">Adresa: </str>
-<str name="Identifier">Identifikátor: </str>
-<str name="Identification type">Typ identifikace: </str>
-<str name="ID">Identifikační údaj: </str>
-<str name="email">E-mail: </str>
-<str name="notify_email">E-mail pro oznámení: </str>
-<str name="telephone">Telefon: </str>
-<str name="fax">Fax: </str>
-<str name="Last update">Poslední aktualizace: </str>
+<str name="Registrar WWW">WWW registrátora</str>
+<str name="Details recorded for your contact">Evidované údaje o Vašem kontaktu</str>
+<str name="Organization">Organizace</str>
+<str name="Name">Jméno</str>
+<str name="Address">Adresa</str>
+<str name="Identifier">Identifikátor</str>
+<str name="Identification type">Typ identifikace</str>
+<str name="ID">Identifikační údaj</str>
+<str name="Email">E-mail</str>
+<str name="Email for notifications">E-mail pro oznámení</str>
+<str name="Phone">Telefon</str>
+<str name="Fax">Fax</str>
+<str name="Last update">Poslední aktualizace</str>
 
 <str name="Contact">Kontakt</str>
 <str name="notice to correct data">výzva k opravě údajů</str>

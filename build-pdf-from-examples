@@ -21,8 +21,8 @@ xsltproc --stringparam lang en templates/auth_info.xsl examples/auth_info.xml | 
 echo create file $DEST/contact_verification_auth_owner.pdf
 xsltproc templates/contact_verification_auth_owner.xsl examples/contact_verification_auth_owner.xml | ./fred-doc2pdf > $DEST/contact_verification_auth_owner.pdf
 
-echo create file $DEST/defunct_contacts.txt
-xsltproc templates/defunct_contacts.xsl examples/warning_letter1.xml | sed 1d > $DEST/defunct_contacts.txt
+echo create file $DEST/defunct_contacts.pdf
+xsltproc templates/defunct_contacts.xsl examples/defunct_contacts.xml | ./fred-doc2pdf > $DEST/defunct_contacts.pdf
 
 echo create file $DEST/helios.xml
 xsltproc templates/helios.xsl examples/invoice.xml | iconv -f cp1250 | sed 's|windows-1250|utf-8|' | xmllint --format - > $DEST/helios.xml

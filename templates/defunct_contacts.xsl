@@ -162,7 +162,7 @@
                 </para>
               <para style="main"><xsl:value-of select="$loc/str[@name='Designated registrar']"/>:&SPACE;<xsl:value-of select="registrar"/>
              </para>
-             <para style="main"><xsl:value-of select="$loc/str[@name='www']"/>&SPACE;<xsl:value-of select="registrar_web"/>
+             <para style="main"><xsl:value-of select="$loc/str[@name='Registrar WWW']"/>: <xsl:value-of select="registrar_web"/>
              </para>
 
              <spacer length="0.6cm"/>
@@ -170,7 +170,7 @@
      </xsl:choose>
 
      <para style="main">
-         <xsl:value-of select="$loc/str[@name='Details recorded for your contact']"/>
+         <xsl:value-of select="$loc/str[@name='Details recorded for your contact']"/>:
      </para>
 
 
@@ -186,7 +186,7 @@
 
         <tr> <td>
 
-           <xsl:value-of select="$loc/str[@name='organization']"/> </td> <td> 
+           <xsl:value-of select="$loc/str[@name='Organization']"/>: </td> <td>
            <xsl:choose>
               <xsl:when test="string-length(organization)>50">
                   <xsl:value-of select="substring(organization, 1, 50)"/>... </xsl:when>
@@ -198,7 +198,7 @@
      </td> </tr>
 
      <tr> <td>
-                <xsl:value-of select="$loc/str[@name='name']"/> </td> <td>  
+                <xsl:value-of select="$loc/str[@name='Name']"/>: </td> <td>
            <xsl:choose>
               <xsl:when test="string-length(name)>50">
                   <xsl:value-of select="substring(name, 1, 50)"/>... </xsl:when>
@@ -208,31 +208,31 @@
            </xsl:choose>
      </td> </tr>
 
-     <tr> <td><xsl:value-of select="$loc/str[@name='address']"/> </td> <td> <xsl:value-of select="street1"/>
+     <tr> <td><xsl:value-of select="$loc/str[@name='Address']"/>: </td> <td> <xsl:value-of select="street1"/>
      </td> </tr>
-    <tr> <td><xsl:value-of select="$loc/str[@name='Identifier']"/> </td> <td> <xsl:value-of select="handle"/>
+    <tr> <td><xsl:value-of select="$loc/str[@name='Identifier']"/>: </td> <td> <xsl:value-of select="handle"/>
      </td> </tr>
      <tr> <td><xsl:value-of select="$loc/str[@name='DIC']"/>: </td> <td> <xsl:value-of select="vat"/>
      </td> </tr>
-     <tr> <td><xsl:value-of select="$loc/str[@name='Identification type']"/> </td> <td> <xsl:value-of select="ssn_type"/>
+     <tr> <td><xsl:value-of select="$loc/str[@name='Identification type']"/>: </td> <td> <xsl:value-of select="ssn_type"/>
      </td> </tr>
-    <tr> <td><xsl:value-of select="$loc/str[@name='ID']"/> </td> <td> <xsl:value-of select="ssn"/>
+    <tr> <td><xsl:value-of select="$loc/str[@name='ID']"/>: </td> <td> <xsl:value-of select="ssn"/>
      </td> </tr>
-     <tr> <td><xsl:value-of select="$loc/str[@name='email']"/> </td> <td> <xsl:value-of select="email"/>
+     <tr> <td><xsl:value-of select="$loc/str[@name='Email']"/>: </td> <td> <xsl:value-of select="email"/>
      </td> </tr>
-    <tr> <td><xsl:value-of select="$loc/str[@name='notify_email']"/> </td> <td> <xsl:value-of select="notify_email"/>
+    <tr> <td><xsl:value-of select="$loc/str[@name='Email for notifications']"/>: </td> <td> <xsl:value-of select="notify_email"/>
      </td> </tr>
-    <tr> <td><xsl:value-of select="$loc/str[@name='telephone']"/> </td> <td> <xsl:value-of select="telephone"/>
+    <tr> <td><xsl:value-of select="$loc/str[@name='Phone']"/>: </td> <td> <xsl:value-of select="telephone"/>
      </td> </tr>
 
      <!-- TODO
      <xsl:if test="fax">
-     <tr> <td><xsl:value-of select="$loc/str[@name='fax']"/> </td> <td> <xsl:value-of select="fax"/>
+     <tr> <td><xsl:value-of select="$loc/str[@name='Fax']"/>: </td> <td> <xsl:value-of select="fax"/>
      </td> </tr>
      </xsl:if>
      -->
 
-     <tr> <td> <xsl:value-of select="$loc/str[@name='Last update']"/> </td> <td> <xsl:value-of select="last_update"/>
+     <tr> <td> <xsl:value-of select="$loc/str[@name='Last update']"/>: </td> <td> <xsl:value-of select="last_update"/>
      </td> </tr>
 
     </blockTable>

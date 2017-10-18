@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<contacts>
+    <contact>
+        <registrar>REG-CZNIC</registrar>
+        <registrar_web>www.nic.cz</registrar_web>
+        <organization>CZ.NIC s. p. z. o.</organization>
+        <name>Dave Lister</name>
+        <street1>Ulice 123</street1>
+        <handle>DAVE</handle>
+        <vat>1234567890</vat>
+        <email>dave@foo.foo</email>
+        <notify_email>lister@foo.foo</notify_email>
+        <telephone>+420.726111222</telephone>
+        <last_update>2017-04-28T10:38:21+02:00</last_update>
+        <ssn_type>OP</ssn_type>
+        <ssn>987654321</ssn>
+    </contact>
+    <contact>
+        <registrar>REG-MOJEID</registrar>
+        <registrar_web>www.mojeid.cz</registrar_web>
+        <organization>MojeID s. p. z. o.</organization>
+        <name>Arnold Rimmer</name>
+        <street1>Ulice 33/48</street1>
+        <handle>RIMMER</handle>
+        <vat>1234567891</vat>
+        <email>rimmer@foo.foo</email>
+        <notify_email>arnold@foo.foo</notify_email>
+        <telephone>+420.726111223</telephone>
+        <last_update>2017-04-28T10:40:21+02:00</last_update>
+        <ssn_type>OP</ssn_type>
+        <ssn>987654322</ssn>
+    </contact>
+</contacts>
