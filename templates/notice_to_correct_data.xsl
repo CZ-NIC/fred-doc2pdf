@@ -59,7 +59,7 @@
       <xsl:value-of select="$loc/str[@name='Customer Support Supervisor']"/>
     </para>
     <para style="basic" spaceAfter="0.6cm">
-      <xsl:value-of select="$loc/str[@name='email']"/><xsl:value-of select="$loc/str[@name='Customer Support Supervisor email']"/>
+      <xsl:value-of select="$loc/str[@name='Email']"/>: <xsl:value-of select="$loc/str[@name='Customer Support Supervisor email']"/>
     </para>
 
   </xsl:template>
