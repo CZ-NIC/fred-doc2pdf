@@ -156,9 +156,9 @@
         &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>,
     </para>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='which has to be entered into the form at this site: ']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>.
+     &SPACE;<a href="{auth/link}"><xsl:value-of select="auth/link"/></a>.
     </para>
-  <spacer length="0.6cm"/>
+    <barCode x="-0.3cm" width="26mm" height="26mm" code="QR"><xsl:value-of select="auth/link"/></barCode>
 
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='After successfully submitting the form...']"/>
     </para>
@@ -172,7 +172,8 @@
     <para style="main">CZ.NIC, z. s. p. o.</para>
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Milesovska 1136/5']"/></para>
     <para style="main">130 00&EMSPACE;<xsl:value-of select="$contact_loc/str[@name='Prague 3']"/></para>
-  <spacer length="1cm"/>
+
+  <spacer length="0.2cm"/>
     
     <para style="main">www.nic.cz</para>
     <para style="main">+420 222 745 111</para>
