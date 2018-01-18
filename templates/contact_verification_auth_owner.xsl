@@ -185,7 +185,7 @@
       <para style="main">Pro českou verzi textu, prosím, otočte.</para>
     </xsl:if>
     <xsl:if test="$lang = 'cs'">
-      <para style="main">For the English version of the text, please turn the page.</para>
+      <para style="main">Please turn the page for the English version of the text.</para>
     </xsl:if>
 
   </xsl:template>
