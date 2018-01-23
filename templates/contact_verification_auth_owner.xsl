@@ -74,7 +74,8 @@
           <paraStyle name="address" fontSize="11" fontName="FreeSans"/>
           <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
           <paraStyle name="tableHead" fontName="FreeSansBold"/>
-      
+          <paraStyle name="important" fontName="FreeSansBoldItalic" fontSize="9" />
+
           <blockTableStyle id="authDataTable">
             <blockFont name="FreeSans" size="9" start="0,0" stop="-1,-1"/>
             <blockLeftPadding length="35" start="0,0" stop="0,-1" />
@@ -169,9 +170,9 @@
         <xsl:value-of select="$contact_loc/str[@name='or you may use the following QR code to go to the site:']"/>
     </para>
 
-    <spacer length="1cm"/>
+    <spacer length=".4cm"/>
     <barCode x="-0.3cm" width="26mm" height="26mm" code="QR"><xsl:value-of select="auth/link"/></barCode>
-    <spacer length="1cm"/>
+    <spacer length=".4cm"/>
 
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='After successfully submitting the form...']"/>
     </para>
@@ -180,12 +181,12 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='Your CZ.NIC customer support team']"/>
     </para>
 
-    <spacer length=".2cm"/>
+    <spacer length=".8cm"/>
     <xsl:if test="$lang = 'en'">
-      <para style="main">Pro českou verzi textu, prosím, otočte.</para>
+      <para style="important">Pro českou verzi textu, prosím, otočte.</para>
     </xsl:if>
     <xsl:if test="$lang = 'cs'">
-      <para style="main">Please turn the page for the English version of the text.</para>
+      <para style="important">Please turn the page for the English version of the text.</para>
     </xsl:if>
 
   </xsl:template>
