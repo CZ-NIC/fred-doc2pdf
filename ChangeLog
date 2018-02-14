@@ -1,3 +1,11 @@
+2018-02-14 (2.16.0)
+
+    * Enhancements of contact verification pdf (letter)
+        - Add QR code with url
+        - Font size changes
+        - Text and grammar fixes
+        - Removed duplicate footer
+
 2017-09-12 (2.15.0)
 
     * Add registry record statement templates
