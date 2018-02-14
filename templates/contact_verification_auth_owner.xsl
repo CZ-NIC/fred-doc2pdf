@@ -74,9 +74,10 @@
           <paraStyle name="address" fontSize="11" fontName="FreeSans"/>
           <paraStyle name="address-name" parent="address" fontName="FreeSansBold"/>
           <paraStyle name="tableHead" fontName="FreeSansBold"/>
-      
+          <paraStyle name="important" fontName="FreeSansBoldItalic" fontSize="9" />
+
           <blockTableStyle id="authDataTable">
-            <blockFont name="FreeSans" size="10" start="0,0" stop="-1,-1"/>
+            <blockFont name="FreeSans" size="9" start="0,0" stop="-1,-1"/>
             <blockLeftPadding length="35" start="0,0" stop="0,-1" />
             <blockTopPadding length="0" start="0,0" stop="-1,-1" />
             <blockBottomPadding length="0" start="0,0" stop="-1,-1"/>
@@ -143,7 +144,7 @@
       <td><xsl:value-of select="account/last_name"/></td>
     </tr>
     <tr>
-      <td><xsl:value-of select="$contact_loc/str[@name='e-mail:']"/></td>
+      <td><xsl:value-of select="$contact_loc/str[@name='E-mail:']"/></td>
       <td><xsl:value-of select="account/email"/></td>
     </tr>
   </blockTable>
@@ -152,31 +153,41 @@
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='You have successfully finished...']"/>
     </para>
 
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='you will need this PIN3 code:']"/>
-        &SPACE; <b><xsl:value-of select="auth/codes/pin3"/></b>,
+    <para style="main">
+        <xsl:value-of select="$contact_loc/str[@name='you will need this PIN3 code:']"/>
+        &SPACE;
+        <b><xsl:value-of select="auth/codes/pin3"/></b>,
+        <xsl:value-of select="$contact_loc/str[@name='which has to be entered into the form at this site:']"/>
     </para>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='which has to be entered into the form at this site: ']"/>
-     &SPACE;<xsl:value-of select="auth/link"/>.
+
+    <spacer length="0.4cm"/>
+    <para style="main">
+        <a href="{auth/link}"><xsl:value-of select="auth/link"/></a>
     </para>
-  <spacer length="0.6cm"/>
+    <spacer length="0.4cm"/>
+
+    <para style="main">
+        <xsl:value-of select="$contact_loc/str[@name='or you may use the following QR code to go to the site:']"/>
+    </para>
+
+    <spacer length=".4cm"/>
+    <barCode x="-0.3cm" width="26mm" height="26mm" code="QR"><xsl:value-of select="auth/link"/></barCode>
+    <spacer length=".4cm"/>
 
     <para style="main"><xsl:value-of select="$contact_loc/str[@name='After successfully submitting the form...']"/>
     </para>
-  <spacer length="1cm"/>
+    <spacer length=".6cm"/>
 
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Your team CZ.NIC.']"/>
+    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Your CZ.NIC customer support team']"/>
     </para>
-  <spacer length="0.6cm"/>
-    
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Customer Support']"/></para>
-    <para style="main">CZ.NIC, z. s. p. o.</para>
-    <para style="main"><xsl:value-of select="$contact_loc/str[@name='Milesovska 1136/5']"/></para>
-    <para style="main">130 00&EMSPACE;<xsl:value-of select="$contact_loc/str[@name='Prague 3']"/></para>
-  <spacer length="1cm"/>
-    
-    <para style="main">www.nic.cz</para>
-    <para style="main">+420 222 745 111</para>
-    <para style="main">kontakt@nic.cz</para>
+
+    <spacer length=".8cm"/>
+    <xsl:if test="$lang = 'en'">
+      <para style="important">Pro českou verzi textu, prosím, otočte.</para>
+    </xsl:if>
+    <xsl:if test="$lang = 'cs'">
+      <para style="important">Please turn the page for the English version of the text.</para>
+    </xsl:if>
 
   </xsl:template>
 
