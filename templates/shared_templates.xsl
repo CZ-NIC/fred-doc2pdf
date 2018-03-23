@@ -14,7 +14,7 @@
 
 <xsl:template name="local_date">
     <!--
-        sdt: "2017-04-18T16:12:00+02:00"
+        sdt: "2017-04-18T16:12:00,123123135+02:00"
     -->
     <xsl:param name="sdt"/>
     <xsl:if test="string-length($sdt)>0">
@@ -34,10 +34,10 @@
             <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
         </xsl:if>
         &SPACE; <xsl:value-of select='substring($sdt, 12, 8)' /> &SPACE;
-        <xsl:if test="substring($sdt, 20, 6)='+01:00'">
+        <xsl:if test="substring($sdt, string-length($sdt)-5, 6)='+01:00'">
             <xsl:value-of select="$loc/str[@name='CET']"/>
         </xsl:if>
-        <xsl:if test="substring($sdt, 20, 6)='+02:00'">
+        <xsl:if test="substring($sdt, string-length($sdt)-5, 6)='+02:00'">
             <xsl:value-of select="$loc/str[@name='CEST']"/>
         </xsl:if>
     </xsl:if>
