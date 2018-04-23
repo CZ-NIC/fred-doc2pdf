@@ -34,6 +34,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:when test="$type = 3"><xsl:value-of select="document(concat('unblock_transfer_', $lang, '.xml'))/strings/str[@name=$str]"/></xsl:when>
             <xsl:when test="$type = 4"><xsl:value-of select="document(concat('block_update_', $lang, '.xml'))/strings/str[@name=$str]"/></xsl:when>
             <xsl:when test="$type = 5"><xsl:value-of select="document(concat('unblock_update_', $lang, '.xml'))/strings/str[@name=$str]"/></xsl:when>
+            <xsl:when test="$type = 6"><xsl:value-of select="document(concat('personal_data_', $lang, '.xml'))/strings/str[@name=$str]"/></xsl:when>
         </xsl:choose>
     </xsl:template>
 
@@ -47,6 +48,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:when test="$type = 3 and $type_id = 1"><xsl:value-of select="document(concat('unblock_transfer_', $lang, '.xml'))/strings/str[@name=concat($str, '_contact')]"/></xsl:when>
             <xsl:when test="$type = 4 and $type_id = 1"><xsl:value-of select="document(concat('block_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_contact')]"/></xsl:when>
             <xsl:when test="$type = 5 and $type_id = 1"><xsl:value-of select="document(concat('unblock_update_', $lang, '.xml'))/strings/str[@name=concat($str, '_contact')]"/></xsl:when>
+            <xsl:when test="$type = 6 and $type_id = 1"><xsl:value-of select="document(concat('personal_data_', $lang, '.xml'))/strings/str[@name=concat($str, '_contact')]"/></xsl:when>
 
             <xsl:when test="$type = 1 and $type_id = 2"><xsl:value-of select="document(concat('authinfo_request_', $lang, '.xml'))/strings/str[@name=concat($str, '_nsset')]"/></xsl:when>
             <xsl:when test="$type = 2 and $type_id = 2"><xsl:value-of select="document(concat('block_transfer_', $lang, '.xml'))/strings/str[@name=concat($str, '_nsset')]"/></xsl:when>
@@ -222,7 +224,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         </para>
         <spacer length="0.6cm"/>
         <xsl:choose>
-            <xsl:when test="type = 1"><xsl:call-template name="authinfo"/></xsl:when>
+            <xsl:when test="type = 1 or type = 6"><xsl:call-template name="authinfo"/></xsl:when>
             <xsl:when test="type = 2 or type = 4"><xsl:call-template name="block"/></xsl:when>
             <xsl:when test="type = 3 or type = 5"><xsl:call-template name="unblock"/></xsl:when>
         </xsl:choose>

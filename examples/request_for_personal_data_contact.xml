@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<enum_whois>
+    <public_request>
+
+        <!-- type:
+            1 - žádost o zaslání auth info
+            2 - žádost o zablokování transferu
+            3 - žádost o odblokování transferu
+            4 - žádost o zablokování update
+            5 - žádost o odblokování update
+            6 - Potvrzení žádosti o zaslání osobních údajů ke kontaktu
+        -->
+
+        <type>6</type>
+
+        <!-- handle type:
+            1 - kontakt
+            2 - sada jmenných serverů
+            3 - doména
+        -->
+
+        <handle type="1">KONTAKT</handle>
+        <date>23.04.2018</date>
+        <id>1234567890</id>
+        <replymail>myname@mydomain.foo</replymail>
+    </public_request>
+</enum_whois>
