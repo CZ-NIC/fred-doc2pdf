@@ -58,11 +58,12 @@ import warnings
 from reportlab import platypus
 from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
 from reportlab.graphics import renderPDF
+from trml2pdf import trml2pdf, utils
 
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf')
+CONFIG_OPTIONS = ('true_type_path', 'default_font_ttf')
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -701,7 +702,7 @@ def parse_options(argv):
 
 def import_modules():
     'Import reportlab modules according to config settings'
-    global reportlab, TTFont, canvas, utils, trml2pdf
+    global reportlab, TTFont, canvas
     
     result = 1
     
@@ -709,18 +710,6 @@ def import_modules():
     import reportlab
     from reportlab.pdfbase.ttfonts import TTFont
     from reportlab.pdfgen import canvas
-
-    # Import trml2pdf with posibility to definition of the module name.
-    try:
-        exec 'from %s import trml2pdf as trml, utils as utl'%(len(CONFIG.get('trml_module_name', '')) and CONFIG['trml_module_name'] or 'trml2pdf')
-    except ImportError, msg:
-        sys.stderr.write('ImportError: %s\n'%msg)
-        sys.stderr.write('Chceck your configuration file.\n')
-        result = 0
-    else:
-        # register imported modules into globals
-        trml2pdf = trml
-        utils = utl
 
     return result
 

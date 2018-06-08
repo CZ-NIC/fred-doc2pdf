@@ -3,7 +3,6 @@
 Usage:
     python setup.py install
 """
-import importlib
 import os
 import re
 import sys
@@ -22,9 +21,6 @@ CONFIG_FILENAME = 'fred-doc2pdf.conf'
 # ----------------------------------------
 # Here you can configure config variables:
 # ----------------------------------------
-
-# Names of the TRML modules
-MODULES_TINYRML = ('trml2pdf', 'rml2pdf')
 
 # Folder where setup looks for font
 FONT_ROOT = '/usr/share/fonts'
@@ -134,8 +130,6 @@ class Install(install):
     description = "Install fred-doc2pdf"
 
     user_options = install.user_options
-    user_options.append(('trml-name=', None,
-        'name of trml module'))
     user_options.append(('font-names=', None,
         'default names for true-type fonts'))
     user_options.append(('font-path=', None,
@@ -143,36 +137,11 @@ class Install(install):
 
     def initialize_options(self):
         install.initialize_options(self)
-        self.trml_name = None
         self.font_names = None
         self.font_path  = None
 
     def finalize_options(self):
         install.finalize_options(self)
-        # Set up trml
-        if self.no_check_deps:
-            if not self.trml_name:
-                self.trml_name = 'trml2pdf'
-        else:
-            # Look for trml modules
-            if self.trml_name:
-                trml_modules = (self.trml_name, )
-            else:
-                trml_modules = MODULES_TINYRML
-
-            # Find or verify existence
-            found = False
-            for trml_name in trml_modules:
-                try:
-                    importlib.import_module(trml_name)
-                except ImportError:
-                    continue
-                found = True
-                break
-            if not found:
-                sys.stderr.write("Module 'trml2pdf' not found, you need to install it.\n")
-                exit(1)
-            self.trml_name = trml_name
 
         # Set up fonts
         if not self.font_path and not self.font_names:
@@ -202,7 +171,6 @@ class Install(install):
 
     def update_config(self, filename):
         content = open(filename).read()
-        content = content.replace('TRML_MODULE_NAME', self.trml_name)
         content = content.replace('TRUE_TYPE_PATH', self.font_path)
         content = content.replace('DEFAULT_FONT_TTF', self.font_names)
         open(filename, 'w').write(content)
