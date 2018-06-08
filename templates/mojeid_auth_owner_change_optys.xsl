@@ -55,6 +55,13 @@
 
   <xsl:template match="contact_auth/user">
     <document>
+    <docinit>
+        <registerTTFont faceName="FreeSans" fileName="FreeSans.ttf"/>
+        <registerTTFont faceName="FreeSansBold" fileName="FreeSansBold.ttf"/>
+        <registerTTFont faceName="FreeSansBoldItalic" fileName="FreeSansBoldOblique.ttf"/>
+        <registerTTFont faceName="FreeSansItalic" fileName="FreeSansOblique.ttf"/>
+        <registerFontFamily normal="FreeSans" bold="FreeSansBold" italic="FreeSansItalic" boldItalic="FreeSansBoldItalic" />
+    </docinit>
       <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" title="mojeID account full activation" showBoundary="0" author="CZ.NIC">
         <pageTemplate id="main_cs">
           <pageGraphics>

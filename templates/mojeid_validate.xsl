@@ -46,7 +46,13 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 </xsl:if>
 
 <document>
-
+<docinit>
+    <registerTTFont faceName="FreeSans" fileName="FreeSans.ttf"/>
+    <registerTTFont faceName="FreeSansBold" fileName="FreeSansBold.ttf"/>
+    <registerTTFont faceName="FreeSansBoldItalic" fileName="FreeSansBoldOblique.ttf"/>
+    <registerTTFont faceName="FreeSansItalic" fileName="FreeSansOblique.ttf"/>
+    <registerFontFamily normal="FreeSans" bold="FreeSansBold" italic="FreeSansItalic" boldItalic="FreeSansBoldItalic" />
+</docinit>
 <template pageSize="(210mm, 297mm)" leftMargin="20mm" rightMargin="20mm" topMargin="20mm" bottomMargin="20mm" 
     title="Žádost o validaci účtu mojeID"
     author="CZ.NIC"
