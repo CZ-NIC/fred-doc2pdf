@@ -55,9 +55,11 @@ import ConfigParser
 import getopt
 import warnings
 
+import reportlab
 from reportlab import platypus
 from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
 from reportlab.graphics import renderPDF
+from reportlab.pdfbase.ttfonts import TTFont
 from trml2pdf import trml2pdf, utils
 
 # (Path and) Name of the configuration file
@@ -700,19 +702,6 @@ def parse_options(argv):
     return filename
 
 
-def import_modules():
-    'Import reportlab modules according to config settings'
-    global reportlab, TTFont, canvas
-    
-    result = 1
-    
-    # Need for register TrueType fonts
-    import reportlab
-    from reportlab.pdfbase.ttfonts import TTFont
-    from reportlab.pdfgen import canvas
-
-    return result
-
 # =============================================
 #
 #   HOOKS - overwrite previous code
@@ -795,7 +784,7 @@ def init_hooks():
 
 def run(body):
     'Run PDF process'
-    if __load_configuration__() and import_modules():
+    if __load_configuration__():
         init_hooks()
         if CONFIG.has_key('output'):
             if CONFIG['output'] == 'no':
