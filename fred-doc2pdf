@@ -62,7 +62,7 @@ from reportlab.graphics import renderPDF
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
+CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf')
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -709,10 +709,6 @@ def import_modules():
     import reportlab
     from reportlab.pdfbase.ttfonts import TTFont
     from reportlab.pdfgen import canvas
-
-    # Init module path
-    if CONFIG.get('module_path'):
-        sys.path.insert(0, CONFIG.get('module_path'))
 
     # Import trml2pdf with posibility to definition of the module name.
     try:
