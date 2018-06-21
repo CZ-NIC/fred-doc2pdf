@@ -49,8 +49,7 @@ Examples:
 #
 #    python -m profile fred-doc2pdf -o no test_invoice.rml > profile.log
 
-import os, sys
-import ConfigParser
+import sys
 import getopt
 import warnings
 
@@ -61,22 +60,9 @@ from reportlab.graphics import renderPDF
 from reportlab.pdfbase.ttfonts import TTFont
 from trml2pdf import trml2pdf, utils
 
-# (Path and) Name of the configuration file
-CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
-CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ()
-
-
-def get_default_conf():
-    conf = {}
-    for name in CONFIG_OPTIONS:
-        conf[name] = ''
-    # default configuration pathfilename
-    conf['config'] = CONFIG_FILENAME
-    return conf
 
 # variables form configuration file
-CONFIG = get_default_conf()
+CONFIG = {}
 HOOKS = {}
 
 # []
@@ -98,7 +84,7 @@ def get_config_from_option(argv):
     params = {}
     args = []
     try:
-        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
+        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['help', 'test=', 'output='])
         status = 1
     except getopt.GetoptError, msg:
         sys.stderr.write('Option Error:%s\n'%msg)
@@ -109,34 +95,6 @@ def get_config_from_option(argv):
         
     return status, params, args
 
-
-def __load_configuration__():
-    'Load configuration data'
-    global CONFIG
-
-    if not os.path.isfile(CONFIG['config']):
-        sys.stderr.write("Error: Missing configuration file: '%s'.\n"%CONFIG['config'])
-        return None
-        
-    config = ConfigParser.SafeConfigParser()
-    
-    # load config
-    try:
-        config.read(CONFIG['config'])
-    except (ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError), msg:
-        sys.stderr.write('ConfigError: %s\n'%msg)
-        return None
-        
-    # load values
-    for option in CONFIG_OPTIONS:
-        try:
-            CONFIG[option] = config.get(CONFIG_SECTION, option)
-        except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.InterpolationMissingOptionError), msg:
-            sys.stderr.write('ConfigError.get: %s\n'%msg)
-            return None
-    
-    return 1
-    
 
 def attr_get(node, attrs, dict={}):
     """Overwrite function attr_get() in module utils. We need encode unicodes.
@@ -619,12 +577,6 @@ def parse_options(argv):
         print __doc__
         return None
 
-    if opt.has_key('-f') or opt.has_key('--config'):
-        CONFIG['config'] = opt.has_key('--config') and opt['--config'] or opt['-f']
-        
-    if CONFIG is None:
-        return None
-
     filename = None
 
     if opt.has_key('-o') or opt.has_key('--output'):
@@ -718,21 +670,20 @@ def init_hooks():
 
 def run(body):
     'Run PDF process'
-    if __load_configuration__():
-        init_hooks()
-        if CONFIG.has_key('output'):
-            if CONFIG['output'] == 'no':
-                trml2pdf.parseString(body) # no any pdf output
-                return
-            try:
-                fp = open(CONFIG['output'], 'w')
-            except IOError, msg:
-                sys.stderr.write('IOError: %s.\n'%msg)
-            else:
-                fp.write(trml2pdf.parseString(body))
-                fp.close()
+    init_hooks()
+    if CONFIG.has_key('output'):
+        if CONFIG['output'] == 'no':
+            trml2pdf.parseString(body) # no any pdf output
+            return
+        try:
+            fp = open(CONFIG['output'], 'w')
+        except IOError, msg:
+            sys.stderr.write('IOError: %s.\n'%msg)
         else:
-            print trml2pdf.parseString(body)
+            fp.write(trml2pdf.parseString(body))
+            fp.close()
+    else:
+        print trml2pdf.parseString(body)
 
 def main(argv):
     'Main module function'
