@@ -29,7 +29,7 @@ python setup.py build
 
 
 %install
-python setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --no-check-deps --prefix=/usr --install-sysconf=/etc --trml-name=trml2pdf --trml-path=/usr/lib/python2.7/site-packages/TRML2PDF-1.0-py2.7.egg/ --font-path=/usr/share/fonts/dejavu/ --font-names="DejaVuSans.ttf DejaVuSans-Oblique.ttf DejaVuSans-Bold.ttf DejaVuSans-BoldOblique.ttf"
+python setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --no-check-deps --prefix=/usr --install-sysconf=/etc --font-path=/usr/share/fonts/dejavu/ --font-names="DejaVuSans.ttf DejaVuSans-Oblique.ttf DejaVuSans-Bold.ttf DejaVuSans-BoldOblique.ttf"
 
 
 %clean

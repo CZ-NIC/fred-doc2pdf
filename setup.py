@@ -3,13 +3,10 @@
 Usage:
     python setup.py install
 """
-import importlib
 import os
 import re
 import sys
 from subprocess import Popen, PIPE
-
-from distutils.sysconfig import get_python_lib
 
 from freddist.command.install import install
 from freddist.core import setup
@@ -24,11 +21,6 @@ CONFIG_FILENAME = 'fred-doc2pdf.conf'
 # ----------------------------------------
 # Here you can configure config variables:
 # ----------------------------------------
-
-# Names of the TRML modules
-MODULES_TINYRML = ('trml2pdf', 'rml2pdf')
-# Default for Fedora 20, every other system has trml2pdf in path
-TINYERP_PATH = 'TRML2PDF-1.0-py2.7.egg'
 
 # Folder where setup looks for font
 FONT_ROOT = '/usr/share/fonts'
@@ -138,10 +130,6 @@ class Install(install):
     description = "Install fred-doc2pdf"
 
     user_options = install.user_options
-    user_options.append(('trml-name=', None,
-        'name of trml module'))
-    user_options.append(('trml-path=', None,
-        'path to trml module'))
     user_options.append(('font-names=', None,
         'default names for true-type fonts'))
     user_options.append(('font-path=', None,
@@ -149,49 +137,11 @@ class Install(install):
 
     def initialize_options(self):
         install.initialize_options(self)
-        self.trml_name = None
-        self.trml_path = None
         self.font_names = None
         self.font_path  = None
 
     def finalize_options(self):
         install.finalize_options(self)
-        # Set up trml
-        if self.no_check_deps:
-            if not self.trml_name:
-                self.trml_name = 'trml2pdf'
-        else:
-            # Look for trml modules
-            if self.trml_name:
-                trml_modules = (self.trml_name, )
-            else:
-                trml_modules = MODULES_TINYRML
-            if self.trml_path:
-                trml_paths = (self.trml_path, )
-            else:
-                trml_paths = (None, os.path.join(get_python_lib(), TINYERP_PATH),
-                              os.path.join('/usr/lib', TINYERP_PATH))
-
-            # Find or verify existence
-            found = False
-            for trml_name in trml_modules:
-                for trml_path in trml_paths:
-                    try:
-                        sys.path.append(trml_path)
-                        importlib.import_module(trml_name)
-                    except ImportError:
-                        continue
-                    finally:
-                        sys.path.remove(trml_path)
-                    found = True
-                    break
-                if found:
-                    break
-            if not found:
-                sys.stderr.write("Module 'trml2pdf' not found, you need to install it.\n")
-                exit(1)
-            self.trml_name = trml_name
-            self.trml_path = trml_path
 
         # Set up fonts
         if not self.font_path and not self.font_names:
@@ -221,12 +171,6 @@ class Install(install):
 
     def update_config(self, filename):
         content = open(filename).read()
-        content = content.replace('TRML_MODULE_NAME', self.trml_name)
-        if self.trml_path:
-            content = content.replace('MODULE_PATH', self.trml_path)
-        else:
-            #TODO: We should remove useless configuration options from configuration file, not use dummy value
-            content = content.replace('MODULE_PATH', '')
         content = content.replace('TRUE_TYPE_PATH', self.font_path)
         content = content.replace('DEFAULT_FONT_TTF', self.font_names)
         open(filename, 'w').write(content)

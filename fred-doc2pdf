@@ -55,14 +55,17 @@ import ConfigParser
 import getopt
 import warnings
 
+import reportlab
 from reportlab import platypus
 from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
 from reportlab.graphics import renderPDF
+from reportlab.pdfbase.ttfonts import TTFont
+from trml2pdf import trml2pdf, utils
 
 # (Path and) Name of the configuration file
 CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ('trml_module_name', 'true_type_path', 'default_font_ttf', 'module_path')
+CONFIG_OPTIONS = ('true_type_path', 'default_font_ttf')
 
 # This font names are used in default (implicit) style.
 # Names are separated from file-TTF-names for better names redefine.
@@ -699,35 +702,6 @@ def parse_options(argv):
     return filename
 
 
-def import_modules():
-    'Import reportlab modules according to config settings'
-    global reportlab, TTFont, canvas, utils, trml2pdf
-    
-    result = 1
-    
-    # Need for register TrueType fonts
-    import reportlab
-    from reportlab.pdfbase.ttfonts import TTFont
-    from reportlab.pdfgen import canvas
-
-    # Init module path
-    if CONFIG.get('module_path'):
-        sys.path.insert(0, CONFIG.get('module_path'))
-
-    # Import trml2pdf with posibility to definition of the module name.
-    try:
-        exec 'from %s import trml2pdf as trml, utils as utl'%(len(CONFIG.get('trml_module_name', '')) and CONFIG['trml_module_name'] or 'trml2pdf')
-    except ImportError, msg:
-        sys.stderr.write('ImportError: %s\n'%msg)
-        sys.stderr.write('Chceck your configuration file.\n')
-        result = 0
-    else:
-        # register imported modules into globals
-        trml2pdf = trml
-        utils = utl
-
-    return result
-
 # =============================================
 #
 #   HOOKS - overwrite previous code
@@ -810,7 +784,7 @@ def init_hooks():
 
 def run(body):
     'Run PDF process'
-    if __load_configuration__() and import_modules():
+    if __load_configuration__():
         init_hooks()
         if CONFIG.has_key('output'):
             if CONFIG['output'] == 'no':
