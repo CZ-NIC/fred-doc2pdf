@@ -158,6 +158,13 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
         </xsl:if>
 
 <document>
+<docinit>
+    <registerTTFont faceName="FreeSans" fileName="FreeSans.ttf"/>
+    <registerTTFont faceName="FreeSansBold" fileName="FreeSansBold.ttf"/>
+    <registerTTFont faceName="FreeSansBoldItalic" fileName="FreeSansBoldOblique.ttf"/>
+    <registerTTFont faceName="FreeSansItalic" fileName="FreeSansOblique.ttf"/>
+    <registerFontFamily normal="FreeSans" bold="FreeSansBold" italic="FreeSansItalic" boldItalic="FreeSansBoldItalic" />
+</docinit>
     <!--TODO i cannot change title parameter in template element-->
     <template pageSize="(21cm, 29.7cm)" leftMargin="2.0cm" rightMargin="2.0cm" topMargin="2.0cm" bottomMargin="2.0cm" 
         title="public request" author="CZ.NIC">

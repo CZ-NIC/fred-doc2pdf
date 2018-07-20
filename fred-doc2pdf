@@ -49,9 +49,7 @@ Examples:
 #
 #    python -m profile fred-doc2pdf -o no test_invoice.rml > profile.log
 
-import os, sys
-import re
-import ConfigParser
+import sys
 import getopt
 import warnings
 
@@ -62,31 +60,9 @@ from reportlab.graphics import renderPDF
 from reportlab.pdfbase.ttfonts import TTFont
 from trml2pdf import trml2pdf, utils
 
-# (Path and) Name of the configuration file
-CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
-CONFIG_SECTION = 'main'
-CONFIG_OPTIONS = ('true_type_path', 'default_font_ttf')
-
-# This font names are used in default (implicit) style.
-# Names are separated from file-TTF-names for better names redefine.
-# (This names can be overwrite by template definition.)
-DEFAULT_FONT_FAMILLY = (
-    'FreeSans',
-    'FreeSansItalic',
-    'FreeSansBold',
-    'FreeSansBoldItalic',
-)
-
-def get_default_conf():
-    conf = {}
-    for name in CONFIG_OPTIONS:
-        conf[name] = ''
-    # default configuration pathfilename
-    conf['config'] = CONFIG_FILENAME
-    return conf
 
 # variables form configuration file
-CONFIG = get_default_conf()
+CONFIG = {}
 HOOKS = {}
 
 # []
@@ -108,7 +84,7 @@ def get_config_from_option(argv):
     params = {}
     args = []
     try:
-        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
+        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['help', 'test=', 'output='])
         status = 1
     except getopt.GetoptError, msg:
         sys.stderr.write('Option Error:%s\n'%msg)
@@ -119,48 +95,6 @@ def get_config_from_option(argv):
         
     return status, params, args
 
-
-def __load_configuration__():
-    'Load configuration data'
-    global CONFIG
-
-    if not os.path.isfile(CONFIG['config']):
-        sys.stderr.write("Error: Missing configuration file: '%s'.\n"%CONFIG['config'])
-        return None
-        
-    config = ConfigParser.SafeConfigParser()
-    
-    # load config
-    try:
-        config.read(CONFIG['config'])
-    except (ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError), msg:
-        sys.stderr.write('ConfigError: %s\n'%msg)
-        return None
-        
-    # load values
-    for option in CONFIG_OPTIONS:
-        try:
-            CONFIG[option] = config.get(CONFIG_SECTION, option)
-        except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.InterpolationMissingOptionError), msg:
-            sys.stderr.write('ConfigError.get: %s\n'%msg)
-            return None
-    
-    # build environments
-    is_error = 0
-    CONFIG['TrueTypePath'] = re.split('\s+', CONFIG.get('true_type_path'))
-    if not len(CONFIG['TrueTypePath'][0]):
-        sys.stderr.write('Error: Variable TrueTypePath is empty.\n')
-        return None
-        
-    CONFIG['DEFAULT_FONT_TTF'] = re.split('\s+', CONFIG.get('default_font_ttf'))
-    if len(CONFIG['DEFAULT_FONT_TTF']) == 4:
-        CONFIG['DEFAULT_STYLE_FONT'] = zip(DEFAULT_FONT_FAMILLY, CONFIG['DEFAULT_FONT_TTF'])
-    else:
-        sys.stderr.write('Error: Variable DEFAULT_FONT_TTF must have four items.\n')
-        return None
-        
-    return 1
-    
 
 def attr_get(node, attrs, dict={}):
     """Overwrite function attr_get() in module utils. We need encode unicodes.
@@ -194,56 +128,6 @@ def attr_get(node, attrs, dict={}):
         res['pagesize']=pageSize
     return res
 
-"""
-Set of functions for register TrueType fonts.
-"""
-
-def register_TTF_font_familly(names):
-    """Register TrueType font. Names is list of tuples (PostSriptName, FileName.ttf)
-    The list must be valid - normal (first) item must be set. Other types
-    are obligatory.
-    names = ((name, file), ...) four items in order: '','Bold','Italic','BoldItalic'
-    """
-    if len(names) != 4:
-        raise 'Internal Error in register_TTF_font_familly(): The list MUST have 4 items: %s'%str(names)
-    for n in range(4):
-        name, file = names[n]
-        if name: reportlab.pdfbase.pdfmetrics.registerFont(TTFont(name, file))
-    types = ((0,0), (0,1), (1,0), (1,1))
-    normal = names[0][0]
-    for n in range(4):
-        name, file = names[n]
-        b,i = types[n]
-        if name: reportlab.lib.fonts.addMapping(normal, b, i, name)
-
-def docinit_TTF_elements(element_name, elements):
-    "Register TTF font family. element_name = 'registerFont'"
-    is_element_found = 0
-    suffix = ('','Bold','Italic','BoldItalic')
-    for node in elements:
-        for font in node.getElementsByTagName(element_name):
-            is_element_found = 1
-            # normal, italic, bold, bold-italic
-            names = [('',''),('',''),('',''),('','')]
-            for n in range(4):
-                names[n] = (font.getAttribute('fontName%s'%suffix[n]).encode('ascii'),
-                            font.getAttribute('fontFile%s'%suffix[n]).encode('ascii'))
-                name, file = names[n]
-                if n==0:
-                    if name == '': raise 'Element docinit.%s attribute main fontName missing.'%element_name
-                    if file == '': raise 'Element docinit.%s attribute main fontFile missing.'%element_name
-                if (name and not file) or (file and not name):
-                    raise "Element docinit.registerFont missing one of attributes: fontName%s='%s' fontFile%s='%s'"%(suffix[n], name, suffix[n], file)
-            register_TTF_font_familly(names)
-    return is_element_found
-
-def docinit_TTF(els):
-    'Register TTF font family.'
-    if not docinit_TTF_elements('registerDefaultFont', els):
-      # if template has not defined default font name
-      # we use default names from this module
-      register_TTF_font_familly(CONFIG['DEFAULT_STYLE_FONT'])
-    docinit_TTF_elements('registerFont', els)
 
 """
 *** HOOK OF THE REGISTER FONTS ***
@@ -251,17 +135,29 @@ If your documents works with unicode, you need use TrueType fonts.
 Here is hook for register TTF indo document.
 """
 
-def fred_render(self, out):
-    el = self.dom.documentElement.getElementsByTagName('docinit')
-    if el:
-        docinit_TTF(el)
-    else:
-        register_TTF_font_familly(CONFIG['DEFAULT_STYLE_FONT'])
-    HOOKS.get('original_rml_doc_render', fnc)(self, out)
 
 def fred_docinit(self, els):
-    'Disable original function for register fonts.'
-    pass
+    """Evaluate registerTTFont and registerFontFamily elements."""
+    for node in els:
+        # Evaluate registerTTFont headers
+        for font in node.getElementsByTagName('registerTTFont'):
+            name = font.getAttribute('faceName').encode('ascii')
+            filename = font.getAttribute('fileName').encode('ascii')
+            reportlab.pdfbase.pdfmetrics.registerFont(TTFont(name, filename))
+
+        # Evaluate registerFontFamily headers
+        for font in node.getElementsByTagName('registerFontFamily'):
+            normal = font.getAttribute('normal').encode('ascii')
+            bold = font.getAttribute('bold').encode('ascii')
+            italic = font.getAttribute('italic').encode('ascii')
+            bold_italic = font.getAttribute('boldItalic').encode('ascii')
+
+            # Flags in addMapping are `bold` and `italic`
+            reportlab.lib.fonts.addMapping(normal, False, False, normal)
+            reportlab.lib.fonts.addMapping(normal, True, False, bold)
+            reportlab.lib.fonts.addMapping(normal, False, True, italic)
+            reportlab.lib.fonts.addMapping(normal, True, True, bold_italic)
+
 
 """
 *** Use cache for very long tables ***
@@ -681,12 +577,6 @@ def parse_options(argv):
         print __doc__
         return None
 
-    if opt.has_key('-f') or opt.has_key('--config'):
-        CONFIG['config'] = opt.has_key('--config') and opt['--config'] or opt['-f']
-        
-    if CONFIG is None:
-        return None
-
     filename = None
 
     if opt.has_key('-o') or opt.has_key('--output'):
@@ -753,10 +643,6 @@ def init_hooks():
     # ---------------------------------------------
     # Set of functions for register TrueType fonts.
     # ---------------------------------------------
-    # Init paths of the TrueType fonts
-    reportlab.rl_config.TTFSearchPath = CONFIG.get('TrueTypePath', '')
-    
-    trml2pdf._rml_doc.render = fred_render
     trml2pdf._rml_doc.docinit = fred_docinit
     
     # ---------------------------------------------
@@ -784,21 +670,20 @@ def init_hooks():
 
 def run(body):
     'Run PDF process'
-    if __load_configuration__():
-        init_hooks()
-        if CONFIG.has_key('output'):
-            if CONFIG['output'] == 'no':
-                trml2pdf.parseString(body) # no any pdf output
-                return
-            try:
-                fp = open(CONFIG['output'], 'w')
-            except IOError, msg:
-                sys.stderr.write('IOError: %s.\n'%msg)
-            else:
-                fp.write(trml2pdf.parseString(body))
-                fp.close()
+    init_hooks()
+    if CONFIG.has_key('output'):
+        if CONFIG['output'] == 'no':
+            trml2pdf.parseString(body) # no any pdf output
+            return
+        try:
+            fp = open(CONFIG['output'], 'w')
+        except IOError, msg:
+            sys.stderr.write('IOError: %s.\n'%msg)
         else:
-            print trml2pdf.parseString(body)
+            fp.write(trml2pdf.parseString(body))
+            fp.close()
+    else:
+        print trml2pdf.parseString(body)
 
 def main(argv):
     'Main module function'
