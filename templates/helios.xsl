@@ -220,7 +220,15 @@
         </DUZP>
        </xsl:if>
        <DatPovinnostiFa>
-        <xsl:text>2007-11-07 00:00:00</xsl:text>
+        <xsl:choose>
+         <xsl:when test="count(payment/tax_point)">
+          <xsl:value-of select="payment/tax_point" />
+         </xsl:when>
+         <xsl:when test="count(payment/advance_payment_date)">
+          <xsl:value-of select="payment/advance_payment_date" />
+         </xsl:when>
+        </xsl:choose>
+        <xsl:text> 00:00:00</xsl:text>
        </DatPovinnostiFa>
        <UKod>
         <xsl:text>FK_UKOD_</xsl:text>
