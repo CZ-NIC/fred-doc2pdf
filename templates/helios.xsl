@@ -220,7 +220,15 @@
         </DUZP>
        </xsl:if>
        <DatPovinnostiFa>
-        <xsl:text>2007-11-07 00:00:00</xsl:text>
+        <xsl:choose>
+         <xsl:when test="count(payment/tax_point)">
+          <xsl:value-of select="payment/tax_point" />
+         </xsl:when>
+         <xsl:when test="count(payment/advance_payment_date)">
+          <xsl:value-of select="payment/advance_payment_date" />
+         </xsl:when>
+        </xsl:choose>
+        <xsl:text> 00:00:00</xsl:text>
        </DatPovinnostiFa>
        <UKod>
         <xsl:text>FK_UKOD_</xsl:text>
@@ -603,7 +611,7 @@
         <xsl:value-of select="$pk_bank_spoj" />
        </Klic>
        <NazevBankSpoj>Nazev</NazevBankSpoj>
-       <CisloUctu>123</CisloUctu>
+       <CisloUctu>276463778</CisloUctu>
        <Prednastaveno>1</Prednastaveno>
        <IDOrg>
         <xsl:text>FK_</xsl:text>
@@ -720,12 +728,12 @@
         <xsl:text>FK_</xsl:text>
         <xsl:value-of select="$pk_bank" />
        </Klic>
-       <KodUstavu>0100</KodUstavu>
-       <AlfaKodUstavu>KOMB</AlfaKodUstavu>
+       <KodUstavu>0300</KodUstavu>
+       <AlfaKodUstavu>CSOB</AlfaKodUstavu>
        <NazevUstavu>
-        <xsl:text>Komerční banka, a.s.</xsl:text>
+        <xsl:text>ČSOB, a. s.</xsl:text>
        </NazevUstavu>
-       <SWIFTUstavu>KOMBCZPP</SWIFTUstavu>
+       <SWIFTUstavu>CEKOCZPP</SWIFTUstavu>
       </Polozka>
      </TabPenezniUstavy>
      <xsl:if test="count(invoice/payment[period_from])">
