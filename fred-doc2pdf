@@ -60,7 +60,11 @@ from reportlab import platypus
 from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
 from reportlab.graphics import renderPDF
 from reportlab.pdfbase.ttfonts import TTFont
-from trml2pdf import trml2pdf, utils
+try:
+    from trml2pdf import trml2pdf, utils
+except ImportError:
+    # XXX: Avoid bug in Fedora trml2pdf12 package, https://bugzilla.redhat.com/show_bug.cgi?id=1623822
+    trml2pdf, utils = None, None
 
 DEFAULT_CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 
@@ -706,6 +710,26 @@ def run(body):
     else:
         print trml2pdf.parseString(body)
 
+
+def _import_trml2pdf(config):
+    """Import trml2pdf module
+
+    Hack to add extra pythonpath to sys.path and import trml2pdf to avoid bug in Feroda trml2pdf12 package
+    # https://bugzilla.redhat.com/show_bug.cgi?id=1623822
+    """
+    global trml2pdf, utils
+    if config.has_section('main') and config.has_option('main', 'module_path'):
+        pythonpath = config.get('main', 'module_path')
+        if pythonpath:
+            sys.path.insert(0, pythonpath)
+    if trml2pdf is None:
+        try:
+            from trml2pdf import trml2pdf, utils
+        except ImportError:
+            sys.stderr.write('trml2pdf module not found.\n')
+            exit(1)
+
+
 def main(argv):
     'Main module function'
     #
@@ -729,6 +753,8 @@ def main(argv):
         exit(1)
 
     config = get_config(config_filename)
+    _import_trml2pdf(config)
+
     # Add TTF search path if defined and not empty
     if config.has_section('main') and config.has_option('main', 'true_type_path'):
         true_type_path = config.get('main', 'true_type_path')
