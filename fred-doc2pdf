@@ -49,6 +49,8 @@ Examples:
 #
 #    python -m profile fred-doc2pdf -o no test_invoice.rml > profile.log
 
+import ConfigParser
+import os
 import sys
 import getopt
 import warnings
@@ -58,8 +60,13 @@ from reportlab import platypus
 from reportlab.graphics.barcode import createBarcodeDrawing, getCodes
 from reportlab.graphics import renderPDF
 from reportlab.pdfbase.ttfonts import TTFont
-from trml2pdf import trml2pdf, utils
+try:
+    from trml2pdf import trml2pdf, utils
+except ImportError:
+    # XXX: Avoid bug in Fedora trml2pdf12 package, https://bugzilla.redhat.com/show_bug.cgi?id=1623822
+    trml2pdf, utils = None, None
 
+DEFAULT_CONFIG_FILENAME = '/etc/fred/fred-doc2pdf.conf'
 
 # variables form configuration file
 CONFIG = {}
@@ -84,7 +91,7 @@ def get_config_from_option(argv):
     params = {}
     args = []
     try:
-        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['help', 'test=', 'output='])
+        opt, args = getopt.getopt(argv[1:], 'f:hto:', ['config=', 'help', 'test=', 'output='])
         status = 1
     except getopt.GetoptError, msg:
         sys.stderr.write('Option Error:%s\n'%msg)
@@ -94,6 +101,18 @@ def get_config_from_option(argv):
             params[k] = v
         
     return status, params, args
+
+
+def get_config(config_filename=None):
+    """Return config parser with configuration loaded.
+
+    @param config_filename: Path to custom configuration file provided from command line.
+    """
+    config = ConfigParser.SafeConfigParser()
+    config.read(DEFAULT_CONFIG_FILENAME)
+    if config_filename is not None:
+        config.read(config_filename)
+    return config
 
 
 def attr_get(node, attrs, dict={}):
@@ -560,11 +579,14 @@ def load_num_total_pages(self, document):
 
 
 def parse_options(argv):
-    """Parse commandline options and load configuration.
-    Returns filename of the RML file or None if any problem
-    occurs.
+    """Parse and return commandline options.
+
+    Returns filename of the RML file and configuration filename.
+    Returns None if any problem occurs.
     """
     global CONFIG
+
+    config_filename = None
     
     if len(argv) < 2:
         return None
@@ -576,6 +598,9 @@ def parse_options(argv):
     if opt.has_key('-h') or opt.has_key('--help'):
         print __doc__
         return None
+
+    if opt.has_key('-f') or opt.has_key('--config'):
+        config_filename = opt.has_key('--config') and opt['--config'] or opt['-f']
 
     filename = None
 
@@ -589,7 +614,7 @@ def parse_options(argv):
         else:
             sys.stderr.write('RML file must be set. See help.\n')
     
-    return filename
+    return filename, config_filename
 
 
 # =============================================
@@ -685,6 +710,26 @@ def run(body):
     else:
         print trml2pdf.parseString(body)
 
+
+def _import_trml2pdf(config):
+    """Import trml2pdf module
+
+    Hack to add extra pythonpath to sys.path and import trml2pdf to avoid bug in Feroda trml2pdf12 package
+    # https://bugzilla.redhat.com/show_bug.cgi?id=1623822
+    """
+    global trml2pdf, utils
+    if config.has_section('main') and config.has_option('main', 'module_path'):
+        pythonpath = config.get('main', 'module_path')
+        if pythonpath:
+            sys.path.insert(0, pythonpath)
+    if trml2pdf is None:
+        try:
+            from trml2pdf import trml2pdf, utils
+        except ImportError:
+            sys.stderr.write('trml2pdf module not found.\n')
+            exit(1)
+
+
 def main(argv):
     'Main module function'
     #
@@ -696,9 +741,28 @@ def main(argv):
         "struct integer overflow masking is deprecated",
         DeprecationWarning
     )
+    options = parse_options(argv)
+
+    if options is None:
+        filename, config_filename = None, None
+    else:
+        filename, config_filename = options
+
+    if config_filename is not None and not os.path.isfile(config_filename):
+        sys.stderr.write("Error: Missing configuration file: '{}'.\n".format(config_filename))
+        exit(1)
+
+    config = get_config(config_filename)
+    _import_trml2pdf(config)
+
+    # Add TTF search path if defined and not empty
+    if config.has_section('main') and config.has_option('main', 'true_type_path'):
+        true_type_path = config.get('main', 'true_type_path')
+        if true_type_path:
+            reportlab.rl_config.TTFSearchPath.append(true_type_path)
+
     if sys.stdin.isatty():
         # run as single command
-        filename = parse_options(argv)
         if filename is None:
             return
         try:
@@ -709,7 +773,6 @@ def main(argv):
             run(body)
     else:
         # run in pipe
-        parse_options(argv)
         run(sys.stdin.read())
     
 

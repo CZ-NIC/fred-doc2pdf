@@ -1,4 +1,5 @@
 include examples/*
+include conf/*
 include fred-doc2pdf.spec
 include ChangeLog
 include *.ascii
