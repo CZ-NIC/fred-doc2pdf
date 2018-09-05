@@ -1,3 +1,9 @@
+2018-09-05 (2.18.0)
+
+    * Font definitions moved to templates
+
+    * Use setuptools for distribution
+
 2018-08-14 (2.17.1)
 
     * Helios template fixes
