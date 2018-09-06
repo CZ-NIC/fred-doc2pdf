@@ -14,26 +14,25 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
 BuildArch: noarch
 Vendor: CZ.NIC <fred@nic.cz>
-Url: https://fred.nic.cz
-BuildRequires: fred-distutils
-Requires: python-trml2pdf >= 1.2 /usr/share/fonts/dejavu/DejaVuSans.ttf
+Url: https://fred.nic.cz/
+BuildRequires: python-setuptools
+Requires: python-trml2pdf >= 1.2 gnu-free-sans-fonts
 
 %description
-The module of the FRED system
+The module of the FRED system used for PDF generation
 
 %prep
 %setup -n %{name}-%{unmangled_version}
 
-%build
-python setup.py build
-
-
 %install
-python setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --no-check-deps --prefix=/usr --install-sysconf=/etc --font-path=/usr/share/fonts/dejavu/ --font-names="DejaVuSans.ttf DejaVuSans-Oblique.ttf DejaVuSans-Bold.ttf DejaVuSans-BoldOblique.ttf"
+python setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --prefix=/usr
 
+mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/fred/
+install contrib/fedora/fred-doc2pdf.conf $RPM_BUILD_ROOT/%{_sysconfdir}/fred/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
+%config %{_sysconfdir}/fred/fred-doc2pdf.conf
