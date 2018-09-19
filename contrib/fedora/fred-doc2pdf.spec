@@ -23,7 +23,7 @@ The module of the FRED system used for PDF generation
 %setup -n %{name}-%{version}
 
 %install
-python setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --prefix=/usr
+python2 setup.py install -cO2 --force --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES --prefix=/usr
 
 mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/fred/
 install contrib/fedora/fred-doc2pdf.conf $RPM_BUILD_ROOT/%{_sysconfdir}/fred/
