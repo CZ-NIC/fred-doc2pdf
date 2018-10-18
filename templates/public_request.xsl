@@ -24,7 +24,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
     <xsl:output method="xml" encoding="utf-8" />
 
     <xsl:param name="lang" select="'en'" />
-    
+
     <xsl:template name="getstr">
         <xsl:param name="str"/>
         <xsl:variable name="type"><xsl:value-of select="current()/type"/></xsl:variable>
@@ -90,10 +90,12 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <b><xsl:value-of select="replymail" /></b>.
         </para>
-        <spacer length="0.6cm"/>
-        <para style="main">
-            <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
-        </para>
+        <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+            <spacer length="0.6cm"/>
+            <para style="main">
+                <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
+            </para>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template name="unblock">
@@ -114,10 +116,12 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <b><xsl:value-of select="id"/></b>
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_5</xsl:with-param></xsl:call-template>
         </para>
-        <spacer length="0.6cm"/>
-        <para style="main">
-            <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
-        </para>
+        <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+            <spacer length="0.6cm"/>
+            <para style="main">
+                <xsl:call-template name="getstr"><xsl:with-param name="str">line_6</xsl:with-param></xsl:call-template>
+            </para>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template name="block">
@@ -145,10 +149,12 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             &SPACE;
             <xsl:call-template name="getstr"><xsl:with-param name="str">line_8</xsl:with-param></xsl:call-template>
         </para>
-        <spacer length="0.6cm"/>
-        <para style="main">
-            <xsl:call-template name="getstr"><xsl:with-param name="str">line_9</xsl:with-param></xsl:call-template>
-        </para>
+        <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+            <spacer length="0.6cm"/>
+            <para style="main">
+                <xsl:call-template name="getstr"><xsl:with-param name="str">line_9</xsl:with-param></xsl:call-template>
+            </para>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="/enum_whois/public_request">
@@ -189,28 +195,31 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
                 <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
 
                 <setFont name="FreeSans" size="8"/>
-                <drawString x="2.5cm" y="8cm">
-                    <xsl:call-template name="getstr"><xsl:with-param name="str">footer_1</xsl:with-param></xsl:call-template>
-                </drawString>
                 <drawString x="2.5cm" y="9.4cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_2</xsl:with-param></xsl:call-template>
                 </drawString>
                 <drawString x="2.5cm" y="9cm">
                     <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
                 </drawString>
-                <setFont name="FreeSansBold" size="12"/>
-                <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
-                <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
-                <drawString x="12.5cm" y="4.3cm">Milešovská 1136/5</drawString>
-                <drawString x="12.5cm" y="3.7cm">130 00&EMSPACE;Praha 3</drawString>
 
-                <!-- Folder marks -->
-                <stroke color="black"/>
-                <lines>0.5cm 10.2cm 1cm 10.2cm</lines>
-                <lines>20cm 10.2cm 20.5cm 10.2cm</lines>
+                <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+                    <drawString x="2.5cm" y="8cm">
+                        <xsl:call-template name="getstr"><xsl:with-param name="str">footer_1</xsl:with-param></xsl:call-template>
+                    </drawString>
+                    <setFont name="FreeSansBold" size="12"/>
+                    <drawString x="12.5cm" y="5.5cm">Zákaznická podpora</drawString>
+                    <drawString x="12.5cm" y="4.9cm">CZ.NIC, z. s. p. o.</drawString>
+                    <drawString x="12.5cm" y="4.3cm">Milešovská 1136/5</drawString>
+                    <drawString x="12.5cm" y="3.7cm">130 00&EMSPACE;Praha 3</drawString>
 
-                <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
-                <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
+                    <!-- Folder marks -->
+                    <stroke color="black"/>
+                    <lines>0.5cm 10.2cm 1cm 10.2cm</lines>
+                    <lines>20cm 10.2cm 20.5cm 10.2cm</lines>
+
+                    <lines>0.5cm 20.2cm 1cm 20.2cm</lines>
+                    <lines>20cm 20.2cm 20.5cm 20.2cm</lines>
+                </xsl:if>
                 <xsl:call-template name="footer"/>
             </pageGraphics>
         </pageTemplate>
@@ -236,9 +245,11 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:when test="type = 3 or type = 5"><xsl:call-template name="unblock"/></xsl:when>
         </xsl:choose>
         <spacer length="1.6cm"/>
-        <para style="main">
-        ...........................................................................
-        </para>
+        <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+            <para style="main">
+            ...........................................................................
+            </para>
+        </xsl:if>
     </story>
 </document>
     </xsl:template>

@@ -110,11 +110,17 @@ xsltproc templates/public_request.xsl examples/public_request_block.xml | ./fred
 echo create file $DEST/public_request_block_cs.pdf
 xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_cs.pdf
 
+echo create file $DEST/public_request_block_datovka_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_block_datovka.xml | ./fred-doc2pdf > $DEST/public_request_block_datovka_cs.pdf
+
 echo create file $DEST/public_request_unblock_en.pdf
 xsltproc templates/public_request.xsl examples/public_request_unblock.xml | ./fred-doc2pdf > $DEST/public_request_unblock_en.pdf
 
 echo create file $DEST/public_request_unblock_cs.pdf
 xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_unblock.xml | ./fred-doc2pdf > $DEST/public_request_unblock_cs.pdf
+
+echo create file $DEST/public_request_unblock_datovka_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_unblock_datovka.xml | ./fred-doc2pdf > $DEST/public_request_unblock_datovka_cs.pdf
 
 echo create file $DEST/public_request_authinfo_en.pdf
 xsltproc templates/public_request.xsl examples/public_request_authinfo.xml | ./fred-doc2pdf > $DEST/public_request_authinfo_en.pdf
@@ -122,11 +128,17 @@ xsltproc templates/public_request.xsl examples/public_request_authinfo.xml | ./f
 echo create file $DEST/public_request_authinfo_cs.pdf
 xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_authinfo.xml | ./fred-doc2pdf > $DEST/public_request_authinfo_cs.pdf
 
+echo create file $DEST/public_request_authinfo_datovka_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/public_request_authinfo_datovka.xml | ./fred-doc2pdf > $DEST/public_request_authinfo_datovka_cs.pdf
+
 echo create file $DEST/request_for_personal_data_contact_cs.pdf
 xsltproc --stringparam lang cs templates/public_request.xsl examples/request_for_personal_data_contact.xml | ./fred-doc2pdf > $DEST/request_for_personal_data_contact_cs.pdf
 
 echo create file $DEST/request_for_personal_data_contact_en.pdf
 xsltproc --stringparam lang en templates/public_request.xsl examples/request_for_personal_data_contact.xml | ./fred-doc2pdf > $DEST/request_for_personal_data_contact_en.pdf
+
+echo create file $DEST/request_for_personal_data_contact_datovka_cs.pdf
+xsltproc --stringparam lang cs templates/public_request.xsl examples/request_for_personal_data_contact_datovka.xml | ./fred-doc2pdf > $DEST/request_for_personal_data_contact_datovka_cs.pdf
 
 echo create file $DEST/warning_letter1.pdf
 xsltproc templates/warning_letter.xsl examples/warning_letter1.xml | ./fred-doc2pdf > $DEST/warning_letter1.pdf
