@@ -190,19 +190,19 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
                 <frame id="body" x1="2.3cm" y1="10cm" width="16.6cm" height="14cm" showBoundary="0" />
 
                 <!-- Page footer -->
-                <stroke color="#003893"/>
-                <setFont name="FreeSans" size="8"/>
-                <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
-
-                <setFont name="FreeSans" size="8"/>
-                <drawString x="2.5cm" y="9.4cm">
-                    <xsl:call-template name="getstr"><xsl:with-param name="str">footer_2</xsl:with-param></xsl:call-template>
-                </drawString>
-                <drawString x="2.5cm" y="9cm">
-                    <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
-                </drawString>
-
                 <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+                    <stroke color="#003893"/>
+                    <setFont name="FreeSans" size="8"/>
+                    <lines>2.5cm 8.6cm 18.5cm 8.6cm</lines>
+
+                    <setFont name="FreeSans" size="8"/>
+                    <drawString x="2.5cm" y="9.4cm">
+                        <xsl:call-template name="getstr"><xsl:with-param name="str">footer_2</xsl:with-param></xsl:call-template>
+                    </drawString>
+                    <drawString x="2.5cm" y="9cm">
+                        <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
+                    </drawString>
+
                     <drawString x="2.5cm" y="8cm">
                         <xsl:call-template name="getstr"><xsl:with-param name="str">footer_1</xsl:with-param></xsl:call-template>
                     </drawString>
@@ -227,7 +227,7 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
     <stylesheet>
         <paraStyle name="main" fontName='FreeSans'/>
         <paraStyle name="address" fontName="FreeSansItalic" fontSize="8" leftIndent="1.4cm" />
-        <paraStyle name="footer" fontSize="8" />
+        <paraStyle name="footer" fontName='FreeSans' fontSize="8" leading="11" />
         <paraStyle name="title" fontName='FreeSansBold' fontSize='12' textColor="#003893" leading="14" />
     </stylesheet>
     <story>
@@ -244,12 +244,28 @@ $xsltproc enum/fred2pdf/trunk/templates/ -stringparam lang en enum/fred2pdf/trun
             <xsl:when test="type = 2 or type = 4"><xsl:call-template name="block"/></xsl:when>
             <xsl:when test="type = 3 or type = 5"><xsl:call-template name="unblock"/></xsl:when>
         </xsl:choose>
-        <spacer length="1.6cm"/>
-        <xsl:if test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
-            <para style="main">
-            ...........................................................................
-            </para>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="string(/enum_whois/public_request/confirmation_type/text()) != 'government'">
+                <spacer length="1.6cm"/>
+                <para style="main">
+                ...........................................................................
+                </para>
+            </xsl:when>
+            <xsl:otherwise>
+                <spacer length="0.6cm"/>
+                <illustration width="0.5cm" height="1">
+                        <stroke color="#003893"/>
+                        <lineMode width="0.4mm"/>
+                        <lines>0cm 0cm 16cm 0mm</lines>
+                </illustration>
+                <spacer length="0.2cm"/>
+                <para style="footer">
+                    <xsl:call-template name="getstr"><xsl:with-param name="str">footer_2</xsl:with-param></xsl:call-template>
+                    &SPACE;
+                    <xsl:call-template name="getstr"><xsl:with-param name="str">footer_3</xsl:with-param></xsl:call-template>
+                </para>
+            </xsl:otherwise>
+        </xsl:choose>
     </story>
 </document>
     </xsl:template>
