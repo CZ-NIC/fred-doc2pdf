@@ -19,5 +19,5 @@ setup(name=PROJECT_NAME,
       license='GNU GPL',
       long_description='The module of the FRED system',
       scripts=[PACKAGE_NAME],
-      data_files=[('usr/share/fred-doc2pdf/templates', findall('templates'))],
+      data_files=[('share/fred-doc2pdf/templates', findall('templates'))],
       zip_safe=False)
