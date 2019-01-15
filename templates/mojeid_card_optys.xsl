@@ -76,7 +76,6 @@ END:VCARD</barCode>
             <fill color="#000000"/>
             <setFont name="FreeSans" size="9.5"/>
             <drawString x="150mm" y="194mm">Praha&SPACE;<xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></drawString>
-            <drawString x="67mm" y="142mm">X X X X X X X X X X X X X X X X X X X X X X X X X X</drawString>
             <xsl:choose>
               <xsl:when test="string-length(account/username)&lt;18">
                 <setFont name="FreeSansBold" size="9.5"/></xsl:when>
