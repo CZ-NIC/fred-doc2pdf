@@ -1,3 +1,7 @@
+2019-01-16 (2.18.1)
+
+    * Fix - remove 'X X X' line from mojeid letter
+
 2018-09-05 (2.18.0)
 
     * Font definitions moved to templates
