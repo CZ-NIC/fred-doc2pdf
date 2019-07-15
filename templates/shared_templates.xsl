@@ -14,12 +14,18 @@
 
 <xsl:template name="local_date">
     <!--
-        sdt: "2017-04-18T16:12:00,123123135+02:00"
+        Localize only 'sdt' value in format: "2017-04-18T16:12:00,123123135+02:00". Other formats leave unchanged.
     -->
     <xsl:param name="sdt"/>
-    <xsl:if test="string-length($sdt)>0">
-        <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
-    </xsl:if>
+    <xsl:choose>
+        <!-- Function matches() is availabe only from version XSLT 2.0. -->
+        <xsl:when test='substring(translate($sdt, "0123456789", "NNNNNNNNNN"), 0, 11) = "NNNN-NN-NN"'>
+            <xsl:value-of select='substring($sdt, 9, 2)' />.<xsl:value-of select='substring($sdt, 6, 2)' />.<xsl:value-of select='substring($sdt, 1, 4)' />
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$sdt"/>
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <xsl:template name="localized_datetime">
