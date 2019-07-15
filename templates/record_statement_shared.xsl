@@ -159,7 +159,11 @@
             <td>
                 <xsl:value-of select="handle"/>
                 <xsl:if test="name/text()">, <xsl:value-of select="name"/></xsl:if>
-                <xsl:if test="organization/text()">, <xsl:value-of select="organization"/></xsl:if>
+                <xsl:if test="organization/text()">, <xsl:call-template name="trim_with_dots">
+                        <xsl:with-param name="string" select="organization/text()"/>
+                        <xsl:with-param name="max_length" select="32"/>
+                    </xsl:call-template>
+                </xsl:if>
             </td>
           </tr>
   </xsl:template>

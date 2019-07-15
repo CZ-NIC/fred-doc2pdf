@@ -60,7 +60,7 @@
     <xsl:param name="max_length" select="25"/>
     <xsl:choose>
         <xsl:when test="string-length($string)>$max_length">
-            <xsl:value-of select="substring($string, 1, $max_length)"/>..</xsl:when>
+            <xsl:value-of select="substring($string, 1, $max_length)"/>…</xsl:when>
         <xsl:otherwise>
             <xsl:value-of select="$string"/></xsl:otherwise>
     </xsl:choose>
