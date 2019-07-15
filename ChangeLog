@@ -1,3 +1,10 @@
+2019-07-15 (2.20.0)
+
+    * Record statement fixes and enhancements
+        - date formatting
+        - trim organization field
+        - footer text removed
+
 2019-03-18 (2.19.0)
 
     * License GNU GPLv3+
