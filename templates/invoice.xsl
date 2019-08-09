@@ -315,6 +315,10 @@ Description of decision, what text will be shown:
     <td>REPP:</td>
     <td><xsl:value-of select="$loc/str[@name='Charged queries']"/></td>
   </tr>
+  <tr>
+    <td>RPOP:</td>
+    <td><xsl:value-of select="$loc/str[@name='MonthlyFee']"/></td>
+  </tr>
 </blockTable>
 
 </xsl:if>

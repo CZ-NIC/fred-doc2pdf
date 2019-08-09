@@ -69,6 +69,7 @@
 <str name="Domain name registration">Domain name registration</str>
 <str name="Domain name record maintenance">Domain name record maintenance</str>
 <str name="Charged queries">Charged requests</str>
+<str name="MonthlyFee">Fee for the connection to the central registry</str>
 <str name="VAT-settled-deposit">VAT has been settled through deposit tax documents</str> 
 <str name="Reg">Reg</str>
 <str name="Associations register of the Municipal Court in Prague">Associations register of the Municipal Court in Prague</str>
