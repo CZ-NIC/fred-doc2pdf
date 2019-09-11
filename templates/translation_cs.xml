@@ -73,6 +73,7 @@
 <str name="Domain name registration">registrace doménových jmen</str>
 <str name="Domain name record maintenance">udržování záznamu o doménovém jménu</str>
 <str name="Charged queries">zpoplatněné dotazy</str>
+<str name="MonthlyFee">Poplatek za připojení do Centrálního registru</str>
 <str name="VAT-settled-deposit">DPH byla vypořádána na daňových dokladech na přijatou
 platbu a činí v úrovni bez daně</str>
 <str name="Reg">SpZ</str>
