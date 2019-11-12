@@ -66,7 +66,7 @@
 
 <str name="Period from(date)">Za období od</str>
 <str name="to(date)">do</str>
-<str name="we-invoiced-you">Vám fakturujeme poskytnuté služby dle Smlouvy o spolupráci (viz příloha). Do 30.9. počítána DPH koeficientem, od 1.10. tzv. matematickým výpočtem.</str>
+<str name="we-invoiced-you">Vám fakturujeme poskytnuté služby dle Smlouvy o spolupráci (viz příloha). Do 30.9.2019 je DPH počítána koeficientem, od 1.10.2019 tzv. matematickým výpočtem.</str>
 <str name="contractual-fine">Vám fakturujeme smluvní pokutu dle článku 4.3.1. Obchodních podmínek pro registrátory, které jsou součástí Smlouvy o spolupráci při registraci doménových jmen</str>
 <str name="years-fee">Vám fakturujeme roční poplatek za připojení do Centrálního registru</str>
 <str name="Service codes">Kódy služeb</str>
