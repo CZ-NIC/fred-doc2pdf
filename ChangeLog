@@ -1,3 +1,7 @@
+2020-01-08 (2.22.0)
+
+    * Add administrative fee item code to invoice template
+
 2019-11-20 (2.21.1)
 
     * Update spec file for F31 and Centos/RHEL 8
