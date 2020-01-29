@@ -14,7 +14,7 @@ BuildArch: noarch
 Vendor: CZ.NIC <fred@nic.cz>
 Url: https://fred.nic.cz/
 BuildRequires: python2-setuptools
-Requires: python2-trml2pdf >= 1.2 gnu-free-sans-fonts
+Requires: python-trml2pdf >= 1.2 gnu-free-sans-fonts python2-reportlab <= 3.4.0
 
 %description
 The module of the FRED system used for PDF generation
