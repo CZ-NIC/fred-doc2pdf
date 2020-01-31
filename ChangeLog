@@ -1,3 +1,7 @@
+2020-01-31 (2.22.1)
+
+    * Fix rpm for RHEL8 and F31
+
 2020-01-08 (2.22.0)
 
     * Add administrative fee item code to invoice template
