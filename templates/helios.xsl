@@ -721,6 +721,34 @@
         <CisloKontace>41</CisloKontace>
        </Polozka>
       </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='232'])">
+       <Polozka>
+        <Klic>FK_UKOD_232</Klic>
+        <CisloKontace>43</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='242'])">
+       <Polozka>
+        <Klic>FK_UKOD_242</Klic>
+        <CisloKontace>42</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='122'])">
+       <Polozka>
+        <Klic>FK_UKOD_122</Klic>
+        <CisloKontace>40</CisloKontace>
+       </Polozka>
+      </xsl:if>
+      <xsl:if
+       test="count(invoice[substring(payment/invoice_number,0,4)='112'])">
+       <Polozka>
+        <Klic>FK_UKOD_112</Klic>
+        <CisloKontace>41</CisloKontace>
+       </Polozka>
+      </xsl:if>
      </TabUKod>
      <TabPenezniUstavy>
       <Polozka>
