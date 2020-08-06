@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2020  CZ.NIC, z. s. p. o.
+# Copyright (C) 2006-2018  CZ.NIC, z. s. p. o.
 #
 # This file is part of FRED.
 #
@@ -709,10 +709,7 @@ def init_hooks():
     # =============================================
     # Optimalisation for count long tables
     reportlab.rl_config.longTableOptimize = 1
-
-    # FIX LayoutError: Flowable %s (%sx%s points) too large for frame (%sx%s points).
-    reportlab.platypus.frames._FUZZ = 16
-
+    
 
 def run(body):
     'Run PDF process'
