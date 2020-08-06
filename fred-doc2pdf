@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006-2018  CZ.NIC, z. s. p. o.
+# Copyright (C) 2006-2020  CZ.NIC, z. s. p. o.
 #
 # This file is part of FRED.
 #
@@ -311,24 +311,6 @@ class FredTable(platypus.Table):
             self.spaceBefore = spaceBefore
         if spaceAfter is not None:
             self.spaceAfter = spaceAfter
-
-    def _calc_height(self, availHeight, availWidth, H=None, W=None):
-        'replace original at reportlab.platypus.tables._calc_height'
-
-        global cache_tables
-    
-        # _calc_height( 639.968503937 481.228346457 None None )
-        cache_key = '%f:%f:%d' % (availHeight, availWidth, len(self._argH))
-        
-        if cache_tables.has_key(cache_key):
-            # get parsed values from cache
-            self._rowHeights, self._height, self._rowpositions = cache_tables[cache_key]
-            return
-        
-        HOOKS.get('original_table_calc_height', fnc)(self, availHeight, availWidth, H, W)
-
-        # keep parsed values in cache
-        cache_tables[cache_key] = (self._rowHeights, self._height, self._rowpositions)
 
 
 def fred_table(self, node):
@@ -651,9 +633,6 @@ def init_hooks():
     # It must precedent functions, because they use it
     #
     # ================================================
-    
-    # table cache
-    HOOKS['original_table_calc_height'] = reportlab.platypus.tables.Table._calc_height
     
     # Fonts
     HOOKS['original_rml_doc_render'] = trml2pdf._rml_doc.render
