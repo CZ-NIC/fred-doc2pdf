@@ -104,6 +104,10 @@ xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_f_v_sk.xml |
 echo create file $DEST/mojeid_card_optys_f_sk.pdf
 xsltproc templates/mojeid_card_optys.xsl examples/mojeid_card_optys_f_sk.xml | ./fred-doc2pdf > $DEST/mojeid_card_optys_f_sk.pdf
 
+# Potvrďte v MojeID, že jste na této adrese k zastižení
+echo create file $DEST/mojeid_optys_pin3_cz.pdf
+xsltproc templates/mojeid_optys_pin3_cz.xsl examples/mojeid_auth_user.xml | ./fred-doc2pdf > $DEST/mojeid_optys_pin3_cz.pdf
+
 echo create file $DEST/public_request_block_en.pdf
 xsltproc templates/public_request.xsl examples/public_request_block.xml | ./fred-doc2pdf > $DEST/public_request_block_en.pdf
 
