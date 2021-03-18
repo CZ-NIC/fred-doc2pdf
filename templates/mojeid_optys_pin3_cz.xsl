@@ -19,7 +19,7 @@
             <setFont name="AvenirBlack" size="16"/>
             <drawRightString x="62.6mm" y="157mm">PIN3:</drawRightString>
             <frame id="date" x1="20mm" y1="247mm" width="55mm" height="10mm"/>
-            <frame id="address" x1="110mm" y1="224mm" width="80mm" height="37mm"/>
+            <frame id="address" x1="110mm" y1="212mm" width="70mm" height="35mm"/>
             <frame id="pin" x1="80mm" y1="152mm" width="102mm" height="20mm"/>
           </pageGraphics>
         </pageTemplate>
