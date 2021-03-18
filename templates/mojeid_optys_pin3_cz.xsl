@@ -2,13 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="xml" encoding="utf-8"/>
-
-  <xsl:template name="local_date">
-    <xsl:param name="sdt"/>
-    <xsl:if test="$sdt">
-      <xsl:value-of select='substring($sdt,9,2)'/>.<xsl:value-of select='substring($sdt,6,2)'/>.<xsl:value-of select='substring($sdt,1,4)'/>
-    </xsl:if>
-  </xsl:template>
+  <xsl:include href="shared_templates.xsl"/>
 
   <xsl:template match="contact_auth">
     <document>
@@ -21,22 +15,27 @@
         <pageTemplate id="main">
           <pageGraphics>
             <setFont name="AvenirMedium" size="10"/>
-            <drawRightString x="62mm" y="180mm">Uživatelské jméno:</drawRightString>
+            <drawRightString x="62.6mm" y="166.4mm">Uživatelské jméno:</drawRightString>
             <setFont name="AvenirBlack" size="16"/>
-            <drawRightString x="62mm" y="171mm">PIN3:</drawRightString>
-            <frame id="date" x1="135mm" y1="254mm" width="55mm" height="10mm"/>
-            <frame id="pin" x1="80mm" y1="166mm" width="126mm" height="20mm"/>
+            <drawRightString x="62.6mm" y="157mm">PIN3:</drawRightString>
+            <frame id="date" x1="20mm" y1="247mm" width="55mm" height="10mm"/>
+            <frame id="address" x1="110mm" y1="224mm" width="80mm" height="37mm"/>
+            <frame id="pin" x1="80mm" y1="152mm" width="102mm" height="20mm"/>
           </pageGraphics>
         </pageTemplate>
       </template>
       <stylesheet>
         <paraStyle name="username" fontSize="10" fontName="AvenirMedium" leading="20"/>
-        <paraStyle name="date" fontSize="10" fontName="AvenirMedium" alignment="right"/>
+        <paraStyle name="date" fontSize="10" fontName="AvenirMedium"/>
+        <paraStyle name="address-name" fontSize="10" fontName="AvenirBlack"/>
+        <paraStyle name="address" fontSize="10" fontName="AvenirMedium"/>
         <paraStyle name="pin3" fontSize="16" fontName="AvenirBlack"/>
       </stylesheet>
       <story>
         <xsl:for-each select="user">
           <para style="date">Praha <xsl:call-template name="local_date"><xsl:with-param name="sdt" select="actual_date"/></xsl:call-template></para>
+          <nextFrame/>
+          <xsl:call-template name="fillAddress"/>
           <para style="username"><xsl:value-of select="account/username"/></para>
           <para style="pin3"><xsl:value-of select="auth/codes/pin3"/></para>
           <pageBreak/>
