@@ -54,7 +54,7 @@
             <drawRightString x="62.6mm" y="166.4mm">Uživatelské jméno:</drawRightString>
             <setFont name="AvenirBlack" size="16"/>
             <drawRightString x="62.6mm" y="157mm">PIN3:</drawRightString>
-            <frame id="date" x1="16mm" y1="247mm" width="55mm" height="10mm"/>
+            <frame id="date" x1="19mm" y1="247mm" width="55mm" height="10mm"/>
             <frame id="address" x1="108mm" y1="218mm" width="68mm" height="39mm"/>
             <frame id="pin" x1="80mm" y1="152mm" width="102mm" height="20mm"/>
           </pageGraphics>
