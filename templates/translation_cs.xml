@@ -229,6 +229,10 @@ Aktuální seznam firem, se kterými má sdružení CZ.NIC uzavřenou smlouvu o 
 <str name="contactInManualVerification">Kontakt je ověřován zákaznickou podporou CZ.NIC</str>
 <str name="contactFailedManualVerification">Ověření kontaktu zákaznickou podporou bylo neúspěšné</str>
 <str name="outzoneUnguardedWarning">Doména bude brzy vyřazena ze zóny</str>
+<str name="serverContactNameChangeProhibited">Není povolena změna jména</str>
+<str name="serverContactOrganizationChangeProhibited">Není povolena změna organizace</str>
+<str name="serverContactIdentChangeProhibited">Není povolena změna dodatečného identifikátoru</str>
+<str name="serverContactPermanentAddressChangeProhibited">Není povolena změna adresy trvalého bydliště</str>
 
 <str name="Reserved">Rezervováno</str>
 <str name="Unassigned">Nepřiřazeno</str>
