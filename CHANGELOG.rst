@@ -1,6 +1,12 @@
 ChangeLog
 =========
 
+2022-01-06 (2.24.0)
+-------------------
+
+* Add new contact states (to inform that some of the contact attributes are locked and cannot be changed) description
+
+
 2021-03-31 (2.23.1)
 -------------------
 
