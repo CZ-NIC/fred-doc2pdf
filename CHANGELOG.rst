@@ -5,6 +5,7 @@ ChangeLog
 -------------------
 
 * Add new contact states (to inform that some of the contact attributes are locked and cannot be changed) description
+* Update text of mojeid validation pdf
 
 
 2021-03-31 (2.23.1)
