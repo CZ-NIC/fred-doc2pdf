@@ -182,14 +182,33 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
 <stylesheet>
     <paraStyle name="main" fontName='FreeSans'/>
+    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-4mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
 </stylesheet>
 
 <story>
 
-<para style="main">
-    Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
-    níže uvedenou adresu.
-</para>
+<xsl:choose>
+    <xsl:when test="string(organization)">
+        <para style="main">
+            <b>Žádost o&NBSP;validaci podejte jedním z&NBSP;následujících způsobů:</b>
+        </para>
+        <para style="list">
+            <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+            níže uvedenou adresu.
+        </para>
+        <para style="list">
+            <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete ze své <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
+            Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem.
+            Při odeslání musí být povolena volba "Přidat identifikaci odesílatele"!
+        </para>
+    </xsl:when>
+    <xsl:otherwise>
+        <para style="main">
+            Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+            níže uvedenou adresu.
+        </para>
+    </xsl:otherwise>
+</xsl:choose>
 
 <spacer length="29mm"/>
 
