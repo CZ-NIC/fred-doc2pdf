@@ -182,44 +182,14 @@ $xsltproc templates/mojeid_validate.xsl examples/mojeid_validate.xml | ./fred-do
 
 <stylesheet>
     <paraStyle name="main" fontName='FreeSans'/>
-    <paraStyle name="list" fontName='FreeSans' firstLineIndent="-4mm" leftIndent="10mm" spaceBefore="5mm" alignment="LEFT"/>
-    <paraStyle name="clist" fontName='FreeSans' leftIndent="10mm" spaceBefore="2.5mm" alignment="LEFT"/>
 </stylesheet>
 
 <story>
 
 <para style="main">
-    <b>Žádost o&NBSP;validaci podejte jedním z&NBSP;následujících způsobů:</b>
-</para>
-
-<para style="list">
-    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
+    Žádost vytiskněte, opatřete ji <b>úředně ověřeným podpisem</b> a&NBSP;odešlete poštou na
     níže uvedenou adresu.
 </para>
-<para style="list">
-    <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost vytiskněte a&NBSP;<b>dostavte se s&NBSP;ní osobně</b> na některé z&NBSP;validačních míst.
-    Seznam validačních míst, včetně pracovní doby, najdete na našich stránkách
-    <a color="blue" href="https://mojeid.cz/validace/"><u>mojeid.cz/validace</u></a>.
-</para>
-<para style="clist">
-    Při návštěvě validačního místa si nezapomeňte vzít s&NBSP;sebou doklad totožnosti s&NBSP;uvedenou adresou
-    trvalého pobytu (občanský průkaz, pas + dokument dokládající adresu trvalého pobytu, apod.). Při
-    tomto způsobu ověření z&NBSP;něj pořizujeme částečnou kopii.
-</para>
-<xsl:choose>
-    <xsl:when test="string(organization)">  
-        <para style="clist">
-            Při validaci účtu právnických osob vezměte s&NBSP;sebou kopii výpisu z&NBSP;obchodního rejstříku,
-            žádost o&NBSP;validaci potvrzuje statutární orgán. Při validaci účtu podnikající fyzické osoby vezměte s&NBSP;sebou
-            kopii výpisu z&NBSP;živnostenského rejstříku.
-        </para>
-        <para style="list">
-            <font size="7">&CIRCLE;</font>&NBSP;&NBSP;Žádost odešlete ze své <b>datové schránky</b> do datové schránky sdružení (ID datové schránky:&NBSP;h4axdn8).
-            Zpráva musí být odeslána osobou oprávněnou, nikoliv pověřenou či administrátorem.
-            Při odeslání musí být povolena volba "Přidat identifikaci odesílatele"!
-        </para>
-    </xsl:when>
-</xsl:choose>
 
 <spacer length="29mm"/>
 
